@@ -6,43 +6,55 @@ using Plots
 using NonlinearEigenproblems
 include("BaseFlow_cavity.jl")
 include("Stability_Cavity.jl")
-R_ini= 355
-R_end = 350
+R_ini= 453
+R_end = 453
 be_up = 0.3
 be_down = -0.3
-alpha_ini = 0.0155
-alpha_end = 0.705
+alpha_ini = 0.0157
+alpha_end = 0.707
 N_cheb = 129
 LinearAlgebra.BLAS.set_num_threads(1)
-Ts = 0.2
+Ts = 0.4
 function EigenCore(cof,D,D2,be,alpha,R,N_cheb)
     H0,H1 = CRC_STA.assemble_time_mat(cof,D,D2,be,alpha,R,N_cheb)
     C = eigen(H0,H1)
     val = C.values
     vec = C.vectors
-    map_index0 = map(x-> abs(real(x)) < 0.3 && abs(imag(x)) < 0.02, val)
+    map_index0 = map(x-> (real(x)) > 0.0 && abs(imag(x)) < 0.1, val)
     val_filter0 = val[map_index0]
     vec_filter0 = vec[:,map_index0]
+    if isempty(val_filter0)
+        # Fallback: if the strict window captures nothing, keep all modes.
+        val_filter0 = val
+        vec_filter0 = vec
+    end
     indictor = sum(real(val_filter0))/length(val_filter0)
-    if alpha < 0.031
+    if alpha < 0.051
         addition = 0.003
-    elseif 0.031 < alpha < 0.08
+    elseif 0.051 < alpha < 0.08
         addition = 0.006
     else
         addition = 0.01
     end
+    # addition = alpha * 0.05
     map_index = map(x-> (real(x)) > abs(indictor) + addition , val_filter0)
     val_filter1 = val_filter0[map_index]
     vec_filter1 = vec_filter0[:,map_index]
+    if isempty(val_filter1)
+        # Fallback: preserve at least one candidate to keep continuation alive.
+        idx0 = findmax(imag.(val_filter0))[2]
+        val_filter1 = [val_filter0[idx0]]
+        vec_filter1 = vec_filter0[:, [idx0]]
+    end
     val_filter2 = val_filter1[findmax(imag.(val_filter1))[2]]
     vec_filter2 = vec_filter1[:,findmax(imag.(val_filter1))[2]];
-    if 0.2 < alpha < 0.4
+    if 0.3 < alpha < 0.4
         idx = partialsortperm(real(val_filter1), 1:3, by = x -> abs(x - real(val_filter2)))
         val_filter = val_filter1[idx]
         vec_filter = vec_filter1[:,idx]
     else
-        val_filter = val_filter2
-        vec_filter = vec_filter2
+        val_filter = [val_filter2]
+        vec_filter = reshape(vec_filter2, length(vec_filter2), 1)
     end
     val_target = val_filter
     vec_target = vec_filter
@@ -60,7 +72,7 @@ function interation(R_ini, R_end, alpha_ini, alpha_end, be_up, be_down, Ts, N_ch
     N_total_steps = 1 + length(be_pos_range) + length(be_neg_range)
 
     idx_root = length(be_neg_range) + 1
-    alpha_range = collect(alpha_ini : 0.01 : alpha_end)
+    alpha_range = collect(alpha_ini : 0.008 : alpha_end)
 
     for R = R_ini : -5 : R_end
         t_start = time()
@@ -72,8 +84,9 @@ function interation(R_ini, R_end, alpha_ini, alpha_end, be_up, be_down, Ts, N_ch
         # ====================================================
         N_sys = size(cof.D1, 1)
         idx_bc = setdiff(1:N_sys, (1, N_cheb + 1, N_cheb + 2, 2N_cheb + 2, 2N_cheb + 3, 3N_cheb + 3))
-        KD  = kron(I(4), D)
-        KD2 = kron(I(4), D2)
+        I4 = Matrix{Float64}(I, 4, 4)
+        KD  = kron(I4, D)
+        KD2 = kron(I4, D2)
 
         M_const   = cof.D1 .+ cof.C * KD .+ cof.Vzz * KD2
         M_alpha   = im .* cof.A .+ im .* cof.Vxz * KD
@@ -95,7 +108,7 @@ function interation(R_ini, R_end, alpha_ini, alpha_end, be_up, be_down, Ts, N_ch
         # 阶段一：动态大步长探测 (Probing Phase)
         # ====================================================
         println(">>> [阶段一] 开始动态探测失稳边界...")
-        probe_start = 0.23
+        probe_start = 0.5
         probe_step = 0.1
         alpha_cutoff = alpha_end + 1.0
         
@@ -117,11 +130,11 @@ function interation(R_ini, R_end, alpha_ini, alpha_end, be_up, be_down, Ts, N_ch
             
             if is_globally_stable
                 # 遍历所有危险模态进行探测
-                for m in 1:length(vals_root)
+                for m in eachindex(vals_root)
                     val, vec = vals_root[m], vecs_root[:, m]
                     for be in be_pos_scan_range
                         H0_work_probe .= H0_base_probe .+ be .* H0_be_linear_probe .+ (be^2) .* sM_be2
-                        val, vec = rayleigh_quotient_iteration(H0_work_probe, H1_work_probe, val, vec)
+                        val, vec = rayleigh_quotient_iteration(H0_work_probe, H1_work_probe, val + 0.015 * (1-alpha_probe) * im, vec)
                         if imag(val) > 0
                             is_globally_stable = false
                             break 
@@ -132,11 +145,11 @@ function interation(R_ini, R_end, alpha_ini, alpha_end, be_up, be_down, Ts, N_ch
             end
 
             if is_globally_stable
-                for m in 1:length(vals_root)
+                for m in eachindex(vals_root)
                     val, vec = vals_root[m], vecs_root[:, m]
                     for be in be_neg_scan_range
                         H0_work_probe .= H0_base_probe .+ be .* H0_be_linear_probe .+ (be^2) .* sM_be2
-                        val, vec = rayleigh_quotient_iteration(H0_work_probe, H1_work_probe, val, vec)
+                        val, vec = rayleigh_quotient_iteration(H0_work_probe, H1_work_probe,val + 0.015 * (1-alpha_probe) * im, vec)
                         if imag(val) > 0
                             is_globally_stable = false
                             break
@@ -161,7 +174,7 @@ function interation(R_ini, R_end, alpha_ini, alpha_end, be_up, be_down, Ts, N_ch
         println(">>> [阶段二] 启动高精度并行扫描，截断阈值 alpha_cutoff = $alpha_cutoff ...")
         tasks = Vector{Task}(undef, length(alpha_range))
 
-        for i in 1 : length(alpha_range)
+        for i in eachindex(alpha_range)
             alpha = alpha_range[i]
 
             tasks[i] = Threads.@spawn begin
@@ -173,7 +186,7 @@ function interation(R_ini, R_end, alpha_ini, alpha_end, be_up, be_down, Ts, N_ch
                     local_mat_env[r_idx, :] .= (R, alpha, b_val, -1.0, -1.0)
                 end
 
-                if alpha >= alpha_cutoff
+                if alpha >= alpha_cutoff + 0.05
                     return local_mat_env # 剪枝直接返回包络线
                 end
 
@@ -187,13 +200,13 @@ function interation(R_ini, R_end, alpha_ini, alpha_end, be_up, be_down, Ts, N_ch
                 # ====================================================
                 # 分别追踪提取出的前几个最危险模态
                 # ====================================================
-                for m in 1:length(vals_root)
+                for m in eachindex(vals_root)
                     val_root = vals_root[m]
                     vec_root = vecs_root[:, m]
                     
                     # 临时矩阵用于记录当前单一模态的轨迹
                     local_mat = copy(local_mat_env)
-                    local_mat[idx_root, :] .= (R, alpha, 0.0, real(val_root), imag(val_root))
+                    local_mat[idz
                     
                     val, vec = val_root, vec_root
                     crossed_neutral = false 
@@ -234,7 +247,7 @@ function interation(R_ini, R_end, alpha_ini, alpha_end, be_up, be_down, Ts, N_ch
                     post_steps = 0
                     for (ib, be) in enumerate(be_neg_range)
                         H0_work .= H0_base .+ be .* H0_be_linear .+ (be^2) .* sM_be2
-                        val, vec = rayleigh_quotient_iteration(H0_work, H1_work, val + val + 0.03 * alpha * im, vec)
+                        val, vec = rayleigh_quotient_iteration(H0_work, H1_work, val + 0.015 * (1-alpha) * im, vec)
                         
                         curr_idx = idx_root - ib
                         local_mat[curr_idx, :] .= (R, alpha, be, real(val), imag(val))
@@ -293,7 +306,7 @@ function interation(R_ini, R_end, alpha_ini, alpha_end, be_up, be_down, Ts, N_ch
 end
 function rayleigh_quotient_iteration(A, B, sigma, q0=rand(ComplexF64, size(A, 1)))
     tol = 1e-8
-    sigma_current = ComplexF64(sigma[1]) 
+    sigma_current = ComplexF64(sigma)
     q = q0 / norm(q0) # 必须使用欧几里得范数
     
     for i in 1:20
@@ -331,7 +344,7 @@ function filter_boundary_instability!(data::Matrix{Float64})
         idx_up = idx[end]
         if data[idx_up, 5] > 0.0 # 如果上边界点是不稳定的
             # 从边界开始，倒推向内部扫描
-            for i in length(idx):-1:1
+            for i in Iterators.reverse(eachindex(idx))
                 curr_row = idx[i]
                 if data[curr_row, 5] > 0.0
                     # 只要还是不稳定的，就抹除（填充为 -1.0）
@@ -351,7 +364,7 @@ function filter_boundary_instability!(data::Matrix{Float64})
         idx_down = idx[1]
         if data[idx_down, 5] > 0.0 # 如果下边界点是不稳定的
             # 从边界开始，正推向内部扫描
-            for i in 1:length(idx)
+            for i in eachindex(idx)
                 curr_row = idx[i]
                 if data[curr_row, 5] > 0.0
                     data[curr_row, 4] = -1.0

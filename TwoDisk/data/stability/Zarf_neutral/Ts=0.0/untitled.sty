@@ -17,7 +17,7 @@ $!ThreeDAxis
   BoxAspectRatioLimit = 25
 $!GlobalTime 
   SolutionTime = 0
-$!ActiveFieldMaps  =  [1]
+$!ActiveFieldMaps  =  [8]
 $!GlobalRGB 
   RedChannelVar = 4
   GreenChannelVar = 4
@@ -25,35 +25,107 @@ $!GlobalRGB
   RangeMin = 0
   RangeMax = 1
 $!GlobalContour  1
-  Var = 5
-  ColorMapName = 'Diverging - Blue/Red'
-  DefNumLevels = 1
+  Var = 4
+  ColorMapName = 'Modified Rainbow - Less Green'
+  DefNumLevels = 41
+  Labels
+    {
+    NumFormat
+      {
+      TimeDateFormat = ''
+      }
+    }
   Legend
     {
+    Show = Yes
+    RowSpacing = 2
     XYPos
       {
-      X = 95
+      X = 22.57
+      Y = 23.766
       }
+    AnchorAlignment = BottomCenter
+    OverlayBarGrid = No
+    Header
+      {
+      TextShape
+        {
+        FontFamily = 'Times'
+        IsItalic = Yes
+        Height = 5
+        }
+      UseCustomText = Yes
+      CustomText = 'ω             '
+      }
+    NumberTextShape
+      {
+      FontFamily = 'Times'
+      Height = 3
+      }
+    Box
+      {
+      BoxType = None
+      }
+    AutoResize = Yes
     }
   ColorCutoff
     {
-    RangeMin = 0
-    RangeMax = 0.502510246313
-    IncludeMin = Yes
+    RangeMin = -0.0199150545523
+    RangeMax = 0.0189631497487
     }
   ColorMapFilter
     {
     ContinuousColor
       {
-      CMin = -1
-      CMax = 0.00502049262515
+      CMin = -0.0393541567028
+      CMax = 0.0384022518992
       }
     }
 $!ContourLevels New
   ContourGroup = 1
   RawData
-1
+41
+-0.1
+-0.095
+-0.09
+-0.085
+-0.08
+-0.075
+-0.07
+-0.065
+-0.06
+-0.055
+-0.05
+-0.045
+-0.04
+-0.035
+-0.03
+-0.025
+-0.02
+-0.015
+-0.01
+-0.005
 0
+0.005
+0.01
+0.015
+0.02
+0.025
+0.03
+0.035
+0.04
+0.045
+0.05
+0.055
+0.06
+0.065
+0.07
+0.075
+0.08
+0.085
+0.09
+0.095
+0.1
 $!GlobalContour  2
   Var = 5
   ColorMapName = 'Sequential - Viridis'
@@ -339,7 +411,7 @@ $!GlobalThreeDVector
   UVar = 1
   VVar = 2
   WVar = 5
-  RelativeLength = 0.0007
+  RelativeLength = 0.07
 $!GlobalTwoDVector 
   UVar = 4
   VVar = 5
@@ -430,8 +502,6 @@ $!FieldMap  [2]
   EdgeLayer
     {
     Show = Yes
-    IBorder = Max
-    JBorder = Max
     Color = Black
     LineThickness = 0.1
     }
@@ -442,6 +512,230 @@ $!FieldMap  [2]
   Surfaces
     {
     SurfacesToPlot = KPlanes
+    IRange
+      {
+      Max = 1
+      }
+    }
+  VolumeMode
+    {
+    VolumeObjectsToPlot
+      {
+      ShowIsosurfaces = No
+      ShowSlices = No
+      ShowStreamtraces = No
+      }
+    }
+  Effects
+    {
+    LightingEffect = Gouraud
+    }
+$!FieldMap  [3]
+  Mesh
+    {
+    Color = Blue
+    }
+  Contour
+    {
+    Color = Blue
+    }
+  Vector
+    {
+    Color = Blue
+    }
+  Scatter
+    {
+    Color = Blue
+    }
+  Shade
+    {
+    Color = Custom2
+    }
+  EdgeLayer
+    {
+    Show = Yes
+    Color = Blue
+    }
+  Points
+    {
+    PointsToPlot = SurfaceNodes
+    }
+  Surfaces
+    {
+    SurfacesToPlot = KPlanes
+    }
+$!FieldMap  [4]
+  Mesh
+    {
+    Color = Cyan
+    }
+  Contour
+    {
+    Color = Cyan
+    }
+  Vector
+    {
+    Color = Cyan
+    }
+  Scatter
+    {
+    Color = Cyan
+    }
+  Shade
+    {
+    Color = Custom2
+    }
+  EdgeLayer
+    {
+    Show = Yes
+    Color = Cyan
+    }
+  Points
+    {
+    PointsToPlot = SurfaceNodes
+    }
+  Surfaces
+    {
+    SurfacesToPlot = KPlanes
+    }
+$!FieldMap  [5]
+  Mesh
+    {
+    Color = Yellow
+    }
+  Contour
+    {
+    Color = Yellow
+    }
+  Vector
+    {
+    Color = Yellow
+    }
+  Scatter
+    {
+    Color = Yellow
+    }
+  Shade
+    {
+    Color = Custom2
+    }
+  EdgeLayer
+    {
+    Show = Yes
+    Color = Yellow
+    }
+  Points
+    {
+    PointsToPlot = SurfaceNodes
+    }
+  Surfaces
+    {
+    SurfacesToPlot = KPlanes
+    }
+$!FieldMap  [6]
+  Mesh
+    {
+    Color = Purple
+    }
+  Contour
+    {
+    Color = Purple
+    }
+  Vector
+    {
+    Color = Purple
+    }
+  Scatter
+    {
+    Color = Purple
+    }
+  Shade
+    {
+    Color = Custom2
+    }
+  EdgeLayer
+    {
+    Show = Yes
+    Color = Purple
+    }
+  Points
+    {
+    PointsToPlot = SurfaceNodes
+    }
+  Surfaces
+    {
+    SurfacesToPlot = KPlanes
+    }
+$!FieldMap  [7]
+  Mesh
+    {
+    Color = Red
+    }
+  Contour
+    {
+    Color = Red
+    }
+  Vector
+    {
+    Color = Red
+    }
+  Scatter
+    {
+    Color = Red
+    }
+  Shade
+    {
+    Color = Custom2
+    }
+  EdgeLayer
+    {
+    Show = Yes
+    Color = Red
+    }
+  Points
+    {
+    PointsToPlot = SurfaceNodes
+    }
+  Surfaces
+    {
+    SurfacesToPlot = KPlanes
+    }
+$!FieldMap  [8]
+  Mesh
+    {
+    Color = Black
+    }
+  Contour
+    {
+    ContourType = Flood
+    Color = Black
+    UseLightingEffect = Yes
+    }
+  Vector
+    {
+    Color = Black
+    }
+  Scatter
+    {
+    Color = Black
+    }
+  Shade
+    {
+    Color = Custom2
+    }
+  EdgeLayer
+    {
+    Show = Yes
+    Color = Black
+    LineThickness = 0.1
+    }
+  Points
+    {
+    PointsToPlot = SurfaceNodes
+    }
+  Surfaces
+    {
+    SurfacesToPlot = None
     IRange
       {
       Max = 1
@@ -479,6 +773,11 @@ $!ThreeDAxis
   XYDepXToYRatio = 1
   DepXToYRatio = 0.0033734939759
   DepXToZRatio = 0.00289156626506
+  GridArea
+    {
+    IsFilled = No
+    UseLightSourceToFill = No
+    }
   FrameAxis
     {
     Show = No
@@ -489,12 +788,20 @@ $!ThreeDAxis
     RangeMin = 64.25
     RangeMax = 520.75
     GRSpacing = 100
+    Ticks
+      {
+      ShowOnOppositeEdge = Yes
+      Length = 1.2
+      LineThickness = 0.1
+      MinorLength = 0.5
+      MinorLineThickness = 0.02
+      }
     TickLabel
       {
       TextShape
         {
         FontFamily = 'Times'
-        Height = 5
+        Height = 7
         }
       Offset = 2
       }
@@ -505,37 +812,50 @@ $!ThreeDAxis
     MinorGridlines
       {
       Show = Yes
+      LineThickness = 0.02
       }
     Title
       {
+      TitleMode = UseText
+      Text = 'R'
       TextShape
         {
         FontFamily = 'Times'
-        Height = 10
+        IsBold = No
+        IsItalic = Yes
+        Height = 16
         }
-      Offset = 20
+      Offset = 16
       }
     AxisLine
       {
       Show = No
-      LineThickness = 0.02
+      LineThickness = 0.1
       Edge = 1
       }
     }
 $!ThreeDAxis 
   YDetail
     {
-    RangeMin = -0.02999999999999999542
-    RangeMax = 0.73999999999999999112
-    GRSpacing = 0.5
+    RangeMin = 0
+    RangeMax = 0.80000000000000004441
+    AutoGrid = No
+    GRSpacing = 0.4
+    Ticks
+      {
+      ShowOnOppositeEdge = Yes
+      Length = 1.2
+      LineThickness = 0.1
+      MinorLength = 0.5
+      MinorLineThickness = 0.02
+      }
     TickLabel
       {
       TextShape
         {
         FontFamily = 'Times'
-        Height = 5
+        Height = 7
         }
-      Offset = 3
       }
     Gridlines
       {
@@ -544,36 +864,47 @@ $!ThreeDAxis
     MinorGridlines
       {
       Show = Yes
+      LineThickness = 0.02
       }
     Title
       {
       TitleMode = UseText
-      Text = '<greek>a</greek>'
+      Text = 'α'
       TextShape
         {
         FontFamily = 'Times'
-        Height = 10
+        IsBold = No
+        IsItalic = Yes
+        Height = 16
         }
       }
     AxisLine
       {
       Show = No
-      LineThickness = 0.2
+      LineThickness = 0.1
       Edge = 1
       }
     }
 $!ThreeDAxis 
   ZDetail
     {
-    RangeMin = -0.32999999999999996003
-    RangeMax = 0.32999999999999996003
+    RangeMin = -0.2999999999999999889
+    RangeMax = 0.2999999999999999889
     GRSpacing = 0.2
+    Ticks
+      {
+      ShowOnOppositeEdge = Yes
+      Length = 1.2
+      LineThickness = 0.1
+      MinorLength = 0.5
+      MinorLineThickness = 0.02
+      }
     TickLabel
       {
       TextShape
         {
         FontFamily = 'Times'
-        Height = 5
+        Height = 7
         }
       Offset = 3
       }
@@ -584,29 +915,33 @@ $!ThreeDAxis
     MinorGridlines
       {
       Show = Yes
+      LineThickness = 0.02
       }
     Title
       {
       TitleMode = UseText
-      Text = '<greek>b</greek>'
+      Text = 'β'
       TextShape
         {
         FontFamily = 'Times'
-        Height = 10
+        IsBold = No
+        IsItalic = Yes
+        Height = 16
         }
       Offset = 12
       }
     AxisLine
       {
+      Show = No
       LineThickness = 0.2
       Edge = 3
       }
     }
 $!IsoSurfaceAttributes  1
   IsoSurfaceSelection = OneSpecificValue
-  Isovalue1 = 0
-  Isovalue2 = -0.497489753687
-  Isovalue3 = -0.246234630531
+  Isovalue1 = -0.0199150545523
+  Isovalue2 = -0.000475952401757
+  Isovalue3 = 0.0189631497487
   Effects
     {
     LightingEffect = Gouraud
@@ -1101,47 +1436,49 @@ $!StreamAttributes
     }
   MaxSteps = 10000
 $!GlobalThreeD 
+  PerformExtra3DSorting = Yes
   AxisScaleFact
     {
     X = 1
-    Y = 296.4285714285714
-    Z = 345.8333333333334
+    Y = 285.3125
+    Z = 380.4166666666667
     }
   RotateOrigin
     {
     X = 292.5
-    Y = 0.355
+    Y = 0.4
     Z = 0
     }
   LightSource
     {
     XYZDirection
       {
-      X = 0.2602230483271376
-      Y = -0.09612320764737121
-      Z = 0.9607519420073595
+      X = 0.2241104620286777
+      Y = -0.2342007434944238
+      Z = 0.9460044992260617
       }
     Intensity = 75
     BackgroundLight = 25
-    IncludeSpecular = Yes
     SpecularIntensity = 40
     SpecularShininess = 60
+    ForceGouraudFor3DContFlood = No
+    ForcePaneledFor3DCellFlood = No
     }
   LineLiftFraction = 0.2
   SymbolLiftFraction = 0.6
   VectorLiftFraction = 0.7
   NearPlaneFraction = 0.1
 $!ThreeDView 
-  PSIAngle = 66.0344
-  ThetaAngle = 34.3354
-  AlphaAngle = -0.883276
+  PSIAngle = 62.4131
+  ThetaAngle = 34.4331
+  AlphaAngle = -0.602626
   ViewerPosition
     {
-    X = -1596.58934988485
-    Y = -8.97482693761404
-    Z = 4.304867404513299
+    X = -1368.738217706658
+    Y = -8.029909547313364
+    Z = 4.075935788464362
     }
-  ViewWidth = 745.715
+  ViewWidth = 624.105
 $!FieldLayers 
   ShowMesh = No
   ShowContour = Yes
@@ -1150,4 +1487,17 @@ $!IsoSurfaceLayers
   Show = Yes
 $!StreamtraceLayers 
   Show = No
+$!AttachText 
+  AnchorPos
+    {
+    X = 7.488947833775389
+    Y = 68.8063660477454
+    }
+  TextShape
+    {
+    FontFamily = 'Times'
+    IsBold = No
+    Height = 60
+    }
+  Text = '(d)'
 $!SetStyleBase Config
