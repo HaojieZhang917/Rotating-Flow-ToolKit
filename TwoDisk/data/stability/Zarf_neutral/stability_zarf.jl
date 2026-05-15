@@ -4,8 +4,8 @@ using PyCall
 using DelimitedFiles
 using Plots
 using NonlinearEigenproblems
-include("BaseFlow_cavity.jl")
-include("Stability_Cavity.jl")
+include(joinpath(@__DIR__, "BaseFlow_cavity.jl"))
+include(joinpath(@__DIR__, "Stability_Cavity.jl"))
 R_ini= 453
 R_end = 453
 be_up = 0.3
@@ -61,7 +61,7 @@ function EigenCore(cof,D,D2,be,alpha,R,N_cheb)
     return val_target,vec_target
 end
 
-function interation(R_ini, R_end, alpha_ini, alpha_end, be_up, be_down, Ts, N_cheb)
+function iteration(R_ini, R_end, alpha_ini, alpha_end, be_up, be_down, Ts, N_cheb)
     u0,v0,w0,du0,dv0,x = CRC_BF.BaseFlow(1000,-1, Ts ,1)
     D,D2,z = CRC_BF.Cheb(N_cheb,1)
     F,G,H = CRC_BF.interp(u0,v0,w0,z,N_cheb,1)
@@ -206,7 +206,7 @@ function interation(R_ini, R_end, alpha_ini, alpha_end, be_up, be_down, Ts, N_ch
                     
                     # 临时矩阵用于记录当前单一模态的轨迹
                     local_mat = copy(local_mat_env)
-                    local_mat[idz
+                    local_mat[idx_root, :] .= (R, alpha, 0.0, real(val_root), imag(val_root))
                     
                     val, vec = val_root, vec_root
                     crossed_neutral = false 
@@ -379,4 +379,4 @@ function filter_boundary_instability!(data::Matrix{Float64})
     
     return data
 end
-interation(R_ini, R_end, alpha_ini, alpha_end, be_up, be_down, Ts, N_cheb)
+iteration(R_ini, R_end, alpha_ini, alpha_end, be_up, be_down, Ts, N_cheb)
