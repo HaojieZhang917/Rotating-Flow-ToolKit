@@ -10,6 +10,7 @@ module CRD_BF
     using BSplineKit
     using PyCall
     using DifferentialEquations
+    using BoundaryValueDiffEq
  function sol_baseflowODE(Ro)
 
         py"""
@@ -57,7 +58,7 @@ module CRD_BF
                 return np.concatenate((resa, resb))
         
         
-        z = np.linspace(0, 40, 10000)
+        z = np.linspace(0, 40, 500)
         y = np.zeros((5, len(z)))
         y_guess = np.zeros((5, z.size))
         if kappa == 1:
@@ -84,7 +85,7 @@ module CRD_BF
         
         solution = solve_bvp(oneDiskODE, oneDiskBC, z, y_guess,tol=1e-10,max_nodes=5000000)
         
-        x_plot = np.linspace(0, 40, 10000)
+        x_plot = np.linspace(0, 40, 10001)
         
         
         y1_plot = solution.sol(x_plot)[0]
@@ -191,7 +192,7 @@ module CRD_BF
         residual[1] = u[begin][1]
         residual[2] = u[end][1]
     end     
-    prob = DifferentialEquations.BVProblem(ODE_f!, BC_f!, [0.0, 0.0], tspan)
+    prob = BVProblem(ODE_f!, BC_f!, [0.0, 0.0], tspan)
     sol = solve(prob, Shooting(Vern7()), dt=0.01)
     f = sol(t)
     function ODE_q!(du,u,p,t)
@@ -211,8 +212,8 @@ module CRD_BF
     q = q[1,:]
     return f,q
   end
- function T_var(Mx,f,q,Tw,gamma)
-    T = 1 .- ( (gamma-1)/2 )*Mx^2 * f + (Tw - 1) * q
+ function T_var(Mr,f,q,Tw,gamma)
+    T = 1 .- ( (gamma-1)/2 )*Mr^2 * f + (Tw - 1) * q
     return T
   end
 end
@@ -239,7 +240,7 @@ struct COF
         dVyz :: Matrix{ComplexF64}
 end
 function baseflow_var(N_cheb,Ro,Co)
-    N = 10000
+    N = 10001
     tspan = (0,40)
     t = range(0,40,N)
     sigma = 0.72
@@ -264,7 +265,7 @@ function T_ca(Mr,f,q,W,gamma,Tw)
  end
 function interp(u,v,w,T,x,N,mode)
     if mode == "sim"
-        z = range(0,40,10000)
+        z = range(0,40,10001)
         itu = BSplineKit.interpolate(z, u , BSplineOrder(4))
         itv = BSplineKit.interpolate(z, v , BSplineOrder(4))
         itw = BSplineKit.interpolate(z, w , BSplineOrder(4))
@@ -282,7 +283,7 @@ function interp(u,v,w,T,x,N,mode)
         rho = 1 ./ T
     end
     if mode == "phy"
-        z = CRD_BF.Physical_Interpretation(T,0.02,1001)
+        z = CRD_BF.Physical_Interpretation(T,0.004,10001)
         itu = BSplineKit.interpolate(z, u , BSplineOrder(4))
         itv = BSplineKit.interpolate(z, v , BSplineOrder(4))
         itw = BSplineKit.interpolate(z, w , BSplineOrder(4))
