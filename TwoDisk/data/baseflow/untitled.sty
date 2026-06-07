@@ -8,10 +8,10 @@ $!FrameLayout
   XYPos
     {
     X = 1
-    Y = 5.25
+    Y = 0.25
     }
   Width = 7
-  Height = 2.75
+  Height = 2.5
 $!ThreeDAxis 
   AspectRatioLimit = 25
   BoxAspectRatioLimit = 25
@@ -47,12 +47,12 @@ $!LineMap  [1]
     {
     Zone = 1
     XAxisVar = 1
-    YAxisVar = 4
+    YAxisVar = 2
     }
   Lines
     {
     Color = Black
-    LineThickness = 0.8
+    LineThickness = 1.5
     }
   Symbols
     {
@@ -74,12 +74,12 @@ $!LineMap  [2]
     {
     Zone = 2
     XAxisVar = 1
-    YAxisVar = 4
+    YAxisVar = 2
     }
   Lines
     {
     Color = Red
-    LineThickness = 0.8
+    LineThickness = 1.5
     }
   Symbols
     {
@@ -101,12 +101,12 @@ $!LineMap  [3]
     {
     Zone = 3
     XAxisVar = 1
-    YAxisVar = 4
+    YAxisVar = 2
     }
   Lines
     {
     Color = Blue
-    LineThickness = 0.8
+    LineThickness = 1.5
     }
   Symbols
     {
@@ -128,12 +128,12 @@ $!LineMap  [4]
     {
     Zone = 4
     XAxisVar = 1
-    YAxisVar = 4
+    YAxisVar = 2
     }
   Lines
     {
     Color = Cyan
-    LineThickness = 0.8
+    LineThickness = 1.5
     }
   Symbols
     {
@@ -155,12 +155,12 @@ $!LineMap  [5]
     {
     Zone = 5
     XAxisVar = 1
-    YAxisVar = 4
+    YAxisVar = 2
     }
   Lines
     {
     Color = Custom3
-    LineThickness = 0.8
+    LineThickness = 1.5
     }
   Symbols
     {
@@ -184,7 +184,7 @@ $!XYLineAxis
     }
   ViewportPosition
     {
-    X1 = 8
+    X1 = 12
     Y1 = 12
     X2 = 94
     }
@@ -193,7 +193,7 @@ $!XYLineAxis
     {
     CoordScale = Linear
     RangeMin = 0
-    RangeMax = 1
+    RangeMax = 1.000099999999999989
     GRSpacing = 0.2
     Ticks
       {
@@ -224,10 +224,10 @@ $!XYLineAxis
   YDetail 1
     {
     CoordScale = Linear
-    RangeMin = -1.1999999999999999556
-    RangeMax = 0
+    RangeMin = -0.2999999999999999889
+    RangeMax = 0.2999999999999999889
     AutoGrid = No
-    GRSpacing = 0.4
+    GRSpacing = 0.3
     Ticks
       {
       ShowOnGridBorderMax = Yes
@@ -244,32 +244,31 @@ $!XYLineAxis
     Title
       {
       TitleMode = UseText
-      Text = 'H'
+      Text = 'F'
       TextShape
         {
         FontFamily = 'Times'
         IsBold = No
         Height = 12
         }
-      Offset = 4
+      Offset = 7
       }
     }
 $!AttachGeom 
   PositionCoordSys = Frame
   AnchorPos
     {
-    X = 66.40583554376649
-    Y = 54.58885941644564
+    X = 21.51193633952252
+    Y = 58.23872679045095
     }
-  Color = Red
   FillColor = Red
-  LineThickness = 0.8
-  ArrowheadAttachment = AtEnd
+  LineThickness = 1.5
+  ArrowheadAttachment = AtBeginning
   ArrowheadSize = 8
   ArrowheadAngle = 16
   RawData
 1
 2
-4.33833307056E-06 -1.49248755577E-06 
-9.76127237082 -1.49248755577E-06 
+-5.71653480108E-07 1.91051068299E-06 
+-5.71653480108E-07 17.3156455159 
 $!SetStyleBase Config

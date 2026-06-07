@@ -40,6 +40,10 @@ module CRC_STA
         Vzz = zeros(5*size,5*size)
         dVxz = zeros(5*size,5*size)
         dVyz = zeros(5*size,5*size)
+        # 温度耦合系数: 基本流 F'' 方程中浮力项为 (T* - 1)
+        # 线性化后扰动温度 T̂ 的耦合系数为 +1（无量纲化常数）
+        # 注意: 这与基本流的浮力强度 Buoy = βT∞(Tw-1) 无关
+        # 基本流中 (T*_base - 1) 已满足基本流方程，扰动部分直接贡献 +T̂
         # Ta: 时间导数  [u,v,w,T,p]
         Ta_11 = eye; Ta_12 = Ta_13 = Ta_14 = Ta_15 = Zero
         Ta_22 = eye; Ta_21 = Ta_23 = Ta_24 = Ta_25 = Zero
@@ -79,12 +83,12 @@ module CRC_STA
         D_11 = (1/R) * F .* eye
         D_12 = -(1/R) * 2 * (G.+1) .* eye
         D_13 = D * F .* eye
-        D_14 = 1 .* eye           # ← 新增：径向热膨胀耦合
+        D_14 = 1 .* eye          # 径向温度耦合: +T̂ (线性化自 (T*-1))
         D_15 = Zero
         D_21 = (1/R) * 2 * (G.+1) .* eye     # v: Coriolis
         D_22 = (1/R) * F .* eye
         D_23 = D * G .* eye; D_24 = Zero; D_25 = Zero
-        D_31 = D_32 = Zero; D_34 = 1 .* eye   # w: 浮力 T̂
+        D_31 = D_32 = Zero; D_34 = 1 .* eye   # 轴向温度耦合: +T̂
         D_33 = (1/R) * D*H.* eye; D_35 = Zero
         D_41 = D_42 = Zero; D_44 = Zero; D_45 = Zero
         D_43 = dT .* eye                       # T: T' * ŵ

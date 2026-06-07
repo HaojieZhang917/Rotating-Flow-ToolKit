@@ -152,8 +152,14 @@ def solve_baseflow(Tw_target, verbose=True):
 
     current_guess = sol.sol(z)
     current_tw = 1.0
+    result = sol  # 防止空范围导致 UnboundLocalError
 
-    for tw in np.arange(1.0 + direction*dTw, Tw_target + direction*dTw*0.5, direction*dTw):
+    # 构造延拓序列，确保范围非空（处理目标 Tw 接近 1.0 的情况）
+    tw_vals = np.arange(1.0 + direction*dTw, Tw_target + direction*dTw*0.5, direction*dTw)
+    if len(tw_vals) == 0:
+        tw_vals = [Tw_target]
+
+    for tw in tw_vals:
         if abs(tw - current_tw) < 1e-10:
             continue
 
@@ -342,27 +348,42 @@ def get_baseflow(Tw, verbose=False):
 #  入口
 # ═══════════════════════════════════════════════════════════════
 if __name__ == "__main__":
+    # ── 批量计算: Tw = 1.00, 1.01, 1.02, 1.03, 1.04 ──
+    Tw_list = [1.00, 1.01, 1.02, 1.03, 1.04]
+
+    # 如果命令行指定了 Tw，则只算单个
+    if len(sys.argv) > 1:
+        Tw_list = [TARGET_TW]
+
     print("=" * 60)
     print("  动坐标系 von Kármán 基本流求解器 (solve_bvp)")
     print("=" * 60)
-    print(f"  Tw = {TARGET_TW:.4f},  Pr = {Pr},  zmax = {ZMAX}")
+    print(f"  Tw 序列: {Tw_list},  Pr = {Pr},  zmax = {ZMAX}")
     print("=" * 60)
 
-    sol = solve_baseflow(TARGET_TW)
+    for Tw_val in Tw_list:
+        print(f"\n{'─'*60}")
+        print(f"  ▶ 开始计算 Tw = {Tw_val:.4f}")
+        print(f"{'─'*60}")
 
-    if sol is not None:
-        save_results(sol, TARGET_TW)
-        Hinf = sol.sol(ZMAX)[0]
-        Fp0  = sol.sol(0)[1]
-        Gp0  = sol.sol(0)[3]
-        Tp0  = sol.sol(0)[5]
-        print(f"\n{'='*60}")
-        print(f"  完成!  壁面参数: F'(0)={Fp0:.6f}, G'(0)={Gp0:.6f}, T'(0)={Tp0:.6f}")
-        print(f"          远场参数: H(∞)={Hinf:.6f}")
-        print(f"{'='*60}")
-    else:
-        print(f"\n❌ 求解失败。")
-        print(f"   可能原因: Tw={TARGET_TW:.4f} 超出 Boussinesq 适用范围 [0.25, 1.049]")
-        sys.exit(1)
+        sol = solve_baseflow(Tw_val)
+
+        if sol is not None:
+            save_results(sol, Tw_val)
+            Hinf = sol.sol(ZMAX)[0]
+            Fp0  = sol.sol(0)[1]
+            Gp0  = sol.sol(0)[3]
+            Tp0  = sol.sol(0)[5]
+            print(f"\n  ✅ Tw={Tw_val:.4f} 完成!")
+            print(f"     壁面: F'(0)={Fp0:.6f}, G'(0)={Gp0:.6f}, T'(0)={Tp0:.6f}")
+            print(f"     远场: H(∞)={Hinf:.6f}")
+        else:
+            print(f"\n  ❌ Tw={Tw_val:.4f} 求解失败，跳过。")
+            if len(Tw_list) == 1:
+                sys.exit(1)
+
+    print(f"\n{'='*60}")
+    print(f"  全部完成! 共处理 {len(Tw_list)} 个壁温。")
+    print(f"{'='*60}")
 
 
