@@ -70,7 +70,7 @@ with a shift-and-invert strategy.
 """
 function solve_eigenvalue_problem(L0, L1, L2, sigma::ComplexF64, nev::Int)
     nep = PEP([L0, L1, L2])
-    eigvals, eigvecs = iar(nep; σ=sigma, neigs=nev, maxit=500, tol=1e-14)
+    eigvals, eigvecs = iar(nep; σ=sigma, neigs=nev, maxit=500, tol=1e-12)
     return eigvals, eigvecs
 end
 
