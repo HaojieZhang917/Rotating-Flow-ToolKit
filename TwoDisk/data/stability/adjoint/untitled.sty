@@ -1,0 +1,394 @@
+#!MC 1410
+$!SetStyleBase Factory
+$!PlotType  = XYLine
+$!FrameLayout 
+  ShowBorder = No
+  ShowHeader = No
+  HeaderColor = Red
+  XYPos
+    {
+    X = 1
+    Y = 0.25
+    }
+  Width = 6
+  Height = 2
+$!ThreeDAxis 
+  AspectRatioLimit = 25
+  BoxAspectRatioLimit = 25
+$!GlobalTime 
+  SolutionTime = 0
+$!DeleteLineMaps 
+$!ActiveLineMaps  =  [1-4]
+$!GlobalLinePlot 
+  DataLabels
+    {
+    DistanceSkip = 5
+    }
+  Legend
+    {
+    Show = Yes
+    ShowText = No
+    TextShape
+      {
+      FontFamily = 'Times'
+      Height = 9
+      }
+    Box
+      {
+      BoxType = None
+      }
+    XYPos
+      {
+      X = 98.585
+      Y = 85.093
+      }
+    }
+$!LineMap  [1]
+  Name = '@h{u}'
+  Assign
+    {
+    Zone = 1
+    XAxisVar = 1
+    YAxisVar = 2
+    }
+  Lines
+    {
+    Color = Black
+    LineThickness = 0.8
+    }
+  Symbols
+    {
+    Color = Red
+    FillColor = Red
+    }
+  BarCharts
+    {
+    Color = Red
+    FillColor = Red
+    }
+  ErrorBars
+    {
+    Color = Red
+    }
+$!LineMap  [2]
+  Name = '&DV&'
+  Assign
+    {
+    Zone = 1
+    XAxisVar = 1
+    YAxisVar = 3
+    }
+  Lines
+    {
+    Color = Red
+    LineThickness = 0.8
+    }
+  Symbols
+    {
+    Color = Green
+    FillColor = Green
+    }
+  BarCharts
+    {
+    Color = Green
+    FillColor = Green
+    }
+  ErrorBars
+    {
+    Color = Green
+    }
+$!LineMap  [3]
+  Name = '&DV&'
+  Assign
+    {
+    Zone = 1
+    XAxisVar = 1
+    YAxisVar = 4
+    }
+  Lines
+    {
+    Color = Blue
+    LineThickness = 0.8
+    }
+  Symbols
+    {
+    Color = Blue
+    FillColor = Blue
+    }
+  BarCharts
+    {
+    Color = Blue
+    FillColor = Blue
+    }
+  ErrorBars
+    {
+    Color = Blue
+    }
+$!LineMap  [4]
+  Name = '&DV&'
+  Assign
+    {
+    Zone = 1
+    XAxisVar = 1
+    YAxisVar = 5
+    }
+  Lines
+    {
+    Color = Custom3
+    LineThickness = 0.8
+    }
+  Symbols
+    {
+    Color = Custom1
+    FillColor = Custom1
+    }
+  BarCharts
+    {
+    Color = Custom1
+    FillColor = Custom1
+    }
+  ErrorBars
+    {
+    Color = Custom1
+    }
+$!LineMap  [5]
+  Name = '&DV&'
+  Assign
+    {
+    Zone = 1
+    XAxisVar = 1
+    YAxisVar = 6
+    }
+  Lines
+    {
+    Color = Custom3
+    LineThickness = 0.8
+    }
+  Symbols
+    {
+    Color = Custom3
+    FillColor = Custom3
+    }
+  BarCharts
+    {
+    Color = Custom3
+    FillColor = Custom3
+    }
+  ErrorBars
+    {
+    Color = Custom3
+    }
+$!LineMap  [6]
+  Name = '&DV&'
+  Assign
+    {
+    Zone = 1
+    XAxisVar = 1
+    YAxisVar = 7
+    }
+  Lines
+    {
+    Color = Purple
+    LineThickness = 0.8
+    }
+  Symbols
+    {
+    Color = Purple
+    FillColor = Purple
+    }
+  BarCharts
+    {
+    Color = Purple
+    FillColor = Purple
+    }
+  ErrorBars
+    {
+    Color = Purple
+    }
+$!LineMap  [7]
+  Name = '&DV&'
+  Assign
+    {
+    Zone = 1
+    XAxisVar = 1
+    YAxisVar = 8
+    }
+  Lines
+    {
+    Color = Red
+    LineThickness = 0.8
+    }
+  Symbols
+    {
+    Color = Red
+    FillColor = Red
+    }
+  BarCharts
+    {
+    Color = Red
+    FillColor = Red
+    }
+  ErrorBars
+    {
+    Color = Red
+    }
+$!LineMap  [8]
+  Name = '&DV&'
+  Assign
+    {
+    Zone = 1
+    XAxisVar = 1
+    YAxisVar = 9
+    }
+  Lines
+    {
+    Color = Green
+    LineThickness = 0.8
+    }
+  Symbols
+    {
+    Color = Green
+    FillColor = Green
+    }
+  BarCharts
+    {
+    Color = Green
+    FillColor = Green
+    }
+  ErrorBars
+    {
+    Color = Green
+    }
+$!XYLineAxis 
+  DepXToYRatio = 1
+  GridArea
+    {
+    DrawBorder = Yes
+    }
+  ViewportPosition
+    {
+    X1 = 5
+    X2 = 95
+    }
+$!XYLineAxis 
+  XDetail 1
+    {
+    CoordScale = Linear
+    RangeMin = 0
+    RangeMax = 1
+    GRSpacing = 0.2
+    Ticks
+      {
+      ShowOnGridBorderMax = Yes
+      Length = 3
+      LineThickness = 0.8
+      MinorLength = 0
+      MinorLineThickness = 0.4
+      }
+    TickLabel
+      {
+      TextShape
+        {
+        FontFamily = 'Times'
+        Height = 10
+        }
+      }
+    Title
+      {
+      TitleMode = UseText
+      Text = 'z'
+      TextShape
+        {
+        FontFamily = 'Times'
+        IsItalic = Yes
+        Height = 12
+        }
+      Offset = 2
+      }
+    }
+$!XYLineAxis 
+  YDetail 1
+    {
+    CoordScale = Linear
+    RangeMin = 0
+    RangeMax = 1.000099999999999989
+    GRSpacing = 0.5
+    Ticks
+      {
+      ShowOnGridBorderMax = Yes
+      Length = 3
+      LineThickness = 0.8
+      MinorLength = 0
+      MinorLineThickness = 0.4
+      }
+    TickLabel
+      {
+      TextShape
+        {
+        FontFamily = 'Times'
+        Height = 10
+        }
+      }
+    Title
+      {
+      TitleMode = UseText
+      TextShape
+        {
+        FontFamily = 'Times'
+        Height = 4.6
+        }
+      }
+    }
+$!AttachText 
+  PositionCoordSys = Grid
+  AnchorPos
+    {
+    X = 0.9070635622359755
+    Y = 0.7204895552723143
+    }
+  TextShape
+    {
+    Height = 15
+    }
+  TextType = LaTeX
+  Text = '$$\hat{u}$$'
+$!AttachText 
+  PositionCoordSys = Grid
+  AnchorPos
+    {
+    X = 0.9070635622359755
+    Y = 0.58
+    }
+  TextShape
+    {
+    Height = 15
+    }
+  TextType = LaTeX
+  Text = '$$\hat{v}$$'
+$!AttachText 
+  PositionCoordSys = Grid
+  AnchorPos
+    {
+    X = 0.9070635622359755
+    Y = 0.44
+    }
+  TextShape
+    {
+    Height = 15
+    }
+  TextType = LaTeX
+  Text = '$$\hat{w}$$'
+$!AttachText 
+  PositionCoordSys = Grid
+  AnchorPos
+    {
+    X = 0.9070635622359755
+    Y = 0.28
+    }
+  TextShape
+    {
+    Height = 15
+    }
+  TextType = LaTeX
+  Text = '$$\hat{p}$$'
+$!SetStyleBase Config
