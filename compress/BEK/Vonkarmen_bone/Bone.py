@@ -8,7 +8,7 @@
     y[0]=H, y[1]=F', y[2]=F, y[3]=G', y[4]=G, y[5]=T', y[6]=T
 
     H'  = -2F
-    F'' = F² + H F' - (G-1)² + (T-1)
+    F'' = F² + H F' - (G-1)² - (T-1)
     G'' = 2FG + H G' - 2F
     T'' = Pr * H * T'
 
@@ -17,10 +17,10 @@
     z→∞: F=0, G=1, T=1
 
   适用范围:
-    Boussinesq 近似, Tw ∈ [0.25, 1.049]
-    冷壁 (Tw<1): 大步长延拓即可
-    热壁 (1<Tw≤1.049): 需小步长延拓
-    Tw ≥ 1.05:  相似性解不存在 (需全耦合可压缩模型)
+    Boussinesq 近似, 当前数值延拓约适用于 Tw ∈ [0.96, 1.04]
+    冷壁 (Tw<1): 建议小步长延拓以避免跨步失败
+    热壁 (1<Tw≲1.04): 需小步长延拓
+    超出该范围时需检查相似性解是否仍存在，或改用更完整模型
 
   用法:
     python Bone.py              # 使用文件顶部的 Tw 值
@@ -142,7 +142,7 @@ def solve_baseflow(Tw_target, verbose=True):
 
     # ── 阶段 2: 延拓到目标 Tw ──
     is_hot = Tw_target > 1.0
-    dTw = 0.002 if is_hot else 0.05
+    dTw = 0.002 if is_hot else 0.002
     direction = 1 if is_hot else -1
 
     if verbose:

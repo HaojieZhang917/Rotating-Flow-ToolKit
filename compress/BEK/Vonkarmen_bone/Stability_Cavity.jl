@@ -40,12 +40,10 @@ module CRC_STA
         Vzz = zeros(5*size,5*size)
         dVxz = zeros(5*size,5*size)
         dVyz = zeros(5*size,5*size)
-        # 离心浮力耦合: Buoy = Tw-1 = βT∞(Tw-1), βT∞=1 已归一化
-        # 物理推导: 净径向力 = ρΩ²r - ∂p/∂r ≈ (1/T - 1)ρ∞Ω²r ≈ -(T-1)ρ∞Ω²r
-        # 基本流: F'' = F² + HF' - (G-1)² - (T-1)
-        # 扰动: D_14 = D_34 = -Buoy (系数与基本流符号一致)
-        # 等温 (Tw=1) 时 Buoy=0, 温度扰动从动量方程解耦 ✅
-        Buoy = T[1] - 1.0   # Tw - 1
+        # Temperature perturbation is scaled by the imposed wall-far temperature difference.
+        # Therefore the Boussinesq centrifugal-buoyancy coupling is O(Tw-1),
+        # and it vanishes smoothly in the isothermal limit.
+        BuoyT = -(T[1] - 1.0)
         # Ta: 时间导数  [u,v,w,T,p]
         Ta_11 = eye; Ta_12 = Ta_13 = Ta_14 = Ta_15 = Zero
         Ta_22 = eye; Ta_21 = Ta_23 = Ta_24 = Ta_25 = Zero
@@ -85,12 +83,12 @@ module CRC_STA
         D_11 = (1/R) * F .* eye
         D_12 = -(1/R) * 2 * (G.+1) .* eye
         D_13 = D * F .* eye
-        D_14 = -Buoy .* eye       # 径向温度耦合: -Buoy * T̂ (离心浮力符号修正)
+        D_14 = BuoyT .* eye      # radial thermal-buoyancy coupling
         D_15 = Zero
         D_21 = (1/R) * 2 * (G.+1) .* eye     # v: Coriolis
         D_22 = (1/R) * F .* eye
         D_23 = D * G .* eye; D_24 = Zero; D_25 = Zero
-        D_31 = D_32 = Zero; D_34 = -Buoy .* eye # 轴向温度耦合: -Buoy * T̂ (离心浮力符号修正)
+        D_31 = D_32 = Zero; D_34 = Zero  # 离心浮力无轴向分量
         D_33 = (1/R) * D*H.* eye; D_35 = Zero
         D_41 = D_42 = Zero; D_44 = Zero; D_45 = Zero
         D_43 = dT .* eye                       # T: T' * ŵ

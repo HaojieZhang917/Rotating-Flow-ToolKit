@@ -1,6 +1,6 @@
 """
     ChebNewton.jl — Chebyshev 配置法 + 解析 Jacobian + Newton 迭代
-    求解动坐标系 von Kármán 旋转圆盘可压缩基本流
+    求解动坐标系 von Kármán 旋转圆盘不可压缩 Boussinesq 基本流
 
     用法:
         include("ChebNewton.jl")
@@ -31,8 +31,8 @@ end
 # ═══════════════════════════════════════════════════════
 function map_interval(N::Int, a::Real, b::Real)
     xi, Dc = cheb(N)
-    x = @. a + (b - a) * (xi + 1) / 2
-    D = (2.0 / (b - a)) * Dc
+    x = @. a + (b - a) * (1 - xi) / 2
+    D = -(2.0 / (b - a)) * Dc
     return x, D
 end
 
@@ -48,7 +48,7 @@ function residual!(R, Y, D, Pr, Tw)
         y = view(Y, i, :)
         # ODE 残差
         R[i,1] = DY[i,1] + 2*y[3]                                     # H' + 2F
-        R[i,2] = DY[i,2] - y[3]^2 - y[1]*y[2] + (y[5]-1)^2 - y[7] + 1 # F''
+        R[i,2] = DY[i,2] - y[3]^2 - y[1]*y[2] + (y[5]-1)^2 + y[7] - 1 # F''
         R[i,3] = DY[i,3] - y[2]                                        # F'
         R[i,4] = DY[i,4] - 2*y[3]*y[5] - y[1]*y[4] + 2*y[3]           # G''
         R[i,5] = DY[i,5] - y[4]                                        # G'
@@ -95,12 +95,12 @@ function build_jacobian!(J, Y, D, Pr, Tw)
         # R[0] = D@H + 2F → df0/dF = -2
         J[r0+1, r0+3] -= -2.0
 
-        # R[1] = D@F' - f1, f1 = F² + H·F' - (G-1)² + (T-1)
+        # R[1] = D@F' - f1, f1 = F² + H·F' - (G-1)² - (T-1)
         J[r0+2, r0+1] -= y[2]           # -df1/dH = -F'
         J[r0+2, r0+2] -= y[1]           # -df1/dF' = -H
         J[r0+2, r0+3] -= 2*y[3]         # -df1/dF = -2F
         J[r0+2, r0+5] -= -2*(y[5]-1)    # -df1/dG = +2(G-1)
-        J[r0+2, r0+7] -= 1.0            # -df1/dT = -1
+        J[r0+2, r0+7] -= -1.0           # -df1/dT = +1
 
         # R[2] = D@F - F' → df2/dF' = -1
         J[r0+3, r0+2] -= 1.0

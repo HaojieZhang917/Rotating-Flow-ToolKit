@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Shooting method for compressible von Kármán rotating disk base flow.
+Shooting method for incompressible von Kármán rotating disk base flow
+with axial temperature variation under the Boussinesq approximation.
 Outputs profiles compatible with Bone.py format.
 
 Usage:
@@ -19,7 +20,7 @@ import matplotlib.pyplot as plt
 # ═══════════════════════════════════════
 #  User settings
 # ═══════════════════════════════════════
-TARGET_TW = 1.0      # wall temperature (0.25 ~ 1.04)
+TARGET_TW = 1.0      # wall temperature ratio Tw=T0/Tinf
 Pr        = 0.72      # Prandtl number
 ZMAX      = 20.0      # domain height
 N_OUT     = 2000      # output resolution
@@ -34,7 +35,7 @@ def von_karman_ode(z, y):
     H, Fp, F, Gp, G, Tp, T = y
     return [
         -2.0 * F,                              # H'
-        F**2 + H*Fp - (G - 1)**2 + T - 1,      # F''
+        F**2 + H*Fp - (G - 1)**2 - T + 1,      # F'' = F²+HF'-(G-1)²-(T-1)
         Fp,                                     # F'
         2*F*G + H*Gp - 2*F,                    # G''
         Gp,                                     # G'
@@ -103,7 +104,7 @@ def solve_shooting(Tw_target, verbose=True):
     # Continuation: use solve_bvp solution as initial guess at each step
     cg = sol0.sol(z_bvp)
     direction = 1.0 if Tw_target > 1.0 else -1.0
-    dTw = 0.002 if Tw_target > 1.0 else 0.01
+    dTw = 0.002 if Tw_target > 1.0 else 0.002
     
     if verbose:
         wt = "热壁" if Tw_target > 1.0 else "冷壁"
