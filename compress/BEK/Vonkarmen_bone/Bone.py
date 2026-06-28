@@ -65,15 +65,23 @@ def vonKarman_ODE(z, y):
     动坐标系可压缩 von Kármán 方程
     y[0]=H, y[1]=F', y[2]=F, y[3]=G', y[4]=G, y[5]=T', y[6]=T
     """
-    return np.array([
-        -2.0 * y[2],                                      # H'  = -2F
-        y[2]**2 + y[0]*y[1] - (y[4]-1.0)**2 - y[6] + 1.0, # F'' = F²+HF'-(G-1)²-(T-1)
-        y[1],                                              # F'  = F'
-        2*y[2]*y[4] + y[0]*y[3] - 2*y[2],                 # G'' = 2FG+HG'-2F
-        y[3],                                              # G'  = G'
-        Pr * y[0] * y[5],                                  # T'' = Pr·H·T'
-        y[5],                                              # T'  = T'
-    ])
+    theta = y[6] - 1.0
+
+    A = y[2]**2 + y[0]*y[1] - (y[4]-1.0)**2
+    B = 2*y[2]*y[4] + y[0]*y[3] - 2*y[2]
+
+    Fpp = A + theta * A
+    Gpp = B + theta * B
+    
+    return np.array(        [       
+        -2.0 * y[2],        # H'  = -2F
+        A + theta * A,      # F'' = F²+HF'-(G-1)²-(T-1)
+        y[1],                # F'  = F'
+        B + theta * B,      # G'' = 2FG+HG'-2F
+        y[3],               # G'  = G'
+        Pr * y[0] * y[5],   # T'' = Pr·H·T'
+    y[5],                   # T'  = T'
+    ])      
 
 def vonKarman_bc(Tw):
     """返回给定 Tw 的边界条件函数"""
