@@ -1,7 +1,7 @@
 module CRC_STA
     export  COF, Spatial_mode_BEK
     export  assemble_time_mat, assemble_mat, assemble_adjmat
-    export  boudary_condition, eig_full
+    export  boudary_condition, eig_full, cheb_points
     using LinearAlgebra
     struct COF
             Ta :: Matrix{ComplexF64}
@@ -41,9 +41,18 @@ module CRC_STA
         dVxz = zeros(5*size,5*size)
         dVyz = zeros(5*size,5*size)
         # Temperature perturbation is scaled by the imposed wall-far temperature difference.
-        # Therefore the Boussinesq centrifugal-buoyancy coupling is O(Tw-1),
-        # and it vanishes smoothly in the isothermal limit.
-        BuoyT = -(T[1] - 1.0)
+        # The improved Boussinesq base flow used by Bone.py has
+        #     F'' = T * A,  A = F^2 + H F' - (G - 1)^2
+        #     G'' = T * B,  B = 2FG + H G' - 2F
+        # so the perturbation equations use d(TA)=T*dA+dTw*A*theta and
+        # d(TB)=T*dB+dTw*B*theta, where theta is the scaled temperature perturbation.
+        dF = D * F
+        dG = D * G
+        dTw = T[1] - 1.0
+        Abase = F.^2 .+ H .* dF .- (G .- 1.0).^2
+        Bbase = 2 .* F .* G .+ H .* dG .- 2 .* F
+        rho_fac = 1.0 ./ T
+        rho_fac_T = -1.0 ./ (T.^2)
         # Ta: 时间导数  [u,v,w,T,p]
         Ta_11 = eye; Ta_12 = Ta_13 = Ta_14 = Ta_15 = Zero
         Ta_22 = eye; Ta_21 = Ta_23 = Ta_24 = Ta_25 = Zero
@@ -52,25 +61,25 @@ module CRC_STA
         Ta_51 = Ta_52 = Ta_53 = Ta_54 = Ta_55 = Zero   # p 无时间导数
 
         # A: α 系数  [u,v,w,T,p]
-        A_11 = F .* eye; A_12 = A_13 = A_14 = Zero; A_15 = eye          # u: F*u + p_x
-        A_22 = F .* eye; A_21 = A_23 = A_24 = A_25 = Zero               # v: F*v
-        A_33 = F .* eye; A_31 = A_32 = A_34 = A_35 = Zero               # w: F*w
+       A_11 = rho_fac .* F .* eye; A_12 = A_13 = A_14 = Zero; A_15 = eye    # u: T*F*u + p_x
+       A_22 = rho_fac .* F .* eye; A_21 = A_23 = A_24 = A_25 = Zero         # v: T*F*v
+       A_33 = rho_fac .* F .* eye; A_31 = A_32 = A_34 = A_35 = Zero         # w: T*F*w
         A_44 = F .* eye; A_41 = A_42 = A_43 = A_45 = Zero               # T: F*T
         A_51 = eye; A_52 = A_53 = A_54 = A_55 = Zero                     # p: u_x (连续性)
 
         # B: β 系数  [u,v,w,T,p]
-        B_11 = (1/R) * G .* eye; B_12 = B_13 = B_14 = B_15 = Zero       # u: G*u
-        B_22 = (1/R) * G .* eye; B_21 = B_23 = Zero; B_24 = Zero; B_25 = (1/R) .* eye  # v: G*v + p_y
-        B_33 = (1/R) * G .* eye; B_31 = B_32 = B_34 = B_35 = Zero       # w: G*w
+        B_11 = (1/R) * rho_fac .* G .* eye; B_12 = B_13 = B_14 = B_15 = Zero       # u: T*G*u
+        B_22 = (1/R) * rho_fac .* G .* eye; B_21 = B_23 = Zero; B_24 = Zero; B_25 = (1/R) .* eye  # v: T*G*v + p_y
+        B_33 = (1/R) * rho_fac .* G .* eye; B_31 = B_32 = B_34 = B_35 = Zero       # w: T*G*w
         B_44 = (1/R) * G .* eye; B_41 = B_43 = B_45 = Zero; B_42 = Zero # T: G*T
         B_51 = B_53 = B_54 = B_55 = Zero; B_52 = (1/R) .* eye            # p: v_y (连续性)
 
         # C: z-对流  [u,v,w,T,p]
-        C_11 = (1/R) * H .* eye; dC_11 = D * diag(C_11) .* eye
+        C_11 = (1/R) * rho_fac  .* H .* eye; dC_11 = D * diag(C_11) .* eye
         C_12 = C_13 = C_14 = C_15 = Zero; dC_12 = dC_13 = dC_14 = dC_15 = Zero
-        C_22 = (1/R) * H .* eye; dC_22 = D * diag(C_22) .* eye
+        C_22 = (1/R) * rho_fac  .* H .* eye; dC_22 = D * diag(C_22) .* eye
         C_21 = C_23 = C_24 = C_25 = Zero; dC_21 = dC_23 = dC_24 = dC_25 = Zero
-        C_33 = (1/R) * H .* eye; dC_33 = D * diag(C_33) .* eye
+        C_33 = (1/R) * rho_fac  .* H .* eye; dC_33 = D * diag(C_33) .* eye
         C_31 = C_32 = Zero; C_34 = Zero; C_35 = eye;  # w: ∂p/∂z
         dC_31 = dC_32 = Zero; dC_34 = dC_35 = Zero
         C_44 = (1/R) * H .* eye; dC_44 = D * diag(C_44) .* eye
@@ -80,16 +89,18 @@ module CRC_STA
         C_51 = C_52 = C_54 = C_55 = Zero; dC_51 = dC_52 = dC_54 = dC_55 = Zero
 
         # D1: 基本流剪切 + 浮力耦合  [u,v,w,T,p]
-        D_11 = (1/R) * F .* eye
-        D_12 = -(1/R) * 2 * (G.+1) .* eye
-        D_13 = D * F .* eye
-        D_14 = BuoyT .* eye      # radial thermal-buoyancy coupling
+        D_11 = (1/R) * rho_fac .* F .* eye
+        D_12 = -(1/R) * rho_fac .* 2 .* (G .+ 1) .* eye
+        D_13 = rho_fac .* dF .* eye
+        D_14 = dTw .* rho_fac_T .* Abase .* eye
         D_15 = Zero
-        D_21 = (1/R) * 2 * (G.+1) .* eye     # v: Coriolis
-        D_22 = (1/R) * F .* eye
-        D_23 = D * G .* eye; D_24 = Zero; D_25 = Zero
-        D_31 = D_32 = Zero; D_34 = Zero  # 离心浮力无轴向分量
-        D_33 = (1/R) * D*H.* eye; D_35 = Zero
+        D_21 = (1/R) * rho_fac .* 2 .* (G .+ 1) .* eye
+        D_22 = (1/R) * rho_fac .* F .* eye
+        D_23 = rho_fac .* dG .* eye
+        D_24 = dTw .* rho_fac_T .* Bbase .* eye
+        D_25 = Zero
+        D_31 = D_32 = Zero; D_34 = Zero  # current base-flow model has no axial thermal-inertial term
+        D_33 = (1/R) * rho_fac .* (D * H) .* eye; D_35 = Zero
         D_41 = D_42 = Zero; D_44 = Zero; D_45 = Zero
         D_43 = dT .* eye                       # T: T' * ŵ
         D_51 = 1/R .* eye; D_52 = D_53 = D_54 = D_55 = Zero  # p: u_r
@@ -184,5 +195,55 @@ module CRC_STA
         T = eigvec[3N+1:4N]
         p = eigvec[4N+1:5N]
         return (u,v,w,T,p)
+    end
+    function cheb_points(N)
+        θ = range(0, stop=pi, length=N+1)
+        x = -cos.(θ)
+        cc = [2; ones(N-1); 2] .* (-1.0).^(0:N)
+        X = repeat(x, 1, N+1)
+        dX = X .- X'
+        Id = diagm(0 => ones(N+1))
+        DM = (cc * (1.0 ./ cc)') ./ (dX .+ Id)
+        DM = DM .- diagm(vec(sum(DM, dims=2)))
+        a = 2.0; b = 0.6; cmap = 0.5
+        for i in 1:N+1
+            xi = x[i]
+            map_der = b + 3*(1-b)*xi^2 - 2*cmap*(1-b)*xi
+            denom = 1 - b*xi - (1-b)*(xi^3 + cmap*(1-xi^2))
+            DM[i, :] .*= denom^2 / (2*a*map_der)
+        end
+        for i in 1:N+1
+            xi = x[i]
+            denom = 1 - b*xi - (1-b)*(xi^3 + cmap*(1-xi^2))
+            x[i] = a * (1 + b*xi + (1-b)*(xi^3 + cmap*(1-xi^2))) / denom
+            x[i] = min(x[i], 20.0)
+        end
+        D2M = DM^2
+        return DM, D2M, x
+    end
+    function cheb_points(N)
+        θ = range(0, stop=pi, length=N+1)
+        x = -cos.(θ)
+        cc = [2; ones(N-1); 2] .* (-1.0).^(0:N)
+        X = repeat(x, 1, N+1)
+        dX = X .- X'
+        Id = diagm(0 => ones(N+1))
+        DM = (cc * (1.0 ./ cc)') ./ (dX .+ Id)
+        DM = DM .- diagm(vec(sum(DM, dims=2)))
+        a = 2.0; b = 0.6; cmap = 0.5
+        for i in 1:N+1
+            xi = x[i]
+            map_der = b + 3*(1-b)*xi^2 - 2*cmap*(1-b)*xi
+            denom = 1 - b*xi - (1-b)*(xi^3 + cmap*(1-xi^2))
+            DM[i, :] .*= denom^2 / (2*a*map_der)
+        end
+        for i in 1:N+1
+            xi = x[i]
+            denom = 1 - b*xi - (1-b)*(xi^3 + cmap*(1-xi^2))
+            x[i] = a * (1 + b*xi + (1-b)*(xi^3 + cmap*(1-xi^2))) / denom
+            x[i] = min(x[i], 20.0)
+        end
+        D2M = DM^2
+        return DM, D2M, x
     end
 end
