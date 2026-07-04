@@ -704,7 +704,7 @@ $!FieldMap  [1]
     }
   Surfaces
     {
-    SurfacesToPlot = None
+    SurfacesToPlot = KPlanes
     IRange
       {
       Max = 1
@@ -1907,7 +1907,7 @@ $!FieldMap  [1]
     Color = Black
     LinePattern = Dashed
     PatternLength = 0.5
-    LineThickness = 0.3
+    LineThickness = 0.02
     }
   Scatter
     {
@@ -2675,6 +2675,19 @@ $!IsoSurfaceLayers
   Show = Yes
 $!StreamtraceLayers 
   Show = No
+$!AttachText 
+  AnchorPos
+    {
+    X = 5.5
+    Y = 75
+    }
+  TextShape
+    {
+    FontFamily = 'Times'
+    IsBold = No
+    Height = 60
+    }
+  Text = '(c)'
 $!FrameControl ActivateByNumber
   Frame = 2
 ### Page Number 2 ###

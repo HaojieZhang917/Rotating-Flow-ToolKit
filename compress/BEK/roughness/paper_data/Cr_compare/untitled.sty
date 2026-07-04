@@ -1,65 +1,6 @@
 #!MC 1410
-$!VarSet |LFDSFN1| = '"Cr_30_0.3_1.0.dat" "Cr_40_0.3_1.0.dat" "Cr_50_0.3_1.0.dat" "Cr_60_0.3_1.0.dat"'
-$!VarSet |LFDSVL1| = '"V1" "V2" "V3" "V4" "V5" "V6" "V7" "V8" "V9"'
-$!VarSet |LFDSFN2| = '"Cr_30_0.3_1.0_ref.dat" "Cr_40_0.3_1.0_ref.dat" "Cr_50_0.3_1.0_ref.dat" "Cr_60_0.3_1.0_ref.dat"'
-$!VarSet |LFDSVL2| = '"V1" "V2" "V3" "V4" "V5" "V6" "V7" "V8" "V9"'
 $!SetStyleBase Factory
-$!GlobalPaper 
-  PaperSizeInfo
-    {
-    Letter
-      {
-      Width = 8.5
-      Height = 11
-      LeftHardClipOffset = 0.125
-      RightHardClipOffset = 0.125
-      TopHardClipOffset = 0.125
-      BottomHardClipOffset = 0.125
-      }
-    }
-$!Page 
-  Name = 'Untitled'
-  PaperAttributes
-    {
-    BackgroundColor = White
-    IsTransparent = Yes
-    OrientPortrait = No
-    ShowGrid = Yes
-    ShowRuler = No
-    ShowPaper = No
-    PaperSize = Letter
-    RulerSpacing = OneInch
-    PaperGridSpacing = HalfInch
-    RegionInWorkArea
-      {
-      X1 = 1
-      Y1 = 0.25
-      X2 = 10
-      Y2 = 8.25
-      }
-    }
-### Frame Number 1 ###
-$!ReadDataSet  '|LFDSFN1|'
-  InitialPlotType = XYLine
-  IncludeText = No
-  IncludeGeom = No
-  ResetStyle = No
-  AssignStrandIDs = Yes
-  VarLoadMode = ByName
-  VarNameList = '|LFDSVL1|'
-$!RemoveVar |LFDSVL1|
-$!RemoveVar |LFDSFN1|
-$!ReadDataSet  '|LFDSFN2|'
-  InitialPlotType = XYLine
-  IncludeText = No
-  IncludeGeom = No
-  ReadDataOption = Append
-  ResetStyle = No
-  AssignStrandIDs = Yes
-  VarLoadMode = ByName
-  VarNameList = '|LFDSVL2|'
-$!RemoveVar |LFDSVL2|
-$!RemoveVar |LFDSFN2|
+$!PlotType  = XYLine
 $!FrameLayout 
   ShowBorder = No
   ShowHeader = No
@@ -74,8 +15,6 @@ $!FrameLayout
 $!ThreeDAxis 
   AspectRatioLimit = 25
   BoxAspectRatioLimit = 25
-$!PlotType  = XYLine
-$!FrameName  = 'Frame 001'
 $!GlobalTime 
   SolutionTime = 0
 $!DeleteLineMaps 
@@ -243,6 +182,7 @@ $!LineMap  [5]
     FillMode = UseLineColor
     FillColor = Custom3
     LineThickness = 0.3
+    Skipping = 4
     }
   BarCharts
     {
@@ -278,6 +218,7 @@ $!LineMap  [6]
     FillMode = UseLineColor
     FillColor = Purple
     LineThickness = 0.3
+    Skipping = 4
     }
   BarCharts
     {
@@ -313,6 +254,7 @@ $!LineMap  [7]
     FillMode = UseLineColor
     FillColor = Red
     LineThickness = 0.3
+    Skipping = 4
     }
   BarCharts
     {
@@ -348,6 +290,7 @@ $!LineMap  [8]
     FillMode = UseLineColor
     FillColor = Green
     LineThickness = 0.3
+    Skipping = 4
     }
   BarCharts
     {
@@ -376,7 +319,7 @@ $!XYLineAxis
     {
     CoordScale = Linear
     RangeMin = 300
-    RangeMax = 601
+    RangeMax = 600
     AutoGrid = No
     GRSpacing = 100
     Ticks
@@ -470,6 +413,4 @@ $!XYLineAxis
     }
 $!LinePlotLayers 
   ShowSymbols = Yes
-$!FrameControl ActivateByNumber
-  Frame = 1
 $!SetStyleBase Config

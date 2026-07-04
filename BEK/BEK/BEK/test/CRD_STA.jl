@@ -9,6 +9,7 @@ module CRD_BF
     using LinearAlgebra
     using BSplineKit
     using PyCall
+    using DifferentialEquations, BoundaryValueDiffEq
  function sol_baseflowODE(Ro)
 
         py"""
@@ -204,7 +205,7 @@ module CRD_BF
         residual[2] = u[end][1]
     end     
     prob = DifferentialEquations.BVProblem(ODE_q!, BC_q!, [1,0], tspan)
-    sol1 = solve(prob,MIRK4(), dt=0.01)
+    sol1 = solve(prob,Shooting(Vern7()), dt=0.01)
     q = sol1(t)
     f = f[1,:]
     q = q[1,:]

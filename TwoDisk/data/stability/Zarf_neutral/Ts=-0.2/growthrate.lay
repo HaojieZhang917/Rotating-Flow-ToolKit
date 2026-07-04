@@ -1449,6 +1449,19 @@ $!IsoSurfaceLayers
   Show = Yes
 $!StreamtraceLayers 
   Show = No
+$!AttachText 
+  AnchorPos
+    {
+    X = 5.5
+    Y = 75
+    }
+  TextShape
+    {
+    FontFamily = 'Times'
+    IsBold = No
+    Height = 60
+    }
+  Text = '(b)'
 $!FrameControl ActivateByNumber
   Frame = 1
 $!SetStyleBase Config
