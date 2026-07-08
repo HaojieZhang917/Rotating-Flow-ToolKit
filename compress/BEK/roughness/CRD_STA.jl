@@ -140,19 +140,6 @@ module CRD_BF
                 x[i] = 20
             end
         end
-        # y = zeros(Float64, N+1)
-        # J_vec = zeros(Float64, N+1) # 雅可比向量
-        # L = 2
-        # for i = 1 : N+1
-        #     y[i] = L * (1 + x[i]) / (1 - x[i])
-        #     if y[i] > 40.0
-        #         y[i] = 40.0
-        #     end
-        #     # 雅可比 J = dx/d_eta = 2L / (1-eta)^2
-        #     J_vec[i] = 2 * L / (1 - x[i])^2
-        # end
-        # J_vec[end,:] .= 1e15
-        # D = D ./ J_vec
         D2 = D^2;
 
         return D,D2,x
