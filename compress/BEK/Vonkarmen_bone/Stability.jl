@@ -1,4 +1,4 @@
-module CRC_STA
+﻿module CRC_STA
     export  COF, Spatial_mode_BEK
     export  assemble_time_mat, assemble_mat, assemble_adjmat
     export  boudary_condition, eig_full, cheb_points
@@ -26,7 +26,7 @@ module CRC_STA
         size = N_cheb + 1
         eye = I(N_cheb+1)
         Zero = zeros(N_cheb+1,N_cheb+1)
-        # 5 变量: [u, v, w, T, p]
+        # 5 鍙橀噺: [u, v, w, T, p]
         Ta = zeros(5*size,5*size)
         A = zeros(5*size,5*size)
         B = zeros(5*size,5*size)
@@ -40,86 +40,80 @@ module CRC_STA
         Vzz = zeros(5*size,5*size)
         dVxz = zeros(5*size,5*size)
         dVyz = zeros(5*size,5*size)
-        # Temperature perturbation is scaled by the imposed wall-far temperature difference.
-        # The improved Boussinesq base flow used by Bone.py has
-        #     F'' = T * A,  A = F^2 + H F' - (G - 1)^2
-        #     G'' = T * B,  B = 2FG + H G' - 2F
-        # so the perturbation equations use d(TA)=T*dA+dTw*A*theta and
-        # d(TB)=T*dB+dTw*B*theta, where theta is the scaled temperature perturbation.
+        # Boussinesq model consistent with Bone.py:
+        #     F'' = F^2 + H*F' - (G - 1)^2 - (T - 1)
+        #     G'' = 2*F*G + H*G' - 2*F
+        # Bone.py uses T = T_dim/T_inf.  For an ideal gas beta*T_inf = 1,
+        # so the linear radial buoyancy coupling from temperature disturbance
+        # is -theta.  The temperature equation is forced by w*T_base'.
         dF = D * F
         dG = D * G
-        dTw = T[1] - 1.0
-        Abase = F.^2 .+ H .* dF .- (G .- 1.0).^2
-        Bbase = 2 .* F .* G .+ H .* dG .- 2 .* F
-        rho_fac = 1.0 ./ T
-        rho_fac_T = -1.0 ./ (T.^2)
-        # Ta: 时间导数  [u,v,w,T,p]
+        # Ta: 鏃堕棿瀵兼暟  [u,v,w,T,p]
         Ta_11 = eye; Ta_12 = Ta_13 = Ta_14 = Ta_15 = Zero
         Ta_22 = eye; Ta_21 = Ta_23 = Ta_24 = Ta_25 = Zero
         Ta_33 = eye; Ta_31 = Ta_32 = Ta_34 = Ta_35 = Zero
         Ta_44 = eye; Ta_41 = Ta_42 = Ta_43 = Ta_45 = Zero
-        Ta_51 = Ta_52 = Ta_53 = Ta_54 = Ta_55 = Zero   # p 无时间导数
-
-        # A: α 系数  [u,v,w,T,p]
-       A_11 = rho_fac .* F .* eye; A_12 = A_13 = A_14 = Zero; A_15 = eye    # u: T*F*u + p_x
-       A_22 = rho_fac .* F .* eye; A_21 = A_23 = A_24 = A_25 = Zero         # v: T*F*v
-       A_33 = rho_fac .* F .* eye; A_31 = A_32 = A_34 = A_35 = Zero         # w: T*F*w
+        Ta_51 = Ta_52 = Ta_53 = Ta_54 = Ta_55 = Zero   # p 鏃犳椂闂村鏁?
+        # A: 伪 绯绘暟  [u,v,w,T,p]
+       A_11 = F .* eye; A_12 = A_13 = A_14 = Zero; A_15 = eye    # u: F*u + p_x
+       A_22 = F .* eye; A_21 = A_23 = A_24 = A_25 = Zero         # v: F*v
+       A_33 = F .* eye; A_31 = A_32 = A_34 = A_35 = Zero         # w: F*w
         A_44 = F .* eye; A_41 = A_42 = A_43 = A_45 = Zero               # T: F*T
-        A_51 = eye; A_52 = A_53 = A_54 = A_55 = Zero                     # p: u_x (连续性)
+        A_51 = eye; A_52 = A_53 = A_54 = A_55 = Zero                     # p: u_x (杩炵画鎬?
 
-        # B: β 系数  [u,v,w,T,p]
-        B_11 = (1/R) * rho_fac .* G .* eye; B_12 = B_13 = B_14 = B_15 = Zero       # u: T*G*u
-        B_22 = (1/R) * rho_fac .* G .* eye; B_21 = B_23 = Zero; B_24 = Zero; B_25 = (1/R) .* eye  # v: T*G*v + p_y
-        B_33 = (1/R) * rho_fac .* G .* eye; B_31 = B_32 = B_34 = B_35 = Zero       # w: T*G*w
+        # B: 尾 绯绘暟  [u,v,w,T,p]
+        B_11 = (1/R) * G .* eye; B_12 = B_13 = B_14 = B_15 = Zero       # u: G*u/R
+        B_22 = (1/R) * G .* eye; B_21 = B_23 = Zero; B_24 = Zero; B_25 = (1/R) .* eye  # v: G*v/R + p_y/R
+        B_33 = (1/R) * G .* eye; B_31 = B_32 = B_34 = B_35 = Zero       # w: G*w/R
         B_44 = (1/R) * G .* eye; B_41 = B_43 = B_45 = Zero; B_42 = Zero # T: G*T
-        B_51 = B_53 = B_54 = B_55 = Zero; B_52 = (1/R) .* eye            # p: v_y (连续性)
+        B_51 = B_53 = B_54 = B_55 = Zero; B_52 = (1/R) .* eye            # p: v_y (杩炵画鎬?
 
-        # C: z-对流  [u,v,w,T,p]
-        C_11 = (1/R) * rho_fac  .* H .* eye; dC_11 = D * diag(C_11) .* eye
+        # C: z-瀵规祦  [u,v,w,T,p]
+        C_11 = (1/R) * H .* eye; dC_11 = D * diag(C_11) .* eye
         C_12 = C_13 = C_14 = C_15 = Zero; dC_12 = dC_13 = dC_14 = dC_15 = Zero
-        C_22 = (1/R) * rho_fac  .* H .* eye; dC_22 = D * diag(C_22) .* eye
+        C_22 = (1/R) * H .* eye; dC_22 = D * diag(C_22) .* eye
         C_21 = C_23 = C_24 = C_25 = Zero; dC_21 = dC_23 = dC_24 = dC_25 = Zero
-        C_33 = (1/R) * rho_fac  .* H .* eye; dC_33 = D * diag(C_33) .* eye
-        C_31 = C_32 = Zero; C_34 = Zero; C_35 = eye;  # w: ∂p/∂z
+        C_33 = (1/R) * H .* eye; dC_33 = D * diag(C_33) .* eye
+        C_31 = C_32 = Zero; C_34 = Zero; C_35 = eye;  # w: 鈭俻/鈭倆
         dC_31 = dC_32 = Zero; dC_34 = dC_35 = Zero
         C_44 = (1/R) * H .* eye; dC_44 = D * diag(C_44) .* eye
         C_41 = C_42 = C_43 = C_45 = Zero; dC_41 = dC_42 = dC_43 = dC_45 = Zero
-        # 连续性: w_z 耦合到 p
+        # 杩炵画鎬? w_z 鑰﹀悎鍒?p
         C_53 = eye; dC_53 = D * diag(C_53) .* eye
         C_51 = C_52 = C_54 = C_55 = Zero; dC_51 = dC_52 = dC_54 = dC_55 = Zero
 
-        # D1: 基本流剪切 + 浮力耦合  [u,v,w,T,p]
-        D_11 = (1/R) * rho_fac .* F .* eye
-        D_12 = -(1/R) * rho_fac .* 2 .* (G .+ 1) .* eye
-        D_13 = rho_fac .* dF .* eye
-        D_14 = dTw .* rho_fac_T .* Abase .* eye
+        # D1: 鍩烘湰娴佸壀鍒?+ 娴姏鑰﹀悎  [u,v,w,T,p]
+        D_11 = (1/R) * F .* eye
+        D_12 = -(1/R) * 2 .* (G .+ 1) .* eye
+        D_13 = dF .* eye
+        D_14 = -eye
         D_15 = Zero
-        D_21 = (1/R) * rho_fac .* 2 .* (G .+ 1) .* eye
-        D_22 = (1/R) * rho_fac .* F .* eye
-        D_23 = rho_fac .* dG .* eye
-        D_24 = dTw .* rho_fac_T .* Bbase .* eye
+        D_21 = (1/R) * 2 .* (G .+ 1) .* eye
+        D_22 = (1/R) * F .* eye
+        D_23 = dG .* eye
+        D_24 = Zero
         D_25 = Zero
         D_31 = D_32 = Zero; D_34 = Zero  # current base-flow model has no axial thermal-inertial term
-        D_33 = (1/R) * rho_fac .* (D * H) .* eye; D_35 = Zero
+        D_33 = (1/R) * (D * H) .* eye; D_35 = Zero
         D_41 = D_42 = Zero; D_44 = Zero; D_45 = Zero
-        D_43 = dT .* eye                       # T: T' * ŵ
+        D_43 = dT .* eye                       # T: T_base' * w
         D_51 = 1/R .* eye; D_52 = D_53 = D_54 = D_55 = Zero  # p: u_r
 
-        # Vxx: α² 扩散  [u,v,w,T,p]
+        # Vxx: 伪虏 鎵╂暎  [u,v,w,T,p]
         Vxx_11 = -(1/R) * eye; Vxx_12 = Vxx_13 = Vxx_14 = Vxx_15 = Zero
         Vxx_22 = -(1/R) * eye; Vxx_21 = Vxx_23 = Vxx_24 = Vxx_25 = Zero
         Vxx_33 = -(1/R) * eye; Vxx_31 = Vxx_32 = Vxx_34 = Vxx_35 = Zero
         Vxx_44 = -(1/(sigma*R)) * eye; Vxx_41 = Vxx_42 = Vxx_43 = Vxx_45 = Zero
         Vxx_51 = Vxx_52 = Vxx_53 = Vxx_54 = Vxx_55 = Zero
 
-        # Vyy: β² 扩散
+        # Vyy: 尾虏 鎵╂暎
         Vyy_11 = -(1/R^3) * eye; Vyy_12 = Vyy_13 = Vyy_14 = Vyy_15 = Zero
         Vyy_22 = -(1/R^3) * eye; Vyy_21 = Vyy_23 = Vyy_24 = Vyy_25 = Zero
         Vyy_33 = -(1/R^3) * eye; Vyy_31 = Vyy_32 = Vyy_34 = Vyy_35 = Zero
         Vyy_44 = -(1/(sigma*R^3)) * eye; Vyy_41 = Vyy_42 = Vyy_43 = Vyy_45 = Zero
         Vyy_51 = Vyy_52 = Vyy_53 = Vyy_54 = Vyy_55 = Zero
 
-        # Vzz: D² 扩散
+        # Vzz: D虏 鎵╂暎
         Vzz_11 = -(1/R) * eye; dVzz_11 = D*diag(Vzz_11).*eye; d2Vzz_11 = D2*diag(Vzz_11).*eye
         Vzz_12 = Vzz_13 = Vzz_14 = Vzz_15 = Zero; dVzz_12 = dVzz_13 = dVzz_14 = dVzz_15 = Zero; d2Vzz_12 = d2Vzz_13 = d2Vzz_14 = d2Vzz_15 = Zero
         Vzz_22 = -(1/R) * eye; dVzz_22 = D*diag(Vzz_22).*eye; d2Vzz_22 = D2*diag(Vzz_22).*eye
@@ -135,7 +129,7 @@ module CRC_STA
         Vxz = zeros(5*size,5*size)
         Vyz = zeros(5*size,5*size)
 
-        # 组装 5×5 分块矩阵
+        # 缁勮 5脳5 鍒嗗潡鐭╅樀
         Ta = [Ta_11 Ta_12 Ta_13 Ta_14 Ta_15; Ta_21 Ta_22 Ta_23 Ta_24 Ta_25; Ta_31 Ta_32 Ta_33 Ta_34 Ta_35; Ta_41 Ta_42 Ta_43 Ta_44 Ta_45; Ta_51 Ta_52 Ta_53 Ta_54 Ta_55]
         A  = [A_11  A_12  A_13  A_14  A_15;  A_21  A_22  A_23  A_24  A_25;  A_31  A_32  A_33  A_34  A_35;  A_41  A_42  A_43  A_44  A_45;  A_51  A_52  A_53  A_54  A_55]
         B  = [B_11  B_12  B_13  B_14  B_15;  B_21  B_22  B_23  B_24  B_25;  B_31  B_32  B_33  B_34  B_35;  B_41  B_42  B_43  B_44  B_45;  B_51  B_52  B_53  B_54  B_55]
@@ -178,16 +172,16 @@ module CRC_STA
     function eig_full(eigvec,N_cheb,num)
         N = N_cheb + 1
         eigvec = eigvec[:,num]
-        # 插入 10 个边界零值: u(0),u(∞),v(0),v(∞),w(0),w(∞),T(0),T(∞),p(0),p(∞)
-        insert!(eigvec,5N-10,0im)   # p(∞)
+        # 鎻掑叆 10 涓竟鐣岄浂鍊? u(0),u(鈭?,v(0),v(鈭?,w(0),w(鈭?,T(0),T(鈭?,p(0),p(鈭?
+        insert!(eigvec,5N-10,0im)   # p(鈭?
         insert!(eigvec,4N-7,0im)    # p(0)
-        insert!(eigvec,4N-7,0im)    # T(∞)
+        insert!(eigvec,4N-7,0im)    # T(鈭?
         insert!(eigvec,3N-5,0im)    # T(0)
-        insert!(eigvec,3N-5,0im)    # w(∞)
+        insert!(eigvec,3N-5,0im)    # w(鈭?
         insert!(eigvec,2N-3,0im)    # w(0)
-        insert!(eigvec,2N-3,0im)    # v(∞)
+        insert!(eigvec,2N-3,0im)    # v(鈭?
         insert!(eigvec,N-1,0im)     # v(0)
-        insert!(eigvec,N-1,0im)     # u(∞)
+        insert!(eigvec,N-1,0im)     # u(鈭?
         insert!(eigvec,1,0im)       # u(0)
         u = eigvec[1:N]
         v = eigvec[N+1:2N]
@@ -197,8 +191,8 @@ module CRC_STA
         return (u,v,w,T,p)
     end
     function cheb_points(N)
-        θ = range(0, stop=pi, length=N+1)
-        x = -cos.(θ)
+        胃 = range(0, stop=pi, length=N+1)
+        x = -cos.(胃)
         cc = [2; ones(N-1); 2] .* (-1.0).^(0:N)
         X = repeat(x, 1, N+1)
         dX = X .- X'
@@ -222,8 +216,8 @@ module CRC_STA
         return DM, D2M, x
     end
     function cheb_points(N)
-        θ = range(0, stop=pi, length=N+1)
-        x = -cos.(θ)
+        胃 = range(0, stop=pi, length=N+1)
+        x = -cos.(胃)
         cc = [2; ones(N-1); 2] .* (-1.0).^(0:N)
         X = repeat(x, 1, N+1)
         dX = X .- X'
