@@ -172,23 +172,19 @@ module CRC_STA
     end
     function eig_full(eigvec,N_cheb,num)
         N = N_cheb + 1
-        eigvec = eigvec[:,num]
-        # Reinsert the 10 boundary zeros for u, v, w, T, and p.
-        insert!(eigvec,5N-10,0im)   # p(infinity)
-        insert!(eigvec,4N-7,0im)    # p(0)
-        insert!(eigvec,4N-7,0im)    # T(infinity)
-        insert!(eigvec,3N-5,0im)    # T(0)
-        insert!(eigvec,3N-5,0im)    # w(infinity)
-        insert!(eigvec,2N-3,0im)    # w(0)
-        insert!(eigvec,2N-3,0im)    # v(infinity)
-        insert!(eigvec,N-1,0im)     # v(0)
-        insert!(eigvec,N-1,0im)     # u(infinity)
-        insert!(eigvec,1,0im)       # u(0)
-        u = eigvec[1:N]
-        v = eigvec[N+1:2N]
-        w = eigvec[2N+1:3N]
-        T = eigvec[3N+1:4N]
-        p = eigvec[4N+1:5N]
+        reduced = eigvec[:,num]
+        removed = [1, N, N+1, 2N, 2N+1, 3N, 3N+1, 4N, 5N]
+        keep = setdiff(collect(1:5N), removed)
+        length(reduced) == length(keep) || throw(DimensionMismatch(
+            "eigenvector length is inconsistent with boudary_condition",
+        ))
+        full = zeros(ComplexF64, 5N)
+        full[keep] .= reduced
+        u = full[1:N]
+        v = full[N+1:2N]
+        w = full[2N+1:3N]
+        T = full[3N+1:4N]
+        p = full[4N+1:5N]
         return (u,v,w,T,p)
     end
     function cheb_points(N)

@@ -136,8 +136,8 @@ module CRD_BF
         end
         for i=1:N+1
             x[i] = a * (1+b*x[i]+(1-b)*(x[i]^3+c*(1-x[i]^2)))/(1-b*x[i]-(1-b)*(x[i]^3+c*(1-x[i]^2)))
-            if x[i] > 20
-                x[i] = 20
+            if x[i] > 40
+                x[i] = 40
             end
         end
         # y = zeros(Float64, N+1)
