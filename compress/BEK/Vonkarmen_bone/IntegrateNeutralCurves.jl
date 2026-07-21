@@ -3,94 +3,28 @@ using Printf
 const ROOT = @__DIR__
 const BATCH_DIR = joinpath(ROOT,"neutral_curve_batch")
 const OUTPUT_DIR = joinpath(ROOT,"neutral_curve_integrated")
+const VARIABLES_LINE =
+    "Variables=\"omega\" \"R\" \"beta\" \"alpha_r_1\" " *
+    "\"alpha_i_1\" \"alpha_r_2\" \"alpha_i_2\""
 
-const LEGACY_SOURCES = (
-    (
-        "ome=0.0_Tw=1.0.dat",
-        "ome=0.0_Tw=1.0_model=lopez.dat",
-        "legacy Lopez curve; coarse neutral tolerance",
-    ),
-    (
-        "ome=0.0_Tw=1.0_compressible_Mr=0.3.dat",
-        "ome=0.0_Tw=1.0_model=compressible_Mr=0.3_" *
-        "propPert=on_baseProp=variable.dat",
-        "legacy full-compressible curve; coarse neutral tolerance",
-    ),
-    (
-        "ome=0.0_Tw=1.02_model=lopez_propPert=off_baseProp=variable.dat",
-        "ome=0.0_Tw=1.02_model=lopez.dat",
-        "renamed to the standard Lopez convention",
-    ),
-    (
-        "ome=0.0_Tw=1.02_model=compressible_Mr=0.3_" *
-        "propPert=on_baseProp=variable.dat",
-        "ome=0.0_Tw=1.02_model=compressible_Mr=0.3_" *
-        "propPert=on_baseProp=variable.dat",
-        "legacy parent-directory source",
-    ),
-    (
-        "ome=0.0_Tw=1.02_model=compressible_Mr=0.3_" *
-        "propPert=off_baseProp=variable.dat",
-        "ome=0.0_Tw=1.02_model=compressible_Mr=0.3_" *
-        "propPert=off_baseProp=variable.dat",
-        "legacy parent-directory source",
-    ),
-    (
-        "ome=0.0_Tw=1.02_model=compressible_Mr=0.3_" *
-        "propPert=off_baseProp=frozen.dat",
-        "ome=0.0_Tw=1.02_model=compressible_Mr=0.3_" *
-        "propPert=off_baseProp=frozen.dat",
-        "legacy parent-directory source",
-    ),
-    (
-        "ome=0.0_Tw=1.04_model=lopez_propPert=off_baseProp=variable.dat",
-        "ome=0.0_Tw=1.04_model=lopez.dat",
-        "renamed to the standard Lopez convention",
-    ),
-    (
-        "ome=0.0_Tw=1.04_model=compressible_Mr=0.3_" *
-        "propPert=on_baseProp=variable.dat",
-        "ome=0.0_Tw=1.04_model=compressible_Mr=0.3_" *
-        "propPert=on_baseProp=variable.dat",
-        "legacy parent-directory source",
-    ),
-    (
-        "ome=0.0_Tw=1.04_model=compressible_Mr=0.3_" *
-        "propPert=off_baseProp=variable.dat",
-        "ome=0.0_Tw=1.04_model=compressible_Mr=0.3_" *
-        "propPert=off_baseProp=variable.dat",
-        "legacy parent-directory source",
-    ),
-    (
-        "ome=0.0_Tw=1.04_model=compressible_Mr=0.3_" *
-        "propPert=off_baseProp=frozen.dat",
-        "ome=0.0_Tw=1.04_model=compressible_Mr=0.3_" *
-        "propPert=off_baseProp=frozen.dat",
-        "legacy parent-directory source",
-    ),
-    (
-        "ome=0.0_Tw=1.05.dat",
-        "ome=0.0_Tw=1.05_model=lopez.dat",
-        "legacy Lopez-only curve; no paired compressible file",
-    ),
-)
-
-function load_curve(path)
+function load_curve(path::AbstractString)
     rows = Vector{Vector{Float64}}()
-    for line in Iterators.drop(eachline(path),2)
-        isempty(strip(line)) && continue
-        push!(rows,parse.(Float64,split(strip(line))))
+    for line in eachline(path)
+        text = strip(line)
+        (isempty(text) || startswith(lowercase(text),"variables") ||
+         startswith(lowercase(text),"zone") || startswith(text,"#")) && continue
+        fields = split(text)
+        length(fields) == 7 || error("Expected seven columns in $path: $text")
+        push!(rows,parse.(Float64,fields))
     end
-    isempty(rows) && return zeros(0,7)
+    isempty(rows) && return zeros(Float64,0,7)
     return reduce(vcat,permutedims.(rows))
 end
 
-function curve_quality(path)
-    data = load_curve(path)
+function source_quality(path::AbstractString,data::AbstractMatrix)
     points = size(data,1)
-    points == 0 && return (
-        points=0,R_min=NaN,R_max=NaN,beta_min=NaN,beta_max=NaN,
-        max_residual=NaN,direction="none",quality="invalid",
+    points > 0 || return (
+        quality="invalid",direction="none",max_residual=NaN,
     )
     beta_difference = diff(data[:,3])
     direction = all(beta_difference .> 0) ? "increasing" :
@@ -103,97 +37,227 @@ function curve_quality(path)
     elseif points >= 50 && max_residual <= 1.0e-6 &&
            direction != "mixed" && maximum(data[:,3]) >= 0.08
         "validated_strict"
-    elseif points >= 50 && max_residual <= 5.0e-3 && direction != "mixed"
-        "legacy_coarse"
     else
         "invalid"
     end
     return (
-        points=points,R_min=minimum(data[:,2]),R_max=maximum(data[:,2]),
-        beta_min=minimum(data[:,3]),beta_max=maximum(data[:,3]),
-        max_residual=max_residual,direction=direction,quality=quality,
+        quality=quality,direction=direction,max_residual=max_residual,
     )
 end
 
-function extract_temperature(name)
+case_stem(name::AbstractString) = replace(name,r"_branch=[^.]+" => "")
+
+function extract_temperature(name::AbstractString)
     matched = match(r"Tw=([0-9.]+)",name)
     matched === nothing && return NaN
     return parse(Float64,matched.captures[1])
 end
 
-mkpath(OUTPUT_DIR)
-sources = Dict{String,Tuple{String,String}}()
-
-for source in sort(filter(
-    path -> begin
-        name = basename(path)
-        isfile(path) && endswith(name,".dat") &&
-            !endswith(name,"_allbranches.dat") &&
-            !startswith(name,"lopez_allbranches_")
-    end,
-    readdir(BATCH_DIR; join=true),
-))
-    destination = joinpath(OUTPUT_DIR,basename(source))
-    cp(source,destination; force=true)
-    sources[basename(destination)] = (source,"validated neutral_curve_batch source")
+function endpoint_R(data::AbstractMatrix,which::Symbol)
+    index = which === :minimum ? argmin(data[:,3]) : argmax(data[:,3])
+    return data[index,2]
 end
 
-for (source_name,destination_name,note) in LEGACY_SOURCES
-    source = joinpath(ROOT,source_name)
-    destination = joinpath(OUTPUT_DIR,destination_name)
-    if isfile(source)
-        cp(source,destination; force=true)
-        sources[destination_name] = (source,note)
-    elseif isfile(destination)
-        sources[destination_name] = (
-            destination,note * "; preserved existing integrated copy",
-        )
+function case_quality(names,records)
+    data = reduce(vcat,[records[name].data for name in names])
+    beta_min = minimum(data[:,3])
+    beta_max = maximum(data[:,3])
+    low_R = endpoint_R(data,:minimum)
+    high_R = endpoint_R(data,:maximum)
+    max_residual = maximum(record.quality.max_residual for record in
+                           (records[name] for name in names))
+    strict_sources = all(
+        startswith(records[name].quality.quality,"validated_") for name in names
+    )
+    has_separate_typeII = any(occursin("_branch=typeII",name) for name in names)
+
+    # Complete cases reach the outer R approximately 500 boundary on both sides.
+    # A disconnected Type-II mode is accepted only when its explicit source file
+    # is present; otherwise low-beta endpoint coverage must be in the main curve.
+    has_typeII = has_separate_typeII || (beta_min <= 0.045 && low_R >= 430.0)
+    has_typeI = beta_max >= 0.10 && high_R >= 430.0
+    status = if has_typeI && has_typeII
+        strict_sources ? "complete_strict" : "complete_invalid_source"
+    elseif has_typeI
+        "missing_typeII"
+    elseif has_typeII
+        "missing_typeI"
     else
-        error(
-            "Missing both legacy source and integrated copy: " *
-            "$source, $destination",
-        )
+        "missing_both"
+    end
+    return (
+        status=status,has_typeI=has_typeI,has_typeII=has_typeII,
+        separate_typeII=has_separate_typeII,zones=length(names),
+        points=size(data,1),beta_min=beta_min,beta_max=beta_max,
+        low_R=low_R,high_R=high_R,max_residual=max_residual,
+    )
+end
+
+function ordered_zone_names(names)
+    return sort(names; by=name -> occursin("_branch=typeII",name) ? 0 : 1)
+end
+
+function decreasing_beta(data::AbstractMatrix)
+    size(data,1) <= 1 && return Matrix(data)
+    return data[1,3] >= data[end,3] ? Matrix(data) :
+        Matrix(reverse(data; dims=1))
+end
+
+function merged_case_data(names,records,quality)
+    if !quality.separate_typeII
+        return decreasing_beta(records[only(names)].data)
+    end
+    typeII_name = only(filter(name -> occursin("_branch=typeII",name),names))
+    typeI_name = only(filter(name -> !occursin("_branch=",name),names))
+    typeI = decreasing_beta(records[typeI_name].data)
+    typeII = decreasing_beta(records[typeII_name].data)
+    return vcat(typeI,typeII)
+end
+
+function write_zone(io::IO,title::AbstractString,data::AbstractMatrix)
+    println(io,"Zone T=\"$title\", I=$(size(data,1)), F=POINT")
+    for row in eachrow(data)
+        println(io,join(row,'\t'))
     end
 end
 
-ordered_files = sort(
-    collect(keys(sources)); by=name -> (extract_temperature(name),name),
-)
+function write_complete_case(path,stem,names,records,quality)
+    title_stem = chop(stem; tail=4)
+    data = merged_case_data(names,records,quality)
+    open(path,"w") do io
+        println(io,VARIABLES_LINE)
+        write_zone(io,"$title_stem complete-Type-I-Type-II",data)
+    end
+end
 
-combined_path = joinpath(OUTPUT_DIR,"neutral_curves_all.dat")
-open(combined_path,"w") do io
-    println(
-        io,
-        "Variables=\"omega\" \"R\" \"beta\" \"alpha_r_1\" " *
-        "\"alpha_i_1\" \"alpha_r_2\" \"alpha_i_2\"",
+function raw_source_paths()
+    return sort(filter(readdir(BATCH_DIR; join=true)) do path
+        name = basename(path)
+        isfile(path) && startswith(name,"ome=") && endswith(name,".dat") &&
+            !endswith(name,"_allbranches.dat")
+    end)
+end
+
+function main()
+    source_paths = raw_source_paths()
+    isempty(source_paths) && error("No neutral-curve source files found in $BATCH_DIR")
+
+    records = Dict{String,NamedTuple}()
+    for path in source_paths
+        name = basename(path)
+        data = load_curve(path)
+        quality = source_quality(path,data)
+        quality.quality == "invalid" && error(
+            "Invalid source $name: direction=$(quality.direction), " *
+            "residual=$(quality.max_residual)",
+        )
+        records[name] = (path=path,data=data,quality=quality)
+    end
+
+    case_groups = Dict{String,Vector{String}}()
+    for name in keys(records)
+        push!(get!(case_groups,case_stem(name),String[]),name)
+    end
+    ordered_cases = sort(
+        collect(keys(case_groups)); by=name -> (extract_temperature(name),name),
     )
-    for name in ordered_files
-        println(io,"Zone T=\"$(chop(name; tail=4))\"")
-        for line in Iterators.drop(eachline(joinpath(OUTPUT_DIR,name)),2)
-            isempty(strip(line)) || println(io,line)
+    qualities = Dict(
+        stem => case_quality(case_groups[stem],records) for stem in ordered_cases
+    )
+    incomplete = filter(
+        stem -> qualities[stem].status != "complete_strict",ordered_cases,
+    )
+    isempty(incomplete) || error(
+        "Refusing to publish incomplete cases: $(join(incomplete, ", "))",
+    )
+
+    mkpath(OUTPUT_DIR)
+    for path in readdir(OUTPUT_DIR; join=true)
+        name = basename(path)
+        isfile(path) && startswith(name,"ome=") && endswith(name,".dat") &&
+            rm(path; force=true)
+    end
+
+    for stem in ordered_cases
+        write_complete_case(
+            joinpath(OUTPUT_DIR,stem),stem,case_groups[stem],records,qualities[stem],
+        )
+    end
+
+    combined_path = joinpath(OUTPUT_DIR,"neutral_curves_all.dat")
+    open(combined_path,"w") do io
+        println(io,VARIABLES_LINE)
+        for stem in ordered_cases
+            quality = qualities[stem]
+            title_stem = chop(stem; tail=4)
+            data = merged_case_data(case_groups[stem],records,quality)
+            write_zone(io,"$title_stem complete-Type-I-Type-II",data)
         end
     end
-end
+    complete_path = joinpath(OUTPUT_DIR,"neutral_curves_complete.dat")
+    cp(combined_path,complete_path; force=true)
 
-manifest_path = joinpath(OUTPUT_DIR,"manifest.tsv")
-open(manifest_path,"w") do io
-    println(
-        io,
-        "file\tTw\tquality\tpoints\tR_min\tR_max\tbeta_min\tbeta_max\t" *
-        "max_neutral_residual\tbeta_direction\tsource\tnote",
-    )
-    for name in ordered_files
-        source,note = sources[name]
-        quality = curve_quality(joinpath(OUTPUT_DIR,name))
-        fields = (
-            name,extract_temperature(name),quality.quality,quality.points,
-            quality.R_min,quality.R_max,quality.beta_min,quality.beta_max,
-            quality.max_residual,quality.direction,relpath(source,ROOT),note,
+    manifest_path = joinpath(OUTPUT_DIR,"manifest.tsv")
+    open(manifest_path,"w") do io
+        println(
+            io,
+            "file\tTw\tstatus\toutput_zones\tsource_segments\tpoints\t" *
+            "beta_min\tbeta_max\t" *
+            "R_at_beta_min\tR_at_beta_max\tmax_neutral_residual\tsources",
         )
-        println(io,join(fields,'\t'))
+        for stem in ordered_cases
+            quality = qualities[stem]
+            fields = (
+                stem,extract_temperature(stem),quality.status,1,quality.zones,
+                quality.points,quality.beta_min,quality.beta_max,
+                quality.low_R,quality.high_R,quality.max_residual,
+                join(ordered_zone_names(case_groups[stem]),','),
+            )
+            println(io,join(fields,'\t'))
+        end
     end
+
+    completeness_path = joinpath(OUTPUT_DIR,"completeness_manifest.tsv")
+    open(completeness_path,"w") do io
+        println(
+            io,
+            "case\tTw\tstatus\thas_typeI\thas_typeII\tseparate_typeII\t" *
+            "output_zones\tpoints\tbeta_min\tbeta_max\tR_at_beta_min\t" *
+            "R_at_beta_max\tmax_neutral_residual",
+        )
+        for stem in ordered_cases
+            quality = qualities[stem]
+            fields = (
+                chop(stem; tail=4),extract_temperature(stem),quality.status,
+                quality.has_typeI,quality.has_typeII,quality.separate_typeII,1,
+                quality.points,quality.beta_min,quality.beta_max,
+                quality.low_R,quality.high_R,quality.max_residual,
+            )
+            println(io,join(fields,'\t'))
+        end
+    end
+
+    source_manifest_path = joinpath(OUTPUT_DIR,"source_manifest.tsv")
+    open(source_manifest_path,"w") do io
+        println(io,"source\tcase\tquality\tpoints\tmax_neutral_residual\tdirection")
+        for name in sort(collect(keys(records)))
+            record = records[name]
+            fields = (
+                relpath(record.path,ROOT),chop(case_stem(name); tail=4),
+                record.quality.quality,size(record.data,1),
+                record.quality.max_residual,record.quality.direction,
+            )
+            println(io,join(fields,'\t'))
+        end
+    end
+
+    println("Published $(length(ordered_cases)) complete per-case files in $OUTPUT_DIR")
+    println("No standalone Type-II files were copied to the integrated directory")
+    println("Manifest: $manifest_path")
+    println("Completeness manifest: $completeness_path")
+    println("Tecplot multi-case file: $combined_path")
 end
 
-println("Integrated $(length(sources)) curve files into $OUTPUT_DIR")
-println("Manifest: $manifest_path")
-println("Tecplot multi-zone file: $combined_path")
+if abspath(PROGRAM_FILE) == @__FILE__
+    main()
+end
