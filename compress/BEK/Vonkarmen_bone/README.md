@@ -1,13 +1,33 @@
-# Vonkarmen_bone Daily Workspace
+# Vonkarmen_bone Research Workspace
 
-该目录用于日常计算、Jupyter Notebook、结果检查和论文数据后处理。
-可发行的 Julia 包位于：
+This directory is the daily research workspace for rotating-disk base-flow,
+stability, and neutral-curve studies. The reusable Julia package is maintained
+separately at:
 
 ```text
 /home/zhj/Rotating-Flow-ToolKit/RotatingDiskFlow
 ```
 
-## Notebook 推荐载入方式
+## Layout
+
+| Path | Purpose |
+|---|---|
+| `Bounssinesq.ipynb` | Main interactive notebook |
+| `CRD_STA.jl`, `LopezBaseflow.jl`, `LopezStability.jl` | Compatibility entry points for existing notebooks |
+| `NeutralContinuation.jl`, `NeutralCurveRunner.jl` | Compatibility entry points for neutral-curve calculations |
+| `SutherlandMarching.jl` | Compatibility entry point for the marching base-flow solver |
+| `scripts/` | Reusable analysis, continuation, validation, and export commands |
+| `docs/` | Mathematical derivations and workflow notes |
+| `archive/` | Superseded scripts and preserved auxiliary artifacts |
+| `*_comparison/`, `*_analysis/`, `neutral_curve_*` | Scientific output and post-processing data |
+
+The compatibility files load the maintained implementations from
+`../../../RotatingDiskFlow/src/`, so existing notebook cells do not need to be
+rewritten.
+
+## Julia Setup
+
+For package-oriented work:
 
 ```julia
 using Pkg
@@ -15,26 +35,35 @@ Pkg.activate("/home/zhj/Rotating-Flow-ToolKit/RotatingDiskFlow")
 using RotatingDiskFlow
 ```
 
-已有 notebook 可以继续使用原来的兼容入口：
+Existing notebook code may continue to use:
 
 ```julia
 include("NeutralCurveRunner.jl")
 using .NeutralCurveRunner
 ```
 
-这些根目录兼容文件会自动加载 `../../../RotatingDiskFlow/src/` 中的发行版实现，因此旧 notebook 不需要批量改写。
+For scripts in this workspace, activate the local environment:
 
-## 日常输出
-
-从本目录启动 Julia 时，中性曲线默认写入：
-
-```text
-Vonkarmen_bone/neutral_curve_batch/
+```bash
+julia --project=. scripts/CheckMalikBenchmarks.jl
 ```
 
-发行包不会把运行数据写入自己的 `src/` 或仓库目录。该目录中的 notebook、历史分析脚本和计算结果不属于发行包 API。
+See [`scripts/README.md`](scripts/README.md) for the available commands and
+[`archive/README.md`](archive/README.md) for the retention policy.
 
-完整使用文档：
+A step-by-step Chinese guide for generating base flows and neutral curves is
+available in [`docs/workflow-guide-cn.md`](docs/workflow-guide-cn.md).
+
+For continuing this research in a new Codex conversation, load
+[`CONVERSATION_HANDOFF.txt`](CONVERSATION_HANDOFF.txt) first.
+
+## Output Policy
+
+Computed data remain in their existing result directories so that notebooks and
+paper figures keep stable paths. Runtime logs, Python bytecode, notebook caches,
+and regenerated neutral-curve directories are ignored by Git.
+
+Release-package documentation is available in:
 
 ```text
 /home/zhj/Rotating-Flow-ToolKit/RotatingDiskFlow/README.md

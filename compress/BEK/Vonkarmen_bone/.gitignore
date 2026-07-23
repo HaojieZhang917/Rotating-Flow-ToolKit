@@ -1,6 +1,8 @@
 # Julia and notebook caches
 *.ji
 *.tmp
+*.pyc
+*.log
 .ipynb_checkpoints/
 __pycache__/
 
@@ -9,7 +11,6 @@ neutral_curve_batch/
 neutral_curve_integrated/
 grid_independence/
 sutherland_marching_data/
-lopez_neutral_curves/*.log
 
 # Local editor and OS files
 .DS_Store

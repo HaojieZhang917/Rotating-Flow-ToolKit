@@ -84,7 +84,7 @@ $$
 $$
 
 The coefficient $1/R$ follows the local Reynolds-number scaling already used
-by `Stability.jl`. Most importantly, $\chi$ multiplies the nonlinear advection
+by the legacy `archive/legacy_scripts/Stability.jl`. Most importantly, $\chi$ multiplies the nonlinear advection
 term, but not the local time derivative, pressure gradient, or viscous term.
 This is the specific 2013 Lopez model. A later canonical generalized
 Boussinesq model that multiplies every local acceleration is a different model
@@ -262,7 +262,8 @@ $$
 (\Delta_k+i\alpha/R-1/R^2)v+2i\beta u/R,
 $$
 
-respectively. These terms are absent from the present `Stability.jl` local
+respectively. These terms are absent from the legacy
+`archive/legacy_scripts/Stability.jl` local
 boundary-layer operator and should not be added to only one model.
 
 ## 6. Block operator
@@ -511,7 +512,7 @@ One must not obtain a Lopez operator by simply multiplying all terms of a
 rotating-frame traditional-Boussinesq matrix by $\chi$. The 2013 closure
 weights inertial-frame advection only and is not term-by-term frame invariant.
 
-## 11. Required changes relative to `Stability.jl`
+## 11. Required changes relative to the legacy `archive/legacy_scripts/Stability.jl`
 
 The present `Spatial_mode_BEK` is a traditional fixed-reference centrifugal
 model. A Lopez builder needs the following changes.
