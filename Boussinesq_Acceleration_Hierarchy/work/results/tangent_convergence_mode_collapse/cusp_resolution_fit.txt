@@ -1,0 +1,4 @@
+loglog_power=2.188375589330
+loglog_prefactor=250.914459806082
+mean_N2_epsilon=102.744306985067
+scope=three existing apparent-turn points; numerical resolution boundary, not a physical cusp law

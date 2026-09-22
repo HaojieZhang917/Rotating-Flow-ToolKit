@@ -1,0 +1,4 @@
+Y-shooting: Ro_t=-4.70367416261166e-01 Tw_t=1.66158741951171e+00 p0=6.54193538967116e-01
+g-coordinate: Ro_t=-4.70367416464038e-01 Tw_t=1.66158741971899e+00 p0=6.54193538532454e-01
+cross-method differences: dRo=2.029e-10 dTw=-2.073e-10 dp0=4.347e-10
+analytic endpoint slope dTw/dRo=-1.02177156063056e+00

@@ -27,6 +27,10 @@ The workspace was assembled on 2026-08-31 by copying selected scripts and result
 - `docs/ASSET_CATALOG.md`: provenance, selection decisions and known limitations.
 - `docs/MODEL_DEFINITIONS.md`: agreed Rossby-number convention, closure endpoints and diagnostic coefficients.
 - `docs/RESEARCH_PLAN.md`: staged execution plan for the new paper.
+- `docs/learning_manual/BEK_Boussinesq_Research_Learning_Manual.tex`: a
+  Chinese, beginner-oriented reconstruction of the physical model, numerical
+  methods, completed evidence chain, singular asymptotics and Julia code map;
+  the compiled PDF in the same directory is a verification artifact.
 
 ## Baseline checks
 

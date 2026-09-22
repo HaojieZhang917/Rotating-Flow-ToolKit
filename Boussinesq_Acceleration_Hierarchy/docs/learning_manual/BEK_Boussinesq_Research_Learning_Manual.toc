@@ -1,0 +1,94 @@
+\contentsline {chapter}{写在前面}{ii}{chapter*.1}%
+\contentsline {chapter}{怎样使用这本手册}{iii}{chapter*.2}%
+\contentsline {chapter}{先看研究主线：一条线读完全书}{iv}{chapter*.3}%
+\contentsline {section}{全书量级账本}{v}{section*.4}%
+\contentsline {part}{第一部分\hspace {1em}研究主线：一个物理问题怎样被解决}{1}{part.1}%
+\contentsline {chapter}{\numberline {第一章\hspace {.3em}}从物理疑问到可验证答案}{2}{chapter.1}%
+\contentsline {section}{\numberline {1.1}起点：究竟要解决什么物理问题}{2}{section.1.1}%
+\contentsline {section}{\numberline {1.2}第一项数学决策：把流场变成什么问题}{2}{section.1.2}%
+\contentsline {section}{\numberline {1.3}第二项数学决策：用怎样的数值实验回答“分支怎样终止”}{3}{section.1.3}%
+\contentsline {section}{\numberline {1.4}第三项数学决策：为什么不能停在五条切片}{4}{section.1.4}%
+\contentsline {section}{\numberline {1.5}第四项数学决策：为什么此时才需要 inner 和 outer}{5}{section.1.5}%
+\contentsline {section}{\numberline {1.6}第五项数学决策：端点怎样被算出并得到验证}{6}{section.1.6}%
+\contentsline {section}{\numberline {1.7}物理问题目前被回答到哪一步}{7}{section.1.7}%
+\contentsline {part}{第二部分\hspace {1em}技术展开一：建立物理模型与有限参数计算}{8}{part.2}%
+\contentsline {chapter}{\numberline {第二章\hspace {.3em}}BEK旋转边界层是什么}{9}{chapter.2}%
+\contentsline {section}{\numberline {2.1}一个统一的旋转边界层家族}{9}{section.2.1}%
+\contentsline {section}{\numberline {2.2}四个相似函数}{10}{section.2.2}%
+\contentsline {section}{\numberline {2.3}等温BEK方程}{10}{section.2.3}%
+\contentsline {chapter}{\numberline {第三章\hspace {.3em}}温度、密度与两种Boussinesq闭合}{11}{chapter.3}%
+\contentsline {section}{\numberline {3.1}温度和线性密度律}{11}{section.3.1}%
+\contentsline {section}{\numberline {3.2}传统盘系固定离心闭合}{12}{section.3.2}%
+\contentsline {section}{\numberline {3.3}加速度一致闭合}{12}{section.3.3}%
+\contentsline {section}{\numberline {3.4}模型适用性的三层含义}{13}{section.3.4}%
+\contentsline {part}{第三部分\hspace {1em}数值上怎样可信地找到解与fold}{14}{part.3}%
+\contentsline {chapter}{\numberline {第四章\hspace {.3em}}无限区间上的谱离散与Newton法}{15}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Pier型有理映射}{15}{section.4.1}%
+\contentsline {section}{\numberline {4.2}为什么“真无穷端点”仍可能欠分辨}{15}{section.4.2}%
+\contentsline {section}{\numberline {4.3}离散残差与Newton迭代}{16}{section.4.3}%
+\contentsline {section}{\numberline {4.4}收敛测试究竟在测什么}{16}{section.4.4}%
+\contentsline {chapter}{\numberline {第五章\hspace {.3em}}fold、伪弧长与Jacobian零模}{17}{chapter.5}%
+\contentsline {section}{\numberline {5.1}什么是fold}{17}{section.5.1}%
+\contentsline {section}{\numberline {5.2}为什么$H_\infty (T_w)$的极值不一定是fold}{18}{section.5.2}%
+\contentsline {section}{\numberline {5.3}伪弧长延拓}{18}{section.5.3}%
+\contentsline {section}{\numberline {5.4}cusp与热尾不是同一件事}{18}{section.5.4}%
+\contentsline {part}{第四部分\hspace {1em}仓库已经得到什么}{19}{part.4}%
+\contentsline {chapter}{\numberline {第六章\hspace {.3em}}从Gate 1到两模型拓扑图}{20}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Gate 1：先把等温BEK家族做对}{20}{section.6.1}%
+\contentsline {section}{\numberline {6.2}传统von K\'arm\'an模型的两个fold}{20}{section.6.2}%
+\contentsline {section}{\numberline {6.3}传统模型的全BEK分类}{20}{section.6.3}%
+\contentsline {section}{\numberline {6.4}一致模型没有“把所有fold都删掉”}{21}{section.6.4}%
+\contentsline {section}{\numberline {6.5}从二维fold延拓到$\epsilon $链}{23}{section.6.5}%
+\contentsline {section}{\numberline {6.6}数值标度}{23}{section.6.6}%
+\contentsline {part}{第五部分\hspace {1em}为渐近分析补齐数学基础}{25}{part.5}%
+\contentsline {chapter}{\numberline {第七章\hspace {.3em}}从Taylor展开到奇异摄动}{26}{chapter.7}%
+\contentsline {section}{\numberline {7.1}$O(\epsilon ^p)$究竟是什么意思}{26}{section.7.1}%
+\contentsline {section}{\numberline {7.2}正则与奇异摄动}{26}{section.7.2}%
+\contentsline {section}{\numberline {7.3}先记录远场线索，暂不建立outer}{26}{section.7.3}%
+\contentsline {section}{\numberline {7.4}隐函数定理、奇异值与零模}{27}{section.7.4}%
+\contentsline {part}{第六部分\hspace {1em}奇异fold--tail极限的逐步推导}{28}{part.6}%
+\contentsline {chapter}{\numberline {第八章\hspace {.3em}}退化inner core与解析相容曲线}{29}{chapter.8}%
+\contentsline {section}{\numberline {8.1}inner展开}{29}{section.8.1}%
+\contentsline {section}{\numberline {8.2}零阶退化核心}{30}{section.8.2}%
+\contentsline {section}{\numberline {8.3}一阶径向相容条件}{31}{section.8.3}%
+\contentsline {section}{\numberline {8.4}inner怎样暴露自己的失效尺度}{32}{section.8.4}%
+\contentsline {chapter}{\numberline {第九章\hspace {.3em}}thermo--rotational slow tail与outer DAE}{33}{chapter.9}%
+\contentsline {section}{\numberline {9.1}先从温度尾长开始}{33}{section.9.1}%
+\contentsline {section}{\numberline {9.2}distinguished outer scaling}{33}{section.9.2}%
+\contentsline {section}{\numberline {9.3}为什么这是DAE和slow manifold}{35}{section.9.3}%
+\contentsline {section}{\numberline {9.4}化成可求解的三个一阶ODE}{35}{section.9.4}%
+\contentsline {section}{\numberline {9.5}两侧都已得到后再做匹配}{36}{section.9.5}%
+\contentsline {section}{\numberline {9.6}远场条件选择outer端点}{36}{section.9.6}%
+\contentsline {section}{\numberline {9.7}为什么outer BVP正则并不矛盾}{37}{section.9.7}%
+\contentsline {chapter}{\numberline {第十章\hspace {.3em}}完整增广fold切向、伴随与两级选择}{39}{chapter.10}%
+\contentsline {section}{\numberline {10.1}完整增广系统}{39}{section.10.1}%
+\contentsline {section}{\numberline {10.2}对$\epsilon $求导}{40}{section.10.2}%
+\contentsline {section}{\numberline {10.3}左零模与伴随可解性}{40}{section.10.3}%
+\contentsline {section}{\numberline {10.4}两级选择机制}{40}{section.10.4}%
+\contentsline {section}{\numberline {10.5}数值幅值与可信窗口}{41}{section.10.5}%
+\contentsline {section}{\numberline {10.6}fold零模的outer分量尺度：哪些已经验证，哪些尚未}{41}{section.10.6}%
+\contentsline {chapter}{\numberline {第十一章\hspace {.3em}}表观cusp为何必须先做分辨率检验}{43}{chapter.11}%
+\contentsline {part}{第七部分\hspace {1em}把理论与Julia仓库连起来}{44}{part.7}%
+\contentsline {chapter}{\numberline {第十二章\hspace {.3em}}代码导航与方程--实现对照}{45}{chapter.12}%
+\contentsline {section}{\numberline {12.1}三个共享模块}{45}{section.12.1}%
+\contentsline {section}{\numberline {12.2}关键函数在数学上做什么}{45}{section.12.2}%
+\contentsline {section}{\numberline {12.3}建议的复现顺序}{46}{section.12.3}%
+\contentsline {section}{\numberline {12.4}科学结论与证据文件}{46}{section.12.4}%
+\contentsline {chapter}{\numberline {第十三章\hspace {.3em}}一条适合自学的四周路线}{48}{chapter.13}%
+\contentsline {section}{\numberline {13.1}第一周：只做基本流与数值方法}{48}{section.13.1}%
+\contentsline {section}{\numberline {13.2}第二周：重建两模型拓扑}{48}{section.13.2}%
+\contentsline {section}{\numberline {13.3}第三周：只学inner和outer}{48}{section.13.3}%
+\contentsline {section}{\numberline {13.4}第四周：fold切向、伴随与证据表达}{49}{section.13.4}%
+\contentsline {chapter}{\numberline {第十四章\hspace {.3em}}完整科学故事与当前边界}{50}{chapter.14}%
+\contentsline {section}{\numberline {14.1}一句话主线}{50}{section.14.1}%
+\contentsline {section}{\numberline {14.2}因果链}{50}{section.14.2}%
+\contentsline {section}{\numberline {14.3}哪些结论最强}{50}{section.14.3}%
+\contentsline {section}{\numberline {14.4}哪些仍不能写成已完成事实}{51}{section.14.4}%
+\contentsline {section}{\numberline {14.5}建议的论文聚焦}{51}{section.14.5}%
+\contentsline {chapter}{\numberline {附录 A\hspace {.3em}}符号速查表}{52}{appendix.A}%
+\contentsline {chapter}{\numberline {附录 B\hspace {.3em}}学习检查点简答}{53}{appendix.B}%
+\contentsline {chapter}{\numberline {附录 C\hspace {.3em}}证据来源与阅读索引}{55}{appendix.C}%
+\contentsline {section}{\numberline {C.1}仓库内权威记录}{55}{section.C.1}%
+\contentsline {section}{\numberline {C.2}外部理论来源}{55}{section.C.2}%
+\contentsline {chapter}{\numberline {附录 D\hspace {.3em}}最终自测清单}{57}{appendix.D}%
+\contentsline {chapter}{结语}{58}{appendix*.17}%

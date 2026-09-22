@@ -1,0 +1,12 @@
+method=implicit derivative of complete finite-epsilon augmented fold system
+resolved_limit_estimate=linear extrapolation of tangent at epsilon 0.02 and 0.01
+epsilon_0p005_status=resolution contaminated; excluded from limit estimate
+N320_A_R=-0.420687520100
+N320_A_T=0.511218899067
+N320_ratio=-1.215198632337
+fit_A_R=-0.420342495108
+fit_A_T=0.510660114111
+A_R_difference=-3.450249922000e-04
+A_T_difference=5.587849559001e-04
+A_R_relative_difference=8.208187280978e-04
+A_T_relative_difference=1.094240455558e-03

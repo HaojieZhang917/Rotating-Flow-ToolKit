@@ -1,0 +1,4 @@
+study=compressible_BEK_thermal_domain_and_Ro0_degeneracy
+date=2026-09-15
+domains=40,60,80; finite Chebyshev N=80
+flows=Bodewadt Ro=1 and Ekman Ro=0

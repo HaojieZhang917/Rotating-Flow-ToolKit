@@ -30,7 +30,11 @@ acceleration-consistent similarity equations are
 H' + 2F = 0,
 F'' + chi(T)*(-F^2 - H*F' + (1-G)^2) = 0,
 G'' + chi(T)*(-2F*G - H*G' + 2F) = 0,
-T'' - Pr*H*T' = 0.
+T'' + Pr*Ro*H*T' = 0.
+
+For `Ro=-1` this reduces to the von Karman form used in the original
+baseline. Non-von-Karman results in this document predating 2026-09-06 are
+superseded by `docs/CORRECTED_ENERGY_RECOMPUTATION_2026-09-06.md`.
 ```
 
 Boundary conditions are

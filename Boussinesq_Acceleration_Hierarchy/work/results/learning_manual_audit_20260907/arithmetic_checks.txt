@@ -1,0 +1,7 @@
+Two-point intercepts (arithmetic only; NOT converged asymptotic coefficients):
+Ro intercept = -0.30849679473200003
+Tw intercept = 0.31511431986479993
+Relative slope discrepancy epsilon=.02 = 0.020301700450803928
+Relative slope discrepancy epsilon=.01 = 0.01005485165460085
+Mapping eta_last/N^2 = 0.5789781922419301
+At outer endpoint gamma*(Tw-1) = 0.6615874197189981

@@ -26,7 +26,7 @@ The velocity convention is that of `work/src/BEKThermal.jl`:
 H' + 2 F = 0,
 F'' + Ro*(F^2 + H*F' - (G^2-1)) - Co*(G-1) + B*Theta = 0,
 G'' + Ro*(2 F G + H*G') + Co*F = 0,
-Theta'' - Pr*H*Theta' = 0,
+Theta'' + Pr*Ro*H*Theta' = 0,
 Co = 2 - Ro - Ro^2.
 ```
 
@@ -129,4 +129,3 @@ isothermal-connected operating interval past its first fold.
 - Existing converged `Ro=-1` infinite-mapping folds under
   `baselines/saddle_node/` and `work/results/traditional_bek_cusp/` for
   regression only.
-

@@ -1,0 +1,7 @@
+study=compressible_BEK_baseflow_pre_DH_primitive_residual_gate
+date=2026-09-12
+coordinate_for_residual=physical_normal_eta_via_deta_equals_rho_Dy
+evaluation_region=interior_nodes_y_le_12
+operator_source=/home/zhj/Rotating-Flow-ToolKit/Boussinesq_Acceleration_Hierarchy/work/src/CompressibleBEKLinearStability.jl
+residual_source=/home/zhj/Rotating-Flow-ToolKit/Boussinesq_Acceleration_Hierarchy/work/src/CompressibleBEKBaseflowResiduals.jl
+legacy_backend_preserved=/home/zhj/Rotating-Flow-ToolKit/RotatingDiskFlow/src/CRD_STA.jl

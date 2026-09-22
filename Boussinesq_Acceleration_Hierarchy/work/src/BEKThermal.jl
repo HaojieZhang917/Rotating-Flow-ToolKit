@@ -43,12 +43,12 @@ function _residual_jacobian(state, Ro, tw, op::BEKOperators)
     r=vcat(D*H+2F,
            D2*F + Ro.*(F.^2 + H.*Fp - (G.^2 .- 1)) - Co.*(G .- 1) + thermal_coeff .* (T .- 1),
            D2*G + Ro.*(2 .* F .* G + H .* Gp) + Co .* F,
-           D2*T - PR .* H .* Tp)
+           D2*T + PR .* Ro .* H .* Tp)
     J=zeros(4n,4n); rH=1:n; rF=n+1:2n; rG=2n+1:3n; rT=3n+1:4n
     J[rH,rH].=D; J[rH,rF].=2I_n
     J[rF,rH].=Ro.*Diagonal(Fp); J[rF,rF].=D2+Ro.*Diagonal(2 .* F)+Ro.*Diagonal(H)*D; J[rF,rG].=-Ro.*Diagonal(2 .* G)-Co.*I_n; J[rF,rT].=thermal_coeff .* I_n
     J[rG,rF].=Ro.*Diagonal(2 .* G)+Co.*I_n; J[rG,rH].=Ro.*Diagonal(Gp); J[rG,rG].=D2+Ro.*Diagonal(H)*D
-    J[rT,rH].=-PR.*Diagonal(Tp); J[rT,rT].=D2-PR.*Diagonal(H)*D
+    J[rT,rH].=PR.*Ro.*Diagonal(Tp); J[rT,rT].=D2+PR.*Ro.*Diagonal(H)*D
     for (row,col,val) in ((first(rH),first(rH),H[1]),(first(rF),first(rF),F[1]),(first(rG),first(rG),G[1]),(last(rF),last(rF),F[end]),(last(rG),last(rG),G[end]-1),(first(rT),first(rT),T[1]-tw),(last(rT),last(rT),T[end]-1))
         r[row]=val; J[row,:].=0; J[row,col]=1
     end
@@ -110,7 +110,7 @@ function _residual_ro_derivative(state, Ro, tw, op::BEKOperators)
     abs(Ro)>1e-12 || error("traditional centrifugal thermal closure is singular at Ro=0")
     lam=Co^2/(4Ro); dlam=Co*dCo/(2Ro)-Co^2/(4Ro^2)
     d=vcat(zeros(n), F.^2 + H.*(D*F) .- (G.^2 .- 1) .- dCo.*(G .- 1) .+ dlam.*(T .- 1),
-            2 .* F .* G + H .* (D*G) .+ dCo .* F, zeros(n))
+            2 .* F .* G + H .* (D*G) .+ dCo .* F, PR .* H .* (D*T))
     d[first(1:n)]=0; d[first(n+1:2n)]=0; d[last(n+1:2n)]=0
     d[first(2n+1:3n)]=0; d[last(2n+1:3n)]=0
     d[last(1:n)]=0
@@ -240,9 +240,10 @@ function thermal_fixed_tw_condition(solution::ThermalSolution)
     (sigma_min=singular[end], sigma_max=singular[1], ratio=singular[end]/singular[1])
 end
 
-"""Far-field thermal e-folding length from `T''-Pr*Hinf*T'=0`."""
+"""Far-field thermal e-folding length from `T''+Pr*Ro*Hinf*T'=0`."""
 thermal_tail_length(solution::ThermalSolution) =
-    solution.Hinf < 0 ? -1/(PR*solution.Hinf) : Inf
+    solution.Ro * solution.Hinf > 0 ?
+        1/(PR*solution.Ro*solution.Hinf) : Inf
 
 """Linear far-field decay rates for the thermal and coupled velocity modes."""
 function farfield_decay_rates(Ro::Real, Hinf::Real)
@@ -256,7 +257,8 @@ function farfield_decay_rates(Ro::Real, Hinf::Real)
         push!(roots,(q+root)/2,(q-root)/2)
     end
     decaying=sort([real(z) for z in roots if real(z)>1e-12])
-    (thermal=-PR*h, velocity=decaying, coupling=coupling, roots=roots)
+    thermal = PR*r*h > 0 ? PR*r*h : 0.0
+    (thermal=thermal, velocity=decaying, coupling=coupling, roots=roots)
 end
 
 farfield_decay_rates(solution::ThermalSolution) =

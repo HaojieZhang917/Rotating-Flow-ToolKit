@@ -69,7 +69,7 @@ function _residual_jacobian(state, Ro, B, op::BEKOperators)
              D2 * F + Ro .* (F.^2 + H .* Fp - (G.^2 .- 1)) .-
                  Co .* (G .- 1) + B .* Theta,
              D2 * G + Ro .* (2 .* F .* G + H .* Gp) + Co .* F,
-             D2 * Theta - PR .* H .* Thetap)
+             D2 * Theta + PR .* Ro .* H .* Thetap)
 
     J = zeros(4n, 4n)
     rH, rF, rG, rTheta = 1:n, n+1:2n, 2n+1:3n, 3n+1:4n
@@ -82,8 +82,8 @@ function _residual_jacobian(state, Ro, B, op::BEKOperators)
     J[rG,rF] .= Ro .* Diagonal(2 .* G) + Co .* I_n
     J[rG,rH] .= Ro .* Diagonal(Gp)
     J[rG,rG] .= D2 + Ro .* Diagonal(H) * D
-    J[rTheta,rH] .= -PR .* Diagonal(Thetap)
-    J[rTheta,rTheta] .= D2 - PR .* Diagonal(H) * D
+    J[rTheta,rH] .= PR .* Ro .* Diagonal(Thetap)
+    J[rTheta,rTheta] .= D2 + PR .* Ro .* Diagonal(H) * D
 
     for (row, col, value) in
         ((first(rH), first(rH), H[1]),
@@ -144,7 +144,7 @@ function _initial_state(Ro, op::BEKOperators; tolerance=1e-10)
     z = op.eta
     Theta = zeros(length(z))
     finite = isfinite.(z)
-    rate = max(0.2, -PR * iso.fields[1,end])
+    rate = max(0.2, PR * Float64(Ro) * iso.fields[1,end])
     Theta[finite] .= exp.(-rate .* z[finite])
     Theta[1] = 1
     Theta[end] = 0
@@ -249,7 +249,8 @@ function fixed_b_condition(solution::ForcingSolution)
 end
 
 thermal_tail_length(solution::ForcingSolution) =
-    solution.Hinf < 0 ? -1 / (PR * solution.Hinf) : Inf
+    solution.Ro * solution.Hinf > 0 ?
+        1 / (PR * solution.Ro * solution.Hinf) : Inf
 
 function farfield_decay_rates(Ro::Real, Hinf::Real)
     r = Float64(Ro)
@@ -263,7 +264,8 @@ function farfield_decay_rates(Ro::Real, Hinf::Real)
         push!(roots, (q+root)/2, (q-root)/2)
     end
     decaying = sort([real(z) for z in roots if real(z) > 1e-12])
-    (thermal=-PR*h, velocity=decaying, coupling=coupling, roots=roots)
+    thermal = PR*r*h > 0 ? PR*r*h : 0.0
+    (thermal=thermal, velocity=decaying, coupling=coupling, roots=roots)
 end
 
 farfield_decay_rates(solution::ForcingSolution) =

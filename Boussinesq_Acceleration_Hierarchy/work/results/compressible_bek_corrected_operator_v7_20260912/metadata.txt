@@ -1,0 +1,5 @@
+study=corrected_compressible_BEK_operator_fixed_reference_audit
+date=2026-09-12
+Mr_definition=local_differential_rotation_Mach_r_absDeltaOmega_over_ainf
+operator_source=/home/zhj/Rotating-Flow-ToolKit/Boussinesq_Acceleration_Hierarchy/work/src/CompressibleBEKLinearStability.jl
+legacy_backend_preserved=/home/zhj/Rotating-Flow-ToolKit/RotatingDiskFlow/src/CRD_STA.jl

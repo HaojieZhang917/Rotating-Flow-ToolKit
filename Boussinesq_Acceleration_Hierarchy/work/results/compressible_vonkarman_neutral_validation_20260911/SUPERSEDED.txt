@@ -1,0 +1,8 @@
+These files were produced during an intermediate diagnostic with the inherited
+thermal-shape BVP. They are superseded because that BVP did not enforce its
+far-field endpoint conditions.
+
+Do not use this directory for physical or manuscript claims. The corrected
+and logged validation is in:
+
+  work/results/compressible_bek_lsa_validation_20260911/

@@ -1,0 +1,3 @@
+Inputs are saved finite-epsilon folds; no new continuation or epsilon point.
+The tangent is obtained by differentiating the complete augmented fold system.
+epsilon=-Hinf fixes dHinf/depsilon=-1.

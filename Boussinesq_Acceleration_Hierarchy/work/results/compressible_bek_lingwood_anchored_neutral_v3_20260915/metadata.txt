@@ -1,0 +1,4 @@
+study=Lingwood_anchored_corrected_compressible_fixed_beta_neutral
+path=low_Mach_Lingwood_mode_to_Mr_0.3_to_supplied_beta_to_neutral_R
+operator_source=/home/zhj/Rotating-Flow-ToolKit/Boussinesq_Acceleration_Hierarchy/work/src/CompressibleBEKLinearStability.jl
+legacy_backend_preserved=/home/zhj/Rotating-Flow-ToolKit/RotatingDiskFlow/src/CRD_STA.jl

@@ -1,0 +1,3 @@
+study=Bodewadt_Mr03_neutral_domain_convergence
+domains=40,60,80; scan_N=49; grid_checks=49,59,69
+fixed_beta=0.127; Tw=1; Mr=0.3; Ro=1

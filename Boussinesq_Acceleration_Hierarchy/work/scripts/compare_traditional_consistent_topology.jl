@@ -8,8 +8,26 @@ using LinearAlgebra
 using Printf
 using Plots
 
-const ROSSBY_NUMBERS = [-1.0, -0.75, -0.5, -0.25, -0.1, 0.25, 0.5, 1.0]
-const DEGREE = 120
+function option(prefix,default)
+    for argument in ARGS
+        startswith(argument,prefix) &&
+            return split(argument,"=";limit=2)[2]
+    end
+    default
+end
+
+# For a heated wall and the computed BEK suction branch Hinf<0, the corrected
+# energy equation has a localized far-field mode only when Ro<0.  Positive Ro
+# is therefore excluded from numerical continuation and reported analytically.
+const ROSSBY_NUMBERS = parse.(Float64, split(option(
+    "--ros=", "-1.0,-0.75,-0.5,-0.25,-0.1"), ","))
+const MODELS = Symbol.(split(option("--models=", "traditional,consistent"), ","))
+all(model -> model in (:traditional, :consistent), MODELS) ||
+    error("--models must contain only traditional and/or consistent")
+const DEGREE = parse(Int,option("--degree=","120"))
+const TAG = option("--tag=","production")
+const OUTPUT_ROOT = option("--outdir=", joinpath(@__DIR__, "..", "results",
+                                                   "corrected_energy_two_model_topology"))
 const MAP_A = 2.0
 const MAP_B = 0.6
 const MAP_C = 0.5
@@ -64,6 +82,7 @@ function trace_fixed_tw(model::Symbol, ro)
             candidate = fixed_tw(model, target, seed)
             candidate.residual <= 5TOLERANCE ||
                 error("residual $(candidate.residual) exceeds tolerance")
+            candidate.Ro*candidate.Hinf > 0 || break
             push!(solutions, candidate)
             seed = candidate
             tw = target
@@ -205,7 +224,10 @@ function classify(model::Symbol, ro, trace)
                 dTw_ds=NaN, sigma_location="Tw=1.99",
                 last=last, arc=typeof(last)[], fold=nothing)
     end
-    if -0.05 < last.Hinf <= 0
+    # A tail classification is only credible once the fixed-Tw trace has
+    # actually reached the asymptotic Hinf≈0 layer; values such as -0.03 can
+    # still bracket an ordinary fold on the corrected consistent branch.
+    if -0.02 < last.Hinf <= 0
         cond = condition(model, last)
         return (topology="tail", Tw_c=tail_limit(trace.solutions), H_c=0.0,
                 sigma_min=cond.sigma_min, sigma_ratio=cond.ratio,
@@ -240,7 +262,8 @@ function write_branch(path, solutions)
     open(path, "w") do io
         println(io, "point,Ro,Tw,Hinf,residual,thermal_length")
         for (i, solution) in enumerate(solutions)
-            ell = solution.Hinf < 0 ? -1/(PRANDTL*solution.Hinf) : Inf
+            ell = solution.Ro*solution.Hinf > 0 ?
+                1/(PRANDTL*solution.Ro*solution.Hinf) : Inf
             @printf(io, "%d,%.8f,%.12f,%.12f,%.5e,%.12e\n",
                     i,solution.Ro,solution.Tw,solution.Hinf,
                     solution.residual,ell)
@@ -264,7 +287,7 @@ function make_plot(output, rows, branches)
             legendfontsize=7, guidefontsize=10, tickfontsize=8)
     p = plot(; xlabel="T_w", ylabel="H_infinity")
     colors = Dict(:traditional=>:darkorange, :consistent=>:navy)
-    for model in (:traditional, :consistent)
+    for model in MODELS
         first_curve = true
         for ro in ROSSBY_NUMBERS
             states = branches[(model,ro)]
@@ -283,12 +306,12 @@ function make_plot(output, rows, branches)
 end
 
 function main()
-    output = joinpath(@__DIR__,"..","results",
-                      "two_model_topology_comparison")
+    root = isabspath(OUTPUT_ROOT) ? OUTPUT_ROOT : abspath(OUTPUT_ROOT)
+    output = joinpath(root, "$(TAG)_N$(DEGREE)")
     mkpath(output)
     rows = NamedTuple[]
     branches = Dict{Tuple{Symbol,Float64},Any}()
-    for model in (:traditional, :consistent)
+    for model in MODELS
         for ro in ROSSBY_NUMBERS
             @printf("%s Ro=%+.2f: tracing ...\n",model,ro)
             trace = trace_fixed_tw(model,ro)

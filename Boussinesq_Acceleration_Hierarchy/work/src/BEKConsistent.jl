@@ -9,7 +9,9 @@ export ConsistentSolution, solve_consistent_isothermal,
        solve_consistent_fixed_h_at_ro,
        solve_consistent_pseudoarclength,
        solve_consistent_pseudoarclength_ro_full, fixed_tw_condition,
-       solve_consistent_fold, continue_consistent_fold,
+       solve_consistent_fold, solve_consistent_fold_at_h,
+       continue_consistent_fold,
+       fold_hinf_tangent,
        write_solution
 
 const DEFAULT_PR = 0.72
@@ -61,7 +63,7 @@ function _residual_jacobian(state, Ro, tw, gamma, Pr,
         D * H + 2F,
         D2 * F + chi .* Ar .+ f^2 / Ro,
         D2 * G + chi .* Atheta,
-        D2 * T - Pr .* H .* Tp,
+        D2 * T + Pr .* Ro .* H .* Tp,
     )
 
     jacobian = zeros(4n, 4n)
@@ -81,8 +83,8 @@ function _residual_jacobian(state, Ro, tw, gamma, Pr,
                          Diagonal(chi .* Ro .* H) * D
     jacobian[rG, rT] .= Diagonal(-gamma .* Atheta)
 
-    jacobian[rT, rH] .= -Pr .* Diagonal(Tp)
-    jacobian[rT, rT] .= D2 - Pr .* Diagonal(H) * D
+    jacobian[rT, rH] .= Pr .* Ro .* Diagonal(Tp)
+    jacobian[rT, rT] .= D2 + Pr .* Ro .* Diagonal(H) * D
 
     for (row, column, value) in
         ((first(rH), first(rH), H[1]),
@@ -134,7 +136,7 @@ function _residual_ro_derivative(state, Ro, tw, gamma, Pr,
         zeros(n),
         chi.*dAr .+ 2f*df/Ro .- f^2/Ro^2,
         chi.*dAtheta,
-        zeros(n),
+        Pr .* H .* (D*T),
     )
     rH, rF, rG, rT = 1:n, n+1:2n, 2n+1:3n, 3n+1:4n
     for row in (first(rH),last(rH),first(rF),last(rF),
@@ -187,8 +189,8 @@ function _jacobian_directional_derivative(state, Ro, tw, gamma, Pr,
                  (Diagonal(2Ro.*F) + Diagonal(Ro.*H)*D)
     K[rG,rT] .= Diagonal(-gamma.*dAthetav)
 
-    K[rT,rH] .= Diagonal(-Pr.*DvT)
-    K[rT,rT] .= -Pr.*Diagonal(vH)*D
+    K[rT,rH] .= Pr.*Ro.*Diagonal(DvT)
+    K[rT,rT] .= Pr.*Ro.*Diagonal(vH)*D
 
     for row in (first(rH),last(rH),first(rF),last(rF),
                 first(rG),last(rG),first(rT),last(rT))
@@ -450,6 +452,46 @@ function solve_consistent_fold(seed::ConsistentSolution;
                    residual,iterations)
 end
 
+"""Correct a fold at prescribed `Hinf`, releasing `Ro` as an unknown."""
+function solve_consistent_fold_at_h(hinf::Real,seed::ConsistentFold;
+                                    tolerance=1e-9)
+    solution = seed.solution
+    op = solution.operators
+    n = length(op.x)
+    m = 4n
+    vector = copy(seed.nullvector)
+    vector ./= norm(vector)
+    initial = vcat(pack(solution.fields),solution.Tw,vector,solution.Ro)
+    target = Float64(hinf)
+    gamma,Pr = solution.gamma,solution.Pr
+
+    function system(state)
+        fields = view(state,1:m)
+        tw = state[m+1]
+        nullvector = view(state,m+2:2m+1)
+        ro = state[end]
+        base,jacobian = _fold_system(view(state,1:2m+1),ro,
+                                     gamma,Pr,op)
+        rocolumn = _fold_ro_column(fields,tw,nullvector,ro,gamma,Pr,op)
+        output = vcat(base,fields[n]-target)
+        full = zeros(2m+2,2m+2)
+        full[1:2m+1,1:2m+1] .= jacobian
+        full[1:2m+1,end] .= rocolumn
+        full[end,n] = 1
+        output,full
+    end
+
+    state,residual,iterations = _newton(system,initial;
+        tolerance=tolerance,max_iterations=22)
+    ro = state[end]
+    fields = unpack(view(state,1:m),n)
+    corrected = ConsistentSolution(ro,2-ro-ro^2,gamma,Pr,op,fields,
+        state[m+1],target,residual,iterations)
+    nullvector = collect(view(state,m+2:2m+1))
+    dot(nullvector,seed.nullvector) < 0 && (nullvector .*= -1)
+    ConsistentFold(corrected,nullvector,residual,iterations)
+end
+
 function _fold_ro_column(fields,tw,vector,Ro,gamma,Pr,op)
     residual_ro = _residual_ro_derivative(fields,Ro,tw,gamma,Pr,op)
     # J_Ro*v is evaluated as the state directional derivative of R_Ro.
@@ -461,6 +503,46 @@ function _fold_ro_column(fields,tw,vector,Ro,gamma,Pr,op)
                                     gamma,Pr,op)
     vpart = (plus-minus)./(2epsilon)
     vcat(residual_ro,vpart,0.0)
+end
+
+"""Differentiate the full fixed-`Tw` fold system with respect to
+`epsilon=-Hinf` at an already-corrected fold.
+
+The augmented equations are `R=0`, `J*v=0`, `v'v=1`, and
+`Hinf+epsilon=0`.  The returned tangent therefore has
+`dHinf/depsilon=-1` without an arbitrary arclength normalization.
+"""
+function fold_hinf_tangent(fold::ConsistentFold)
+    solution = fold.solution
+    op = solution.operators
+    n = length(op.x)
+    m = 4n
+    fields = pack(solution.fields)
+    tw = solution.Tw
+    ro = solution.Ro
+    vector = copy(fold.nullvector)
+    vector ./= norm(vector)
+    base, jacobian = _fold_system(vcat(fields,tw,vector),ro,
+                                  solution.gamma,solution.Pr,op)
+    rocolumn = _fold_ro_column(fields,tw,vector,ro,solution.gamma,
+                               solution.Pr,op)
+    full = zeros(2m+2,2m+2)
+    full[1:2m+1,1:2m+1] .= jacobian
+    full[1:2m+1,end] .= rocolumn
+    full[end,n] = 1
+    rhs = zeros(2m+2)
+    rhs[end] = -1
+    scales = 1 ./ max.([norm(view(full,row,:))
+                         for row in axes(full,1)],1e-14)
+    tangent = (scales .* full) \ (scales .* rhs)
+    linear_residual = norm(full*tangent-rhs,Inf)
+    (; field=collect(view(tangent,1:m)),
+       Tw=tangent[m+1],
+       nullvector=collect(view(tangent,m+2:2m+1)),
+       Ro=tangent[end],
+       dHinf=tangent[n],
+       residual=linear_residual,
+       augmented_residual=norm(base,Inf))
 end
 
 """One full-state pseudo-arclength step along the two-parameter fold locus."""

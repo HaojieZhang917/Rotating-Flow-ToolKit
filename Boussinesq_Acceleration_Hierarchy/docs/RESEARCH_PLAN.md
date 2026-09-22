@@ -1,5 +1,42 @@
 # Research execution plan
 
+## Priority override: finite-radius physical validation (2026-09-09)
+
+The immediate priority is no longer further refinement of the
+similarity-space matched-adjoint fold direction. The primary question is
+whether the similarity fold--tail topology survives in a radially
+non-similar heated BEK flow.
+
+The required order is now:
+
+1. derive and regression-test the non-similar axisymmetric equations;
+2. compute the linear radial transverse pencil and forced response of the
+   similarity subspace;
+3. specify a physical symmetry breaking and its radial/edge boundary data;
+4. determine whether a parabolized radial formulation is well posed;
+5. solve three benchmark Rossby cases in a global finite-radius model;
+6. resume matched-adjoint work only if the global solution develops a
+   similarity-like interior region near the fold--tail limit.
+
+The first two diagnostics are recorded in
+'docs/NONSIMILAR_HEATED_BEK_BOUNDARY_LAYER_2026-09-09.md'. They establish
+that similarity is an exact invariant subspace and that the existing
+generic-tail radial velocity changes sign with wall-normal position for
+\(Ro=-0.50\) and \(-0.40\), while its first-order part degenerates near
+\(Ro_t\). Consequently, a one-way radial march is not the primary physical
+solver. Before that global calculation, the pencil
+\((J_{\rm sim}+\lambda M_r)\widehat Q=0\) will quantify spatial radial
+sensitivity of the similarity invariant subspace. The preferred final
+validation is a global axisymmetric finite-disk
+calculation including radial diffusion and the edge region, ideally using
+the existing compressible solver under matched rotation, thermal, property,
+and geometry definitions.
+
+Until that calculation is complete, the similarity fold--tail and
+matched-adjoint results must be described as structures of the
+self-similar invariant subspace, with their finite-radius physical
+persistence unresolved.
+
 ## Research question
 
 Determine how the BEK differential-rotation Rossby parameter changes the error introduced by Boussinesq density--acceleration closures, and how that error is amplified into changes in base-flow saddle-nodes, branch topology and stability predictions.
@@ -58,6 +95,73 @@ Deliverables:
 - endpoint base-flow profiles and residual audits;
 - a documented production-sweep configuration under `docs/`;
 - all new outputs under a new directory in `work/results/`.
+
+## Priority Gate R3: radial transversality of the fold--tail limit
+
+Before starting a global finite-disk calculation, test the steady
+axisymmetric radial-response pencil along the corrected finite-ϵ fold
+chain. Use the normalization-invariant coefficient
+
+```text
+chat_c_r = <w,M_r v>/<w,R_Tw>
+```
+
+rather than a raw coefficient based on a potentially singular `w'v=1`
+normalization. Validate the fold normal form with direct near-fold pencil
+eigenpairs, and determine the power of ϵ with grid and mapping checks.
+
+Decision: if `chat_c_r` tends to a nonzero limit, continue the first-order
+radial modulation theory. If it vanishes, derive the distinguished radial
+scale at which radial diffusion or higher radial derivatives enter before
+building the finite-disk solver.
+
+## Priority Gate R4: radial-diffusion promotion
+
+Restore the cylindrical radial viscous and thermal diffusion terms in the
+non-similar boundary-layer system and project their frozen-radius operators
+onto the fold null pair. Compare
+
+```text
+chat_c_r, chat_c_rr, chat_c_r_geo
+```
+
+using the same wall-temperature transversality normalization. Separate the
+scalar thermal Laplacian from the radial/azimuthal vector-Laplacian geometry
+terms. Do not add axial-velocity diffusion to the continuity equation;
+that requires a separate axial-momentum/pressure extension.
+
+Decision: use the measured powers, not an assumed (c_{rr}=O(1)), to select
+the radial scale. Then derive a variable-radius reduced amplitude equation
+before committing to a global finite-disk solver.
+
+## Priority Gate R5: two-dimensional thermo-radial outer
+
+Use \(X=\epsilon R/\ell\) and \(Y=\epsilon z/\ell\) with the critical
+fold--tail field scales. Derive the leading PDE directly from the
+radially diffusive equations and require exact recovery of the
+one-dimensional critical outer DAE when all \(X\)-derivatives vanish.
+Separate the leading thermo-azimuthal system from the next meridional
+momentum/pressure reconstruction.
+
+Before solving the PDE, derive its wall/overlap, axis, radial-edge, and
+far-field data. Independently select the amplitude, detuning, and forcing
+scales; do not assume the fold quadratic term is leading merely because
+the linear radial drift and diffusion balance.
+
+## Priority Gate R6: full-equation and physical-realizability audit
+
+Because \(R\sim z\sim\ell/\epsilon\), repeat the outer hierarchy from the
+full axisymmetric continuity, three momentum equations, pressure and
+energy equation. Include the first nonzero meridional momentum order and
+its pressure-integrability condition even when it is smaller than the
+leading centrifugal balance.
+
+Express the physical window with
+\(\Pi_R=\epsilon\sqrt{Re_R}\), the density contrast
+\(|\beta\Delta T|\), confinement \(\Pi_H=\epsilon H_c/\ell\), and the
+gravity-to-meridional ratio. Do not present the current
+\(|\beta\Delta T|\simeq0.662\) critical state as quantitatively
+Boussinesq-valid without a matched low-Mach variable-density calculation.
 
 ## Gate 3: BEK bifurcation map
 

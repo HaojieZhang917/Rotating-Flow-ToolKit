@@ -1,0 +1,17 @@
+{
+  "latex-workshop.latex.tools": [
+    {
+      "name": "xelatex-windows-wsl",
+      "command": "${workspaceFolder}/work/scripts/xelatex_windows_wsl.sh",
+      "args": ["%DOC%"],
+      "env": {}
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "XeLaTeX (Windows TeX Live via WSL)",
+      "tools": ["xelatex-windows-wsl", "xelatex-windows-wsl"]
+    }
+  ],
+  "latex-workshop.latex.recipe.default": "first"
+}

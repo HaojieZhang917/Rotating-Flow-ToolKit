@@ -1,0 +1,6 @@
+method=linear_intercept_of_last_three_computed_epsilon_points
+scope=finite-limit diagnostic only; not an asymptotic derivation
+Ro_intercept=-0.320658670041
+Tw_intercept=1.494709580022
+last_step_delta_Ro=2.156901649667e-03
+last_step_delta_Tw=-2.622513400667e-03

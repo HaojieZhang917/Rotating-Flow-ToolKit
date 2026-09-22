@@ -104,3 +104,11 @@ Before the first production sweep, record in a dedicated file under `docs/`:
 - continuation tolerances and fold/cusp detection criteria;
 - all external base-flow or compressible source-data dependencies;
 - the output directory under `work/results/`.
+
+## 7. Corrected thermal equation (2026-09-06)
+
+Re-derivation from the Lingwood velocity scale gives
+`T'' + Pr*Ro*H*T' = 0` for both thermal endpoint implementations. Any
+pre-2026-09-06 non-von-Karman result using `T''-Pr*H*T'` is historical evidence
+only and is superseded by the corrected outputs under
+`work/results/corrected_energy_*`.

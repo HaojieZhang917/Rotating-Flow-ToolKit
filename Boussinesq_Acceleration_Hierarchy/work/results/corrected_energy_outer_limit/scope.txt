@@ -1,0 +1,5 @@
+Corrected-energy leading outer BVP only; no finite-epsilon base-flow or fold continuation solve.
+Energy equation: theta_YY + Pr*Ro_t*h*theta_Y = 0.
+The reported 2x2 Jacobian is the reduced augmented shooting Jacobian
+d(g(Ymax)-1,h(Ymax)+1)/d(g_Y(0),Ro), after field IVP elimination.
+It tests isolation of the normalized outer BVP, not the fixed-Tw fold Jacobian.

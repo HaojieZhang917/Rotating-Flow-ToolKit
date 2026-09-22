@@ -2,6 +2,10 @@
 
 Audit date: 2026-09-03.
 
+Correction note (2026-09-06): the thermal advection coefficient has been
+re-derived as `Pr*Ro*H` and all non-von-Karman thermal calculations are being
+recomputed. The learning manual is intentionally unchanged.
+
 The append-only chronological evidence record is maintained in
 `docs/RESEARCH_PROGRESS_LOG.md`.  New numerical conclusions must be logged
 there before downstream use.
@@ -88,6 +92,32 @@ Status labels:
   cusp-like turns do not converge: their distance from `Hinf=0` decreases
   strongly between `N=80,120,160`.  The supported interpretation is approach
   to the thermal-tail delocalisation boundary, not a verified finite cusp.
+- Directly prescribing `epsilon=-Hinf` closes the near-tail fold problem
+  without searching for cusps.  The converged five-point chain approaches
+  finite coordinates; the last three-point finite-limit diagnostic is
+  `(Ro_t,Tw_t)≈(-0.32066,1.49471)`.  This is not yet an asymptotic connection
+  formula.  The nominal `N=120` map is reliable only through
+  `epsilon=0.02`; smaller epsilon required the documented high-order check.
+- Fitting only that five-point chain gives
+  `p_eff=1.0079`, `q_eff=1.0085`; window and input-error checks support
+  `p=q=1` with first-order coefficients approximately
+  `A_R=-0.42`, `A_T=0.51`.  The resulting distinguished scaling is
+  `Ro-Ro_t=O(-Hinf)` and `Tw-Tw_t=O(-Hinf)`.  This remains a numerical scaling
+  fit, not a matched-asymptotic derivation.
+- The leading outer coordinate is `Y=epsilon eta` (or
+  `Z=Pr epsilon eta`), and the far-far temperature tail is
+  `T-1~exp(-Pr epsilon eta)`, giving `ell_T~1/(Pr epsilon)`.  In the fully
+  consistent model, an `O(1)` outer temperature excess prevents `G=1` and
+  `H=-epsilon` from holding uniformly across the whole outer layer; a coupled
+  slow velocity tail is required.  Matching data at `Y->0` remain open.
+- The formal Lopez continuation to large `Tw` is a model diagnostic, not a validated high-temperature prediction.
+- Under regular overlap and a localised inner axial field, the leading inner
+  temperature is constant: `T0=Theta_m=Tw_t`. The inner plateau obeys
+  `g_m=[omega_t/sqrt(chi(Tw_t))-s_t]/Ro_t`, with `H0,F0 -> 0`.
+  Existing fitted limits give `g_m` close to zero and saved fixed-eta profiles
+  support a degenerate, disk-co-rotating leading inner core. This is a
+  compatibility and consistency result, not proof of branch selection or
+  uniqueness. Leading matching does not determine `h(0+)` (L014).
 - The formal Lopez continuation to large `Tw` is a model diagnostic, not a validated high-temperature prediction.
 - Blackburn versus fully compressible zero-frequency curves at `Mr=0.3` show selective accuracy: Type-I critical Reynolds numbers remain close over a wider range than critical wavenumbers, full-curve geometry or Type-II topology.
 - The existing analysis reports Type-II agreement through the sampled point `Tw=1.12` and a topology mismatch beginning at the sampled point `Tw=1.16`; these are discrete observations, not an exact transition temperature.

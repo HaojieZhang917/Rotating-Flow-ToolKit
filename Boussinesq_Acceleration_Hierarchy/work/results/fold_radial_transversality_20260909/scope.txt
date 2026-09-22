@@ -1,0 +1,6 @@
+Source: saved corrected-energy finite-epsilon fold profiles.
+No fold continuation or profile correction is performed here.
+Right mode convention: max(abs(vG))=1 and its maximum component is positive.
+Left covector convention: w^T v=1.
+cr is invariant under reciprocal rescaling of the null pair; c2 follows the stated v convention.
+This is a steady axisymmetric radial-response diagnostic, not temporal or 3D stability.

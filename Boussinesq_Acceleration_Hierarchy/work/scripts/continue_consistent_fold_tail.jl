@@ -253,7 +253,8 @@ function write_tail_curve(path,curve)
     open(path,"w") do io
         println(io,"Ro,Tw,Hinf,residual,thermal_length")
         for solution in curve
-            ell = -1/(solution.Pr*solution.Hinf)
+            ell = solution.Ro*solution.Hinf > 0 ?
+                1/(solution.Pr*solution.Ro*solution.Hinf) : Inf
             @printf(io,"%.12f,%.12f,%.12f,%.5e,%.12e\n",
                     solution.Ro,solution.Tw,solution.Hinf,
                     solution.residual,ell)

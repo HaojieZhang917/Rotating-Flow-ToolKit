@@ -55,8 +55,8 @@ function branch_metrics(solutions)
     rows = NamedTuple[]
     for solution in solutions
         condition = fixed_tw_condition(solution)
-        length_scale = solution.Hinf < 0 ?
-            -1 / (solution.Pr * solution.Hinf) : Inf
+        length_scale = solution.Ro*solution.Hinf > 0 ?
+            1 / (solution.Pr * solution.Ro * solution.Hinf) : Inf
         push!(rows, (Ro=solution.Ro, Tw=solution.Tw,
                      Hinf=solution.Hinf, thermal_length=length_scale,
                      residual=solution.residual,

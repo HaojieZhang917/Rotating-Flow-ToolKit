@@ -1,0 +1,4 @@
+Corrected-energy finite-epsilon augmented-fold tangent convergence.
+N=280 versus N=320 spread is a two-grid diagnostic, not a rigorous error bound.
+No epsilon-to-zero absolute coefficient is reported because dRo and dTw are not uniformly converged at epsilon=0.01.
+Adjoint and direct slope agreement checks the same discrete tangent equation; distance to the analytic limit is reported separately.

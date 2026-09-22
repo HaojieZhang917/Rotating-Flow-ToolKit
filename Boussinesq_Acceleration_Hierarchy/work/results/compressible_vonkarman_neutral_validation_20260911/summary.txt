@@ -1,0 +1,7 @@
+Corrected strict-paper von Karman validation
+source=/home/zhj/Rotating-Flow-ToolKit/compress/BEK/roughness/CRD_STA.jl
+Ro=-1.0 (von Karman), Tw=1.0, Mr=0.1, R=285.36
+Ma_internal=Mr/R=0.0003504345388281469, beta=0.07759, omega=0.0
+coordinate=Dorodnitsyn-H.H. similarity coordinate (interp mode sim)
+eigensolver=dense companion QEP for N<69; notebook IAR otherwise; target alpha=0.4
+N=69, solver=IAR targeted QEP, alpha=0.38521840692546555 + 0.0003813506899200685im, vector_relative_residual=0.004319030709824952, frobenius_backward_error=9.513336641135315e-13, Tmin=0.999956490002863, Tmax=1.0003476121191461, wall=(F=0.0,G=0.0,H=-1.1319712194379873e-28,T=1.0), far=(F=1.9214678488192264e-8,G=-0.9999999750232198)

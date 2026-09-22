@@ -1,0 +1,11 @@
+outer_Ro_t=-0.320739166275
+fold_fit_Ro_t=-0.320719730411
+Ro_difference=-1.943586411274e-05
+outer_Tw_t=1.494809262166
+fold_fit_Tw_t=1.494786621674
+Tw_difference=2.264049196521e-05
+dTcurve_dRo=-1.215431313519
+fitted_AT_over_AR=-1.214866733804
+slope_difference=-5.645797145946e-04
+epsilon_definition=-Hinf
+outer_normalization=h(infinity)=-1

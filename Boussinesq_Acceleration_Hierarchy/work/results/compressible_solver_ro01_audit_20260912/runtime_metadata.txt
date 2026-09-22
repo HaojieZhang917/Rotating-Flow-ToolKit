@@ -1,0 +1,9 @@
+study=compressible_Ro01_mode_tracking_audit
+date=2026-09-12
+julia_version=1.13.0
+backend_source=/home/zhj/Rotating-Flow-ToolKit/RotatingDiskFlow/src/CRD_STA.jl
+frontend_source=/home/zhj/Rotating-Flow-ToolKit/Boussinesq_Acceleration_Hierarchy/work/src/CompressibleBEKLinearStability.jl
+runtime_workaround=replace_using_DifferentialEquations_with_using_BoundaryValueDiffEq_in_memory
+original_sources_modified=false
+N=69
+mach_path=0.01;0.03;0.05;0.1;0.15;0.2;0.25;0.3

@@ -1,0 +1,539 @@
+===PAGE 4===
+148 M. Turkyilmazoglu, N. Uygun
+ρ
+[ ∂T
+∂t + (u ·∇ )T
+]
+= M2
+∞ (γ − 1)
+[ ∂p
+∂t + (u ·∇ )p
+]
++ 1
+Re [∇· (k∇T)]
++γ − 1
+Re M2
+∞
+[ 1
+2µ
+(
+e2
+11 + e2
+22 + e2
+33 + 2e2
+12 + 2e2
+13 + 2e2
+23
+)
++λ(∇· u)2
+]
+. (4)
+Together with these equations the subsidiary boundary conditions appropriate for the ﬂow geometry, such
+as the no-slip on the wall and vanishing quantities at the far ﬁeld are assumed to be imposed in what follows.
+Moreover, the quantities appearing in Eqs. (1–4) are in order,ρ the density, u = (u,v,w) the velocity vector,
+p the pressure, T the temperature, ∇ the usual gradient operator in cylindrical coordinates, µ the dynamical
+viscosity, λ the second coefﬁcient of viscosity related to the bulk viscosity, γ the ratio of the speciﬁc heats,
+M
+∞ the free stream Mach number, Re the Reynolds number characterizing the ﬂow based on the angular
+velocity and deﬁned by Re = /Omega1l2
+ν , νthe kinematic viscosity and ﬁnally k the thermal conductivity associated
+with the Prandtl number σ by k = µ
+σ . In addition to this, the strain tensors appearing in (4) are deﬁned by
+e11 = 2∂u
+∂r , e12 = e21 = r ∂
+∂r
+( v
+r
+)
++ 1
+r
+∂u
+∂θ, e13 = e31 = ∂u
+∂z + ∂w
+∂r ,
+e22 = 2
+( 1
+r
+∂v
+∂θ+ u
+r
+)
+, e23 = e32 = 1
+r
+∂w
+∂θ + ∂v
+∂z , e33 = 2∂w
+∂z .
+Two further observations are worthy of mentioning here. First, in line with the experimental evidence of
+the ﬂuid ﬂow researches,µ can be taken as a function of temperature only and for a monatomic gasλ=− 2
+3µ
+is chosen here, see for instance [49]. Second, Chapman‘s viscosity law, that is, µ = CT for some constant C
+(which is assigned unity without losing generality) is adopted throughout which is particularly known to be
+accurate enough for small Mach numbers being considered for the present work, see [50,51].
+2.1 Mean ﬂow
+As in the incompressible ﬂow case, the generalized Kármán steady state ﬂow is assumed to develop alongside
+a boundary-layer coordinate deﬁned asξ= Re1/2z, which is of order unity. Moreover, the removal of the den-
+sity terms from the equations is accomplished by introducing a transformation, namely Dorodnitsyn–Howarth
+transformation, that is, y = C−1/2 ∫ ξ
+0 ρBdξwith the sufﬁx B referring to the basic ﬂow, see for instance [50].
+Accounting for these, the general form of the basic ﬂow will be simply
+(uB,v B,w B, pB) =
+(
+r ¯uB(y), r ¯vB(y), Re−1/2 ¯wB(y), 1
+γM2∞
+)
+.
+With the help of the Dorodnitsyn–Howarth transformation given above, introducing further a stream function
+ψ in the three-dimensional ﬂow via the continuity Eq. (1), that is deﬁned by¯uB = Dψ and ¯wB =− 2C1/2TBψ ,
+where the operator D denoting a differentiation with respect to y, the following differential equation system
+is reached governing the basic ﬂow
+D3ψ = (Dψ) 2 − 2ψ D2ψ − (¯vB + 1)2, (5)
+D2 ¯vB = 2(¯vB + 1)Dψ − 2ψ D ¯vB, (6)
+∂2TB
+∂y2 + 2σψ ∂TB
+∂y − rσDψ ∂TB
+∂r + (γ − 1)σr2 M2
+∞ ((D2ψ) 2 + (D ¯vB)2) = 0. (7)
+This system is supplemented with the boundary conditions
+ψ( 0) = Dψ( 0) = Dψ(∞ ) =¯vB(0) =¯vB(∞ ) + 1 = TB(∞ ) − 1 = 0. (8)
+Eventually the temperature ﬁeld in (7) can be decomposed into a viscous-dissipation term f and a
+heat-conducting term q by writing TB in the form
+TB = 1
+ρB
+= 1 − γ − 1
+2 Mr 2 f (y) + (Tw − 1)q(y), (9)
+===PAGE 5===
+Direct spatial resonance in the compressible boundary layer on a rotating-disk 149
+–0.2
+0
+0.2
+0.4
+0.6
+0.8
+1
+(a) (b)
+(c) (d)
+5
+5
+0 1 01 52 0
+y
+ψ
+−υ
+ψ ’  
+1
+1.05
+1.1
+1.15
+1.2
+1.25
+1.3
+1.35
+1.4
+1.45
+1.5
+0 5 10 15 20
+y
+TB
+1.0
+0.5
+M =1.5r
+σ=1.0
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+0 1 01 52 0
+y
+σ=0.5
+Tw=0.5
+TB
+1
+1.1
+1.2
+1.3
+1.4
+1.5
+0 5 10 15 20
+y
+σ=1.5
+Tw=1.5
+TB
+Fig. 1 a Basic velocity proﬁles of the generalized Kármán ﬂow are shown for the boundary-layer over a rotating-disk. Tempera-
+ture proﬁles corresponding to insulated disk case are shown in b for σ = 1 at the selected Mach numbers. Temperature proﬁles
+corresponding to heat transfer case are shown at three different local Mach numbers respectively inc for σ = 0.5, Tw = 0.5, and
+in d for σ = 1.5, Tw = 1.5, dotted curves denoting Mr = 0.0, unbroken curves Mr = 0.5a n dbroken curves Mr = 1.5
+where Tw denotes the wall temperature and Mr = rM ∞ is the local Mach number. The form of ordinary
+differential equations satisﬁed by f and q can be straightforwardly extracted after substituting (9) into (7). It
+can be immediately shown that in the case of ﬂuid condition σ = 1, the insulated disk results in a solution
+f = (Dψ) 2 +¯v2
+B − 1, while heat transfer gives rise to f = (Dψ) 2 +¯vB +¯v2
+B. However, for other Prandtl
+numbers a numerical integration of the equations involving f and q is required, see for instance [52]. The
+results of mean ﬂow velocity and temperature are displayed in Fig. 1 for heat transfer and wall insulation
+cases. The effects of compressibility is seen to decrease the temperature values in Fig. 1b as the Mach number
+increases for adiabatic wall case. A similar inﬂuence can also be observed for isothermal wall conditions in
+Fig. 1(b–d), though with a comparatively slight increase. The basic ﬂow shown in Fig. 1 will be used later
+to determine the direct spatial resonance modes existing in the compressible generalized Kármán ﬂow, which
+will be investigated in Sect. 3
+2.2 Linear stability equations
+Two different strategies can be pursued while linearizing the Navier–Stokes equations (1–4) by superimposing
+inﬁnitesimally small perturbations on the mean ﬂow given in Sect. 2.1 In the ﬁrst, a multiple scaling anal-
+ysis is performed using appropriate boundary-layer and time scales along which the disturbances evolve as
+implemented in [22,24] for the incompressible rotating-disk ﬂow. In the second, as done by [15,17] a subtle
+===PAGE 6===
+150 M. Turkyilmazoglu, N. Uygun
+approximation r = Re is made which is akin to viewing the analysis at a local position on the disk. Turk-
+yilmazoglu [24] demonstrated that both analysis yield the same equations governing the linearly evolving
+stability waves. Thus under self-consistent approximations, but within a localized linear stability theory, the
+ﬂow ﬁeld can be decomposed into mean and disturbances of the form
+(u,v,w, p,ρ, T,λ,µ, k) =
+(
+r ¯u
+B + u′, r ¯vB + v′, Re−1/2 ¯wB + w′, 1
+γM2∞
++ p′,ρB
++ρ′, TB + T′,λB + λ′,µ B + µ′, kB + k′
+)
+,
+in which the dashed disturbance terms have the wave-like shapesˆφ(y)ei(αr+βθ−ωt), with ˆφ(y) denoting eigen-
+function, α and β denoting disturbance wavenumbers respectively in the radial and azimuthal directions and
+ω denoting disturbance frequency. These eigenvalues are all complex. Moreover, instead of the characterizing
+Reynolds number Re, a new one R deﬁned by R = Re1/2 is taken (which is assumed to be large for the
+subsequent analysis) and the resulting linearized compressible stability equations are
+[(iαR + 1)ρB] ˆu+[iβRρB] ˆv+[RρB(DρB+ρB D)] ˆw+[iR U + 2¯uB + ρB D ¯wB + ρB ¯wB D] ˆρ = 0, (10)[
+iR ρBU + ρB ¯uB + (λB + 2µB)α2 + µBβ2 + ρ2
+B ¯wB D − ρB D2]
+ˆu +
+[
+− 2ρB (¯vB + 1)
++αβ(λB + µB)
+]
+ˆv +
+[
+Rρ2
+B D ¯uB − iα(ρB DµB + (1 + λBρB)D)
+]
+ˆw + [iαR] ˆp
++
+[
+ρB D2 ¯uB
+]
+ˆρ+
+[
+−ρB D(ρB D ¯uB) − ρ2
+B D ¯uB D
+]
+ˆµ = 0, (11)
+[
+2ρB(¯vB + 1) + αβ(λB + µB)
+]
+ˆu +
+[
+iR ρBU + ρB ¯uB + (λB + 2µB)β2 + µBα2
++ ρ2
+B ¯wB D − ρB D2]
+ˆv +
+[
+Rρ2
+B D ¯vB − iβ(ρB DµB + (1 + λBρB)D)
+]
+ˆw + [iβR] ˆp
++
+[
+2¯uB(¯vB + 1) + ρB ¯wB D ¯vB
+]
+ˆρ+
+[
+−ρB D(ρB D ¯vB) − ρ2
+B D ¯vB D
+]
+ˆµ = 0, (12)[
+− iα(ρB DλB + (1 + λBρB)D)
+]
+ˆu +
+[
+− iβ(ρB DλB + (1 + λBρB) D)
+]
+ˆv +
+[
+iR ρBU
++ρ2
+B(D ¯wB +¯wB D) − ρB(2 + λBρB)D2 + (α2 + β2)µB
+]
+ˆw + [RρB D] ˆp
++ [−iρB DU ] ˆµ = 0, (13)[
+−2(γ − 1)M2
+∞ ρB D ¯uB D
+]
+ˆu +
+[
+−2(γ − 1)M2
+∞ ρB D ¯vB D
+]
+ˆv +
+[
+− 2i(γ − 1)M2
+∞ DU
++Rρ2
+B DTB
+]
+ˆw +
+[
+−(γ − 1)M2
+∞ (iR U + ρB ¯wB D)
+]
+ˆp +
+[
+ρB ¯wB DTB
+]
+ˆρ+
+[
+iR ρBU
++kB(α2 + β2) + ρ2
+B( ¯wB D − kB D2)
+] ˆT +
+[
+− ρB(DρB DTB + ρB D2TB
+−ρB DTB D)
+] ˆk +
+[
+−(γ − 1)M2
+∞ ρ2
+B((D ¯uB)2 + (D ¯vB)2)
+]
+ˆµ = 0, (14)
+[
+γM2
+∞
+]
+ˆp + [−TB] ˆρ+ [−ρB] ˆT = 0, (15)
+in which the effective crossﬂow velocity U is deﬁned by U = α¯uB + β¯vB − ω. The boundary conditions for
+the system (10–15) are the usual no-slip for the perturbation velocities on the wall and the decaying property
+at far distances from the surface of the disk, see [32]. And ﬁnally, forcing of small amplitude waves can be
+introduced by an inhomogeneous term in the governing equations (10–15) or in the boundary conditions. The
+responses of the degeneracies are then investigated through the initial-value problem which is equivalent to
+system of linearized equations (10–15) representing the dispersion relation.
+3 Numerical scheme, results and discussions
+Several methods are at our disposal for solving the system of equations (10–15). For instance, for the incom-
+pressible version of these equations, compact-ﬁnite differences were used by [15,17], a fourth-order Runge-
+Kutta method was employed by [20,53] and a spectral tau technique was applied by [23,33]. We here prefer, due
+primarily to its high accuracy, the use of spectral collocation method incorporating Chebyshev polynomials.
+Having mapped the physical semi-inﬁnite region onto the computational domain via a suitable transformation,
+a staggered mesh is then chosen so that Chebyshev Collocation points are interchanged between the Gauss–
+Lobatto points (at which continuity equation (10) is imposed) and Gauss points (at which the momentum,
+state and energy equations (11–15) are imposed), whenever necessary, particularly to deal with the pressure
+===PAGE 7===
+Direct spatial resonance in the compressible boundary layer on a rotating-disk 151
+perturbation at the wall, see, for instance [54]. As a result of the spectral discretization, the system (10–15)
+together with the relevant boundary conditions were put into a large matrix form and then solved using LU
+matrix decomposition combined with a usual Newton–Raphson search procedure. More detailed information
+on the numerical technique adopted may be found in [24].
+A ﬂow ﬁeld governed by the Navier–Stokes equations can sustain in general three types of modal wave
+ﬁelds namely, acoustic, vorticity and entropy waves. In the linear approximation these modal ﬁelds are uncou-
+pled except possibly at direct resonances. The instability of the boundary-layer ﬂow over a rigid rotating-disk
+and a consequent transition route to turbulence are almost certain to occur through three distinct families of
+eigensolutions created by the aforementioned physical waves and identiﬁed so far from the system of equations
+(10–15). These are respectively the inviscid mode of [6], the viscous mode balanced by the Coriolis effects and
+a third family computed ﬁrst in [13]. These modes were separately investigated by many researchers as out-
+lined in the introduction. When these modes act together and thus constitute a coalescence in the wavenumber
+plane, they lead to two well-known strong instability mechanisms. One is the local absolute instability which
+takes place by the process of pinching of inviscid and viscous modes, a subject investigated by [20,21,23–25,
+53]. These researches show that the incompressible rotating-disk boundary-layer ﬂow is exposed to a critical
+Reynolds number of about 507 for the occurrence of absolute instability, though this speciﬁc Reynolds number
+is pushed forward by the compressibility, see [32], and also the wall compliance has a powerful delaying inﬂu-
+ence on the onset, see [23]. On the other hand, the modal coalescence taken place via the gathering of inviscid
+mode and the mode of [13] causes a resonance at radial positions, plainly termed direct spatial resonance. The
+work of [1] inherently reveals that such a resonance occurs at a critical Reynolds number of 445, much earlier
+than the appearance of the absolute instability. Moreover, the direct numerical simulation ﬁndings of [3] as
+well as the recent experimental study of [4,5] openly support that the global behavior of the instability in the
+three-dimensional rotating-disk boundary-layer ﬂow is in compliance with the algebraic growth induced by
+the direct resonance instability.
+We below explore the occurrence of direct spatial resonance in the compressible viscous boundary-layer
+ﬂow over a rotating-disk. First of all, we reproduced in Fig. 2a the resonance modes of [1] corresponding to
+the incompressible ﬂow, which demonstrates an excellent agreement (see Fig. 3b of [1]). The effects of com-
+pressibility, heat transfer as well as wall insulation are then investigated at some speciﬁed Prandtl numbers in
+Figs. 2b, 3, 4, 5, 6 and 7a,b on which the variations with Reynolds numbers of the resonance parameters are dis-
+played. Before presentation of the results, a few point deserves emphasizing. First, for the modes investigated
+in the present study resonance occur for all the parameters, that is, not only the dispersion relation ensuing from
+the system of equations (10–15) but also its rate of change with respect to complex radial wavenumber at the
+determined real frequencies vanish. Second, it is, too, worthy of noting that the results displayed in Figs. 2b,
+3, 4, 5, 6 and 7a,b are consistent since they converge to the incompressible limit asM
+r tends to zero. Third, it
+should also be reminded that the degeneracies exhibiting temporal growth of the amplitudes are not allowed
+in this study, focussing only on the degeneracies leading to a spatial resonance and thus growth. Moreover,
+the damping rate of a degeneracy should, as a rule, be low enough for it to exhibit growth. And lastly, the
+Reynolds number of a degeneracy should correspond to the laminar region for it to contribute to the transition
+mechanism.
+We are mainly interested in here with two particular Reynolds numbers since they constitute a paramount
+physical signiﬁcance. One of these critical Reynolds numbers, denoted hereafter by R
+n, refers to the point of
+coalescence coinciding with the neutral stability (that is αi = 0 together with w real) as indicated by crosses
+x in Fig. 2, 3, 4, 5, 6 and 7. The physical importance of modal coalescence occurring at such critical Reynolds
+numbers can be explained as follows. While evaluating the response of the ﬂow to an impulse through the
+residue theorem, the response is given by a Green‘s function which asymptotically behaves like re−αi r ,s e e
+for instance [38]. Thus, the local response of the ﬂow is determined by a critical amplitude of a magnitude
+calculated as the inverse of the spatial ampliﬁcation rateα
+i (only αi > 0 is of concern as far as the direct spatial
+resonance). Denoting this critical amplitude by A = 1
+αi , it is obvious to state that a large amplitude is attained
+whenever αi is close to zero, as a result, this resonance point yields an unbounded algebraic growth (preced-
+ing any exponential ampliﬁcation through other instabilities) which in turn initiates the nonlinear effects and
+onset of transition leading to a ﬁnal breakdown of laminar ﬂow into turbulence. The quantitative indication
+hence is such that this mechanism is likely to be more important than the other instabilities present. The
+importance of such a coalescing point was highlighted in the studies of [38,55,56]. The second critical Rey-
+nolds number, denoted hereafter by R
+o refers to the conditions for which the modal coalescence ﬁrst occurs,
+that is the lowest Reynolds number of resonance at which αi is not necessarily close to zero. Even though at
+such critical Reynolds numbers the maximum amplitudes may not be large enough at a resonance, the physical
+===PAGE 8===
+152 M. Turkyilmazoglu, N. Uygun
+α r
+R
+ 0.15
+ 0.16
+ 0.17
+ 0.18
+ 0.19
+ 0.2
+ 0.21
+ 0.22
+(a) (b)
+ 440  450  460  470  480  490  500  510  520
+α r
+R
+0.5
+Mr=1
+ 0.11
+ 0.12
+ 0.13
+ 0.14
+ 0.15
+ 0.16
+ 0.17
+ 0.18
+ 0.19
+ 420  430  440  450  460  470  480  49
+0
+α i
+R
+x
+–0.008
+–0.006
+–0.004
+–0.002
+0
+ 0.002
+ 0.004
+ 0.006
+ 0.008
+ 0.01
+ 0.012
+ 440  450  460  470  480  490  500  510  520
+x
+R
+α i
+Mr=1 0.5
+x
+–0.005
+0
+ 0.005
+ 0.01
+ 0.015
+ 0.02
+ 420  430  440  450  460  470  480  49 0
+R
+β
+ 0.01
+ 0.015
+ 0.02
+ 0.025
+ 0.03
+ 0.035
+ 0.04
+ 0.045
+ 0.05
+ 0.055
+ 440  450  460  470  480  490  500  510 520
+R
+β
+Mr=1
+0.5
+ 0.02
+ 0.025
+ 0.03
+ 0.035
+ 0.04
+ 0.045
+ 0.05
+ 0.055
+ 420  430  440  450  460  470  480  490
+ω r
+R
+–2
+0
+2
+4
+6
+8
+ 10
+ 12
+ 14
+ 440  450  460  470  480  490  500  510  520
+ω r
+R
+Mr=1 0.5
+–3
+–2
+–1
+0
+1
+2
+3
+4
+5
+6
+ 420  430  440  450  460  470  480  49 0
+R
+ε
+2
+4
+6
+8
+ 10
+ 12
+ 14
+ 16
+ 18
+ 20
+ 440  450  460  470  480  490  500  510 520
+R
+ε
+Mr=1 0.5
+6
+8
+ 10
+ 12
+ 14
+ 16
+ 18
+ 20
+ 22
+ 24
+ 420  430  440  450  460  470  480  49 0
+Fig. 2 Variations with Reynolds number of the values of the various ﬂow parameters at which direct spatial resonance occurs are
+plotted for a incompressible ﬂow case, and b insulated-wall case at σ = 0.72, Mr = 0.5 and 1. A cross indicates the location of
+Rn as deﬁned in the text
+implication of the existence of such Reynolds numbers with αi > 0 is that direct spatial resonance owing to
+the algebraic growth at the double point provides a potential mechanism for nonlinear sub-critical instabilities.
+In hydrodynamic stability problems, an effect lowering the critical Reynolds number causes destabilization,
+whereas pushing the critical Reynolds number to higher values leads to stabilization. It is shown from the
+present results that the above notion of stabilization/destabilization for a single critical Reynolds number also
+works for two critical Reynolds numbers as introduced here, since in any situation both behave in a similar
+manner, to be discussed later in detail.
+The effects of wall insulation are demonstrated on the resonance parameters for the ideal ﬂow condition
+σ = 0.72 in 2(b) for two Mach numbers,M
+r = 0.5 and 1, respectively. It is immediately seen from Fig. 2b that
+the insulated-wall results are similar qualitatively to the incompressible results, at least for such small Mach
+numbers. However, from the quantitative point of view, wall insulation points to an apparent destabilization

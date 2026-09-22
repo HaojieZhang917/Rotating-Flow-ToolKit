@@ -1,0 +1,5 @@
+No new boundary-value problem or continuation was solved.
+Fields at eta=1,2,5 use piecewise linear interpolation of saved N=320 profiles.
+Fixed-eta samples are not overlap plateau measurements.
+g_m values use extrapolated limiting coordinates and inherit their uncertainty.
+Near-zero g_m supports, but does not prove, a trivial leading inner velocity field.

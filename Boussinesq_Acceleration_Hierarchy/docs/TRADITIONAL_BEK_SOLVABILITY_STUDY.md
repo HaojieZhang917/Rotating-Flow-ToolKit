@@ -26,7 +26,7 @@ the fixed-`Tw` Jacobian singular-value indicator, and the exact far-field
 thermal e-fold length
 
 ```text
-ell_T = 1/(Pr*(-Hinf)),  Hinf < 0.
+ell_T = 1/(Pr*(-Ro)*(-Hinf)),  Ro < 0, Hinf < 0.
 ```
 
 The latter follows by linearizing `T''-Pr*H*T'=0` at infinity. A failure of

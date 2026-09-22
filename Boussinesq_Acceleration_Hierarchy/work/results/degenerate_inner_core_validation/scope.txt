@@ -1,0 +1,7 @@
+Algebraic/post-processing validation only; no new base-flow or continuation solve.
+gamma=1; input files:
+/home/zhj/Rotating-Flow-ToolKit/Boussinesq_Acceleration_Hierarchy/work/results/consistent_fold_tail_scaling/polynomial_fits.csv
+/home/zhj/Rotating-Flow-ToolKit/Boussinesq_Acceleration_Hierarchy/work/results/consistent_epsilon_fold_chain/recommended_epsilon_fold_table.csv
+/home/zhj/Rotating-Flow-ToolKit/Boussinesq_Acceleration_Hierarchy/work/results/consistent_inner_leading_matching/fixed_eta_profiles.csv
+Uncertainty envelopes use all sign corners of stored numerical half-ranges;
+they are deterministic sensitivity envelopes, not confidence intervals.
