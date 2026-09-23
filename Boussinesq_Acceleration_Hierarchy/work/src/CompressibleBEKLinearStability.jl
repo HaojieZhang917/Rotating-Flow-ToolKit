@@ -20,6 +20,7 @@ const _SOURCE_PROFILE_CACHE = Dict{Tuple{Float64,Float64,Float64},Any}()
 export PhysicalParameters, NumericalParameters, PreparedCase, StabilityResult
 export stability_grid, prepare_case, assemble_qep, solve_mode, validate_result
 export audit_expanded_operator, operator_structure_gates, directional_qep_test, write_result
+export at_fixed_system_mach
 
 """Physical/nondimensional inputs for a local compressible BEK calculation.
 
@@ -128,6 +129,29 @@ Base.@kwdef struct NumericalParameters
     regularization::Float64 = 0.0
     property_perturbations::Bool = true
     base_property_variation::Bool = true
+    # :halfline refuses a finite-domain thermal profile when the asymptotic
+    # equation cannot satisfy the prescribed wall and far-field temperatures.
+    # :finite_diagnostic retains the old calculation with an explicit label.
+    thermal_model::Symbol = :halfline
+    # Empirical minimum from the registered low-Ro domain sweep: about ten
+    # far-field e-folds gives a <1e-3 f-tail fraction for the sampled cases.
+    min_thermal_decay_lengths::Float64 = 10.0
+end
+
+"""Build a BEK case at fixed system-rotation Mach number.
+
+With Mr=r*abs(DeltaOmega)/a_inf and Ro=DeltaOmega/Omega, the physically
+matched path has Mr=abs(Ro)*Msystem. Its exact Ro=0 endpoint has Mr=0 and
+requires an incompressible stability solver rather than the singular
+compressible pressure scaling `1/Ma^2`.
+"""
+function at_fixed_system_mach(p::PhysicalParameters, Ro::Real, Msystem::Real)
+    isfinite(Ro) && isfinite(Msystem) && Msystem >= 0 ||
+        throw(ArgumentError("Ro must be finite and Msystem finite/nonnegative"))
+    return PhysicalParameters(
+        Tw=p.Tw, Mr=abs(Float64(Ro))*Float64(Msystem), Ro=Float64(Ro),
+        R=p.R, beta=p.beta, omega=p.omega, gamma=p.gamma, Pr=p.Pr,
+    )
 end
 
 struct PreparedCase
@@ -136,6 +160,8 @@ struct PreparedCase
     Co::Float64
     Ma::Float64
     thermal_bc_error::Float64
+    thermal_farfield_exponent::Float64
+    thermal_decay_lengths::Float64
     y::Vector{Float64}
     D::Matrix{Float64}
     D2::Matrix{Float64}
@@ -171,6 +197,10 @@ function check_parameters(p::PhysicalParameters, n::NumericalParameters;
     n.ymax > 0 || throw(ArgumentError("ymax must be positive"))
     n.neigs >= 1 || throw(ArgumentError("neigs must be positive"))
     n.regularization >= 0 || throw(ArgumentError("regularization must be nonnegative"))
+    n.thermal_model in (:halfline, :finite_diagnostic) || throw(ArgumentError(
+        "thermal_model must be :halfline or :finite_diagnostic"))
+    n.min_thermal_decay_lengths >= 0 || throw(ArgumentError(
+        "min_thermal_decay_lengths must be nonnegative"))
     if p.Ro != -1.0 && !allow_unverified_ro
         throw(ArgumentError(
             "Ro != -1 invokes a BEK extension not validated by the 2006 paper; " *
@@ -272,9 +302,44 @@ function prepare_case(p::PhysicalParameters=PhysicalParameters(),
                       n::NumericalParameters=NumericalParameters();
                       allow_unverified_ro::Bool=false)
     check_parameters(p, n; allow_unverified_ro=allow_unverified_ro)
+    thermal_active = p.Mr > 1e-12 || abs(p.Tw - 1.0) > 1e-12
+    thermal_degenerate = abs(p.Ro) <= 1e-12 && thermal_active
+    if thermal_degenerate && n.thermal_model == :halfline
+        throw(ArgumentError(
+            "exact Ro=0 with Mr>0 or Tw!=1 has no prescribed-temperature " *
+            "half-line solution: q''=0 and f''=2Pr*(U'^2+V'^2). " *
+            "Use thermal_model=:finite_diagnostic only for a labelled " *
+            "finite-domain test, or take a matched low-Ro/Mr limit.",
+        ))
+    end
     Co = 2 - p.Ro - p.Ro^2
     Ma = p.Mr / p.R
     source = source_profiles(p.Ro, p.Pr; ymax=n.ymax)
+    # The far-field homogeneous heat equation has exponents 0 and
+    # Pr*Ro*W_inf. A nonnegative second exponent cannot provide the
+    # decaying thermal mode required by the imposed far-field Dirichlet data.
+    farfield_exponent = p.Pr * p.Ro * last(source.w)
+    thermal_outflow = !thermal_degenerate && thermal_active &&
+        farfield_exponent >= -1e-10
+    if thermal_outflow && n.thermal_model == :halfline
+        throw(ArgumentError(
+            "thermal far field has no decaying similarity mode " *
+            "(Ro*W_inf=$(p.Ro*last(source.w))). " *
+            "Use thermal_model=:finite_diagnostic only for a labelled " *
+            "finite-domain test; a non-similar/outflow thermal model is needed.",
+        ))
+    end
+    decay_lengths = -farfield_exponent*n.ymax
+    thermal_domain_unresolved = !thermal_degenerate && !thermal_outflow &&
+        thermal_active && decay_lengths < n.min_thermal_decay_lengths
+    if thermal_domain_unresolved && n.thermal_model == :halfline
+        throw(ArgumentError(
+            "thermal domain spans only $decay_lengths far-field decay lengths; " *
+            "at least $(n.min_thermal_decay_lengths) are required by this " *
+            "numerical Gate. Increase ymax or use " *
+            "thermal_model=:finite_diagnostic for a labelled test.",
+        ))
+    end
     D, D2, y = stability_grid(n)
     T0 = 1 .- ((p.gamma - 1) / 2) .* p.Mr^2 .* source.f .+
          (p.Tw - 1) .* source.q
@@ -285,12 +350,13 @@ function prepare_case(p::PhysicalParameters=PhysicalParameters(),
     # At exact Ro=0 the thermal similarity equations lose their normal
     # transport. With nontrivial Mr or Tw this finite-domain construction is
     # a singular diagnostic, not a half-line base state.
-    thermal_degenerate = abs(p.Ro) <= 1e-12 &&
-        (p.Mr > 1e-12 || abs(p.Tw - 1.0) > 1e-12)
     evidence_scope = thermal_degenerate ? :ro0_thermal_degenerate :
+        thermal_outflow ? :thermal_outflow_unverified :
+        thermal_domain_unresolved ? :thermal_domain_unresolved :
         :derived_bek_candidate
     return PreparedCase(
         p, n, Co, Ma, source.endpoint_error,
+        farfield_exponent, decay_lengths,
         y, D, D2, F, G, H, Tv, rho,
         -(2 / 3) .* Tv, Tv ./ p.Pr, evidence_scope,
     )
@@ -367,6 +433,11 @@ end
 """Assemble the boundary-reduced quadratic eigenproblem
 `(A0 + alpha*A1 + alpha^2*A2) q = 0`."""
 function assemble_qep(c::PreparedCase)
+    c.Ma > 0 || throw(ArgumentError(
+        "Mr=0 makes the compressible pressure scaling 1/Ma^2 singular; " *
+        "use the incompressible BEK operator at exact Ro=0, or approach " *
+        "it with Mr=abs(Ro)*Msystem at nonzero Ro.",
+    ))
     p, n = c.physical, c.numerical
     coefficients = corrected_coefficients(c)
     raw = CRD.assemble_mat(coefficients, c.D, c.D2, p.beta, p.omega)
@@ -520,6 +591,8 @@ function write_result(result::StabilityResult, output_dir::AbstractString)
     open(joinpath(output_dir, "metadata.txt"), "w") do io
         println(io, "model=compressible_BEK_spatial_LSA")
         println(io, "evidence_scope=$(c.evidence_scope)")
+        println(io, "thermal_farfield_exponent=$(c.thermal_farfield_exponent)")
+        println(io, "thermal_decay_lengths=$(c.thermal_decay_lengths)")
         println(io, "coordinate=Dorodnitsyn_Howarth_similarity_y")
         for name in fieldnames(PhysicalParameters)
             println(io, "$(name)=$(getfield(p, name))")

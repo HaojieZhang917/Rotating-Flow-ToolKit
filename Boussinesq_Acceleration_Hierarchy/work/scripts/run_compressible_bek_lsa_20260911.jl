@@ -38,10 +38,12 @@ n = NumericalParameters(
     maxit=value(opts, "maxit", 800, Int),
     balance=get(opts, "balance", "true") == "true",
     regularization=value(opts, "regularization", 0.0, Float64),
+    thermal_model=Symbol(get(opts, "thermal_model", "halfline")),
+    min_thermal_decay_lengths=value(opts, "min_thermal_decay_lengths", 10.0, Float64),
 )
 allow_unverified_ro = get(opts, "allow_unverified_ro", "false") == "true"
 out = get(opts, "out", joinpath(
-    @__DIR__, "..", "results", "compressible_bek_lsa_20260911",
+    @__DIR__, "..", "results", "compressible_bek_lsa_20260922",
     @sprintf("Ro_%+.6f_Mr_%.4f_Tw_%.4f_R_%.3f_N_%d", p.Ro, p.Mr, p.Tw, p.R, n.N),
 ))
 
@@ -51,8 +53,12 @@ case = prepare_case(p, n; allow_unverified_ro=allow_unverified_ro)
 @printf("Internal Ma=Mr/R=%.12g; coordinate=similarity y; scope=%s\n",
         case.Ma, String(case.evidence_scope))
 
-audit = audit_expanded_operator(case)
-@printf("Operator audit relative errors: A0=%.3e A1=%.3e A2=%.3e\n", audit.relative...)
+gates = operator_structure_gates(case)
+derivative = directional_qep_test(case)
+@printf("Operator structure gates: continuity curvature=%.3e transport=%.3e radial Co=%.3e azimuthal Co=%.3e energy=%.3e\n",
+    gates.continuity_curvature,gates.continuity_base_transport,
+    gates.radial_coriolis,gates.azimuthal_coriolis,gates.energy_wallnormal_scale)
+@printf("QEP directional derivative relative error=%.3e\n",derivative.relative_error)
 
 result = solve_mode(case)
 checks = validate_result(result)

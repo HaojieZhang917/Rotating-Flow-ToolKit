@@ -208,8 +208,8 @@ module CRD_BF
     prob = DifferentialEquations.BVProblem(ODE_q!, BC_q!, [1,0], tspan)
     sol1 = solve(prob,MIRK4(), dt=0.01)
     q = sol1(t)
-    f = f[1,:]
     q = q[1,:]
+    f = f[1,:]
     return f,q
   end
  function T_var(Mr,f,q,Tw,gamma)

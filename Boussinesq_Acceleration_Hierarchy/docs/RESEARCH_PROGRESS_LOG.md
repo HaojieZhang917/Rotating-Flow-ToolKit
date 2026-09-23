@@ -1170,3 +1170,46 @@
 - **远场诊断**：`(Mr,Tw)=(0,0.8)` 时，von Karman 的 `q(30)=0.9983`、`q(35)=0.9586`、`q(39)=0.4710`，温度跃迁被推到人工端点，`y<=39` 能量残差为 `1.21e-1`；Bodewadt 近壁能量残差为 `1.53e-1`。`Ro=0` 退化为 `q''=0`，有限区间线性解不能在半无限域同时满足壁面与远场 Dirichlet 条件。
 - **Gate 结论**：完整 `(U,V,W,T,rho)` 可压缩基本流 **FAIL**。速度与状态关系通过，但当前 `T` 及由它耦合得到的 `rho` 不能称为统一一般 `Ro` 的可信基本流；L078 的中性参数继续仅作 `derived_bek_candidate` 诊断，不能升级为自洽可压缩 BEK 结果。下一步应先修正/重构热 BVP（尤其处理 `Ro=0` 奇异极限），再重复本残差 Gate 和中性参数计算。
 - **输出**：`work/src/CompressibleBEKBaseflowResiduals.jl`；`work/scripts/validate_compressible_bek_baseflow_primitive_residuals_20260912.jl`；`work/results/compressible_bek_baseflow_primitive_residual_gate_v2_20260912/`；`docs/COMPRESSIBLE_BEK_BASEFLOW_PRIMITIVE_RESIDUAL_GATE_2026-09-12.md`。
+
+### 2026-09-22 — L082：旧 `sim` 坐标 Ro=0 近中性根的网格与远场采样收敛
+
+- **范围**：保持当前工作树旧 notebook 的 `Ro=0,Tw=1,Mr=0.1,R=116.3,beta=0.137`、旧基本流/热方程/算子/IAR 链，复用同一基本流；仅改变 `N=49/59/69/79/89`、有理映射尺度 `a=4/6/8/10` 和采样截断 `cap=20/30/40`。使用共同近壁区五场特征向量重叠追踪模态。
+- **数值结果**：基准 `N=69,a=6,cap=20` 得 `alpha=0.540361211263+0.000337288886i`，与 notebook 留存值相差 `6.66e-7`。各组 `Im(alpha)` 在 `0.000336706` 至 `0.000344005`；所有重叠至少 `0.999799`，QEP 相对后向误差至多 `1.52e-13`。因此该旧算子的选定分支在所测数值设置中稳健，满足用户采用的 `|Im(alpha)|<1e-3` 近中性判据。
+- **证据边界**：旧网格将大于 cap 的坐标裁切、但不改变微分矩阵；基准有 22 个节点重复采样 `y=20`。cap 扫描只检验远场采样敏感性，**不是**严格一致的有限域长度收敛证明。此项不能证明旧热 BVP/一般 Ro 算子的物理正确性，也未寻找 `(R,beta)` 中性曲线最小值或验证 `Mr=0.3`。
+- **输出**：`docs/LEGACY_SIMCOORD_RO0_GRID_FARFIELD_CONVERGENCE_2026-09-22.md`；`work/scripts/check_legacy_simcoord_ro0_grid_farfield_20260922.jl`；`work/results/legacy_simcoord_ro0_convergence_20260922/modes.csv`。
+
+### 2026-09-22 — L083：旧 notebook 与项目程序在完全匹配参数下的 Ro=0 根比较
+
+- **方法**：在 `Ro=0,Mr=0.1,Tw=1,R=116.3,beta=0.137,N=69` 下，用当前项目可压缩 BEK 候选算子搜索目标 `alpha≈0.54` 的六个空间根；对照 L082 的旧 `sim` 坐标结果。项目源码只在内存中替换 SciML 元包导入，未编辑原程序。
+- **结果**：项目程序得到 `alpha=0.530157206567-0.000748070374i`，QEP 相对后向误差 `7.45e-15`；旧程序为 `0.540361211263+0.000337288886i`。两者均满足用户采用的 `|Im(alpha)|<1e-3` 近中性判据，故“项目程序在 Ro=0 完全得不到近中性根”的说法在这组匹配参数下不成立。
+- **差异与边界**：旧热 `f` 方程在 `Ro=0` 仍含 `U*f-phi*f'`，项目方程不含；旧算子在 `Ro=0` 保留连续性曲率和法向输运，项目算子令其随 `Ro` 消失。两根相差 `0.010261565`，但本项未逐项分离误差贡献，也未跨算子验证为同一特征向量分支。项目案例被标为 `ro0_thermal_degenerate`；近中性不等于已验证半无限可压缩基流或中性曲线临界点。
+- **输出**：`docs/RO0_LEGACY_VS_PROJECT_MATCHED_PARAMETERS_2026-09-22.md`；`work/scripts/compare_ro0_matched_notebook_parameters_20260922.jl`；`work/results/ro0_matched_notebook_comparison_20260922/modes.csv`。
+
+### 2026-09-22 — L084：可压缩 BEK 热半无限域的可解性与显式诊断入口
+
+- **模型判定**：在 `Ro=DeltaOmega/Omega`、`Mr=r|DeltaOmega|/a_inf` 下，基本流热对流项带 `Ro`，耗散由 `Mr^2` 表示。精确 `Ro=0` 的 `q''=0` 和 `f''=2Pr*shear` 在非零热输入、固定壁温与远场温度下无相容半无限解；固定系统 Mach 极限须令 `Mr=|Ro|Msystem→0`。
+- **修改**：`NumericalParameters.thermal_model=:halfline` 默认拒绝热退化/无远场衰减的输入；`:finite_diagnostic` 显式保留旧有限域测试并标记证据范围。`Mr=0` 的压缩 QEP 因 `1/Ma^2` 奇异而明确拒绝。8/8 输入与范围检查通过。
+- **边界**：这是一项物理域与 API 安全修正，不是新热方程或全五场算子的独立证明。
+- **输出**：`work/src/CompressibleBEKLinearStability.jl`；`work/scripts/validate_compressible_bek_thermal_limit_20260922.jl`；`docs/COMPRESSIBLE_BEK_THERMAL_LIMIT_GATE_PLAN_2026-09-22.md`。
+
+### 2026-09-22 — L085：低 Ro 热源域长与衰减长度诊断
+
+- **设置**：固定 `Msystem=0.3,Tw=1`，取 `Ro=-0.2/-0.1/-0.05`、`Mr=|Ro|Msystem`，扫描 `L=40..320`，比较源函数固定位置与 `0.75L` 处尾幅。
+- **结果**：`Ro=-0.05` 的 `|f(0.75L)|/max|f|` 为 `0.1514(L=40)`、`0.01127(L=160)`、`0.0001864(L=320)`；`f(1)` 从 `-0.569592` 变为 `-0.576829`。三种负 `Ro` 的约 11.5 个热 e-fold 域均把尾幅降至 `2.23e-4` 以下。
+- **决策与边界**：默认至少 10 个远场热衰减长度；这是此参数范围经域长扫查支持的数值 Gate，不是对任意 `Ro`/温度条件的普适定理。较短域可作为标记为 `:thermal_domain_unresolved` 的诊断。
+- **输出**：`work/scripts/check_compressible_bek_low_ro_thermal_domain_20260922.jl`；`work/results/compressible_bek_thermal_limit_gate_20260922/low_ro_thermal_domain.csv`。
+
+### 2026-09-22 — L086：扩域后空间 QEP、算子结构及 CLI 验证
+
+- **结果**：固定 `R=116.3,beta=0.137` 的匹配 `Ro=-0.2/-0.1/-0.05` 路径分别在 `L=80/160/320` 得 `alpha=0.552239560-0.034492602i`、`0.540477199-0.018359507i`、`0.534940467-0.009511274i`。`Ro=-0.05` 的 `N=49/59` 根相差 `4.30e-6`。8/8 输入 Gate 与 24/24 结构/代数/根残差测试通过；指定结构块误差不超过约 `1.6e-15`，QEP 后向误差不超过 `2.7e-13`。
+- **诊断边界**：`Ro=0,Mr=0.1` 与 `Ro=1,Mr=0.1` 仍可在显式有限域诊断模式得到代数根，但分别标为 `:ro0_thermal_degenerate` 和 `:thermal_outflow_unverified`，不能用作物理中性参数。旧 notebook 参数的项目根 `0.530157207-0.000748070i` 被成功复现。
+- **CLI**：公开运行脚本改用现役结构与 QEP 导数 Gate，新增热模型/衰减长度参数。von Karman `Mr=0.1,R=285.36,beta=0.07759,N=49` 烟雾测试得 `alpha=0.385189621758-0.000392211915i`，后向误差 `1.69e-14`。
+- **证据范围**：当前测试不能独立证明所有五场算子系数，也未计算中性曲线极小值；旧历史脚本若复算热退化案例需显式诊断选项。
+- **输出**：`work/scripts/validate_compressible_bek_thermal_limit_20260922.jl`；`work/scripts/run_compressible_bek_lsa_20260911.jl`；`work/results/compressible_bek_thermal_limit_gate_20260922/cases.csv` 及 `cli_vonkarman_N49/`。
+
+### 2026-09-22 — L087：扩域低 Ro 基本流的独立原始方程残差
+
+- **方法**：`Ro=-1,L=40,N=120,Mr=0.1` 与 `Ro=-0.1,L=160,N=240,Mr=0.03`，把 `U,V,W,T,rho,f,q` 代入另行编写的连续、径向/切向动量、状态和能量残差，范围 `y<=12`。
+- **结果**：两组的连续绝对残差 `1.66e-10/2.85e-10`，最大动量绝对残差 `9.65e-8/1.60e-7`，状态为零，能量绝对残差 `8.99e-9/3.61e-9`；能量项平衡比 `1.78e-6/2.61e-6`。
+- **证据范围**：证明被测局部相似基本流在该原始边界层方程和区域内自洽；不等于全有限半径 NS 验证或线性化五场算子的独立 Jacobian 验证。
+- **输出**：`work/scripts/validate_compressible_bek_thermal_limit_primitive_20260922.jl`；`work/results/compressible_bek_thermal_limit_gate_20260922/primitive_residuals.csv`；`docs/COMPRESSIBLE_BEK_THERMAL_LIMIT_VALIDATION_2026-09-22.md`。
