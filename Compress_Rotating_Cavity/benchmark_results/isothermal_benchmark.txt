@@ -1,0 +1,9 @@
+Isothermal rotating-cavity benchmark
+  Re=2000, N=129, R=330, beta=0.0503, omega=8/330, Ts=0
+  elapsed   = 28.594 s
+  base-flow BC: H(0)=1.421e-21, H(1)=1.498e-20, F(0)=-5.250e-22, F(1)=1.554e-19, G(0)-1=0.000e+00, G(1)=1.062e-19
+  alpha     = 0.4579452379741281 -0.0137187248833267im
+  alpha_adj = 0.4579452379699421 -0.0137187248832075im
+  Cr        = 0.1392601855124792
+  errors: |dalpha|=3.289e-13, |dalpha_adj|=1.826e-13, |dCr|=1.165e-12
+PASS

@@ -1,0 +1,9 @@
+Traditional Boussinesq temporal stability
+Re_h=1000, Pr=0.72, Tw=1.160, temporal_degree=120
+branch 1: upper/low-Pi
+branch 2: middle
+branch 3: principal/isothermal-connected
+lambda_1=-0.005828497070302948
+lambda_2=0.002849135336152619
+lambda_3=-0.004299887596921791
+positive_real_eigenvalues=1

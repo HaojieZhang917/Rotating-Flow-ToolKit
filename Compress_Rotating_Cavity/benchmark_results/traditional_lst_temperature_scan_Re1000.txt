@@ -1,0 +1,26 @@
+Traditional Boussinesq local temporal LST temperature scan
+Re_h=1000, Pr=0.72, base-flow degree=100
+lower/principal branch, Tw=1.0 to 1.167
+fixed perturbation parameters are those in manuscript Table IV, a_s=0
+
+Type_I: R=283.21, alpha=0.403, beta=0.0824
+  Tw=1.000: tracked_omega=+5.729398758439e-03+4.888545053118e-05i, leading=-8.471349648656e-02+2.291652503800e-03i
+  Tw=1.167: tracked_omega=-4.997414608634e-03-6.426567779596e-04i, leading=-7.307924982132e-02+3.586822066123e-04i
+  max tracked growth over scan = 4.888545053118e-05
+  max physical growth over scan = 2.291652503800e-03
+
+Type_II: R=91.08, alpha=0.256, beta=-0.1135
+  Tw=1.000: tracked_omega=+1.013119286541e-01+1.270967591773e-06i, leading=+6.341301612339e-02+2.579993355301e-03i
+  Tw=1.167: tracked_omega=+1.013227116635e-01+3.871005707457e-03i, leading=+1.013227116635e-01+3.871005707457e-03i
+  max tracked growth over scan = 3.871005707457e-03
+  max physical growth over scan = 3.871005707457e-03
+
+Spatial alpha scan at fixed omega and beta
+Type_I: R=283.21, omega=0.0057, beta=0.0824
+  Tw=1.000: alpha=+4.025888215921e-01-6.551721896130e-04i
+  Tw=1.167: alpha=+5.511928201712e-01+3.065452143866e-02i
+  delta_alpha=+1.486039985791e-01+3.130969362827e-02i
+Type_II: R=91.08, omega=0.1013, beta=-0.1135
+  Tw=1.000: alpha=+2.558853158700e-01-1.392208145593e-05i
+  Tw=1.167: alpha=+2.449603543522e-01-6.824297000451e-02i
+  delta_alpha=-1.092496151775e-02-6.822904792305e-02i

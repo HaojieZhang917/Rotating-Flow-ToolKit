@@ -1,0 +1,22 @@
+Traditional versus Blackburn generalized Boussinesq
+Re_h=1000, Pr=0.72, target Tw=1.16, temporal_degree=120
+traditional_principal_fold_Tw=1.1676764840458438
+blackburn_fold_detected=false
+blackburn_principal_scan_max_Tw=1.7510600877695128
+blackburn_principal_scan_pressure=0.11891648002484802
+blackburn_principal_scan_status=1.3573384194387472e-8
+traditional_fold_leading_lambda=-1.4318169534090001e-5 + 0.0im
+blackburn_at_traditional_fold_Tw=1.1676764840458438
+blackburn_at_traditional_fold_leading_lambda=-0.027829024972579396 + 0.0im
+
+Temporal leading eigenvalues
+traditional upper_low_Pi: -0.005828497070257591 + 0.0i
+traditional middle: 0.0028491353276477787 + 0.0i
+traditional principal_isothermal: -0.004299887596875026 + 0.0i
+blackburn middle: -0.015446551763512882 + 0.14384530154758282i
+blackburn principal_isothermal: -0.02772127321882104 + 0.0i
+
+Blackburn branch statuses
+upper_low_Pi: failed: Blackburn Newton line search failed; residual=3.1251838677652035
+middle: converged
+principal_isothermal: converged

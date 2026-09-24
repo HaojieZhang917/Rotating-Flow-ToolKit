@@ -1,0 +1,10 @@
+Traditional centrifugal Boussinesq rotor-stator benchmark
+Re_h=1000, Pr=0.72, degree=100, tolerance=2e-8
+isothermal_pressure=0.09791648002479883
+isothermal_residual=1.862645e-09
+principal_fold_pressure=0.009135420139773788
+principal_fold_Tw=1.167676484045863
+principal_fold_residual=2.558064e-09
+principal_fold_dTw_dPi=-4.480034e-09
+error_against_PPT=1.046940e-12
+branch_points=105

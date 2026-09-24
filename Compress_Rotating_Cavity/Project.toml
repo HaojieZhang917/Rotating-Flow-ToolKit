@@ -1,0 +1,11 @@
+name = "CompressRotatingCavity"
+uuid = "9cdbf0e6-9a1f-4d8e-8e2e-2e8f8b6f9a31"
+version = "0.1.0"
+
+[deps]
+BSplineKit = "093aae92-e908-43d7-9660-e50ee39d5a0a"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+NonlinearEigenproblems = "067cfa3b-fa88-53b2-a873-5b23b3a16e31"
+NPZ = "15e1cf62-19b3-5cfa-8e77-841668bca605"
+PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
+Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
