@@ -1,0 +1,10 @@
+Traditional Boussinesq principal fold versus Re_h
+Pr=0.72, Chebyshev degree=80
+The fold is the first dTw/dPi=0 point reached from Tw=1.
+
+200.0,no_fold_in_scan,NaN,NaN,9.313225490025338e-10,67,No dTw/dPi sign change down to Pi=-0.05
+500.0,fold_found,1.1664958969264214,0.010461745019026143,1.7269137418890815e-9,35,First tangent sign change from the isothermal state
+750.0,fold_found,1.1651556990983538,0.009923441544214286,9.140559041002222e-10,36,First tangent sign change from the isothermal state
+1000.0,fold_found,1.1676764840461717,0.00913542064047216,7.399041379585469e-10,36,First tangent sign change from the isothermal state
+1500.0,fold_found,1.170916695756283,0.006506224355676823,6.986889218227321e-10,37,First tangent sign change from the isothermal state
+2000.0,fold_found,1.170889606768563,0.004719606167492622,1.2751941724786775e-9,38,First tangent sign change from the isothermal state

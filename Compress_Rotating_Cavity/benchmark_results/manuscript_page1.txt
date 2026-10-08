@@ -1,0 +1,85 @@
+Effects of surface mass flux on the stability and receptivity of the rotor
+boundary layer in a rotor–stator system
+Haojie Zhang 1, 2 and Jianxin Liu 1, 2
+1)Department of Mechanics, Tianjin University, Tianjin 300072, China
+2)National Key Laboratory of V ehicle Power System, Tianjin 300072, China
+(*Corresponding author: shookware@tju.edu.cn)
+(Dated: 13 September 2026)
+ABSTRACT
+Rotor–stator configurations are common in turbomachinery, where rotating boundary layers may undergo instability
+and transition. A local linear framework is developed to determine how surface mass flux modifies the stability and
+receptivity of the rotor boundary layer in a rotor–stator cavity. The rotating core provides an outer flow condition that
+differs from that over an isolated rotating disk. The base flow, convective and absolute instabilities, and receptivity are
+analyzed under injection, zero surface mass flux, and suction. Injection thickens the rotor boundary layer, expands the
+unstable domain of the inviscid Type I mode, and increases its growth rate. At representative conditions, the growth rate
+of the viscous Type II mode is less sensitive to surface mass flux than that of the Type I mode. Contributions from the
+base flow and its gradients largely cancel for the Type II mode. The representative Type I adjoint mode is concentrated
+near the critical layer. The principal Type II peak occurs where the effective shear vanishes. A radially localized
+wall displacement with a specified azimuthal mode number represents stationary roughness or unsteady wall forcing.
+Combining local receptivity with spatial growth gives the downstream disturbance level. The radius of maximum local
+receptivity does not necessarily produce the largest downstream amplitude because the available growth interval also
+matters.
+Keywords: Linear stability, rotor boundary layer, surface mass flux, rotor–stator system, adjoint receptivity
+I. INTRODUCTION
+Rotating disk boundary layers occur in turbomachinery
+and disk cavities, where rotation controls friction, heat trans-
+fer, and fluid transport. They also form a canonical three-
+dimensional boundary layer whose stability is influenced by
+the combined effects of crossflow, rotation, and viscosity.
+V on Kármán obtained the similarity solution for a disk rotat-
+ing beneath otherwise stationary fluid1. Gregory et al. subse-
+quently identified the crossflow instability and related it to the
+spiral vortices observed during transition2. Later experiments
+and reviews established the rotating disk as a model problem
+for studying instability and transition in three-dimensional
+boundary layers3,4.
+The local spectrum of the rotating disk contains several
+spatial branches, of which Type I and Type II are the prin-
+cipal unstable modes considered here. Type I is an inviscid
+crossflow mode associated with an inflectional velocity pro-
+file. Type II has a viscous origin and is influenced by the Cori-
+olis force and streamline curvature2,5,6. Malik determined the
+neutral curve of stationary disturbances, while Hall derived
+the asymptotic structures of the stationary Type I and Type II
+modes5,7. Balakumar and Malik extended the analysis to trav-
+eling disturbances, and Balakumar et al. examined their re-
+ceptivity and nonparallel development8,9. These studies show
+that frequency and azimuthal mode number change both the
+unstable range and the spatial structure of the two modes.
+A rotor–stator cavity introduces a second wall and changes
+the fluid outside the rotor layer. In the Batchelor regime, an
+Ekman-type layer forms on the rotor, a Bödewadt-type layer
+forms on the stator, and a rotating core lies between them10–12.
+The finite core velocity and its radial pressure gradient distin-
+guish the rotor layer from the boundary layer on an isolated
+disk. Combined numerical and theoretical calculations by
+Serre et al. identified separate rotor and stator instability fam-
+ilies, and subsequent experiments and simulations examined
+transition in the confined flow 13–15. These studies show that
+Type II becomes unstable closer to the axis, whereas Type I
+can attain a larger growth rate over part of the rotor layer.
+Global analyses and large eddy simulations have also iden-
+tified sustained cavity modes and examined their control16–18.
+The core flow therefore changes not only the base velocity
+profiles but also the radial interval over which each instability
+can develop.
+Surface mass flux provides another means of modifying ro-
+tating boundary layers. Injection and suction alter the layer
+thickness, wall shear, velocity gradients, and transport normal
+to the wall. Global calculations for an isolated rotating disk
+and local analyses of Bödewadt–Ekman–von Kármán flows
+have shown that mass transfer can shift instability bound-
+aries and change the global response19,20. Because Type I and
+Type II arise from different mechanisms, changes in the base
+velocity and its gradients need not affect them equally. Addi-
+tionally, in a rotor–stator cavity, surface mass flux influences
+core rotation and the radial pressure balance. Addressing the
+combined influence of confinement and mass flux on the two
+rotor modes therefore requires a rotor–stator formulation.
+The radial development of an unstable disturbance involves
+convective, absolute, and global behavior. A convectively
+unstable mode grows while it travels away from its source,
+whereas a locally absolute instability grows at a fixed radius
+in a frozen, parallel flow. Lingwood identified a local abso-
+lute threshold for the rotating disk boundary layer through a
+spatiotemporal analysis and related it to wave packet behavior

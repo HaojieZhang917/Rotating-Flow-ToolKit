@@ -1,0 +1,2156 @@
+Effects of surface mass flux on the stability and receptivity of the rotor
+boundary layer in a rotor–stator system
+Haojie Zhang 1, 2 and Jianxin Liu 1, 2
+1)Department of Mechanics, Tianjin University, Tianjin 300072, China
+2)National Key Laboratory of V ehicle Power System, Tianjin 300072, China
+(*Corresponding author: shookware@tju.edu.cn)
+(Dated: 13 September 2026)
+ABSTRACT
+Rotor–stator configurations are common in turbomachinery, where rotating boundary layers may undergo instability
+and transition. A local linear framework is developed to determine how surface mass flux modifies the stability and
+receptivity of the rotor boundary layer in a rotor–stator cavity. The rotating core provides an outer flow condition that
+differs from that over an isolated rotating disk. The base flow, convective and absolute instabilities, and receptivity are
+analyzed under injection, zero surface mass flux, and suction. Injection thickens the rotor boundary layer, expands the
+unstable domain of the inviscid Type I mode, and increases its growth rate. At representative conditions, the growth rate
+of the viscous Type II mode is less sensitive to surface mass flux than that of the Type I mode. Contributions from the
+base flow and its gradients largely cancel for the Type II mode. The representative Type I adjoint mode is concentrated
+near the critical layer. The principal Type II peak occurs where the effective shear vanishes. A radially localized
+wall displacement with a specified azimuthal mode number represents stationary roughness or unsteady wall forcing.
+Combining local receptivity with spatial growth gives the downstream disturbance level. The radius of maximum local
+receptivity does not necessarily produce the largest downstream amplitude because the available growth interval also
+matters.
+Keywords: Linear stability, rotor boundary layer, surface mass flux, rotor–stator system, adjoint receptivity
+I. INTRODUCTION
+Rotating disk boundary layers occur in turbomachinery
+and disk cavities, where rotation controls friction, heat trans-
+fer, and fluid transport. They also form a canonical three-
+dimensional boundary layer whose stability is influenced by
+the combined effects of crossflow, rotation, and viscosity.
+V on Kármán obtained the similarity solution for a disk rotat-
+ing beneath otherwise stationary fluid1. Gregory et al. subse-
+quently identified the crossflow instability and related it to the
+spiral vortices observed during transition2. Later experiments
+and reviews established the rotating disk as a model problem
+for studying instability and transition in three-dimensional
+boundary layers3,4.
+The local spectrum of the rotating disk contains several
+spatial branches, of which Type I and Type II are the prin-
+cipal unstable modes considered here. Type I is an inviscid
+crossflow mode associated with an inflectional velocity pro-
+file. Type II has a viscous origin and is influenced by the Cori-
+olis force and streamline curvature2,5,6. Malik determined the
+neutral curve of stationary disturbances, while Hall derived
+the asymptotic structures of the stationary Type I and Type II
+modes5,7. Balakumar and Malik extended the analysis to trav-
+eling disturbances, and Balakumar et al. examined their re-
+ceptivity and nonparallel development8,9. These studies show
+that frequency and azimuthal mode number change both the
+unstable range and the spatial structure of the two modes.
+A rotor–stator cavity introduces a second wall and changes
+the fluid outside the rotor layer. In the Batchelor regime, an
+Ekman-type layer forms on the rotor, a Bödewadt-type layer
+forms on the stator, and a rotating core lies between them10–12.
+The finite core velocity and its radial pressure gradient distin-
+guish the rotor layer from the boundary layer on an isolated
+disk. Combined numerical and theoretical calculations by
+Serre et al. identified separate rotor and stator instability fam-
+ilies, and subsequent experiments and simulations examined
+transition in the confined flow 13–15. These studies show that
+Type II becomes unstable closer to the axis, whereas Type I
+can attain a larger growth rate over part of the rotor layer.
+Global analyses and large eddy simulations have also iden-
+tified sustained cavity modes and examined their control16–18.
+The core flow therefore changes not only the base velocity
+profiles but also the radial interval over which each instability
+can develop.
+Surface mass flux provides another means of modifying ro-
+tating boundary layers. Injection and suction alter the layer
+thickness, wall shear, velocity gradients, and transport normal
+to the wall. Global calculations for an isolated rotating disk
+and local analyses of Bödewadt–Ekman–von Kármán flows
+have shown that mass transfer can shift instability bound-
+aries and change the global response19,20. Because Type I and
+Type II arise from different mechanisms, changes in the base
+velocity and its gradients need not affect them equally. Addi-
+tionally, in a rotor–stator cavity, surface mass flux influences
+core rotation and the radial pressure balance. Addressing the
+combined influence of confinement and mass flux on the two
+rotor modes therefore requires a rotor–stator formulation.
+The radial development of an unstable disturbance involves
+convective, absolute, and global behavior. A convectively
+unstable mode grows while it travels away from its source,
+whereas a locally absolute instability grows at a fixed radius
+in a frozen, parallel flow. Lingwood identified a local abso-
+lute threshold for the rotating disk boundary layer through a
+spatiotemporal analysis and related it to wave packet behavior\n2
+in experiments21,22. Analyses that retain radial variation ad-
+dress a complementary question: whether this local behavior
+leads to a sustained response in the radially developing flow.
+Global impulse response calculations by Davies and Carpen-
+ter found a convective response at long times, while Healey
+showed that a nonparallel correction can strengthen part of the
+local absolute branch23,24. Simulations and impulse response
+studies further demonstrated that the global outcome depends
+on the radial domain, disturbance structure, and downstream
+conditions25–27. Recent work on rotor–stator cavities has like-
+wise separated local convective onset, local absolute onset,
+and global instability 28. Taken together, these studies show
+that local and global analyses characterize different aspects
+of instability rather than establishing a single universal con-
+sequence of radial nonparallelism. Lingwood’s locally paral-
+lel, spatiotemporal pinch point method was subsequently ap-
+plied to boundary layers over rotating spheres and cones, to
+the BEK family with surface mass flux, and to rotor–stator
+configurations13,20,29,30. Its use across these related but dis-
+tinct models supports its adoption here as a local diagnostic
+for the frozen radius problem; the resulting threshold is used
+as a reference radius rather than as evidence of a sustained
+global mode.
+Convective instability, local absolute instability, and global
+instability describe different stages of disturbance develop-
+ment. A disturbance introduced near the lower neutral radius
+can first accumulate spatial growth as it travels downstream.
+The frozen local flow may become absolutely unstable at a
+larger radius. A sustained global response also depends on
+radial development and the cavity boundaries. Receptivity
+determines the initial modal amplitude by converting envi-
+ronmental disturbances into instability modes 31. Acoustic or
+vortical fluctuations, distributed roughness, localized surface
+defects, and wall motion can produce different initial ampli-
+tudes even when the modal growth rate is unchanged. The
+downstream disturbance level depends on both the initial am-
+plitude and the accumulated spatial growth. For the same
+growth region, a small initial amplitude remains within the
+linear regime longer. A larger initial amplitude reaches non-
+linear development and secondary instability earlier. This dis-
+tinction is especially important for the rotor layer. Its interval
+between convective onset and the local absolute threshold is
+much longer than that of the stator layer13,15,28.
+Direct numerical simulation (DNS), asymptotic analysis,
+and adjoint methods provide different ways to study recep-
+tivity and disturbance development. DNS solves the Navier–
+Stokes equations with a prescribed disturbance. It can follow
+the response from linear growth to nonlinear saturation and
+transition32. However, the cost of DNS limits broad parameter
+studies. Classical asymptotic analysis and parabolized stabil-
+ity equations reduce the cost for specific disturbance classes.
+They can also retain slow radial development 9,31. Adjoint
+methods provide a complementary linear approach. Once the
+direct and adjoint systems have been solved for a selected
+mode, many prescribed disturbances can be evaluated through
+projection33–35. The full linearized Navier–Stokes problem
+does not need to be solved again for each forcing distribution.
+Adjoint receptivity analysis has recently been applied to
+rotating disk flow. Thomas and Davies formulated the re-
+sponse of stationary crossflow vortices to surface roughness35.
+Thomas then extended the cylindrical adjoint formulation to
+stationary and traveling Type I and Type II disturbances ex-
+cited by momentum and mass sources or wall motion 36. For
+an isolated disk, the Type I response is strongest when forcing
+is concentrated near the critical layer, whereas the Type II re-
+sponse is associated with the region where the effective shear
+vanishes. Together, these studies relate the adjoint structure to
+established characteristics of the two instability modes for an
+isolated disk. Building on this framework, the present study
+extends the receptivity analysis to the rotor layer in a rotor–
+stator system. In this configuration, the rotating core modifies
+the base flow and the instability modes. The downstream dis-
+turbance level is then determined by combining local recep-
+tivity with subsequent spatial growth.
+Surface roughness provides a practical example of this dis-
+tinction. Experiments on an isolated rotating disk connected
+roughness with stationary crossflow vortices, and simulations
+followed their growth, saturation, and breakdown 32,37. In a
+rotor–stator cavity, Du et al. found that roughness first excites
+stationary crossflow vortices and that traveling spiral waves
+become dominant farther downstream 38. These observations
+separate the disturbance pathway into initial excitation, lin-
+ear spatial growth, and later modal interaction or nonlinear
+development. The first two stages require both a local recep-
+tivity coefficient and the spatial growth accumulated from the
+forcing radius. For the confined rotor layer, combining these
+quantities shows how surface mass flux changes the down-
+stream disturbance level.
+This extension is examined with a local linear analysis. The
+base flow calculation first characterizes the changes produced
+in the rotor layer by core rotation and surface mass flux. Tem-
+poral and spatial calculations then determine the growth of
+Type I and Type II, while a local absolute threshold provides a
+downstream reference radius. Direct and adjoint modes quan-
+tify the response to a localized wall displacement, and spa-
+tial integration gives the subsequent disturbance amplitude.
+The same prescribed wall displacement is also applied to the
+von Kármán boundary layer to compare the confined and iso-
+lated configurations. This sequence connects the change in
+the base flow with modal growth, initial excitation, and down-
+stream development.
+The remainder of the paper is organized as follows. Sec-
+tion II presents the base flow model and its principal features.
+Section III describes the convective and absolute instability
+analyses, the adjoint problem, and the receptivity model. Sec-
+tion IV presents the numerical results, and Sec. V summarizes
+the conclusions.
+II. BASE FLOW
+A. Formulation
+Two infinite coaxial disks separated by an incompressible
+fluid are considered. The rotor rotates at the constant angu-
+lar velocity Ω∗ = (0,0, Ω∗), whereas the stator is fixed. The\n3
+cylindrical coordinates are r∗ = (r∗, θ , z∗), and the disk spac-
+ing is h∗. A steady surface mass flux is imposed at the rotor
+through the axial velocity W ∗
+0 and is balanced by radial trans-
+port in the similarity model for infinite disks. Asterisks denote
+dimensional quantities. Rotation generates boundary layers
+on both disks, as shown in Fig. 1. In the stationary frame,
+FIG. 1. Schematic of the rotor–stator configuration. The rotor at
+z∗ = 0 rotates with angular velocity Ω∗, while the stator is fixed at
+z∗ = h∗. Surface mass flux is imposed at the rotor surface.
+the flow is governed by the three-dimensional incompressible
+Navier–Stokes and continuity equations39:
+∂ U∗
+∂t∗ + (U∗ · ∇∗)U∗ = − 1
+ρ ∗ ∇∗ p∗ + ν ∗∇∗2U∗, (1a)
+∇∗ · U∗ = 0. (1b)
+Here, U∗ = (U ∗,V ∗,W ∗) and p∗ denote the dimensional ve-
+locity field and pressure, respectively; ν ∗ and ρ ∗ are the kine-
+matic viscosity and density of the fluid. The dimensional
+boundary conditions at the rotor and stator are
+rotor: U ∗ = 0, V ∗ = r∗Ω∗, W ∗ = −W ∗
+0 , (2a)
+stator: U ∗ = 0, V ∗ = 0, W ∗ = 0. (2b)
+The dimensionless variables are
+r = r∗
+δ ∗ , z = z∗
+h∗ , t = Ω∗t∗,
+U = U∗
+Ω∗δ ∗ , p = p∗
+ρ ∗ν ∗Ω∗ , (3)
+where
+δ ∗ =
+ ν ∗
+Ω∗
+1/2
+, Reh = Ω∗h∗2
+ν ∗ =
+ h∗
+δ ∗
+2
+. (4)
+Because r∗ and z∗ are scaled by different lengths, the dimen-
+sionless gradient operator is
+∇ = δ ∗∇∗ = er
+∂
+∂ r + eθ
+1
+r
+∂
+∂ θ + ez
+1√Reh
+∂
+∂ z . (5)
+Equation (1) then takes the dimensionless form
+∂ U
+∂t + (U · ∇)U = −∇p + ∇2U, (6a)
+∇ · U = 0. (6b)
+The similarity form introduced by von Kármán for the infi-
+nite rotating disk boundary layer 1 and applied by Corral and
+Romera to the rotor–stator system39 is adopted. It reduces the
+three-dimensional equations to ordinary differential equations
+in the coordinate z. The velocity and pressure fields are
+U∗(r∗, z∗) = (Ω∗r∗F(z), Ω∗r∗G(z), (Ω∗δ ∗)H(z)) (7a)
+and
+p∗(r∗, z∗) = ρ ∗ν ∗Ω∗
+
+P(z) + 1
+2 Πr2
+
+, (7b)
+where F(z), G(z), and H(z) are the dimensionless radial, cir-
+cumferential, and axial base flow functions, respectively. In
+the variables of Eq. (3), U = ( rF, rG, H). Substitution of
+Eq. (7) into Eq. (6) yields the following ODE system in z:
+2F + 1
+Re1/2
+h
+∂ H
+∂ z = 0, (8a)
+1
+Reh
+∂ 2F
+∂ z2 − 1
+Re1/2
+h
+∂ F
+∂ z H + (G2 − F2) +Π = 0, (8b)
+1
+Reh
+∂ 2G
+∂ z2 − 1
+Re1/2
+h
+∂ G
+∂ z H − 2FG = 0, (8c)
+∂ P
+∂ z + 1
+Re1/2
+h
+∂ 2H
+∂ z2 − ∂ H
+∂ z H = 0, (8d)
+subject to the boundary conditions
+F = 0, H = −as, G = 1 at z = 0 (rotor),
+F = 0, H = 0, G = 0 at z = 1 (stator ). (9)
+Here, Π denotes the radial pressure gradient coefficient, andas
+is the dimensionless surface mass flux coefficient at the rotor
+surface, defined as
+as = W ∗
+0
+Ω∗δ ∗ . (10)
+For the present incompressible flow, the surface mass flux is
+proportional to W ∗
+0 . Positive as denotes suction, whereas neg-
+ative as denotes injection. Within the similarity formulation,
+radial transport balances the imposed axial flux. Equation (8)
+is solved numerically for different values of Reh and as. The
+Reynolds number based on disk spacing controls the overlap
+between the two wall layers: increasing Reh confines each
+layer more closely to its disk and weakens their direct interac-
+tion.
+The base flow problem is solved using the full similarity
+formulation. The parallel flow approximation is introduced
+only for the subsequent local stability and receptivity analy-
+ses. At a prescribed radius R ≫ 1, radial base flow variation
+is neglected relative to variation in z, and the coefficients are
+evaluated by freezing r at R. This approximation retains the
+local structure in z governing the instability while separating
+it from slow radial development.\n4
+B. Base flow results
+Two comparisons establish the base flow used in the stabil-
+ity analysis. Figure 2 validates the velocity profiles against a
+published similarity solution, and Fig. 3 shows how separa-
+tion of the two wall layers develops as Reh increases. The
+ODE system in Eq. (8) is solved by the shooting method. Fig-
+ure 2 compares the present radial and circumferential veloc-
+ity profiles with the published similarity data of Corral and
+Romera39, verifying the base flow implementation. Figure 3
+shows how the cavity structure changes with Reh at zero sur-
+face mass flux. At low Reh, the rotor and stator layers over-
+lap, and the circumferential velocity varies across most of the
+cavity. As Reh increases, a plateau develops between the lay-
+ers. For Reh > 800, this plateau forms an inviscid core with
+G ≃ 0.313, and direct interaction between the wall layers be-
+comes weak. The computed core velocity is consistent with
+the classical laminar rotor–stator solution 11. To minimize di-
+rect interaction between the rotor and stator boundary lay-
+ers while retaining the rotating-core condition, Reh = 1000 is
+used for the subsequent stability and receptivity calculations.
+The role of the rotating core can also be expressed through
+the radial pressure gradient coefficient Π. In the nearly uni-
+form inviscid core, F ≃ 0 and the derivatives with respect
+to z vanish. The radial momentum equation then reduces
+to G2
+c + Π = 0, where Gc is the core circumferential veloc-
+ity. The present value Gc = 0.313 therefore corresponds to
+Π ≃ −0.098. In the classical von Kármán boundary layer over
+an isolated disk, the fluid outside the boundary layer is sta-
+tionary, so G∞ = 0 and Π = 0. The circumferential velocity
+in the rotor boundary layer consequently connects the rotat-
+ing wall value G(0) = 1 to the nonzero core value Gc, rather
+z
+0 0.2 0.4 0.6 0.8 1­0.2
+0
+0.2
+0.4
+0.6
+0.8
+1
+FIG. 2. Dimensionless radial and circumferential velocity profiles,F
+and G, for a rotor–stator cavity at Reh = 975. Lines show the present
+results, and symbols show the published similarity data of Corral and
+Romera39.
+F
+0 0.2 0.4 0.6 0.8 1­0.2
+0
+0.2G
+0 0.2 0.4 0.6 0.8 10
+0.5
+1
+z
+H
+0 0.2 0.4 0.6 0.8 1­2
+­1.5
+­1
+­0.5
+0
+Reh=400
+Reh=600
+Reh=800
+Reh=1000
+Reh=2000
+FIG. 3. Base flow profilesF, G, and H for Reh = 400,600,800,1000,
+and 2000 at zero surface mass flux (as = 0).
+than to zero as in the von Kármán layer. Core rotation and the
+associated radial pressure balance thus modify the radial and
+circumferential velocity profiles and their gradients in z, even
+after direct interaction between the rotor and stator layers has
+become weak. Figure 4 compares the three velocity compo-
+nents as the imposed surface mass flux changes from injection
+to suction.
+Figure 4 shows the effect of the surface mass flux coeffi-
+cient on the base flow components. Increasing as from injec-
+tion to suction thins the rotor layer. The peaks of F and H
+decrease and move toward the rotor wall, whereas the core
+value of G increases. Surface mass flux therefore changes
+both the local shear layer and the outer flow condition experi-
+enced by the rotor boundary layer. The corresponding changes
+in the velocity gradients and total wall shear are summarized
+in Fig. 5. Figure 5 shows the associated changes in the wall
+gradients and in the shear metric Sw =
+p
+F ′(0)2 + G′(0)2.
+With increasing suction, the azimuthal gradient and total wall
+shear increase, whereas the radial gradient decreases. These
+changes modify the linear stability operator through the base
+flow amplitudes and their gradients inz. They therefore affect
+the modal stability and adjoint receptivity examined below.
+III. STABILITY AND RECEPTIVITY METHODS
+A. Formulation
+The dimensionless Navier–Stokes equations in Eq. (6) are
+linearized about the base flow obtained from Eq. (8). The\n5
+F
+0 0.2 0.4 0.6 0.8 1­0.3
+0
+0.3H
+0 0.2 0.4 0.6 0.8 1­3
+­2
+­1
+0
+as= ­0.4
+as= ­0.2
+as= 0.0
+as= 0.2
+as= 0.4
+G
+0 0.2 0.4 0.6 0.8 10
+0.5
+1
+FIG. 4. Base flow profiles F, G, and H for as = −0.4, −0.2,0,0.2,
+and 0.4 at Reh = 1000. Negative and positive values of as represent
+injection and suction, respectively.
+as
+­0.4 ­0.2 0 0.2 0.410
+20
+30
+dF/dz(0)
+dG/dz(0)
+Sw(0)
+FIG. 5. Gradients ∂ F
+∂ z and ∂ G
+∂ z , together with the shear metric at the
+rotor wall Sw =
+p
+F ′(0)2 + G′(0)2, as functions of as.
+instantaneous variables are written as
+U = U + u′, (11a)
+p = p + p′. (11b)
+Here, U = (rF, rG, H) and p denote the base flow, whereas
+u′ = (u′, v′, w′) and p′ are infinitesimal disturbances. Substi-
+tution into Eq. (6), followed by omission of quadratic distur-
+bance terms, yields the linearized equations. Their component
+form is given in Appendix A.
+Under the parallel flow approximation, the perturbations
+take the form
+φ (r, θ , z,t) = ˆφ (z)exp[i(αr + nθ − ωt)], (12)
+where φ = (u′, v′, w′, p′)T and ˆφ = ( ˆu, ˆv, ˆw, ˆp)T . For spatial
+analysis, α ∈ C is the radial wavenumber and ω ∈ R is the
+frequency. The real frequency used in the spatial calculations
+below is also reported as the reduced frequency ¯ω = Rω, or
+equivalently ω = ¯ω/R at fixed R. The integer n = β R is
+the azimuthal mode number, where β is the real azimuthal
+wavenumber. A spatial mode grows downstream whenαi < 0.
+For temporal analysis, α and β are real, ω ∈ C, and tempo-
+ral growth is measured by ωi = Im ω. In both formulations,
+ˆu = ˆv = ˆw = 0 at z = 0,1, and no explicit boundary condition
+is applied to ˆp.
+After neglecting terms of O(R−2), the linearized equations
+can be written in the compact form
+Γ ∂ φ
+∂t + A ∂ φ
+∂ r + B ∂ φ
+∂ θ +C ∂ φ
+∂ z + Dφ +Vxx
+∂ 2φ
+∂ r2 +Vyy
+∂ 2φ
+∂ θ2
++Vzz
+∂ 2φ
+∂ z2 +Vxy
+∂ 2φ
+∂ r∂ θ +Vxz
+∂ 2φ
+∂ r∂ z +Vyz
+∂ 2φ
+∂ θ ∂z = 0,
+(13)
+where the coefficient matrices are given in Appendix B.
+The normal mode representation gives the spatial polynomial
+eigenvalue problem
+(L0 + L1α + L2α2) ˆφ = 0. (14)
+The operators L0, L1, and L2 contain the base flow fields
+and their derivatives. When α and β are real, the temporal
+eigenvalue problem is
+H0 ˆφ = ωH1 ˆφ . (15)
+The imaginary part ωi is the temporal growth rate at the fixed
+radius R.
+B. Absolute instability
+Local absolute instability is identified using the Briggs
+pinch point criterion 40. In the parallel flow problem, the im-
+pulse response is represented by the Green function
+Gimp(r,t) = 1
+2π
+Z
+F
+Z
+L
+exp[i(αr − ωt)]
+D(α, ω; R) dω dα, (16)
+where D(α, ω; R) = 0 is the local dispersion relation. The
+contours F and L lie in the complex frequency and wavenum-
+ber planes. Local absolute instability requires a pinch be-
+tween spatial branches that originate in opposite halves of\n6
+the complex α plane and coalesce at a saddle point satisfy-
+ing ∂ ω/∂ α = 0 and ωi > 0. The saddle point condition alone
+is insufficient; the branch origins must also satisfy the Briggs
+continuation criterion. The resulting threshold separates the
+locally convective and locally absolute responses in the paral-
+lel flow description. It also serves as a downstream reference
+radius for evaluating the spatial growth accumulated by dis-
+turbances introduced upstream.
+C. Adjoint linear stability
+The adjoint system projects wall forcing onto individual in-
+stability modes. Following the standard approach for bound-
+ary layer stability and receptivity 33–35, the adjoint perturba-
+tions take the form
+ϕ(r, θ , z,t) = ˆϕ(z)exp(i( ˜αr + ˜nθ − ˜ωt)), (17)
+where ˜α, ˜n, and ˜ω are the adjoint radial wavenumber, az-
+imuthal mode number, and frequency, respectively.
+ˆϕ(z) = ( ˜u(z), ˜v(z), ˜w(z), ˜p(z))T . (18)
+Because the disturbance fields are complex valued, the local
+Hermitian L2 inner product is used:
+⟨A, B⟩H =
+Z 1
+0
+AH (z)B(z) dz, (19)
+where H denotes the Hermitian transpose. The components
+are expressed in the orthonormal cylindrical basis (er, eθ , ez).
+Since the local analysis fixes r = R, the cylindrical volume
+factor is constant in z and is omitted from the inner product.
+Applying Eq. (19) to Eq. (14) and integrating by parts gives
+⟨ ˆϕ, (L0 + L1α + L2α2) ˆφ ⟩H
+= ⟨(L †
+0 + L †
+1 α + L †
+2 α2) ˆϕ, ˆφ ⟩H + B, (20)
+where L †
+j denotes the formal Hermitian adjoint. These op-
+erators and the boundary concomitant B are given in Ap-
+pendix C. The adjoint system is
+(L †
+0 + L †
+1 ˜α + L †
+2 ˜α2) ˆϕ = 0, (21)
+subject to ˜u = ˜v = ˜w = 0 at z = 0,1. For an adjoint mode
+paired with a direct spatial eigenvalue α, the adjoint spectral
+parameter is ˜α = α.
+The z direction is discretized by Chebyshev collocation,
+with z = ( ξ + 1)/2 mapping ξ ∈ [−1,1] to z ∈ [0,1]. The
+local calculations use N = 199 (Nz = N + 1 = 200 collocation
+points), whereas the downstream calculation reported below
+uses N = 99 (Nz = 100). Table I confirms convergence at both
+resolutions. The discrete Hermitian inner product is
+⟨A, B⟩H,h = AH MhB, (22)
+where
+Mh = I4 ⊗ diag
+1
+2 wCC
+0 , . . . ,1
+2 wCC
+N
+
+. (23)
+Here, wCC
+j are the Clenshaw–Curtis quadrature weights41, and
+1/2 is the mapping Jacobian. After the boundary conditions
+are imposed, the same constrained degrees of freedom are re-
+moved from Mh.
+A weighted Hermitian product can instead be defined using
+a positive-definite matrix W, giving L †
+j,W = W −1L H
+j W 42–44.
+Under a consistent change of metric, the adjoint field, forcing
+projection, and normalization factor transform together. The
+direct eigenvalues and modal coefficient therefore remain un-
+changed. The adjoint profiles reported below use the local L2
+metric in Eq. (19).
+Grid convergence is verified for a representative unstable
+Type I mode at as = 0, Reh = 2000, R = 330, β = 0.0503,
+and ¯ω = 8. Table I lists the direct eigenvalue and the relative
+difference εNz = |αNz − α300|/|α300|, with the Nz = 300 result
+as the reference. At Nz = 200, εNz = 4.68 × 10−9, confirming
+that the resolution used in this study is sufficient.
+TABLE I. Grid convergence of the direct Type I eigenvalue. Here,
+Nz is the total number of Chebyshev collocation points and εNz is
+evaluated relative to the Nz = 300 result.
+Nz αr αi εNz
+60 0.457887656 −0.013765941 1 .63 × 10−4
+80 0.457945226 −0.013718732 2 .82 × 10−8
+100 0.457945245 −0.013718722 1 .90 × 10−8
+150 0.457945237 −0.013718727 3 .40 × 10−9
+200 0.457945240 −0.013718728 4 .68 × 10−9
+300 0.457945238 −0.013718727 –
+D. Normalization
+The direct and adjoint modes are normalized by maxz | ˆv| =
+1 and max z | ˜u| = 1, respectively, providing a consistent basis
+for comparing their shapes. Rescaling the adjoint eigenfunc-
+tion multiplies both Bw and Q by the same factor and there-
+fore leaves Cr unchanged.
+E. Biorthogonal projection of discrete modes
+Direct and adjoint eigenfunctions associated with iso-
+lated spatial eigenvalues are paired through a biorthogonal
+relation35,45.
+Let αn and ˆφn denote a direct spatial eigenpair, and let ˜αm
+and ˆϕm denote an adjoint eigenpair. The direct and adjoint
+equations yield the following biorthogonal relation; interme-
+diate steps are given in Appendix D:
+(
+˜αm ̸= αn, ⟨ ˆϕ ˜αm, [L1 + (αn + ˜αm)L2] ˆφαn⟩H = 0,
+˜αm = αn, ⟨ ˆϕ ˜αm, (L1 + 2αnL2) ˆφαn⟩H = Q, (24)\n7
+where
+Q =
+
+ ˆϕαn, P ′(αn) ˆφαn
+
+H , P ′(αn) = L1 + 2αnL2,
+(25)
+is the normalization factor for the isolated eigenvalue αn.
+F. Receptivity model
+The receptivity formulation follows the adjoint methods in
+Refs.35,36. Prescribed wall velocity perturbations uw(r, θ , z,t)
+are considered. In the calculations below, these wall velocities
+are generated by a radially localized wall displacement. At
+zero frequency, the displacement represents stationary rough-
+ness. At nonzero frequency, it represents local wall mo-
+tion. Under the parallel flow approximation, the disturbance is
+transformed to (α, n, ω) space, giving homogeneous stability
+equations with inhomogeneous boundary conditions,
+(L0 + L1α + L2α2) ˆφ = 0, (26)
+ˆu = ˆuw, ˆv = ˆvw, ˆw = ˆww, at z = 0, (27)
+ˆu = ˆv = ˆw = 0 at z = 1. (28)
+At fixed n and ω, a general linear disturbance can be rep-
+resented by contributions from the continuous and discrete
+spectra45,46,
+q(r, z; n, ω) = ∑
+j
+Z ∞
+0
+C j(k) ˆφα j(k)(z, k)exp[iα j(k)r], dk
++∑
+m
+Cm ˆφαm(z)exp(iαmr). (29)
+The first term represents the continuous spectrum, and the sec-
+ond represents isolated discrete modes. The present recep-
+tivity coefficient Cr is defined for one isolated discrete pole.
+It therefore measures the amplitude of the selected instabil-
+ity mode excited by the prescribed forcing rather than the to-
+tal disturbance response, which also includes the continuous
+spectrum.
+In the complex α plane, the discrete mode contribution is
+associated with the isolated pole at α = αn. Projection onto
+the paired adjoint mode and evaluation of the residue give
+(Appendix D)
+Cr = −i Bw
+Q . (30)
+Here, Bw is the boundary forcing projection defined in
+Eq. (C3). Throughout this study, Cr is termed the local re-
+ceptivity coefficient. For prescribed wall forcing and a se-
+lected normalized discrete mode, it gives the modal amplitude
+generated at the forcing location. The external forcing en-
+ters through Bw, while Q provides the direct–adjoint normal-
+ization. Thus, Cr characterizes the initial modal excitation,
+whereas the subsequent spatial growth is governed by −αi.
+The coefficientCr(R f ) is the local amplitude of the normal-
+ized instability mode excited by wall forcing centered at R f .
+Its downstream evolution along the same spatial branch is de-
+scribed by the locally parallel eN approximation36,
+N(R; R f ) = −
+Z R
+R f
+αi(ξ ) dξ . (31)
+The corresponding complex modal amplitude and its magni-
+tude are
+A(R; R f ) = Cr(R f )exp
+
+i
+Z R
+R f
+α(ξ ) dξ
+
+, (32)
+|A(R; R f )| = |Cr(R f )|exp[N(R; R f )], (33)
+so that A(R f ; R f ) = Cr(R f ). The eigenvalue α(R) is followed
+by continuation along the same branch, and Eq. (31) is in-
+tegrated by the trapezoidal rule. Thus, Cr(R f ) specifies the
+locally excited amplitude, whereas A(R; R f ) includes the sub-
+sequent linear spatial growth.
+The Hermitian adjoint implementation satisfies the eigen-
+value relation ˜α = α to numerical precision. For external
+validation, Fig. 6 compares local receptivity coefficients Cr
+for the von Kármán boundary layer with results reported by
+Thomas36. The two sets of coefficients agree closely.
+R
+Cr
+300 350 400 450 500 550 600
+0.05
+0.075
+0.1
+0.125
+0.15
+n=30
+n=40
+n=50
+n=60
+FIG. 6. Comparison of the local receptivity coefficient Cr for the
+von Kármán boundary layer induced by stationary wall roughness.
+Lines denote the present results, and symbols denote the reference
+results of Thomas. For this validation, the present coefficients are
+rescaled to the Fourier convention used by Thomas.
+IV. RESULTS AND DISCUSSION
+The first result examines whether the neutral boundary has
+converged after the rotor and stator layers become separated.
+Figure 7 compares the stationary neutral curves over the se-
+lected range of Reh. Figure 7 shows stationary neutral curves
+(αi = 0 and ωr = 0) for different Reh. At low Reh, overlap\n8
+R
+200 250 300 350 400 450 500
+0
+0.05
+0.1
+0.15
+0.2
+Reh=200
+Reh=300
+Reh=400
+Reh=500
+Reh=600
+Reh=700
+Reh>800
+FIG. 7. Neutral curves of the stationary mode for as = 0 at different
+Reh.
+between the rotor and stator layers changes the neutral bound-
+ary. As the layers separate, the curves converge and become
+nearly unchanged for Reh > 800. Direct interaction between
+the two wall layers therefore has little effect on local stability
+in this range, supporting the use of Reh = 1000 below.
+A. Mode identification
+Because the local eigenvalue problem spans the full cav-
+ity, its spectrum contains modes associated with both stator
+and rotor layers. Their localization in z distinguishes the rotor
+and stator families before rotor stability and receptivity are
+examined. Figure 8 compares representative velocity eigen-
+functions concentrated near the rotor and stator and provides
+the basis for separating the two mode families.
+z0 0.2 0.4 0.6 0.8 10
+0.5
+1
+z0 0.2 0.4 0.6 0.8 10
+0.5
+1
+FIG. 8. Velocity eigenfunctions localized in the rotor boundary layer
+(top) and stator boundary layer (bottom) foras = 0, n = 16, R = 160,
+and ω = 0.05.
+At as = 0, n = 16, R = 160, and ω = 0.05, Fig. 8 gives
+the eigenvalues 0.174 + 0.608i and 0.342 − 0.175i for modes
+localized near the rotor and stator, respectively. The first is
+concentrated near the rotor at z = 0, whereas the second is
+concentrated near the stator at z = 1. The two mode families
+can therefore be identified by their spatial support rather than
+by the eigenvalue alone.
+Both families arise from the spatial eigenvalue problem in
+Eq. (14). Table II compares the stator onset parameters with
+previous results. The relative differences in the critical radius
+are 1.05% for convective instability and 0.82% for local abso-
+lute instability, providing a quantitative check of the predicted
+onset locations. The convective onset and local absolute insta-
+bility threshold of the stator layer occur at similar radii, leav-
+ing only a short radial interval in which disturbances can grow
+spatially before the local absolute threshold is reached. By
+contrast, the rotor branch remains convectively unstable over
+a much longer radial interval. This interval allows the initial
+excitation of rotor disturbances and their subsequent spatial
+growth to be examined together. In addition, the surface mass
+flux is imposed directly at the rotor and changes both the rotor
+shear layer and the rotating core that forms its outer flow. The
+remaining analysis therefore focuses on how these base flow
+changes affect the growth, local receptivity, and downstream
+development of Type I and Type II disturbances in the rotor
+boundary layer.
+TABLE II. Critical parameters for convective and local absolute in-
+stability of the stator boundary layer. The present LST results are
+compared with literature data. Values in parentheses denote local ab-
+solute instability results. The last row gives the relative difference in
+Rc between the present and Serre results.
+Authors Rc β α r ωr
+Itoh47 48.1(–) -0.007(–) 0.265(–) 0.020(–)
+Serre13 47.5(48.5) -0.004(-0.0316) 0.296(0.190) 0.018(-0.028)
+Present 47.0(48.1) -0.009(-0.0362) 0.281(0.177) 0.020(-0.031)
+Error (%) 1.05(0.82) – – –
+B. Convective stability
+Convective instability is characterized with complementary
+temporal and spatial eigenvalue problems. In the temporal
+formulation, α and β are real and ω j = ωr, j +iωi, j is complex;
+ωi, j > 0 denotes temporal growth. In the spatial formulation,
+ω and β are real and α j = αr, j + iαi, j is complex. The normal
+mode factor exp [i(α jr + nθ − ωt)] gives a radial amplitude
+proportional to exp(−αi, jr), so −αi, j > 0 denotes downstream
+spatial growth. At neutral stability, ωi = 0 in the temporal
+formulation and αi = 0 in the spatial formulation describe the
+same real neutral state. The two formulations therefore share
+one Zarf curve for each value ofas, while ωi and −αi quantify
+the temporal growth rate and spatial growth rate away from
+this common boundary. For fixedas, let ω j(α, β; R, as) denote\n9
+the local temporal eigenvalues for realα and β. The projected
+unstable domain can be written as
+U (as) =
+
+(R, β ) : ∃ α ∈ R, ∃ j, ωi, j(α, β; R, as) > 0
+	
+.
+(34)
+The Zarf curve is the boundary Z (as) = ∂(R,β )U (as) ob-
+tained by projecting the neutral set onto the (R, β ) plane. The
+temporal condition ωi, j = 0 and the spatial condition αi, j = 0
+give the same boundary because both eigenvalues are real at
+neutral stability. Each point inside the boundary admits an un-
+stable mode. Because the projection forms an envelope over
+the real frequency or radial wavenumber and the eigenvalue
+branches, a Zarf curve delineates the overall unstable domain
+rather than a single frequency or wavenumber. Figure 9 shows
+that every domain contains the inviscid Type I and viscous
+Type II branches. As in other Bödewadt–Ekman–von Kár-
+mán boundary layers, the Type II mode becomes unstable at a
+smaller radius and occupies a broader domain. At zero surface
+mass flux, the Zarf curve agrees with Serre et al.13.
+R
+0 100 200 300 400 500­0.4
+­0.2
+0
+0.2
+0.4
+as= ­0.4
+as= ­0.2
+as= 0.2
+as= 0.4
+as= 0.0
+Type  Mode
+Type  Mode
+FIG. 9. Zarf curves for different surface mass flux coefficientsas. For
+each value of as, the temporal and spatial neutral conditions define
+the same curve. The Type I and Type II branches are identified in the
+figure.
+Surface mass flux shifts the two branches by different
+amounts. Injection ( as < 0) thickens the rotor layer; over the
+computed range, the Type I critical radius decreases and its
+unstable domain expands. Suction ( as > 0) thins the layer,
+while the Type I critical radius increases and its unstable do-
+main contracts. The Type II branch shifts more gradually.
+This contrast is quantified by the eigenvalue sensitivity at
+first order. For the temporal problem in Eq. (15), the sensitiv-
+ity to as is
+dω
+das
+= ˆϕ H (∂ H0/∂ as) ˆφ
+ˆϕ H H1 ˆφ , (35)
+where ˆφ and ˆϕ are the direct and adjoint modes, respectively,
+and H denotes the Hermitian transpose. The derivation is
+given in Appendix E. The operator derivative is separated
+into a base flow contribution Sb, associated with changes in
+F, G, and H, and a gradient contribution Sg, associated with
+changes in F ′, G′, and H′. Because the temporal growth rate is
+ωi = Im(ω), the corresponding contributions to its sensitivity
+are
+Sb,i = Im(Sb), Sg,i = Im(Sg), dωi
+das
+= Sb,i + Sg,i.
+(36)
+Here and throughout, the subscript i denotes the imaginary
+part rather than a mode index.
+Table III compares the two modes at six representative op-
+erating points for as = 0 and Reh = 1000. For each mode,
+point C is its neutral critical point, point M is an interior point
+on its temporal maximum-growth ridge, and point R is the
+ridge point at the common radius R = 350. The small resid-
+ual values of ωi at points C are within the numerical tolerance
+and are treated as neutral. Each mode retains its own locally
+optimal (α, β ) at the common radius. In evaluating Eq. (35),
+R, α, and β are held fixed while as is varied. The calculations
+use N = 199 and a centered difference withδ as = 0.01 for the
+operator derivative and the independent direct check.
+The sign structure is unchanged across all six points: Sb,i >
+0, Sg,i < 0, and d ωi/das < 0. For Type I, the magnitude of
+the net sensitivity remains in the narrow range 1.104 × 10−2–
+1.280 × 10−2. For Type II, it decreases from 1 .794 × 10−3
+at criticality to 1 .955 × 10−4 at R = 350 because the base
+flow and gradient contributions approach equal magnitudes
+and cancel increasingly strongly. At the two critical points,
+the Type II sensitivity is about 14% of the Type I value; at
+the common radius R = 350, the ratio is 1.77%. The sampled
+neutral, interior, and common radius conditions therefore con-
+sistently show a weaker net Type II response, associated with
+stronger cancellation between the base flow and gradient con-
+tributions. This difference is also present in the neutral bound-
+aries and growth rate fields described below. At every point,
+the adjoint total agrees with the centered direct finite differ-
+ence to a relative error below 4.5 × 10−5.
+The corresponding changes in modal onset are summarized
+by the critical radii in Table IV and Fig. 10. The reference
+symbols in Fig. 10 denote the values reported by Serre et al.13.
+The shifts in the neutral boundaries and critical radii are
+accompanied by changes in the wall-normal mode structure.
+Figure 11 compares the direct eigenfunctions of Type I and
+Type II at three values of as.
+The values ofR, n, and ¯ω are fixed for each mode in Fig. 11.
+Injection moves the principal peaks away from the rotor and
+broadens the profiles, whereas suction moves them toward the
+rotor and narrows the profiles. This behavior is consistent with
+the accompanying base flow change: injection carries fluid
+away from the disk and increases the boundary layer thick-
+ness, whereas suction draws fluid toward the disk, reduces the
+thickness, and moves the principal shear region closer to the
+wall. Surface mass flux therefore changes both the location
+and width of the mode shapes.
+The eigenfunctions describe the wall-normal structure at\n10
+TABLE III. Temporal growth-rate sensitivity toas at six representative points forReh = 1000 and as = 0. Points C, M, and R denote the neutral
+critical point, an interior point on the temporal maximum-growth ridge, and the ridge point at the common radius R = 350, respectively. The
+calculations use N = 199 and δ as = 0.01, with R, α, and β fixed during differentiation.
+Mode Point R α β ω r ωi Sb,i Sg,i dωi/das
+Type I C 283.21 0.403 0.0824 5 .7294 × 10−3 4.8885 × 10−5 7.2201 × 10−3 −2.0018 × 10−2 −1.2798 × 10−2
+M 310.00 0.405 0.0800 7 .0091 × 10−3 1.0414 × 10−3 7.1403 × 10−3 −1.8829 × 10−2 −1.1689 × 10−2
+R 350.00 0.395 0.0850 4 .2450 × 10−3 2.2361 × 10−3 6.6237 × 10−3 −1.7665 × 10−2 −1.1042 × 10−2
+Type II C 91.08 0.256 −0.1135 1 .0131 × 10−1 1.2701 × 10−6 4.8153 × 10−3 −6.6092 × 10−3 −1.7940 × 10−3
+M 200.00 0.215 −0.0500 5 .8372 × 10−2 2.1081 × 10−3 3.5810 × 10−3 −4.2197 × 10−3 −6.3878 × 10−4
+R 350.00 0.185 −0.0250 4 .0171 × 10−2 2.4873 × 10−3 2.6735 × 10−3 −2.8690 × 10−3 −1.9555 × 10−4
+as
+Rc
+­0.4 ­0.2 0 0.2 0.40
+100
+200
+300
+400
+500
+Type 
+Type 
+Type ­Serre
+Type ­Serre
+FIG. 10. Critical radius Rc of the Type I and Type II modes as a
+function of the surface mass flux coefficient as. Symbols denote the
+reference values reported by Serre et al.
+z0 0.1 0.2 0.3 0.4 0.50
+0.5
+1
+|u|
+|v|
+|w|
+Components
+z0 0.1 0.2 0.3 0.4 0.50
+0.5
+1
+|u|
+|v|
+|w|
+Components
+as=0.0
+as=­0.4
+as=0.4
+Mass Flux(b)
+as=0.0
+as=­0.4
+as=0.4
+Mass Flux(a)
+FIG. 11. Magnitudes of the normalized direct velocity eigenfunc-
+tions for as = −0.4, 0, and 0.4: (a) Type I mode at R = 330, n = 16,
+and ¯ω = 8.0; (b) Type II mode atR = 100, n = −7, and ¯ω = 8.0. All
+eigenfunctions are normalized by maxz | ˆv| = 1.
+TABLE IV . Critical parameters of the Type I and Type II modes for
+different surface mass flux coefficientsas. Values in parentheses cor-
+respond to the Type II mode.
+as Rc β α r ωr
+-0.4 187.55(83.10) 0.0935(-0.0959) 0.359(0.211) 0.0053(0.0931)
+-0.2 228.41(84.96) 0.0860(-0.1064) 0.380(0.239) 0.0091(0.1006)
+0.0 283.21(91.08) 0.0824(-0.1135) 0.403(0.256) 0.0057(0.1013)
+0.2 353.16(102.23) 0.0802(-0.1129) 0.439(0.251) 0.0072(0.0951)
+0.4 453.06(121.75) 0.0726(-0.1216) 0.474(0.294) 0.0087(0.0907)
+selected operating points. To characterize the full temporal
+unstable domains, the growth-rate isosurface for a prescribed
+value γ ≥ 0 is defined as
+Sγ (as) =
+
+(R, α, β ) : α, β ∈ R, ∃ j,
+ωi, j(α, β; R, as) = γ
+	
+.
+Thus, Sγ is an isosurface of ωi in (R, α, β ) space. The case
+γ = 0 gives the temporal neutral surface, whereasγ > 0 identi-
+fies disturbances with the prescribed positive temporal growth
+rate. The real frequency ωr, j varies along each surface and is
+represented by the color scale in Fig. 12. In the base case,
+Type II occupies a broader range ofR and β and has a smaller
+critical radius than Type I, whereas Type I reaches a larger
+temporal growth rate. The Type I surface is concentrated
+around stationary disturbances and those with weakly negative
+frequencies, ωr ≲ 0, while the Type II surface is mainly asso-
+ciated with traveling disturbances at positive frequencies. The
+second row of Fig. 12 shows that injection expands the Type I
+unstable region and broadens its frequency distribution, par-
+ticularly on the negative-frequency side, while changing the
+Type II surface only slightly. The third row shows that suc-
+tion narrows both unstable regions and reduces their growth
+rates. Injection thickens the rotor boundary layer, whereas
+suction thins it. These trends are consistent with the accom-
+panying changes in the inflectional crossflow profile and with
+the stronger variation of Type I with as.
+For the spatial problem, let α j(ω, β; R, as) denote a spatial
+eigenvalue at real ω and β. Its local spatial growth rate is
+gs, j(ω, β; R, as) = −Im α j(ω, β; R, as).\n11
+FIG. 12. Temporal growth rate isosurfaces Sγ (as) in (R, α, β ) space. The rows correspond to (a–c) as = 0.0 (base case), (d–f) as = −0.2
+(injection), and (g–i) as = 0.2 (suction); the columns correspond toγ = ωi = 0, 0.001, and 0.002, respectively. Color denotes the real frequency
+ωr.
+At each (R, β ) ∈ U (as), the spatial distribution in Fig. 13 is
+the maximum spatial growth rate over the sampled real fre-
+quencies on the unstable branches,
+Gs(R, β; as) = max
+ω∈Ωu, j
+gs, j(ω, β; R, as),
+where Ωu(R, β; as) denotes this set of real frequency samples.
+This construction assigns one maximum spatial growth rate to
+each point inside the Zarf curve.
+Figure 13 compares the spatial growth rate distributions for
+three representative surface mass flux coefficients. For each
+of the three values of as shown, Type II becomes unstable
+at a smaller radius and occupies broader ranges of R and β.
+Its spatial growth rate remains comparatively low, however,
+whereas Type I begins farther downstream and reaches larger
+spatial growth rates in the outer part of the domain. At as =
+0.2 and R = 500, for example, the maximum spatial growth
+rates of Type I and Type II are approximately 5 .31 × 10−2
+and 2.73 × 10−2, respectively. Type II therefore has a wider
+unstable range, whereas Type I has a larger spatial growth rate
+farther downstream.
+The contrast between the two modes also clarifies the ef-
+fect of surface mass flux. Injection shifts the Type I unstable
+region toward smaller R and substantially increases its spa-
+tial growth rate, while suction moves this region outward and
+reduces the spatial growth rate. The onset, extent, and spa-
+tial growth rate of Type II change more gradually with as.
+This trend is qualitatively consistent with the weaker tempo-
+ral growth-rate sensitivity identified above. In the receptivity\n12
+FIG. 13. Spatial growth rate distributions of the Type I and Type II modes for three representative surface mass flux coefficients. From left
+to right: (a) as = 0.2 (suction), (b) as = 0.0 (zero surface mass flux), and (c) as = −0.2 (injection). Color denotes Gs, the maximum spatial
+growth rate −αi over the sampled real frequencies.
+analysis presented later, a prescribed forcing frequency and
+azimuthal mode number select an individual spatial branch;
+its local growth rate−αi(R) is integrated in Eq. (31) and com-
+bined with Cr in Eq. (32) to determine the downstream distur-
+bance amplitude.
+C. Absolute instability
+The spatial growth rates above characterize disturbances
+that develop while propagating in the radial direction. Their
+behavior at a fixed radius is determined by the spatiotem-
+poral branch structure of the same local dispersion relation.
+Local absolute instability begins when two spatial branches
+originating in opposite halves of the complex α plane form a
+Briggs pinch point with ωi > 0. Following this pinch point
+as R increases identifies the radius at which the local response
+changes from convective to absolute instability.
+Over the parameter range considered, the qualifying pinch
+point is formed by branches associated with Type I. Its critical
+radius defines the downstream boundary of the locally convec-
+tive region. Figure 14 and Table V present the resulting neu-
+tral curves and critical parameters as as is varied. Figure 14
+TABLE V . Critical parameters for the onset of local absolute insta-
+bility associated with the Type I mode for different surface mass flux
+coefficients as.
+as Rc β α ω r
+-0.4 362.0 0.1595 0 .226 − 0.131i -0.0318
+-0.2 452.0 0.1445 0 .234 − 0.137i -0.0251
+0.0 570.0 0.1520 0 .251 − 0.141i -0.0264
+0.2 732.0 0.1550 0 .270 − 0.148i -0.0254
+0.4 962.0 0.1525 0 .289 − 0.159i -0.0220
+and Table V show how surface mass flux shifts this threshold.
+R
+200 400 600 800
+0
+0.1
+0.2
+0.3
+0.4
+as=­0.4
+as=­0.2
+as=0.0
+as=0.2
+FIG. 14. Local absolute instability neutral curves associated with the
+Type I mode for different surface mass flux coefficientsas.
+Injection expands the local absolute instability region and de-
+creases the critical radius from Rc = 570 at as = 0 to 452 at
+as = −0.2 and 362 at as = −0.4. Suction narrows the region
+and moves the threshold outward to Rc = 732 at as = 0.2 and
+962 at as = 0.4. This trend is consistent with the Type I con-
+vective response and with the accompanying changes in the
+inflectional crossflow profile.
+At zero surface mass flux, the convective critical radii of the
+rotor and von Kármán boundary layers are close,Rc ≈ 283 and
+285, respectively. Their local absolute instability thresholds
+differ more clearly: Rc = 570 for the rotor layer and approxi-
+mately 507 for the isolated disk 21. The comparison therefore
+shows similar convective onset radii for the two configura-
+tions but a clearer difference in their local absolute thresholds,
+which are associated with downstream Type I branch interac-
+tion. Whether this local response becomes a sustained mode\n13
+of the full cavity depends on how the flow changes with radius
+and on the domain boundaries.
+D. Response to external forcing
+1. Linear and adjoint eigenfunctions
+Having established the unstable modes and their growth
+rates, their excitation by a localized wall disturbance is ex-
+amined next. Section III F defines the local coefficient that
+projects prescribed wall forcing onto a selected instability
+mode. The direct and adjoint structures are considered first
+because their overlap with the boundary forcing determines
+the initial amplitude of the excited mode.
+Direct and adjoint eigenfunctions at zero surface mass flux
+are examined first. Figure 15 provides the neutral domains
+used to select representative Type I and Type II modes. As the
+reduced frequency ¯ω increases, the Type I domain narrows,
+whereas the Type II domain expands. Figures 16 and 17 com-
+FIG. 15. Neutral curves at different values of the reduced frequency
+¯ω for the base case as = 0.0.
+pare the direct and adjoint velocity profiles of representative
+Type I and Type II modes and mark the critical layer and the
+location where the effective shear vanishes.
+Figure 16 shows normalized direct and adjoint fields for
+the unstable Type I mode at R = 330, n = 16, and ¯ω = 8.0.
+The direct eigenvalue is α = 0.458 − 0.0137i, and the paired
+adjoint value is ˜α = α. In the direct mode, ˆv is the largest ve-
+locity component; in the adjoint mode, ˜u is the largest. Under
+the local L2 metric, this componentwise comparison describes
+the structure of the normalized adjoint mode.
+The dashed line in Fig. 16 marks the critical layer, where
+αrF + β G = ω and the relative disturbance frequency van-
+ishes. The direct mode develops strong gradients in this re-
+gion, and the Type I adjoint field is concentrated nearby. This
+z0 0.1 0.2 0.30
+0.5
+1
+z0 0.1 0.2 0.30
+0.5
+1
+FIG. 16. Magnitudes of the direct (top) and adjoint (bottom) eigen-
+functions of the Type I mode for as = 0, R = 330, n = 16, and
+¯ω = 8. The vertical dashed line marks the critical layer, where
+αrF + β G = ω.
+z0 0.1 0.2 0.30
+0.5
+1
+z0 0.1 0.2 0.30
+0.5
+1
+FIG. 17. Magnitudes of the direct (top) and adjoint (bottom) eigen-
+functions of the neutral Type II mode for as = 0, R = 100, n = −7,
+and ¯ω = 8. The vertical dashed line marks the location where the
+effective shear vanishes, αrF ′ + β G′ = 0.
+structure is consistent with the inviscid crossflow mechanism
+and with adjoint modes reported for the von Kármán 36 and
+Blasius33 boundary layers.
+Figure 17 shows direct and adjoint fields for the neutral
+Type II mode at R = 100, n = −7, and ¯ω = 8.0. In this case,
+α = ˜α = 0.272. As for Type I, ˆv is the largest direct velocity
+component and ˜u is the largest adjoint velocity component.
+The principal adjoint peak occurs near αrF ′ + β G′ = 0. At
+this location, αrF + β G reaches an extremum and the effec-
+tive shear changes sign. A weaker second peak occurs near
+the critical layer.
+The adjoint modes are therefore concentrated in different
+regions across the layer. The Type I structure is centered near
+the critical layer, whereas the principal Type II peak occurs
+where the effective shear vanishes. The weaker Type II peak
+near the critical layer shows that the spatial supports of the
+two modes partially overlap. The following subsection quan-
+tifies modal excitation by prescribed wall forcing through the\n14
+boundary projection Bw and local coefficient Cr.
+2. Local receptivity coefficient induced by localized wall
+forcing
+For a prescribed wall disturbance, Cr measures the initial
+amplitude of a normalized instability mode excited by the
+boundary forcing. Following Thomas 36, a localized wall dis-
+placement is used to represent stationary roughness at zero
+frequency and local wall motion at nonzero frequency. For
+small roughness elements, a Taylor expansion projects the
+no-slip condition from the displaced surface to the nominal
+smooth wall and gives an inhomogeneous velocity boundary
+condition. Tempelmann et al. 48 compared this linear repre-
+sentation with simulations resolving the roughness geometry
+and reported close agreement for the small roughness heights
+considered in their study. The present formulation is there-
+fore restricted to small-amplitude displacements and excludes
+finite-height and nonlinear effects. The linear Taylor expan-
+sion gives the wall velocities in physical space,
+uw = −F ′(0)h, vw = −G′(0)h, ww = ∂ h
+∂t , (37)
+where the nondimensional displacement normal to the wall is
+h = ˆh(r)exp(i(nθ − ωt)),
+ˆh(r) = 1
+Reh
+exp
+ −(r − r f )2
+2c2
+
+. (38)
+The Gaussian envelope ˆh is centered at r = r f , has a peak
+displacement of 1 /Reh, and has width parameter c. The az-
+imuthal mode number and frequency are n and ω, respec-
+tively. All results below use c2 = 1 unless stated otherwise.
+The following Fourier transform pair is used:
+Fs[ f ](α) =
+Z ∞
+−∞
+f (s)exp(−iαs)ds, (39)
+f (s) = 1
+2π
+Z ∞
+−∞
+Fs[ f ](α)exp(iαs)dα, (40)
+where s = r − r f . The spectrum of the Gaussian displacement
+is therefore
+Fs[ˆh](α) =
+√
+2πc
+Reh
+exp
+
+− c2α2
+2
+
+(41)
+= 1
+Reh
+r π
+ls
+exp
+
+− α2
+4ls
+
+, ls = 1
+2c2 . (42)
+For the reference forcing, c = 1 and ls = 0.5. The spectral
+factor cexp(−c2α2/2) shows that modal excitation depends
+on the match between the forcing width and the modal ra-
+dial wavenumber. Holding c fixed provides a common forcing
+spectrum for all comparisons rather than an optimized profile
+for each mode or radius. Equation (37) is then transformed to
+(α, n, ω) space.
+The local radial coordinate is s = r − r f , so each Gaussian
+displacement is centered at s = 0. For local curves of Cr(R),
+the forcing center is set to r f = R in each calculation, giving
+the same peak wall displacement at every radius. In the down-
+stream calculation, the forcing center R f is fixed, whereas
+R denotes the downstream radius at which the spatial mode
+is evaluated. For ω = 0, the prescribed displacement repre-
+sents stationary wall roughness. The biorthogonal relation in
+Eq. (24) and the residue expression in Eq. (30) then yield the
+local receptivity coefficients for the selected instability modes.
+Figure 18 compares the local coefficient and subsequent
+spatial growth in the rotor and isolated disk boundary layers
+under the same prescribed stationary wall displacement.
+R
+Cr
+250 300 350 400 450 500 550 6000
+0.1
+0.2
+0.3
+0.4
+von Kármán
+Rotor
+(a)
+R
+|A(R,Rf )|
+250 300 350 400 450 500 550 60010
+­2
+10
+­1
+10
+0
+10
+1
+10
+2
+10
+3
+von Kármán
+Rotor
+(b)
+FIG. 18. Comparison of the von Kármán and rotor boundary layers
+at zero surface mass flux for stationary roughness with ¯ω = 0, n =
+30, and c = 1. (a) Local receptivity coefficient |Cr(R)| when the
+forcing is centered at each radial position. (b) Downstream amplitude
+|A(R; Rl)| for disturbances introduced at the respective lower neutral
+radii.
+Figure 18 compares the rotor and von Kármán boundary
+layers under the same prescribed stationary wall displace-
+ment. In Fig. 18(a), the forcing is centered at each evaluation
+radius. The isolated disk coefficient reaches a broad maxi-
+mum of approximately 0.27 near R ≈ 510, whereas the rotor
+coefficient reaches approximately 0.24 near R ≈ 470. Their
+peak magnitudes are similar, but the rotor maximum occurs at
+a smaller radius.
+The two configurations differ in their outer flow conditions.
+The isolated disk approaches stationary fluid withG∞ = 0 and
+Π = 0, whereas the rotor layer is bounded by a rotating core
+with Gc = 0.313 and Π ≃ −0.098. These differences modify
+both the stability operator and the boundary forcing projec-
+tion. Accordingly, the comparison shows differences in the
+radius of the strongest local receptivity response and in the
+subsequent spatial growth rather than a uniform increase or
+decrease in receptivity.
+Figure 18(b) follows disturbances introduced at the lower
+neutral point of each boundary layer. For the rotor layer,
+Rl = 287.822 and |A(Rl; Rl)| = 0.1436; for the von Kármán
+layer, Rl = 313.044 and the initial amplitude is 0.1902. The
+curves cross near R = 318.18 and 416.11. The rotor distur-
+bance is larger between these positions, but the isolated disk
+disturbance subsequently grows faster and reaches approxi-
+mately 417.57 at R = 500, compared with 8.52 for the rotor
+layer. Downstream disturbance levels thus reflect both local
+excitation and the spatial growth rate.\n15
+The corresponding rotor-layer parameter sweep is shown in
+Fig. 19.
+The comparison above quantifies the difference between
+the confined rotor and isolated disk configurations for one sta-
+tionary wall displacement. The rotor boundary layer alone is
+considered next, and the variation of its local receptivity with
+surface mass flux, reduced frequency, and azimuthal mode
+number is examined. Figure 19 maps the combined effects
+of these parameters on |Cr|. The forcing is centered at each
+evaluation radius. The middle column gives the zero surface
+mass flux reference forn = 30, 40, 50, and 60 at ¯ω = 0, 4, and
+8; the corresponding neutral domains are shown in Fig. 15.
+Under stationary forcing [Fig. 19(b)], then = 30 coefficient
+increases rapidly, peaks near R ≈ 470, and then decreases.
+The n = 40 curve has a lower peak near R ≈ 520, whereas
+the n = 50 and 60 coefficients continue to increase over the
+calculated interval. Increasing the reduced frequency lowers
+these peaks and shifts the strongest radial variation outward.
+At ¯ω = 8 [Fig. 19(h)], all four coefficients vary only gradu-
+ally with R. Among the reduced frequencies considered, sta-
+tionary roughness therefore gives the largest local receptivity
+response, with the largest coefficient occurring for n = 30 in
+the reference case.
+The three columns show how surface mass flux modifies
+this reduced-frequency and mode-number dependence. Under
+stationary forcing, injection increases |Cr|, raises the n = 40
+peak to approximately 0.29, and shifts the n = 30 maximum
+inward to R ≈ 390 [Fig. 19(a)]. Suction reduces the n = 30
+peak to below 0.20, weakens the differences among n = 30,
+40, and 50, and shifts the high-coefficient region of the higher
+mode numbers outward [Fig. 19(c)]. The nonzero-frequency
+rows retain the same overall contrast, although their coeffi-
+cients are lower. Surface mass flux therefore changes both
+the magnitude of local modal excitation and the radial range
+over which each reduced-frequency and mode-number com-
+bination produces a large receptivity coefficient.
+The local receptivity trends do not by themselves determine
+downstream disturbance levels. Figure 20 therefore compares
+|Cr| with the spatial growth rate for three disturbances and
+marks the lower neutral point of each case.
+At the lower neutral points marked by the circles, −αi = 0
+and |Cr| is below its largest value farther downstream. As R
+increases from these points,−αi becomes positive and the dis-
+turbances begin to grow. Over the same radial range, |Cr| can
+also increase. Moving the forcing downstream can therefore
+give a larger initial coefficient, but it leaves a shorter interval
+for spatial growth.
+The case ( ¯ω, n) = (0,30) shows this difference clearly. Its
+lower neutral point is Rl = 287.822. The spatial growth rate
+rises to its highest value atRg = 372.989. It then decreases but
+remains positive. The coefficient |Cr| continues to increase
+until Rp = 468.910. Forcing at Rp gives the largest initial co-
+efficient, but it misses the spatial growth from Rl to Rp.
+The two quantities have different roles. The coefficient|Cr|
+gives the initial amplitude produced by wall forcing, whereas
+−αi gives the local spatial growth rate. Figure 21 combines
+them for (as, Reh, ¯ω, n) = ( 0,1000,0,30). The forcing ra-
+dius R f is sampled from Rl to 500, primarily at intervals of
+∆R f = 25; the exact characteristic positions Rg and Rp are
+also included. Each disturbance is then followed to the local
+Type I absolute instability thresholdRabs = 570. The N-factor
+measures the accumulated spatial growth from R f , while the
+overall amplitude A combines this growth with the initial co-
+efficient Cr(R f ).
+At the three characteristic forcing positions Rl, Rg, and Rp,
+the endpoint N-factors are 4.336, 2.545, and 0.426, respec-
+tively. The corresponding values of |A(570; R f )| are 10.973,
+2.471, and 0.374. Thus, the disturbance introduced at the
+neutral point gives the largest N-factor and amplitude, the
+maximum-growth position gives the second largest values,
+and the maximum-receptivity position gives the smallest val-
+ues among the three. This ordering occurs even though |Cr|
+increases from 0.1436 at Rl to its maximum of 0.2444 at Rp.
+The additional black curves show that this result is not re-
+stricted to the three characteristic positions. Across the sam-
+pled forcing locations, both N(570; R f ) and |A(570; R f )| de-
+crease monotonically as R f increases; at R f = 500, they have
+fallen to 0.253 and 0.206, respectively. The longer spatial
+growth interval available to upstream forcing therefore out-
+weighs the downstream increase in local receptivity. Equiv-
+alently, the lower neutral point produces the largest endpoint
+amplitude among the sampled forcing locations. Neither the
+local receptivity coefficient nor the local spatial growth rate
+alone determines the downstream response; the initial excita-
+tion and accumulated spatial growth must be considered to-
+gether through A and the N-factor.
+V. CONCLUSIONS
+This study connects confinement, surface mass flux, modal
+instability, and receptivity in the rotor boundary layer of a
+rotor–stator cavity. The base flow is resolved across the full
+gap, after which local temporal, spatial, and absolute instabil-
+ity analyses identify the unstable modes. Adjoint projection
+quantifies their excitation by localized wall displacement, and
+spatial integration follows the resulting disturbances down-
+stream. This sequence links the modification of the base flow
+to modal growth, local forcing, and downstream disturbance
+development.
+The rotating core is the principal distinction from an iso-
+lated disk. At Reh = 1000, the rotor and stator layers are
+separated by a core with Gc = 0.313 and Π ≃ −0.098. As
+Reh increases, the two wall layers become nearly indepen-
+dent for Reh > 800, while the rotating core remains the outer
+flow condition for the rotor layer. This condition modifies the
+rotor velocity profiles and gradients in z. Surface mass flux
+changes both the core and rotor layer: injection thickens the
+layer, whereas suction thins it and increases total wall shear.
+The associated changes in F ′, G′, and Sw modify the linear
+stability operator. They therefore affect modal stability and
+receptivity.
+The two modes respond differently to these base flow
+changes. The temporal neutral domains contain both the in-
+viscid Type I and viscous Type II branches. Type II becomes
+unstable at a smaller radius and occupies a broader radial do-\n16
+Cr
+250 300 350 400 450 500 550 6000
+0.1
+0.2
+0.3
+(a)
+Cr
+250 300 350 400 450 500 550 6000
+0.1
+0.2
+0.3
+n=30
+(g)
+Cr
+250 300 350 400 450 500 550 6000
+0.1
+0.2
+0.3
+(d)
+n=40 n=60n=50
+Cr
+250 300 350 400 450 500 550 6000
+0.1
+0.2
+0.3
+(b)
+Cr
+250 300 350 400 450 500 550 6000
+0.1
+0.2
+0.3
+(e)
+R
+Cr
+250 300 350 400 450 500 550 6000
+0.1
+0.2
+0.3
+n=60
+(h)
+n=40 n=50n=30
+Cr
+250 300 350 400 450 500 550 6000
+0.1
+0.2
+0.3
+(f)
+Cr
+250 300 350 400 450 500 550 6000
+0.1
+0.2
+0.3
+(c)
+Cr
+250 300 350 400 450 500 550 6000
+0.1
+0.2
+0.3
+n=30
+(i)
+n=60n=50
+R
+n=40
+FIG. 19. Local receptivity coefficients |Cr| of the rotor boundary layer for azimuthal mode numbers n = 30, 40, 50, and 60. Columns
+correspond to as = −0.2, 0, and 0.2 (injection, zero surface mass flux, and suction), and rows correspond to the reduced frequencies ¯ω = 0, 4,
+and 8.
+R
+Cr
+250 300 350 400 450 500 550 600
+­0.1 ­0.1
+0 0
+0.1 0.1
+0.2 0.2
+0.3 0.3
+0.4 0.4
+(0.0,30)
+(0.0,40)
+(4.0,30)
+­ai
+FIG. 20. Spatial growth rate −αi (dashed lines) and local receptivity
+coefficient |Cr| (solid lines). The legend gives ( ¯ω, n), and the circles
+mark the lower neutral points.
+main, whereas Type I reaches larger temporal growth rates and
+responds more strongly to surface mass flux. Across the six
+representative points at as = 0, the magnitude of the Type I
+net temporal sensitivity of the growth rate remains between
+1.104 × 10−2 and 1 .280 × 10−2. For Type II, it decreases
+from 1.794 × 10−3 at criticality to 1 .955 × 10−4 at R = 350.
+At all six points, the contributions from the base flow and its
+gradients have opposite signs. Their stronger cancellation for
+Type II accounts for its weaker net response: the Type II sen-
+sitivity is about 14% of the Type I value at the two critical
+points and 1.77% at the common radius R = 350. The eigen-
+function distributions show that injection broadens both mode
+shapes and moves their principal peaks away from the rotor,
+while suction produces the opposite trend.
+R
+|A(R;Rf )|
+250 300 350 400 450 500 550 60010
+­1
+10
+0
+10
+1
+10
+2
+(b)
+R
+N(R;Rf )
+250 300 350 400 450 500 550 6000
+2
+4
+6
+(a)
+FIG. 21. Downstream evolution of disturbances generated by
+stationary roughness centered at different forcing radii R f for
+(as, Reh, ¯ω, n) = (0,1000,0,30). The red, blue, and magenta curves
+start at the lower neutral point Rl, the maximum-growth position Rg,
+and the maximum-receptivity position Rp, respectively. The black
+curves denote the additional forcing positions sampled primarily at
+intervals of ∆R f = 25 up to R f = 500. All curves end at the local
+Type I absolute instability threshold Rabs = 570. (a) N-factor. (b)
+Overall amplitude on a logarithmic scale.
+The spatial growth rate maps distinguish the radial extent of
+instability from the magnitude of the growth rate. Type II be-
+comes unstable at a smaller radius and occupies a wider unsta-
+ble range, whereas Type I reaches larger spatial growth rates
+farther downstream. At as = 0.2 and R = 500, the maximum
+spatial growth rates of Type I and Type II are approximately
+5.31 ×10−2 and 2.73 ×10−2, respectively. Injection shifts the
+Type I unstable region inward and increases its spatial growth
+rate, while Type II changes more gradually. The local absolute
+instability is associated with a Type I branch pinch. Its criti-
+cal radius moves from Rc = 362 at as = −0.4 to Rc = 962 at
+as = 0.4, showing that injection expands and suction contracts
+the local absolute instability region.\n17
+For the representative conditions examined, the adjoint
+fields have distinct structures across the layer. The Type I
+adjoint mode is concentrated near the critical layer, whereas
+the principal Type II peak occurs where the effective shear
+vanishes. Under the same prescribed stationary wall displace-
+ment, the isolated disk and rotor layers have similar peak lo-
+cal receptivity coefficients, but the rotor maximum occurs at
+a smaller radius. Surface mass flux also changes the radial
+range and magnitude of the local receptivity response: injec-
+tion increases the coefficients and shifts the largest response
+inward, whereas suction reduces the peak response and shifts
+the region of high coefficients for the higher mode numbers
+outward.
+The downstream results distinguish local excitation from
+subsequent spatial growth. Under the same prescribed sta-
+tionary wall displacement introduced at their respective lower
+neutral radii, the disturbance over the isolated disk eventually
+grows faster than that in the rotor layer despite the similar
+peak local receptivity coefficients. Within the rotor layer, the
+refined forcing location scan shows that both N(570; R f ) and
+|A(570; R f )| decrease monotonically across the sampled forc-
+ing radii from the lower neutral point toR f = 500. Among the
+three characteristic positions, forcing at Rl, Rg, and Rp gives
+endpoint amplitudes of 10.973, 2.471, and 0.374, respectively.
+The neutral point forcing therefore gives the largest endpoint
+amplitude over the sampled locations, even though it has the
+smallest initial receptivity coefficient of the three. Its longer
+spatial growth interval outweighs the larger local excitation
+available farther downstream. The ordering at these three po-
+sitions is consistent with the monotonic trend across all sam-
+pled forcing radii and shows that the strongest local receptiv-
+ity and the largest downstream disturbance need not occur at
+the same radius.
+The combined results show that disturbance development
+depends on both modal growth and local receptivity. Sur-
+face mass flux changes the base flow, shifts unstable domains,
+alters the projection of wall forcing onto each mode, and
+changes the radial interval available for spatial growth. Within
+the present local linear framework, these effects describe how
+injection, suction, and rotor–stator confinement affect the dis-
+turbance response of the rotor boundary layer. The resulting
+framework provides a consistent basis for distinguishing local
+modal excitation from the downstream spatial growth of the
+forced response.
+AUTHOR DECLARATIONS
+Conflict of Interest
+The authors have no conflicts to disclose.
+Author Contributions
+Haojie Zhang : Conceptualization; Methodology; Soft-
+ware; Validation; Formal analysis; Investigation; Visualiza-
+tion; Writing – original draft.
+Jianxin Liu : Supervision; Conceptualization; Methodol-
+ogy; Writing – review and editing.
+DATA AVAILABILITY STATEMENT
+The data that support the findings of this study are available
+from the corresponding author upon reasonable request.
+Appendix A: COMPONENT FORM OF THE LINEAR
+STABILITY EQUATIONS
+The component equations obtained after linearization are
+∂ u′
+∂t + F ∂ u′
+∂ r + F
+R u′ + G
+R
+∂ u′
+∂ θ + H
+R√Reh
+∂ u′
+∂ z + 1√Reh
+∂ F
+∂ z w′
+−2G
+R v′ = − ∂ p′
+∂ r + 1
+R
+
+∇2u′ − u′
+R2 − 2
+R2
+∂ v′
+∂ θ
+
+.
+∂ v′
+∂t + F ∂ v′
+∂ r + F
+R v′ + G
+R
+∂ v′
+∂ θ + H
+R√Reh
+∂ v′
+∂ z + 1√Reh
+∂ G
+∂ z w′
++2G
+R u′ = − 1
+R
+∂ p′
+∂ θ + 1
+R
+
+∇2v′ − v′
+R2 + 2
+R2
+∂ u′
+∂ θ
+
+.
+∂ w′
+∂t + F ∂ w′
+∂ r + F
+R w′ + G
+R
+∂ w′
+∂ θ + H
+R√Reh
+∂ w′
+∂ z
++ 1
+R√Reh
+∂ H
+∂ z w′ = − ∂ p′
+∂ z + 1
+R ∇2w′.
+∂ u′
+∂ r + u′
+R + 1
+R
+∂ v′
+∂ θ + 1√Reh
+∂ w′
+∂ z = 0.
+Here,
+∇2 = ∂ 2
+∂ r2 + 1
+r
+∂
+∂ r + 1
+r2
+∂ 2
+∂ θ2 + 1
+Reh
+∂ 2
+∂ z2 .
+After the normal mode form is introduced and terms of
+O(R−2) are neglected, these equations become
+i(αF + β G − ω) ˆu + F ′
+√Reh
+ˆw + H
+R√Reh
+ˆuz − 2G
+R ˆv
+= −iα ˆp + 1
+R
+ ˆuzz
+Reh
+− (α2 + β 2) ˆu − F ˆu
+
+.
+i(αF + β G − ω) ˆv + G′
+√Reh
+ˆw + H
+R√Reh
+ˆvz + 2G
+R ˆu
+= −iβ ˆp + 1
+R
+ ˆvzz
+Reh
+− (α2 + β 2) ˆv − F ˆv
+
+.
+i(αF + β G − ω) ˆw + H′
+R√Reh
+ˆw + H
+R√Reh
+ˆwz
+= − ˆpz + 1
+R
+ ˆwzz
+Reh
+− (α2 + β 2) ˆw − F ˆw
+
+.\n18
+
+iα + 1
+R
+
+ˆu + iβ ˆv + ˆwz√Reh
+= 0.
+Here, primes and the subscript z denote derivatives with re-
+spect to z.
+Appendix B: NONZERO ELEMENTS OF THE OPERATORS
+IN Eq. (13)
+Γ11 = 1, Γ22 = 1, Γ33 = 1
+A11 = F, A14 = 1, A22 = F, A33 = F, A41 = 1
+B11 = G
+R , B22 = G
+R , B24 = 1
+R , B33 = G
+R , B42 = 1
+R
+C11 = 1
+Re1/2
+h
+H
+R , C22 = 1
+Re1/2
+h
+H
+R , C33 = 1
+Re1/2
+h
+H
+R ,
+C34 = 1
+Re1/2
+h
+, C43 = 1
+Re1/2
+h
+D11 = F
+R , D12 = −2G
+R ,
+D13 = 1
+Re1/2
+h
+∂ F
+∂ z , D21 = 2G
+R .
+D22 = F
+R , D23 = 1
+Re1/2
+h
+∂ G
+∂ z ,
+D33 = 1
+RRe1/2
+h
+∂ H
+∂ z , D41 = 1
+R .
+V 11
+xx = − 1
+R , V 22
+xx = − 1
+R , V 33
+xx = − 1
+R
+V 11
+yy = − 1
+R3 , V 22
+yy = − 1
+R3 , V 33
+yy = − 1
+R3
+V 11
+zz = − 1
+R
+1
+Reh
+, V 22
+zz = − 1
+R
+1
+Reh
+, V 33
+zz = − 1
+R
+1
+Reh
+Appendix C: OPERATORS OF THE DIRECT AND
+ADJOINT SYSTEMS
+The direct linear stability equations can be written as
+(L0 + L1α + L2α2) ˆφ = 0,
+where
+L0 = D + inB − iωΓ − n2Vyy + (C + inVyz) ∂
+∂ z +Vzz
+∂ 2
+∂ z2 ,
+L1 = iA − nVxy + iVxz
+∂
+∂ z ,
+L2 = −Vxx,
+The adjoint linear stability equations are
+(L †
+0 + L †
+1 ˜α + L †
+2 ˜α2) ˆϕ = 0,
+where
+L †
+0 = DH − inBH + iωΓ H − n2V H
+yy − ∂ (CH − inV H
+yz )
+∂ z
++ ∂ 2V H
+zz
+∂ z2 − (CH − inV H
+yz − 2 ∂V H
+zz
+∂ z ) ∂
+∂ z +V H
+zz
+∂ 2
+∂ z2 ,
+L †
+1 = −iAH − nV H
+xy + i ∂V H
+xz
+∂ z + iV H
+xz
+∂
+∂ z ,
+L †
+2 = −V H
+xx .
+The boundary concomitant B arises from integration by parts.
+For prescribed wall forcing, its nonzero contribution is the
+boundary forcing projection
+Bw = 1
+R√Reh
+ ∂ ˜u∗
+∂ z ˆuw + ∂ ˜v∗
+∂ z ˆvw
+
+z=0
+. (C3)
+Here, the superscript ∗ denotes complex conjugation, tildes
+denote adjoint variables, and ˆuw and ˆvw are the transformed
+wall velocities in Eq. (26).
+Appendix D: BIORTHOGONAL AND RESIDUE
+DERIVATIONS
+For a direct eigenpair (αn, ˆφn) and an adjoint eigenpair
+( ˜αm, ˆϕm),
+
+ ˆϕm, (L0 + L1αn + L2α2
+n ) ˆφn
+
+H = 0.
+The adjoint equation gives
+D
+(L †
+0 + L †
+1 ˜αm + L †
+2 ˜α2
+m) ˆϕm, ˆφn
+E
+H
+=
+D
+ˆϕm, (L0 + L1 ˜αm + L2 ˜αm
+2) ˆφn
+E
+H
+= 0.
+Subtracting the two relations yields
+(αn − ˜αm)
+
+ ˆϕm, [L1 + (αn + ˜αm)L2] ˆφn
+
+H = 0.
+For the isolated pole at α = αn, projection onto the paired
+adjoint mode gives
+Cr exp(iαnr) = 1
+2πQ
+Z ∞
+−∞
+− Bw
+α − αn
+exp(iαr) dα.
+Evaluation of the residue gives Eq. (30).\n19
+Appendix E: EIGENVALUE SENSITIVITY TO SURFACE
+MASS FLUX
+The temporal stability problem has the generalized form
+H0(as) ˆφ = ωH1 ˆφ .
+The corresponding adjoint eigenvector satisfies
+ˆϕ H H0 = ω ˆϕ H H1.
+Here, H denotes the Hermitian transpose. Differentiating the
+direct problem with respect to as gives
+∂ H0
+∂ as
+ˆφ + H0
+∂ ˆφ
+∂ as
+= dω
+das
+H1 ˆφ + ω ∂ H1
+∂ as
+ˆφ + ωH1
+∂ ˆφ
+∂ as
+.
+Multiplication by ˆϕ H eliminates the terms containing
+∂ ˆφ /∂ as. The general sensitivity result is
+dω
+das
+=
+ˆϕ H
+ ∂ H0
+∂ as
+− ω ∂ H1
+∂ as
+
+ˆφ
+ˆϕ H H1 ˆφ .
+In the present temporal problem,H1 is independent ofas. The
+expression therefore reduces to Eq. (35), the standard adjoint
+eigenvalue sensitivity formula34,49,50.
+Surface mass flux changes H0 through the base flow pro-
+files. Its derivative is separated into
+∂ H0
+∂ as
+=
+ ∂ H0
+∂ as
+
+b
++
+ ∂ H0
+∂ as
+
+g
+,
+where the first term contains changes in F, G, and H, and the
+second contains changes in F ′, G′, and H′. Accordingly,
+dω
+das
+= Sb + Sg,
+with
+Sk = ˆϕ H (∂ H0/∂ as)k ˆφ
+ˆϕ H H1 ˆφ ,
+k ∈ {b, g}.
+The imaginary parts of these quantities give the contributions
+to the temporal growth-rate sensitivity. The matrix deriva-
+tives are evaluated by a centered difference about as = 0 with
+δ as = 0.01. Their sum reconstructs the derivative of the com-
+plete operator with relative error below 4× 10−12 over the six
+operating points. For all operating points reported in Table III,
+the total sensitivity is also checked by solving the direct prob-
+lem at as = ±δ as.
+REFERENCES
+1T. von Kármán, “Über laminare und turbulente Reibung,” Z. Angew. Math.
+Mech. 1, 233–252 (1921).
+2N. Gregory, J. T. Stuart, and W. S. Walker, “On the stability of three-
+dimensional boundary layers with application to the flow due to a rotating
+disk,” Philos. Trans. R. Soc. London, Ser. A248, 155–199 (1955).
+3P. H. Alfredsson, K. Kato, and R. J. Lingwood, “Flows over rotating disks
+and cones,” Annu. Rev. Fluid Mech.56, 45–68 (2024).
+4R. J. Lingwood and P. H. Alfredsson, “Instabilities of the von Kármán
+boundary layer,” Appl. Mech. Rev.67, 030803 (2015).
+5P. Hall, “An asymptotic investigation of the stationary modes of instability
+of the boundary layer on a rotating disc,” Proc. R. Soc. London, Ser. A406,
+93–106 (1986).
+6R. J. Lingwood, “Absolute instability of the Ekman layer and related rotat-
+ing flows,” J. Fluid Mech.331, 405–428 (1997).
+7M. R. Malik, “The neutral curve for stationary disturbances in rotating-disk
+flow,” J. Fluid Mech.164, 275–287 (1986).
+8P. Balakumar and M. R. Malik, “Traveling disturbances in rotating-disk
+flow,” Theor. Comput. Fluid Dyn.2, 125–137 (1990).
+9P. Balakumar, M. R. Malik, and P. Hall, “On the receptivity and nonparallel
+stability of traveling disturbances in rotating-disk flow,” Theor. Comput.
+Fluid Dyn. 3, 125–140 (1991).
+10G. K. Batchelor, “Note on a class of solutions of the Navier–Stokes equa-
+tions representing steady rotationally-symmetric flow,” Q. J. Mech. Appl.
+Math. 4, 29–41 (1951).
+11B. Launder, S. Poncet, and E. Serre, “Laminar, transitional, and turbulent
+flows in rotor–stator cavities,” Annu. Rev. Fluid Mech.42, 229–248 (2010).
+12D. Martinand, E. Serre, and B. Viaud, “Instabilities and routes to turbulence
+in rotating disc boundary layers and cavities,” Philos. Trans. R. Soc. A381,
+20220135 (2023).
+13E. Serre, E. Tuliszka-Sznitko, and P. Bontoux, “Coupled numerical and
+theoretical study of the flow transition between a rotating and a stationary
+disk,” Phys. Fluids 16, 688–706 (2004).
+14E. Yim, J.-M. Chomaz, D. Martinand, and E. Serre, “Transition to turbu-
+lence in the rotating disk boundary layer of a rotor–stator cavity,” J. Fluid
+Mech. 848, 631–647 (2018).
+15Y . Xie, Q. Du, L. Xie, Z. Wang, and S. Li, “Onset of turbulence in rotor–
+stator cavity flows,” J. Fluid Mech.991, A3 (2024).
+16M. Queguineur, T. Bridel-Bertomeu, L. Y . M. Gicquel, and G. Staffelbach,
+“Local and global stability analysis of an academic rotor/stator cavity,” in
+Proceedings of ASME Turbo Expo 2018: Turbomachinery Technical Con-
+ference and Exposition (2018) p. V02AT45A001.
+17M. Queguineur, T. Bridel-Bertomeu, L. Y . M. Gicquel, and G. Staffelbach,
+“Large eddy simulations and global stability analyses of an annular and
+cylindrical rotor/stator cavity limit cycles,” Phys. Fluids31, 104109 (2019).
+18M. Queguineur, L. Y . M. Gicquel, and G. Staffelbach, “Stability and con-
+trol of an annular rotor/stator cavity limit cycle,” Phys. Fluids 32, 084101
+(2020).
+19C. Thomas and C. Davies, “The effects of mass transfer on the global sta-
+bility of the rotating-disk boundary layer,” J. Fluid Mech. 663, 401–433
+(2010).
+20R. J. Lingwood and S. J. Garrett, “The effects of surface mass flux on the in-
+stability of the BEK system of rotating boundary-layer flows,” Eur. J. Mech.
+B/Fluids 30, 299–310 (2011).
+21R. J. Lingwood, “Absolute instability of the boundary layer on a rotating
+disk,” J. Fluid Mech. 299, 17–33 (1995).
+22R. J. Lingwood, “An experimental study of absolute instability of the
+rotating-disk boundary-layer flow,” J. Fluid Mech.314, 373–405 (1996).
+23C. Davies and P. W. Carpenter, “Global behaviour corresponding to the
+absolute instability of the rotating-disc boundary layer,” J. Fluid Mech.486,
+287–329 (2003).
+24J. J. Healey, “On the relation between the viscous and inviscid absolute
+instabilities of the rotating-disk boundary layer,” J. Fluid Mech. 511, 179–
+199 (2004).
+25E. Appelquist, P. Schlatter, P. H. Alfredsson, and R. J. Lingwood, “Global
+linear instability of the rotating-disk flow investigated through simulations,”
+J. Fluid Mech. 765, 612–631 (2015).
+26E. Appelquist, P. Schlatter, P. H. Alfredsson, and R. J. Lingwood, “On the
+global nonlinear instability of the rotating-disk flow over a finite domain,”
+J. Fluid Mech. 803, 332–355 (2016).
+27C. Thomas and C. Davies, “On the impulse response and global instability
+development of the infinite rotating-disc boundary layer,” J. Fluid Mech.
+857, 239–269 (2018).\n20
+28Y . Xie, Z. Zhu, L. Xie, R. Wang, S. Li, G. Zhang, Q. Du, and J. Zhu, “Local
+and global instability of the rotating-disk boundary layer of a rotor–stator
+cavity,” J. Fluid Mech.1021, A35 (2025).
+29S. J. Garrett and N. Peake, “The stability and transition of the boundary
+layer on a rotating sphere,” J. Fluid Mech. 456, 199–218 (2002).
+30S. J. Garrett and N. Peake, “The absolute instability of the boundary layer
+on a rotating cone,” Eur. J. Mech. B/Fluids26, 344–353 (2007).
+31W. S. Saric, H. L. Reed, and E. J. Kerschen, “Boundary-layer receptivity
+to freestream disturbances,” Annu. Rev. Fluid Mech.34, 291–319 (2002).
+32E. Appelquist, P. Schlatter, P. H. Alfredsson, and R. J. Lingwood, “Transi-
+tion to turbulence in the rotating-disk boundary-layer flow with stationary
+vortices,” J. Fluid Mech. 836, 43–71 (2018).
+33D. C. Hill, “Adjoint systems and their role in the receptivity problem for
+boundary layers,” J. Fluid Mech. 292, 183–204 (1995).
+34P. Luchini and A. Bottaro, “Adjoint equations in stability analysis,” Annu.
+Rev. Fluid Mech. 46, 493–517 (2014).
+35C. Thomas and C. Davies, “An adjoint approach for computing the recep-
+tivity of the rotating disc boundary layer to surface roughness,” J. Fluid
+Mech. 926, A16 (2021).
+36C. Thomas, “Receptivity of the rotating disk boundary layer to traveling
+disturbances,” Phys. Fluids 36, 014117 (2024).
+37S. Imayama, P. H. Alfredsson, and R. J. Lingwood, “Experimental study of
+rotating-disk boundary-layer flow with surface roughness,” J. Fluid Mech.
+786, 5–28 (2016).
+38Q. Du, Y . Xie, L. Xie, R. Wang, Q. Xu, and J. Zhu, “Instability character-
+istics induced by roughness elements in the rotating-disk boundary layer of
+a rotor–stator cavity,” Phys. Rev. Fluids10, 013901 (2025).
+39R. Corral and D. Romera, “On the transient behaviour of a laminar rotor–
+stator cavity,” J. Fluid Mech.857, 508–538 (2018).
+40R. J. Briggs, Electron-stream interaction with plasmas (The MIT Press,
+Cambridge, MA, 1964) pp. 1–187.
+41C. W. Clenshaw and A. R. Curtis, “A method for numerical integration on
+an automatic computer,” Numer. Math.2, 197–205 (1960).
+42Q. Wang and T. A. Zaki, “Domain of dependence for wall-pressure mea-
+surements in high-speed boundary layers,” J. Fluid Mech. 1009, A67
+(2025).
+43H. Ke, Z. You, and Q. Wang, “Preconditioned adjoint data assimi-
+lation for two-dimensional decaying and forced turbulence,” (2026),
+arXiv:2602.14016.
+44B. Protas, T. R. Bewley, and G. Hagen, “A computational framework for
+the regularization of adjoint analysis in multiscale PDE systems,” J. Com-
+put. Phys. 195, 49–89 (2004).
+45A. Tumin, “Receptivity of compressible boundary layers to three-
+dimensional wall perturbations,” in44th AIAA Aerospace Sciences Meeting
+and Exhibit (2006) AIAA Paper 2006-1110.
+46Y . Wang, Y . Li, J. Liu, and Y . Li, “On the receptivity of surface plasma
+actuation in high-speed boundary layers,” Phys. Fluids 32, 094102 (2020).
+47M. Itoh, “On the instability of the flow between coaxial rotating disks,”
+in Boundary Layer Stability and Transition to Turbulence , ASME FED,
+V ol. 114, edited by D. C. Reda, H. L. Reed, and R. Kobayashi (American
+Society of Mechanical Engineers, New York, 1991) p. 83.
+48D. Tempelmann, L.-U. Schrader, A. Hanifi, L. Brandt, and D. S. Henning-
+son, “Swept wing boundary-layer receptivity to localized surface rough-
+ness,” J. Fluid Mech. 711, 516–544 (2012).
+49A. Bottaro, P. Corbett, and P. Luchini, “The effect of base flow variation
+on flow stability,” J. Fluid Mech.476, 293–302 (2003).
+50C. Mettot, F. Renac, and D. Sipp, “Computation of eigenvalue sensitivity to
+base flow modifications in a discrete framework: Application to open-loop
+control,” J. Comput. Phys. 269, 234–258 (2014).

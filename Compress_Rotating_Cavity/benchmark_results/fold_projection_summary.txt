@@ -1,0 +1,42 @@
+Adjoint projection at the traditional Boussinesq fold
+Re_h=1000.0, Pr=0.72, degree=80
+Tw_fold=1.1676764840462004, Pi_fold=0.009135419806007176
+baseflow_residual_inf=5.523794754935807e-10
+smallest_J_singular_value=4.161588371930228e-9
+dot(adjoint,right_mode)=0.010274288266195405
+projection_dR_dPi_augmented_column=1.2090883849680267e-12
+projection_dR_dTw=-0.2837519442602186
+residual_projection_sum=-2.4640012252774568e-14
+quadratic_projection_sum=-0.011203618945176231
+quadratic_projection_finite_difference=-0.011203575825558736
+
+Residual-balance projections
+name,projection,abs_fraction
+F_axial_advection,0.0015460260586582907,0.003231578233272842
+F_diffusion,-0.003942158564239223,0.008240089962882903
+F_pressure,1.1046719095020308e-14,2.3090385040163994e-14
+F_radial_inertia,0.0008230869183807829,0.0017204559746161784
+F_rotation,0.04915157394336221,0.10273899045680755
+F_thermal,-0.047578528356173336,0.09945093470183723
+G_FG_coupling,0.03400188922676756,0.07107238878672904
+G_axial_advection,-0.09461568877878809,0.19777027603855482
+G_diffusion,0.060613799552020516,0.12669788725182574
+H_F_coupling,-0.03325193055547508,0.06950478900118193
+H_diffusion,0.033251930555475186,0.06950478900118215
+T_axial_advection,0.0598177328781669,0.12503391029551764
+T_diffusion,-0.05981773287819139,0.12503391029556882
+
+Quadratic fold-curvature projections
+name,projection,abs_fraction
+F_F2_quadratic,0.0005299977658299749,0.008609086814234541
+F_G2_quadratic,-0.029261114044552644,0.4753066660503346
+F_HDF_quadratic,0.012445571632656026,0.20216124207716554
+G_FG_quadratic,0.0122039210081221,0.1982359591053238
+G_HDG_quadratic,-0.006435455233470858,0.10453514404406798
+T_HDT_quadratic,-0.0006865400737608296,0.011151901908873463
+
+The Pi projection is near zero because Pi is an unknown column
+of the augmented fixed-Tw Jacobian at the fold.
+The quadratic values are projections of R_yy[phi,phi].
+They diagnose the nonlinear curvature coefficient of the fold;
+they are distinct from perturbation-LST adjoint projections.

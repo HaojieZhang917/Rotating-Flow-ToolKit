@@ -1,0 +1,5293 @@
+ THE STABILITY AND TRANSITION OF
+
+THE COMPRESSIBLE BOUNDARY–LAYER
+
+FLOW OVER BROAD ROTATING CONES
+
+
+
+
+ Thesis submitted for the degree of Doctor of Philosophy
+
+              at the University of Leicester
+
+                           by
+
+                   Paul David Towers
+
+              Department of Mathematics
+
+                          2013
+This thesis is dedicated to my nephews
+
+Oliver William & Charlie Austin Inder.
+Declaration
+
+This thesis outlines research carried out in the Department of Mathematics at
+
+the University of Leicester between October 2009 and March 2013. It contains
+
+22,518 words and 29 figures, which does not exceed the word limit set by the
+
+College of Science & Engineering. This thesis is my own work and includes
+
+nothing which is the result of work done in collaboration. No part of this
+
+research has been submitted to any other university or place of learning for
+
+any qualification.
+
+
+
+
+Paul David Towers
+
+Department of Mathematics
+
+University of Leicester
+
+March 2013
+
+                                      i
+Summary
+
+The subject of fluid flows over axisymmetric bodies has increased in recent
+
+times, as they can be used to model flows over a swept wing, spinning pro-
+
+jectiles and aeroengines amongst other things. A better mathematical under-
+
+standing of the transition from laminar to turbulent flow within the boundary
+
+layer could lead to an improvement in the design of such applications.
+
+   We consider a compressible fluid flow over a rotating cone, defined by half–
+
+angle ψ. The mean flow boundary–layer equations are derived and we conduct
+
+a high Reynolds number asymptotic linear stability analysis. The flow is sus-
+
+ceptible to instabilities caused by inviscid crossflow modes (type I ) and modes
+
+caused by a viscous–Coriolis balance force (type II ). Both are considered, along
+
+with the effects of changes in the cone half–angle, the magnitude of the local
+
+Mach number and the temperature at the cone wall. A surface suction along
+
+the cone wall is also analysed.
+
+
+
+
+                                       ii
+Acknowledgements
+
+First and foremost I would like to thank my supervisor Dr. Stephen Garrett.
+
+His advice and guidance, both academically and on a personal level, has been
+
+invaluable throughout my time at Leicester. I would also like to thank Dr.
+
+Zahir Hussain for some helpful discussions regarding his own PhD thesis.
+
+
+I am grateful to the Engineering and Physical Sciences Research Council for
+
+the financial support I have received.
+
+
+My final thank you is to my family and friends for their endless support
+
+throughout this process. A special thank you must go to Marie, James, Oliver
+
+& Charlie Inder for letting me stay with them upon request during the second
+
+half of this project.
+
+
+
+
+                                         iii
+Contents
+
+
+Declaration                                                                    i
+
+
+Summary                                                                       ii
+
+
+Acknowledgements                                                             iii
+
+
+1 Introduction                                                                1
+
+
+2 Laminar flow equations                                                     20
+
+  2.1   The governing equations . . . . . . . . . . . . . . . . . . . . . . 22
+
+  2.2   Solution of the governing equations . . . . . . . . . . . . . . . . 29
+
+  2.3   Physical interpretation . . . . . . . . . . . . . . . . . . . . . . . 37
+
+  2.4   The effect of mass flux on the laminar flow solution . . . . . . . 41
+
+
+3 Inviscid type I modes                                                      44
+
+  3.1   Linear perturbation equations . . . . . . . . . . . . . . . . . . . 44
+
+
+                                      iv
+CONTENTS                                                                       v
+
+
+  3.2   Type I perturbation functions . . . . . . . . . . . . . . . . . . . 48
+
+  3.3   Leading order eigenmodes . . . . . . . . . . . . . . . . . . . . . 50
+
+  3.4   Wall layer solution . . . . . . . . . . . . . . . . . . . . . . . . . 57
+
+  3.5   First order eigenmodes . . . . . . . . . . . . . . . . . . . . . . . 59
+
+
+4 Viscous Type II Modes                                                       62
+
+  4.1   Upper deck solutions . . . . . . . . . . . . . . . . . . . . . . . . 65
+
+  4.2   Main deck solutions . . . . . . . . . . . . . . . . . . . . . . . . . 69
+
+  4.3   Lower deck solutions . . . . . . . . . . . . . . . . . . . . . . . . 71
+
+  4.4   First order lower-deck solutions . . . . . . . . . . . . . . . . . . 75
+
+  4.5   Wavenumber and waveangle predictions . . . . . . . . . . . . . . 87
+
+
+5 Conclusions                                                                 95
+
+  5.1   Current work . . . . . . . . . . . . . . . . . . . . . . . . . . . . 98
+
+  5.2   Future work . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 102
+
+
+Bibliography                                                                106
+List of Figures
+
+ 1.1   Experimental visualisation of the flow over a disk with radius
+
+       200mm rotating at 1500 revolutions per minute. Taken by Ko-
+
+       hama (1984a). . . . . . . . . . . . . . . . . . . . . . . . . . . . .   2
+
+ 1.2   A numerical study into the neutral stability curves for an incom-
+
+       pressible flow over a rotating disk, showing the upper branch
+
+       type I modes and the lower branch type II modes. Taken from
+
+       Malik (1986). . . . . . . . . . . . . . . . . . . . . . . . . . . . .   4
+
+ 1.3   Space–time diagrams for disturbances defined as (a) convec-
+
+       tively unstable and (b) absolutely unstable. Taken from Ling-
+
+       wood (1996) . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   5
+
+ 1.4   A comparison for the required wave angle for the onset of the
+
+       type I instability for experimental, asymptotic (φ) and numeri-
+
+       cal studies (). Taken from Garrett, Hussain & Stephen (2009) . 11
+
+
+
+
+                                      vi
+CONTENTS                                                                          vii
+
+
+  1.5   Experimental visualisation of the flow over a cone with half
+
+        angle ψ = 15o rotating at 670 revolutions per minute. Taken by
+
+        Kobayashi, Kohama & Kurosawa (1983). . . . . . . . . . . . . . 17
+
+
+  2.1   Geometrical setup for the rotating cone (taken from Garrett
+
+        (2002)). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+
+  2.2   Solution of Ψ(--), U (-), −V (..) . . . . . . . . . . . . . . . . . . . 31
+
+  2.3   Varying wall temperature, increasing vertically from Tw = 0 − 2
+
+        in 0.4 increments, for constant local Mach numbers Mx . . . . . . 34
+
+  2.4   Varying local Mach number, increasing vertically from Mx =
+
+        0 − 10 in increments of 2, for constant wall temperatures Tw . . . 35
+
+  2.5   Numerical solution for (a) f (-), f 0 (--) and (b) q(-), q 0 (--). . . . . 36
+
+  2.6   Solution of U (-), V (--) and W (.-), for ψ = 90o . . . . . . . . . . . 38
+
+  2.7   Physical laminar flow profiles U (-), V (--), W (..) for ψ = 40o
+
+        (uppermost) – 90o , Tw = 1 with (a) Mx = 0.5 and (b) Mx = 6. . 39
+
+  2.8   Physical laminar flow profiles U (-), V (--), W (..) for ψ = 40o
+
+        (uppermost) – 90o , Mx = 1 with (a) Tw = 0.5 and (b) Tw = 3. . 40
+
+  2.9   Varying suction parameter from a = 0.2 to a = 1 (uppermost)
+
+        in increments of 0.2, for cone half angles ψ, where U (-), V (--)
+
+        and W (.-). . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 43
+CONTENTS                                                                          viii
+
+                                                                      00
+  3.1   The effective velocity U (−) and it’s second derivative U (−−)
+
+        for ψ = 40o (uppermost at z = 10)−90o , where Tw = Mx = 21 . . . 51
+
+  3.2   Diagram showing the direction of wave numbers and the effec-
+
+        tive velocity, taken from Garrett, Hussain & Stephen (2009). . . 52
+
+  3.3   w0 for ψ = 40o (uppermost) − 90o where Tw = 21 ,Mx = 12 . . . . . 54
+
+  3.4   w0 for ψ = 40o (uppermost) − 90o where Tw = 21 ,Mx = 1 . . . . . 54
+
+  3.5   w0 for ψ = 40o (uppermost) − 90o where Tw = 1,Mx = 1 . . . . . 55
+
+  3.6   w0 for ψ = 60o ,Tw = 12 ,Mx = 1 with suction parameter a =
+
+        0(uppermost), 0.1, 0.2. . . . . . . . . . . . . . . . . . . . . . . . 55
+
+  3.7   Asymptotic plots of leading order wavenumber & waveangle pre-
+
+        dictions for neutrally stable inviscid modes . . . . . . . . . . . . 56
+
+
+  4.1   Diagram of the triple–deck structure. . . . . . . . . . . . . . . . 63
+
+  4.2   The graph of U (0, θ), showing the decay over the region of in-
+
+        tegration from θ = 0 to θ = 5. . . . . . . . . . . . . . . . . . . . 83
+                                        1
+  4.3   The effective wavenumber γ0 x 2 for fixed Tw = 0.4, 0.8, 1.0, 1.2, 1.6.
+
+        The solution for the incompressible case is also given (−−). . . . 87
+
+  4.4   The correction to the wave angle for fixed Tw = 0.4, 0.8, 1.0, 1.2, 1.6.
+
+        The solution for the incompressible case is also given (−−). . . . 88
+CONTENTS                                                                        ix
+
+
+  4.5   The correction to the wave angle for Tw = 1, with ψ = 40o − 90o
+
+        in 10o increments. . . . . . . . . . . . . . . . . . . . . . . . . . . 89
+
+  4.6   Asymptotic wavenumber and waveangle predictions for the vis-
+
+        cous type II modes, for fixed Tw = Mx = 1 and varying ψ =
+
+        40o − 90o . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 92
+
+  4.7   Asymptotic wavenumber and waveangle predictions for the vis-
+
+        cous type II modes, for fixed ψ = 60o , Mx = 1 and varying
+
+        Tw = 0.4, 0.8, 1.2, 1.6. . . . . . . . . . . . . . . . . . . . . . . . . 93
+
+  4.8   Asymptotic wavenumber and waveangle predictions for the vis-
+
+        cous type II modes, for fixed ψ = 60o , Tw = 1 and varying
+
+        Mx = 0.3, 0.6, 0.9, 1.2. . . . . . . . . . . . . . . . . . . . . . . . . 94
+List of Tables
+
+ 4.1   The effect of a change in ψ on the maximum local Mach number
+
+       Mxmax allowed for stationary three-dimensional modes of insta-
+
+       bility to exist. . . . . . . . . . . . . . . . . . . . . . . . . . . . . 69
+
+
+
+
+                                       x
+Chapter 1
+
+
+Introduction
+
+This thesis presents a study of the stability of compressible boundary-layer
+
+flows over rotating cones, defined by half-angle ψ. The boundary-layer flow
+
+driven by a rotating disk is a special case of the rotating-cone flow when
+
+ψ = 90o , and that particular geometry has received a huge amount of attention
+
+in the literature. Interest in the rotating-disk flow started with the combined
+
+theoretical and experimental work by Gregory, Stuart & Walker (1955). Their
+
+experimental study showed that a laminar flow was maintained within the
+
+small region around the centre of the rotation, with spiral vortices appearing
+
+at an increased radial distance. The spiral vortices were observed to be co-
+
+rotating and stationary with respect to the disk surface. As the radial position
+
+was increased yet further, transition to turbulent flow was observed.
+
+
+                                       1
+INTRODUCTION                                                               2
+
+
+
+
+Figure 1.1: Experimental visualisation of the flow over a disk with radius
+
+200mm rotating at 1500 revolutions per minute. Taken by Kohama (1984a).
+
+   This is highlighted in Figure 1.1, a flow visualisation taken from experi-
+
+mental work by Kohama (1984a). The cause of the spiral vortices within the
+
+boundary layer was confirmed to be the presence of an inviscid cross-flow in-
+
+stability, which is also the dominant convective instability mechanism found
+
+for a flow over a swept wing. This connection to the swept-wing flow has
+INTRODUCTION                                                                  3
+
+
+since motivated the huge interest in the rotating disk, not least because of its
+
+relatively simple geometry.
+
+   Before Gregory, Stuart & Walker (1955), the very first study of the rotating-
+
+disk flow was due to Kármán (1921), who obtained the equations that governed
+
+steady boundary-layer flow. von Kármán’s approach was to solve the Navier–
+
+Stokes equations in the appropriate geometry (which are partial differential
+
+equations) by using a similarity solution that scaled out the radial dependence,
+
+which led to ordinary differential equations which are much easier to solve.
+
+The resulting theoretical flow profiles were later verified by Cochran (1934).
+
+The aforementioned study by Gregory, Stuart & Walker (1955) followed some
+
+years later and was the first to consider the stability of steady boundary-layer
+
+flow, however the theoretical component of their study relied on von Kármán’s
+
+earlier results.
+
+   We now present a short summary of the literature relevant to this thesis
+
+that includes a summary of developments of the knowledge of the rotating-disk
+
+flow and that over related three-dimensional bodies, including the rotating
+
+cone. The summary is necessarily short and focussed, and a fuller review of
+
+the early work is given by Reed & Saric (1989).
+
+   In their stability analysis, Gregory, Stuart & Walker (1955) neglected vis-
+
+cous terms, yielding results for what have become known as the inviscid type
+INTRODUCTION                                                                4
+
+
+
+
+Figure 1.2: A numerical study into the neutral stability curves for an incom-
+
+pressible flow over a rotating disk, showing the upper branch type I modes and
+
+the lower branch type II modes. Taken from Malik (1986).
+
+I modes, shown by the upper branch of Figure 1.2. Some years later, a fuller
+
+numerical investigation of the linear stability of the rotating-disk flow was
+
+presented by Malik (1986), which was closely followed by a linear asymp-
+
+totic analysis by Hall (1986). Both approaches demonstrated the existence of
+
+an additional instability mode, the type II mode shown by the lower branch
+
+of Figure 1.2, and good agreement was found between the asymptotic and
+
+numerical neutral curves in the high Reynolds-number limit. Hall formally
+
+demonstrated that the type II mode was viscous in origin and was caused
+INTRODUCTION                                                                  5
+
+
+
+
+Figure 1.3: Space–time diagrams for disturbances defined as (a) convectively
+
+unstable and (b) absolutely unstable. Taken from Lingwood (1996)
+
+by a balance between viscous and Coriolis forces. Type II modes could not,
+
+therefore, be described by an inviscid theory. The asymptotic study showed
+
+that the type II mode has a triple deck structure and Hall’s study was later
+
+extended to consider the non-linear development of the stationary modes by
+
+MacKerrell (1987). MacKerrell found that including non–linear terms led to a
+
+more unstable flow compared to the linear analysis, suggesting that non–linear
+
+effects were destabilising.
+
+   In addition to type I and II modes, which are example of convective insta-
+
+bilities and can be associated with the experimentally observed spiral vortices,
+
+Lingwood (1995) was the first to show that the flow over a rotating disk was
+INTRODUCTION                                                                    6
+
+
+locally absolutely unstable. A space–time diagram of the evolution of absolute
+
+and convective instabilities are shown in Figure 1.3. Lingwood noticed the close
+
+match between her predicted critical Reynolds number for the onset of absolute
+
+instability and the reported critical Reynolds numbers for the onset of turbu-
+
+lence from various experimental studies over the prior years, for examples see
+
+Malik, Wilkinson & Orszag (1981), Kobayashi, Kohama & Takamadate (1980).
+
+More specifically, experimentally observed values for transition were found to
+
+have an average critical Reynolds number of 513, and Lingwood’s prediction
+
+for the onset of absolute instability differed by less than 3% of this value. This
+
+led to the suggestion that absolute instability may be closely associated with
+
+the onset of turbulent flow.
+
+   Following this discovery, Lingwood (1996) obtained experimental results
+
+for the stability of a rotating-disk flow, considering both unexcited and excited
+
+flows. In the case of an unexcited flow, where no artificial disturbance is made
+
+to the flow, the stationary waves grew as the Reynolds number is increased,
+
+leading to transitional behaviour between R = 502 and R = 514 and fully
+
+turbulent by R ≈ 600. However, before R = 502 there is no prior sign of
+
+any features of transition. This region coincides with the region of theoretical
+
+absolute instability and added weight to the original assertion that absolute
+
+instability is related to the onset of turbulence.
+INTRODUCTION                                                                   7
+
+
+   A few years later, Davies & Carpenter (2003) performed direct numerical
+
+simulations solving the linearized Navier–Stokes equations directly on a disk of
+
+infinite extent. When they made the same homogeneous flow approximation as
+
+in Lingwood’s theoretical analysis (i.e. the parallel-flow approximation), they
+
+recovered her results in full, with absolute instability clearly present at high
+
+Reynolds number. However, when the spatial inhomogeneity of the boundary
+
+layer was included there was no evidence that absolute instability gives rise to
+
+an unstable global oscillator in the long-time response that would be required
+
+to give the onset of transition within a purely linear theory. Indeed their study
+
+suggested that convective behaviour eventually dominates at all the Reynolds
+
+numbers investigated, even for strongly absolutely unstable regions. Thereby
+
+suggesting that absolute instability was not involved in the transition process
+
+through linear effects. This result is entirely consistent with Itoh (2001a,b)
+
+who had raised the point that the spatial modulation of the dispersion rela-
+
+tion, from which instability types are determined, may yield significant effects
+
+on the spatial and temporal development of instability waves. Hence, because
+
+a parallel-flow approximation causes the dispersion relation to have no depen-
+
+dence on any spatial coordinate, it cannot be justified.
+
+   Following this, Pier (2003) demonstrated that a nonlinear approach is re-
+
+quired to explain the self-sustained behaviour of the rotating-disk flow that
+INTRODUCTION                                                                      8
+
+
+leads to turbulence. Using the result of Huerre & Monkewitz (1990) that the
+
+presence of local absolute instability does not necessarily give rise to linear
+
+global instability, Pier suggested that the flow has a primary nonlinear global
+
+mode that is fixed by the onset of the local absolute instability which has a
+
+secondary absolute instability that triggers the transition to turbulence. Some
+
+experimental evidence for a secondary instability exists (Kohama (1984a) and
+
+Imayama, Alfredsson & Lingwood (2012)), but the behaviour of the secondary
+
+instability and also its relation to the primary absolute instability are not fully
+
+understood as yet.
+
+   In an attempt to explain Lingwood’s original experimental observations in
+
+the light of the subsequent theoretical developments, Healey (2010) presents
+
+a theory, based on the Ginzburg–Landau equation, that suggests that there
+
+can be a linear global instability when there is local instability at the edge of
+
+the disk. The finite size of experimental disks is of course a crucial difference
+
+between experimental and theoretical studies prior to Healey’s work, and edge
+
+effects were a new addition to the arguments in the literature. The very recent
+
+experimental study of Imayama, Alfredsson & Lingwood (2013) finds that edge
+
+effects may indeed lead to linear global instability as a first step in the onset of
+
+transition. Discussions in the literature continue as to the actual mechanism
+
+by which transition to turbulence occurs in the boundary–layer flow over a
+INTRODUCTION                                                                    9
+
+
+rotating disk.
+
+
+The discovery of absolute instability and the associated interest in the rotating-
+
+disk flow within the literature has led to a renewed interest in the instability
+
+mechanisms found within boundary-layer flows over other axisymmetric, rotat-
+
+ing bodies, such as cones. This flow is the subject of this thesis. Aside from the
+
+theoretical interest in the abstract flow, very similar flows exist in engineering
+
+applications, for example over the nose of a rotating missile or over rotating
+
+aeroengine components. Hence, even though the interest in the rotating disk
+
+was initiated by its relationship to the swept-wing flow, the results of studies
+
+of rotating-cone flows have a more immediate application.
+
+   Early experimental work for the rotating cone in an otherwise still fluid was
+
+carried out by Kappesser, Greif & Cornet (1973); Kreith, Ellis & Giesing (1962)
+
+and Tein & Campbell (1963). These experiments were limited to measuring
+
+the critical Reynolds number for the onset of turbulent flow and very little
+
+was known about the mechanisms causing the transition. However, during
+
+the 1980s, progress was made towards an understanding of the instabilities at
+
+work. In particular, spiral vortices were found to be present in the transitional
+
+region of the boundary layer (see Kobayashi, Kohama & Kurosawa (1983);
+
+Kobayashi & Izumi (1983); Kohama (1984b)), similar to those observed in the
+INTRODUCTION                                                                    10
+
+
+rotating-disk flow. This breakthrough was found using a high speed strobe
+
+light flow visualisation technique which showed the spiral vortices emanating
+
+from the surface of the cone. The spiral vortices are stationary with respect
+
+to the cone, regardless of the cone’s rate of rotation Ω∗ .
+
+   In contrast to the observations on rotating disks, where counter-rotating
+
+vortices are always seen, the structure of the spiral vortices over a cone was
+
+seen to depend on the half-angle, ψ, of the cone. In the experimental study
+
+by Kobayashi & Izumi (1983), the spiral vortices on cones with slender half-
+
+angles are shown to take the form of pairs of counter-rotating vortices, similar
+
+to Görtler vortices that are known to arise from centrifugal forces present
+
+in the flow field found by Hussain, Stephen & Garrett (2012). However, as
+
+the half-angle increases through ψ = 30◦ , the spiral vortices appear to take
+
+the form of co-rotating cross-flow vortices, as seen on the rotating disk. As
+
+mentioned above, the co-rotating vortices on the rotating disk appear because
+
+of an underlying cross-flow instability, and are caused by the inflectional nature
+
+of the flow. Hence the observed centrifugal instability for cones with sufficiently
+
+small half angle, along with the cross-flow instability for broader cones, show
+
+that there is a distinct variation in the dominant instability mechanism for
+
+slender cones, which is not seen on broad cones or on a disk (where ψ = 90◦ ).
+
+(This is further discussed by Garrett, Hussain & Stephen (2009), who have
+INTRODUCTION                                                                11
+
+
+
+
+Figure 1.4: A comparison for the required wave angle for the onset of the type
+
+I instability for experimental, asymptotic (φ) and numerical studies (). Taken
+
+from Garrett, Hussain & Stephen (2009)
+
+recently identified an alternative Görtler-type mode and continue to work on
+
+its properties.)
+
+   With regards theoretical studies of instabilities within the rotating-cone
+
+boundary-layer flows, Garrett (2002) considers the problem in still fluid and
+
+uses a numerical approach. A parallel-flow approximation is used in a study
+INTRODUCTION                                                                   12
+
+
+similar to Lingwood (1995) work and also includes both viscous and streamline-
+
+curvature effects.The resulting dispersion relation for the rotating-cone flow is
+
+then formed and both the convective and absolute instabilities of the problem
+
+were investigated at each half-angle. Garrett found that when expressing the
+
+transition points found experimentally by Kobayashi & Izumi (1983) in terms
+
+of the local Reynolds number, his results for transition were roughly the same
+
+for all cones with half-angle ψ ≥ 40◦ . This suggests that it may well be possible
+
+that the instability mechanism for transition to turbulent flow is the presence
+
+of absolute instability for cones with ψ ≥ 40◦ . However, for ψ ≤ 40◦ the local
+
+Reynolds number at the experimental transition point reduces in magnitude
+
+sharply as the half-angle decreases, as shown in Figure 1.4. This suggests
+
+that for smaller half angles absolute instability is suppressed and some other
+
+transition mechanism must be forcing the turbulent flow.
+
+   Recently Hussain (2009) extended Hall’s work and presented a linear asymp-
+
+totic analysis of the type I and type II modes of instability within the boundary-
+
+layer flow over the family of rotating cones in otherwise still fluid, as well as
+
+the rotating disk and cone within an oncoming axial flow. As would be ex-
+
+pected, his results were in good agreement with those of Hall (1986) in the limit
+
+ψ = 90o . For both numerical and asymptotic results it is seen that an increase
+
+in the cone half–angle ψ has a stabilising effect on both the type I and type
+INTRODUCTION                                                                13
+
+
+II modes of instability, as the predicted value of the critical Reynolds number
+
+required to cause the onset of turbulence is increased. As with the numerical
+
+results found by Garrett (2002), the asymptotic results are only in agreement
+
+with the experimental results for a cone half–angle ψ ≥ 40◦ , and a different
+
+analysis is needed below this value. Because of this the study presented here
+
+will focus on broad cones.
+
+   Lingwood (1997) and Lingwood & Garrett (2011) both study the effects
+
+of adding a uniform surface suction in the normal direction along the surface
+
+of a rotating body. They suggest that suction could be used as a stabilising
+
+mechanism by delaying the inset of turbulence, which is in agreement with
+
+previous experimental work by Gregory & Walker (1960). In this work we
+
+shall also consider a surface suction for the compressible flow, and compare
+
+how significant any changes in the flow are compared to the previous results
+
+for the incompressible case.
+
+   For further studies into the incompressible boundary–layer flow over a ro-
+
+tating cone see Garrett & Peake (2007), Garrett, Hussain & Stephen (2009),
+
+Garrett (2010), Garrett, Hussain & Stephen (2010), Hussain, Stephen & Gar-
+
+rett (2012).
+
+
+
+The majority of research into boundary-layer stability for incompressible flows
+INTRODUCTION                                                                  14
+
+
+started by finding a basic velocity profile, usually some variation on the well
+
+known von Kármán basic steady flow; see Kármán (1921). However, when
+
+considering a compressible flow case, the basic flow is much more complex to
+
+evaluate. The main cause of this is, as discussed by Stewartson (1964) amongst
+
+others, the introduction of several parameters. These include the Prandtl
+
+number, which is related to temperature, and the second coefficient of viscosity,
+
+also known as the volume viscosity. These do not appear as constants, as they
+
+do in the incompressible case. This complication has naturally led to more
+
+investigation, and hence greater advances and understanding, of incompressible
+
+flows. However, suitable progress relevant to this current study has been made.
+
+   Around the same time as Lingwood’s studies of absolute instability for an
+
+incompressible flow over a rotating disk, Cole (1995) was conducting a study of
+
+three-dimensional compressible boundary-layers, where he also concluded that
+
+the flow over a rotating disk is absolutely unstable. He numerically solved
+
+the three-dimensional inviscid compressible Rayleigh equation, finding branch
+
+points leading to absolute instability at scaled Mach numbers 0,1 and 2. The
+
+case of a suitably small Mach number, usually approximately M a ≤ 0.3, re-
+
+lates to an essentially incompressible flow. Hence for the branch point found
+
+with scaled zero Mach number, Cole’s results should have compared favourably
+
+to the findings by Lingwood. However there were obvious discrepancies be-
+INTRODUCTION                                                                   15
+
+
+tween the two sets of results, with the wave angles corresponding to absolutely
+
+unstable flow differing.
+
+   Although briefly considered by, amongst others, Solan, Olek & Toren (1983),
+
+it was not until the early 1990s that interest in instabilities of compressible
+
+flows increased, but the vast majority was focused on mixing layers and shear
+
+flows. The first study into the possible absolute and convective stability of a
+
+compressible flow over a rotating disk was by Turkyilmazoglu, Cole & Gajjar
+
+(2000). The aim was to find the mathematical reasoning behind the differing
+
+results of Lingwood and Cole by considering the compressible flow case. In
+
+addition, they sought to investigate the effects that compressibility has on the
+
+absolute instability of the three-dimensional flow over a rotating disk. It was
+
+found that the restrictions assumed by Lingwood, that the disturbances would
+
+only grow in the radial direction, could not be justified for a three-dimensional
+
+flow. Cole’s analysis was found to be valid as at a fixed location the distur-
+
+bances may grow locally in any direction, not just radially. However, absolute
+
+instability was present in both problem formulations. It was also shown that
+
+in general compressibility has a stabilizing effect on the flow, and wall heating
+
+is found to be destabilizing (with wall cooling having the opposite effect).
+
+   Following theoretical work by Hall (1986) and MacKerrell (1987) into the
+
+stabilities of a three-dimensional incompressible flow over a rotating disk, Sed-
+INTRODUCTION                                                                 16
+
+
+dougui (1990) conducted a non-linear study into the effects of compressibility
+
+on the stationary modes of instability. It was found that compressibility can
+
+have a substantial effect on the stationary viscous modes, as for sufficiently
+
+large Mach numbers they cannot exist. However, when the stationary modes
+
+do exist, the results show that they are similar in form to those found by
+
+MacKerrell for the incompressible case, with any differences being dependent
+
+on the wall temperature and not the compressibility itself.
+
+   Turkyilmazoglu has been at the forefront of recent research into the station-
+
+ary and non-stationary modes of instability found for a compressible flow over
+
+a rotating disk. A study into the non-stationary viscous lower branch modes
+
+(see Turkyilmazoglu (2005)) were similar with the findings by Seddougui, in
+
+that he proved that the compressible neutral modes only exist for limited Mach
+
+number, and that there exists a critical frequency value for which no solutions
+
+are found. Again a triple deck asymptotic structure was studied, rather than
+
+using a parallel–flow approximation, and concluded that the linear modes are
+
+stabilized by high wall cooling and destabilized for wall insulation and heat
+
+transfer cases as the local Mach number grows.
+
+   However, in a later study (see Turkyilmazoglu (2007)), it was found that
+
+the reverse effect was observed for the evolution of the non-linear modes. By
+
+considering finite amplitudes the non-stationary modes which have negative
+INTRODUCTION                                                                17
+
+
+
+
+Figure 1.5: Experimental visualisation of the flow over a cone with half angle
+
+ψ = 15o rotating at 670 revolutions per minute. Taken by Kobayashi, Kohama
+
+& Kurosawa (1983).
+
+frequencies are similar to those found by Seddougui for the stationary modes.
+
+But differences were found for the positive frequency waves, especially when
+
+considering wall cooling, where it is shown that non-linearity is destabilizing
+
+for all modes.
+
+
+
+The motivation for this thesis is to extend previous work by Hall (1986), Sed-
+
+dougui (1990) and Hussain (2009), to consider the effect of compressibility on
+INTRODUCTION                                                                 18
+
+
+a rotating cone flow for half angle ψ. This configuration has industrial ap-
+
+plications, such as spinning projectiles and aeroengines. Understanding the
+
+instability mechanisms of the rotating–cone flow will enable us to find ways of
+
+controlling the laminar–turbulent transition within the boundary layer. This
+
+would lead to performance improvements in the aforementioned applications.
+
+For example, for spinning projectiles, being able to control turbulence within
+
+the boundary layer would have a positive effect on control and accurate tar-
+
+geting. In aeroengines it would help fuel efficiency by reducing drag. We
+
+will consider how changes in the cone’s wall temperature effects the stability
+
+characteristics, as well as changes in the local Mach number. A surface suction
+
+along the cone wall will also be considered by introducing a non-zero boundary
+
+condition in the normal direction.
+
+   We begin by formulating the mean flow equations, commonly known as the
+
+Kármán equations. Here we will consider the effects of wall temperature, local
+
+Mach number and surface suction on the basic flow profiles. Theoretically,
+
+we would expect changes in these parameters to effect the basic flow profiles
+
+in a similar way to the instability modes, hence it is important to know how
+
+these alter the flow. The linear disturbance equations are then formulated,
+
+from which we identify the upper branch inviscid modes. These are referred
+
+to as the type I modes, where the instabilities captured are those away from
+INTRODUCTION                                                                19
+
+
+the cone wall. We study the change in behaviour as the half angle ψ is varied,
+
+as well as the effect of a surface suction. The viscous type II modes are
+
+then considered, which captures the instabilities near to the cone wall. In the
+
+literature the type I modes are said to be caused by a crossflow instability,
+
+and the type II modes cause by a streamline curvature instability. We will
+
+discuss the results in relation to the previous studies into compressible and
+
+incompressible boundary–layer flows over rotating bodies.
+Chapter 2
+
+
+Laminar flow equations
+
+We shall consider a cone placed in an otherwise still compressible fluid, which
+
+rotates about its axis of symmetry with angular velocity Ω∗ (where superscript
+
+* denotes dimensional quantities). The fluid flow is driven by the rotation of
+
+the cone, and we shall take into account the effects of streamline curvature and
+
+Coriolis forces. The angle between the cone’s surface and its axis of symmetry
+
+is defined as the cone half-angle ψ.
+
+   The geometry is shown in Figure 2.1 and is formulated using Cartesian
+
+coordinates (X ∗ , Y ∗ , Z ∗ ) with the origin placed at the tip of the cone. This
+
+is then transformed to the orthogonal curvilinear coordinates (x∗ , θ, z ∗ ) which
+
+respectively represent a streamwise coordinate, an azimuthal coordinate and
+
+
+
+
+                                       20
+LAMINAR FLOW EQUATIONS                                                            21
+
+
+
+
+Figure 2.1: Geometrical setup for the rotating cone (taken from Garrett
+
+(2002)).
+
+a surface-normal coordinate. The coordinate transformation is given by
+
+
+                         X ∗ = x∗ cos ψ − z ∗ sin ψ,                           (2.1)
+
+                         Y ∗ = (x∗ sin ψ + z ∗ cos ψ) sin θ,                   (2.2)
+
+                         Z ∗ = (x∗ sin ψ + z ∗ cos ψ) cos θ;                   (2.3)
+
+
+with the scale factors of the orthogonal curvilinear coordinates (x∗ , θ, z ∗ ) being
+
+given by hx = hz = 1 and hθ = h∗ = x∗ sin ψ + z ∗ cos ψ, where r0∗ = x∗ sin ψ
+
+defines the local surface radius of the cone.
+
+   This formulation is consistent with both Garrett (2002) and Hussain (2009),
+LAMINAR FLOW EQUATIONS                                                            22
+
+
+who consider the incompressible case of the rotating–cone boundary–layer flow.
+
+This study of the compressible case is a generalisation of work done by Turky-
+
+ilmazoglu (2004) for the particular case of a rotating disk (ψ = 90o ).
+
+
+
+
+2.1     The governing equations
+
+As with the incompressible case we use a continuity equation and the Navier–
+
+Stokes equations. As we are considering a compressible fluid these equations
+
+alone are not sufficient, due to the fluid having a non–constant density. Hence
+
+we also require a state equation and an energy equation. The equations are
+
+applied in a reference frame rotating with angular velocity Ω∗ about the X ∗ -
+
+axis, and are given by
+
+                                                    ∂ρ∗
+                                                        + ∇ · (ρ∗ u) = 0,       (2.4)
+                                                    ∂t
+            Du                          1
+               + 2Ω × u + (Ω × Ω) × r = ∗ (∇ (λ∗ ∇ · u) − ∇p∗                   (2.5)
+            Dt                         ρ
+                                                      3
+                                                            !
+                                                     X
+                                           +∇ µ∗         eij ,
+                                                                  j=1
+
+                                                               2
+                                                             γM∞ p = ρT,        (2.6)
+                   Dh   Dp∗
+              ρ∗      =     + ∇ · (k ∗ ∇T ∗ ) + µ∗ (2e211 + 2e222 + 2e233       (2.7)
+                   Dt   Dt
+                                        +e212 + e213 + e223 ) + λ∗ (∇ · u)2 ,
+LAMINAR FLOW EQUATIONS                                                                23
+
+
+where the Coriolis forcing term 2Ω×u appears due to the rotating frame. Note
+
+that this is in contrast to Garrett (2002) formulation, who uses a stationary
+
+frame and so does not have the Coriolis term.
+
+   The vector u = (u∗ , v ∗ , w∗ ) denotes the velocity flow field and r = (x∗ , 0, z ∗ )
+
+gives the position vector. The parameters given in Equations (2.4)-(2.7) are
+
+defined as: ρ∗ the density; p∗ the pressure; λ∗ the second coefficient of viscosity
+
+related to the bulk viscosity; µ∗ the dynamical viscosity; M∞ the free stream
+
+Mach number; T ∗ the temperature; and h the enthalpy (where h is distinct
+
+from the previously defined scale factors). The heat capacity ratio γ is the ratio
+
+of the heat capacity at constant pressure cp to the heat capacity at constant
+
+volume cv . The parameter k is that associated with the Prandtl number σ,
+
+where kσ = cp µ. The components of the strain tensor eij are given by,
+
+                           ∂u∗
+                   e11 =       ,
+                           ∂x∗
+                                 ∂v ∗   1 ∂u∗ v ∗ sin ψ
+                                                                
+                               1
+                   e12 = e21 =        +          −                   ,
+                               2 ∂x∗ h∗ ∂θ         h∗
+                                 ∗
+                                        ∂u∗
+                                             
+                               1 ∂w
+                   e13 = e31 =        +        ,
+                               2 ∂x∗    ∂z ∗
+                          1 ∂v ∗ w∗ cos ψ u∗ sin ψ
+                   e22 =         +        +        ,
+                         h∗ ∂θ       h∗       h∗
+                                1 ∂v ∗   1 ∂w∗ v ∗ cos ψ
+                                                        
+                   e23 = e32 =         +      −            ,
+                                2 ∂z ∗ h∗ ∂θ        h∗
+                           ∂w∗
+                   e33 =        .
+                           ∂z ∗
+LAMINAR FLOW EQUATIONS                                                                 24
+
+
+The coordinate transform (2.1)-(2.3) applied to the governing Equations (2.4)-
+
+(2.7) leads to the following full governing equations for the flow in orthogonal
+
+curvilinear coordinates,
+
+
+
+
+  ∂ρ∗    ∗ ∂ρ
+              ∗
+                    ∗ ∂ρ
+                         ∗      ∗ ∂w∗ 
+                              ∗ ∂u             1  ∗ ∂ρ∗      ∗ ∂v
+                                                                   ∗
+      + u       + w        + ρ      +      +       v      + ρ
+  ∂t∗      ∂x∗        ∂z ∗      ∂x∗   ∂z ∗     h∗     ∂θ        ∂θ
+                                                                    
+                                        + ρ∗ (u∗ sin ψ + w∗ cos ψ) = 0, (2.8)
+
+
+
+
+        ∂u∗     ∂u∗ v ∗ ∂u∗              ∗
+                                               v ∗2 sin ψ
+                                     ∗ ∂u
+  ρ∗      ∗
+            + u∗    ∗
+                      +    ∗
+                                 + w      ∗
+                                            −        ∗
+                                                           − 2Ω∗ v ∗ sin ψ
+        ∂t       ∂x       h ∂θ         ∂z          h
+                                        ∗       ∂ 2 u∗
+                                   ∂p                      ∂ 2 w∗       1  ∂ 2v∗
+              − Ω∗2 h∗ sin ψ = − ∗ + λ∗                  +           +
+                                    ∂x            ∂x∗2 ∂x∗ ∂z ∗ h∗ ∂x∗ ∂θ
+                      ∗            ∗
+                  ∂u            ∂w        sin ψ ∂v ∗
+                                                                                
+           + sin ψ ∗ + cos ψ ∗ − ∗2                      + u∗ sin ψ + w∗ cos ψ
+                  ∂x            ∂x          h       ∂θ
+                                ∗
+                    ∂       ∂u        1 ∂        ∂v ∗    1 ∂u∗ v ∗ sin ψ 
+                + ∗ 2µ∗ ∗ + ∗                  µ∗         +          −
+                  ∂x         ∂x       h ∂θ          ∂x∗ h∗ ∂θ              h∗
+                                                                       ∗
+                                                          ∂      ∂w      ∂u∗ 
+                                                     + ∗ µ∗              +         , (2.9)
+                                                        ∂z         ∂x∗      ∂z ∗
+LAMINAR FLOW EQUATIONS                                                                      25
+
+
+
+
+          ∂v ∗    ∂v ∗ v ∗ ∂v ∗           ∗
+                                                 v∗ ∗
+     ∗                                ∗ ∂v
+ ρ           ∗
+               + u∗   ∗
+                        +   ∗
+                                  + w      ∗
+                                              +   ∗
+                                                    (u sin ψ + w∗ cos ψ)
+           ∂t      ∂x     h ∂θ          ∂z       h
+                  ∗ ∗           ∗
+                                                 1 ∂p∗ λ∗  ∂ 2 u∗             ∂ 2 w∗
+              + 2Ω (u sin ψ + w cos ψ) = − ∗              + ∗               +
+                                                 h ∂θ         h ∂x∗ ∂θ ∂θ∂z ∗
+                                                  2 ∗
+                                            1 ∂ v
+                                                               ∂u∗             ∂w∗ 
+                                       + ∗             + sin ψ        + cos ψ
+                                           h ∂θ2                 ∂θ              ∂θ
+                                                        ∗           ∗      ∗
+                                          ∂   
+                                                 ∗ ∂v
+                                                             1 ∂u       v sin ψ 
+                                     + ∗ µ                +           −
+                                        ∂x          ∂x∗ h∗ ∂θ                h∗
+                                                     ∗       ∗             ∗
+                                1 ∂  
+                                           ∗ 1 ∂v
+                                                          w cos ψ u sin ψ 
+                              + ∗       2µ              +             +
+                               h ∂θ            h∗ ∂θ           h∗            h∗
+                                                      ∗           ∗      ∗
+                                        ∂   
+                                                ∗ ∂v
+                                                           1 ∂w       v cos ψ 
+                                    + ∗ µ                +           −                 , (2.10)
+                                       ∂z          ∂z ∗ h∗ ∂θ               h∗
+
+
+
+
+          ∂w∗ ∂w∗ v ∗ ∂w∗              ∗
+                                              v ∗2 cos ψ
+     ∗                             ∗ ∂w
+ ρ            ∗
+                + u∗
+                   ∗
+                     +  ∗
+                              + w       ∗
+                                           −        ∗
+                                                          − 2Ω∗ v ∗ cos ψ
+      ∂t        ∂x     h ∂θ          ∂z           h
+                                  ∗             2 ∗
+               ∗2 ∗
+                              ∂p        ∗
+                                             ∂ u         ∂ 2 w∗     1  ∂ 2v∗
+           − Ω h cos ψ = − ∗ + λ                      +          + ∗
+                               ∂z            ∂x∗ ∂z ∗     ∂z ∗2     h ∂θ∂z ∗
+               ∂u∗         ∂w∗      cos ψ ∂v ∗
+                                            
+                                                        ∗            ∗
+                                                                             
+        + sin ψ ∗ + cos ψ ∗ − ∗2                    + u sin ψ + w cos ψ
+               ∂z          ∂z         h       ∂θ
+       ∂  ∗  ∂w∗ ∂u∗         1 ∂  ∗  ∂v ∗        1 ∂w∗ v ∗ cos ψ 
+     + ∗ µ           + ∗     + ∗         µ          +            −
+      ∂x       ∂x∗     ∂z       h ∂θ          ∂z ∗ h∗ ∂θ               h∗
+                                                                            ∗
+                                                                ∂  
+                                                                       ∗ ∂w
+                                                           + ∗ 2µ              , (2.11)
+                                                               ∂z        ∂z ∗
+
+
+
+
+                                          2 ∗
+                                        γM∞ p = ρ∗ T ∗ ,                                (2.12)
+LAMINAR FLOW EQUATIONS                                                                  26
+
+
+
+
+            ∂T ∗ ∂T ∗ v ∗ ∂T ∗             ∗
+                                                    ∂p∗           ∗
+                                                                         v ∗ ∂p∗
+                                       ∗ ∂T                  ∗ ∂p
+  ρ ∗ cp       ∗
+                 + u∗  +          +  w          =        +  u        +
+         ∂t       ∂x∗    h∗ ∂θ           ∂z ∗       ∂t∗        ∂x∗ h∗ ∂θ
+          ∂p∗    1  ∂  ∗ ∗ ∂T ∗         ∂  ∗ ∂T ∗        ∂  ∗ ∗ ∂T ∗ 
+     + w∗ ∗ + ∗          h  k         +        k          +         hk
+          ∂z    h ∂x∗           ∂x∗       ∂θ        ∂θ       ∂z ∗           ∂z ∗
+              ∂u∗ 2      1 ∂v ∗ w∗ cos ψ u∗ sin ψ 2                   ∂w∗ 2
+       + µ∗ 2          + 2           +              +               +   2
+                ∂x∗         h∗ ∂θ           h∗           h∗                 ∂z ∗
+                          ∂v ∗     1 ∂u∗ v ∗ sin ψ 2  ∂w∗ ∂u∗ 2
+                       +        +           −               +            + ∗
+                           ∂x∗ h∗ ∂θ               h∗             ∂x∗       ∂z
+                                              ∂v ∗     1 ∂w  ∗       ∗
+                                                                    v cos ψ 2 
+                                          +         +           −
+                                               ∂z ∗ h∗ ∂θ               h∗
+                                1 ∂                  ∂v ∗      ∂            2 
+                          + λ∗ ∗           (h ∗ ∗
+                                               u  ) +       +        (h ∗ ∗
+                                                                          w  )     . (2.13)
+                                 h ∂x∗                  ∂θ      ∂z ∗
+
+The first stage of this study is to solve the steady form of the above equations
+
+with appropriate boundary conditions to obtain the steady, laminar flow pro-
+
+files for each half-angle ψ. These are no slip on the cone wall, the streamwise
+
+velocity component tending to zero and a Coriolis balance enforce both condi-
+
+tions at the edge of the cone boundary layer. Mathematically, these are given
+
+by
+
+
+                         u∗ = 0, v ∗ = 0, w∗ = 0, T ∗ = Tw∗ on z ∗ = 0,
+
+                    u∗ → 0, v ∗ → −x∗ Ω∗ sin ψ, T ∗ → T∞ as z ∗ → ∞.                (2.14)
+
+
+where Tw∗ is the dimensional temperature at the cone’s wall. Note that an
+
+isothermal boundary condition for the wall temperature has been chosen. In
+
+Seddougui (1990) on a compressible flow over a rotating disk, she also considers
+LAMINAR FLOW EQUATIONS                                                         27
+
+
+an adiabatic condition where ∂T
+                             ∂z
+                                = 0 at z = 0. However, as we are looking
+
+to consider the effects of a change in wall temperature, we have chosen the
+
+isothermal condition. We will return to the form of these boundary conditions
+
+in the presence of surface mass flux in Section 2.4.
+
+
+Equations (2.8)-(2.13) are then non-dimensionalised. The characteristic length
+
+along the cone surface, l∗ , is used to scale any length quantities. The surface
+
+normal coordinate is further scaled using the modified boundary layer thick-
+
+ness. Hence we arrive at scaled spatial variables
+
+                                                           1
+                            x∗ = l∗ x,     z ∗ = l∗ R− 2 η,                 (2.15)
+
+
+where R is the Reynolds number given by
+
+                                       ρ∗ l∗2 Ω∗ sin ψ
+                                 R=                    .                    (2.16)
+                                              µ∗
+
+The velocity quantities are then scaled by
+
+                                                                1
+        u∗ = (u∗ , v ∗ , w∗ ) = l∗ Ω∗ sin ψ(u(x, η), v(x, η), R− 2 w(η)),   (2.17)
+
+
+and the pressure is scaled using
+
+
+                            p∗ = ρ∗ Ω∗2 l∗2 sin2 ψp(x, η).                  (2.18)
+
+
+The length scale allows us to define the free–stream Mach number by
+
+                                               Ωl
+                                M∞ =                   1
+                                         (γRgas T∞ ) 2
+LAMINAR FLOW EQUATIONS                                                         28
+
+
+where Rgas is the gas constant with Rgas = cp − cv . This free stream value is
+
+used to scaled the Mach number. Likewise, all other variables are scaled using
+
+their free stream values. Again, this method is consistent with Turkyilmazoglu
+
+(2004) in the particular case of ψ = 90o .
+
+
+To obtain the governing steady axisymmetric mean flow equations, we neglect
+
+any dependence on time and the azimuthal coordinate θ and apply our scalings
+
+to Equations (2.8)-(2.13). We then expand in terms of R and dismiss terms
+         1
+of O(R− 2 ) due to the assumption of large Reynolds number. Physically this
+
+limits the analysis to high rotation rates and/or large characteristic length
+
+scales relative to the boundary layer thickness and is entirely appropriate.
+
+   This leads to the reduced system of equations
+
+                          ∂ρ     ∂ρ      ∂u ∂w  ρu
+                          u   +w    +ρ        +      +    = 0,           (2.19)
+                          ∂x     ∂η       ∂x    ∂η      x
+               ∂u     ∂u v 2                 ∂p    ∂  ∂u 
+             ρ u    +w    −    − 2v − x = −       +     µ     ,          (2.20)
+                 ∂x    ∂η    x                 ∂x ∂η ∂η
+                         ∂v     ∂v uv              ∂  ∂v 
+                       ρ u    +w     +     + 2u =       µ     ,          (2.21)
+                           ∂x    ∂η     x            ∂η ∂η
+                                           v2          ∂p
+                                    cot ψ      + 2v + x =     ,          (2.22)
+                                            x             ∂η
+                                                      2
+                                                    γM∞ p = ρT,          (2.23)
+         ∂T     ∂T               ∂p       ∂p     ∂u 2
+                         2
+       ρ u    +w      = M∞ (γ − 1) u    +w      +µ                       (2.24)
+           ∂x    ∂η                  ∂x      ∂η        ∂η
+                                     ∂v 2    ∂    ∂T 
+                                  +            +     k      .
+                                      ∂η         ∂η ∂η
+LAMINAR FLOW EQUATIONS                                                      29
+
+
+subject to the following boundary conditions
+
+
+                         u = 0, v = 0, w = 0, on η = 0,
+
+                        u → 0, v → −x sin ψ as η → ∞.                    (2.25)
+                                             1
+                     ρ, T, µ → 1, p →          2
+                                                 as η → ∞.
+                                            γM∞
+
+
+
+
+2.2     Solution of the governing equations
+
+To proceed in reducing the equations to a von Kármán type similarity solution
+
+we make further assumptions. We let the fluid satisfy Chapman’s viscosity
+
+law, that is µ = CT for some constant C which is found experimentally.
+
+This is then used to remove the density terms from the equations using a
+
+Dorotonitsyn-Howarth transformation, shown by Stewartson (1964) and given
+
+by
+                                            Z η
+                                     − 12
+                              y=C                 ρdη.                   (2.26)
+                                             0
+
+
+We note that in previous work, notably Seddougui (1990), the constant C
+
+remains in the analysis throughout. However, when results are presented no
+
+value is given for C and it is assumed that the value C = 1 is used. This
+
+is justified in the conclusions section of this thesis, and hence we set C = 1
+
+throughout the analysis presented here.
+LAMINAR FLOW EQUATIONS                                                        30
+
+
+The velocity and pressure quantities are then further scaled using
+
+
+                                                                2 −1
+                      (u, v, w, p) = (xU (y), xV (y), W (y), (γM∞ ) )    (2.27)
+
+
+We introduce a stream function satisfying Equation (2.4), and given by
+
+                                        dΨ       0
+                                     U=     = Ψ (y),                     (2.28)
+                                         dy
+                                                         0 ∂y
+                                                             
+                                     W = −C 1/2 T 2Ψ + xΨ       .        (2.29)
+                                                           ∂x
+
+Applying this to Equations (2.19)-(2.24) leads to the generalised set of von
+
+Kármán equations for the compressible flow over a rotating cone, given by
+
+       000    0                 00
+      Ψ = Ψ 2 − 2ΨΨ − (V + 1)2 ,                                         (2.30)
+
+       00                   0
+      V = 2(V + 1)Ψ − 2ΨV,                                               (2.31)
+      ∂ 2T       ∂T      0 ∂T                   00
+
+         2
+           + 2σΨ    − xσΨ                   2
+                              + (γ − 1)σx2 M∞ (Ψ 2 + V 2 ) = 0,          (2.32)
+      ∂y         ∂y        ∂x
+
+subject to the boundary conditions
+
+                  0
+     Ψ(0) = Ψ (0) = Ψ(∞) = V (0) = V (∞) + 1 = T (∞) − 1 = 0.            (2.33)
+
+
+Note that a prime indicates a spatial derivative with respect to y, the trans-
+
+formed normal variable. We consider solving the coupled ordinary differen-
+
+tial equations (2.30)-(2.31) together with the boundary conditions (2.33). An
+
+implicit fourth-order Runge-Kutta integration method is used to solve the
+LAMINAR FLOW EQUATIONS                                                      31
+
+
+            1.2
+
+
+             1
+
+
+            0.8
+
+
+            0.6
+
+
+            0.4
+
+
+            0.2
+
+
+             0
+
+
+           −0.2
+                  0            5            10            15          20
+                                             y
+
+
+
+
+                      Figure 2.2: Solution of Ψ(--), U (-), −V (..)
+
+ODEs. Figure 2.2 shows the solution for the stream function and the stream-
+
+wise and negative azimuthal components of the steady laminar flow velocity
+
+in the boundary layer of a rotating cone. This is in agreement with the in-
+
+compressible flow case (Lingwood (1997); Hussain (2009)) due to the removal
+
+of the density terms via the Dorotonitsyn-Howarth transformation. However,
+
+we will recover the effects of compressibility in §2.3.
+
+
+In addition to the usual velocity von Kármán equations (2.30)-(2.31), we also
+
+have an energy equation (2.32). This contains the extra parameters we must
+
+consider due to the effects of compressibility. To proceed further we rewrite
+LAMINAR FLOW EQUATIONS                                                       32
+
+
+this partial differential equation (PDE) as two ordinary differential equations
+
+(ODEs) via the temperature relation originally used by Riley (1964), but used
+
+throughout the literature, given by
+
+                             γ−1 2
+                    T =1−       Mx f (y) + (Tw − 1)q(y).                 (2.34)
+                              2
+
+Here f is a viscous dissipation quantity, q defines a heat conduction term and
+
+Mx is the local Mach number defined by Mx = x sin ψM∞ . Then (2.32) is
+
+expressed as
+
+                                                  00    0
+                     00           0    0    2σ(Ψ 2 + V 2 )
+                   f + 2σΨf − 2σΨ f =                                    (2.35)
+                                               sin2 ψ
+                     00       0
+                   q + 2σΨq = 0                                          (2.36)
+
+
+We note that Equation (2.36) can be solved analytically, with the solution
+                                  R ∞ −2σ R y ψdy
+                                   y
+                                     e     0      dy
+                           q(y) = R ∞ −2σ R y ψdy                        (2.37)
+                                   0
+                                     e     0      dy
+
+The boundary conditions for these ODEs are now considered. The free flow
+
+uniform temperature from the boundary equations given in Equation (2.33),
+
+along with the heat transfer at the wall, leads to the boundary conditions
+
+
+                    f (0) = f (∞) = q(0) − 1 = q(∞) = 0.                 (2.38)
+
+
+Using the numerical solutions shown in Figure 2.2 we next solve the ODEs
+
+(2.35)-(2.36) subject to the boundary conditions (2.33) and (2.38). We assume
+LAMINAR FLOW EQUATIONS                                                        33
+
+
+the compressible fluid to be air, which leads to the choice of σ = 0.7 and
+
+γ = 1.4.
+
+   Figure 2.3 shows the temperature distributions for several cases of constant
+
+local Mach number with varying wall temperature, which shows agreement
+
+with Turkyilmazoglu, Cole & Gajjar (2000) for Mx = 1. The effect of the
+
+quadratic local Mach number in (2.34) is clear. For Mx = 1 the temperature
+
+distributions all tend to 1 fairly linearly, whereas in the extreme case given
+
+where Mx = 8, all profiles grow to a maximum before settling back to 1.
+
+   Figure 2.4 shows the temperature distributions for several cases of constant
+
+wall temperature with varying local Mach number. Again, it is the local Mach
+
+number which is the more dominant parameter. The change in wall tempera-
+
+ture merely causes a shift upwards in temperature as expected from Equation
+
+(2.34). However, a change in Mx causes a large change in the profiles. For
+
+example, near the wall a substantial difference in the temperature can be seen
+
+for say Mx = 2 and Mx = 10.
+
+   It is important to note that these laminar flow temperature profiles will play
+
+an important role during the stability analysis in later chapters. A change in
+
+value of the wall temperature or local Mach number will be seen to effect the
+
+stability characteristics of the flow.
+LAMINAR FLOW EQUATIONS                                                     34
+
+                                      Mx = 1
+               2
+
+              1.8
+
+              1.6
+
+              1.4
+
+              1.2
+         TB
+
+
+
+
+               1
+
+              0.8
+
+              0.6
+
+              0.4
+
+              0.2
+
+               0
+                    0   2         4            6       8        10
+                                        y
+
+                                      Mx = 8
+               4
+
+
+              3.5
+
+
+               3
+
+
+              2.5
+         TB
+
+
+
+
+               2
+
+
+              1.5
+
+
+               1
+
+
+              0.5
+
+
+               0
+                    0   2         4            6       8        10
+                                        y
+
+
+
+
+Figure 2.3: Varying wall temperature, increasing vertically from Tw = 0 − 2 in
+
+0.4 increments, for constant local Mach numbers Mx .
+LAMINAR FLOW EQUATIONS                                                  35
+
+                                       Tw = 0.5
+              4.5
+
+
+               4
+
+
+              3.5
+
+
+               3
+         TB
+
+
+
+
+              2.5
+
+
+               2
+
+
+              1.5
+
+
+               1
+
+
+              0.5
+                    0   2          4              6       8   10
+                                          y
+
+                                       Tw = 1.5
+               5
+
+
+              4.5
+
+
+               4
+
+
+              3.5
+         TB
+
+
+
+
+               3
+
+
+              2.5
+
+
+               2
+
+
+              1.5
+
+
+               1
+                    0   2          4              6       8   10
+                                          y
+
+
+
+
+Figure 2.4: Varying local Mach number, increasing vertically from Mx = 0−10
+
+in increments of 2, for constant wall temperatures Tw .
+LAMINAR FLOW EQUATIONS                                                             36
+
+
+          0.2
+
+
+          0.1
+
+
+           0
+
+
+         −0.1
+
+
+         −0.2
+
+
+         −0.3
+
+
+         −0.4
+
+
+         −0.5
+                0       2           4          6           8          10
+                                         y
+
+
+           1
+
+
+          0.8
+
+
+          0.6
+
+
+          0.4
+
+
+          0.2
+
+
+           0
+
+
+         −0.2
+
+
+         −0.4
+                0       2           4          6           8          10
+                                         y
+
+
+
+
+  Figure 2.5: Numerical solution for (a) f (-), f 0 (--) and (b) q(-), q 0 (--).
+LAMINAR FLOW EQUATIONS                                                              37
+
+
+2.3      Physical interpretation
+
+To recover the dimensionless spatial quantity z from which we originally started,
+
+we invert the transformation (2.26) used to eliminate the density terms and
+
+make use of the temperature relation given by Equation (2.34).
+
+   By defining R = sin ψR90 , where R90 is the Reynolds number in the disk
+
+case and set to unity without loss of generality, we obtain
+
+                                              Z y                     Z y
+                        −1/2
+                                     γ−1 2                                    
+          z = (sin ψ)              y−    Mx         f dy + (Tw − 1)         qdy .
+                                       2       0                       0
+
+
+This reintroduces several physical parameters that were originally scaled out,
+
+namely wall temperature, cone half-angle and local Mach number, and facili-
+
+tates a study of the physical effects of compressibility.
+
+   Figure 2.7 shows the effect of a change in local Mach number on the laminar
+
+flow profiles for Tw = 1. Similarly, Figure 2.8 shows the change brought by a
+
+change in the wall temperature for Mx = 1. It is shown that compressibility
+
+has a stretching effect on the flow profiles due to the quadratic local Mach
+
+number term, with the wall temperature controlling the magnitude of the heat
+
+conduction integral term. The maximum streamwise velocity component U
+
+is seen to be delayed by an increase in either the local Mach number or wall
+
+temperature, and the azimuthal component V also sees a delay in tending to
+
+1 due to an increase in either value.
+LAMINAR FLOW EQUATIONS                                                       38
+
+
+            0.2
+
+
+
+             0
+
+
+
+           −0.2
+
+
+
+           −0.4
+
+
+
+           −0.6
+
+
+
+           −0.8
+
+
+
+            −1
+                  0      2         4          6          8          10
+                                         z
+
+
+
+
+         Figure 2.6: Solution of U (-), V (--) and W (.-), for ψ = 90o .
+
+
+   A low wall temperature produces similar results to the laminar flow profiles
+
+found in Figure 2.6, whereas for an increased wall temperature the W profile is
+
+seen to differ, which may suggest wall heating to have a destabilising effect on
+
+the flow. This is consistent with previous investigations Turkyilmazoglu, Cole
+
+& Gajjar (2000) and will be considered further during the stability analysis.
+LAMINAR FLOW EQUATIONS                                                   39
+
+
+                                      (a)
+           0.5
+
+
+
+
+             0
+
+
+
+
+          −0.5
+
+
+
+
+            −1
+
+
+
+
+          −1.5
+
+
+
+
+            −2
+                 0     2         4          6        8         10
+                                      z
+
+                                      (b)
+           0.5
+
+
+
+
+             0
+
+
+
+
+          −0.5
+
+
+
+
+            −1
+
+
+
+
+          −1.5
+
+
+
+
+            −2
+                 0     2         4          6        8         10
+                                      z
+
+
+
+
+Figure 2.7: Physical laminar flow profiles U (-), V (--), W (..) for ψ = 40o
+
+(uppermost) – 90o , Tw = 1 with (a) Mx = 0.5 and (b) Mx = 6.
+LAMINAR FLOW EQUATIONS                                                   40
+
+
+                                      (a)
+           0.5
+
+
+
+
+             0
+
+
+
+
+          −0.5
+
+
+
+
+            −1
+
+
+
+
+          −1.5
+
+
+
+
+            −2
+                 0     2         4          6        8         10
+                                      z
+
+                                      (b)
+           0.5
+
+
+
+
+             0
+
+
+
+
+          −0.5
+
+
+
+
+            −1
+
+
+
+
+          −1.5
+
+
+
+
+            −2
+                 0     2         4          6        8         10
+                                      z
+
+
+
+
+Figure 2.8: Physical laminar flow profiles U (-), V (--), W (..) for ψ = 40o
+
+(uppermost) – 90o , Mx = 1 with (a) Tw = 0.5 and (b) Tw = 3.
+LAMINAR FLOW EQUATIONS                                                         41
+
+
+2.4      The effect of mass flux on the laminar flow
+
+         solution
+
+Introducing a mass flux through the cone surface causes a change in the bound-
+
+ary conditions (2.14). We introduce a suction parameter ā which replaces the
+
+zero boundary condition on the surface in the surface normal coordinate di-
+
+rection. This leads to the revised velocity boundary conditions of
+
+                                            ā
+                      u = 0, v = 0, w =         , on η = 0,
+                                          sin ψ
+
+                         u → 0, v → −x sin ψ as η → ∞.                     (2.39)
+
+
+and modifies the von Kármán boundary conditions 2.33 as follows
+
+               a      0
+    Ψ(0) −         = Ψ (0) = Ψ(∞) = V (0) = V (∞) + 1 = T (∞) − 1 = 0,      (2.40)
+             sin ψ
+
+                                                  −ā
+ where a is the modified suction parameter a = 2C 1/2 Tw
+                                                         , and is defined for
+
+−1 ⩽ a ⩽ 1.
+
+   Figure 2.9 shows the plots for a uniform suction along the surface of the
+
+cone, for various value of half–angle ψ and suction parameter a, with fixed wall
+
+temperature Tw = 0.5 and C set to unity. The ψ-dependence arises through
+
+the normal velocity boundary condition (2.40), and is necessary to ensure a
+
+particular value of a represents the same physical surface mass flux across all ψ.
+
+Whilst the half angle is shown to have an effect on the wall normal component
+LAMINAR FLOW EQUATIONS                                                        42
+
+
+W , the given physical velocity components U and V are relatively insensitive
+
+to this change. Suction is seen to narrow the boundary layer, as would be
+
+expected, and also reducing the magnitude of crossflow velocity. Both of these
+
+are expected to have a stabilising effect, as we shall study in later chapters.
+LAMINAR FLOW EQUATIONS                                                       43
+
+
+                                        ψ=60o
+             1
+
+            0.8
+
+            0.6
+
+            0.4
+
+            0.2
+
+             0
+
+           −0.2
+
+           −0.4
+
+           −0.6
+
+           −0.8
+
+            −1
+                  0      2          4           6        8         10
+                                          z
+
+                                        ψ=90o
+             1
+
+            0.8
+
+            0.6
+
+            0.4
+
+            0.2
+
+             0
+
+           −0.2
+
+           −0.4
+
+           −0.6
+
+           −0.8
+
+            −1
+                  0      2          4           6        8         10
+                                          z
+
+
+
+
+Figure 2.9: Varying suction parameter from a = 0.2 to a = 1 (uppermost) in
+
+increments of 0.2, for cone half angles ψ, where U (-), V (--) and W (.-).
+Chapter 3
+
+
+Inviscid type I modes
+
+
+3.1      Linear perturbation equations
+
+To begin the stability analysis we impose an infinitesimally small perturbation
+
+field on the governing equations (2.8)-(2.13). Hence the dimensional quantities
+
+become
+
+
+                                 u → u∗ + û,                             (3.1)
+
+                                p∗ → p∗ + p̂,                             (3.2)
+
+                                ρ∗ → ρ∗ + ρ̂,                             (3.3)
+
+                                T ∗ → T ∗ + T̂ ,                          (3.4)
+
+
+
+
+                                      44
+INVISCID TYPE I MODES                                                                  45
+
+
+where û, p̂, ρ̂, T̂ are dimensional perturbation quantities. We non–dimensionalise
+
+using
+
+
+                                 û = l∗ Ω sin ψ(ũ, ṽ, w̃),                        (3.5)
+
+                                  p̂ = ρ∗ Ω∗2 l∗2 sin2 ψ p̃,                         (3.6)
+
+                                  ρ̂ = ρ∞ ρ̃,                                        (3.7)
+
+                                 T̂ = T∞ T̃ ,                                        (3.8)
+
+
+where ũ, ṽ, w̃, p̃, ρ̃, T̃ are the relevant non–dimensional perturbation quantities.
+
+
+We expand (2.8)-(2.13) and linearise with respect to the perturbation terms,
+
+leading to the full linear perturbation equations
+
+                  ∂     xv ∂         1   ∂           1 ∂w      xu sin ψ
+                   xu  +        + R− 2 w     + u + R− 2      +                       (3.9)
+                  ∂x     h ∂θ             ∂z             ∂z         h
+                  − 21
+                 R w cos ψ         ∂ ũ 1 ∂ṽ      ∂ρ ρ sin ψ 
+               +              ρ̃ +       +       ρ+        +           ũ
+                       h             ∂x h ∂θ           ∂x        h
+                                          ∂ρ     ∂     ρ cos ψ 
+                                        +     +ρ +                w̃ = 0,
+                                           ∂z     ∂z       h
+
+      n ∂       xv ∂        1    ∂               v sin ψ               ∂u o
+  ρ     xu    +        + R− 2 w       + u ũ − 2            + 1 ṽ + xw̃            (3.10)
+           ∂x    h ∂θ             ∂z                    h                  ∂z
+                                         2 2
+                         1      ∂u x v sin ψ                   h           ∂ p̃
+            +ρ̃ xu2 + R− 2 xw        −               − 2xv −           =−
+                                 ∂z          h                sin ψ          ∂x
+               1 n   ∂   ∂ ũ            1 ∂       ∂ṽ   1 ∂ ũ ṽ sin ψ 
+             +     2    T      + T̃ u +            T       +       −
+               R ∂x       ∂x               h ∂θ        ∂x h ∂θ            h
+                         xv sin ψ        ∂      ∂ w̃ ∂ ũ          ∂u o
+                 +T̃ v −                +        T        +       + T̃ x        ,
+                               h            ∂z       ∂x     ∂z           ∂z
+INVISCID TYPE I MODES                                                                46
+
+                                                                     1
+          n ∂          xv ∂         − 21   ∂      xu sin ψ R− 2 w cos ψ 
+         ρ xu        +          +R w           +             +                 ṽ (3.11)
+                  ∂x    h ∂θ                ∂z        h                h
+                  ∂     ũx sin ψ w̃x cos ψ                                 o
+           + w̃x +                  +              + ũ v + 2(ũ + w̃ cot ψ)
+                   ∂z         h              h
+                                                                     1
+                      n 1
+                             −2    ∂             x2 u sin ψ R− 2 w cos ψ 
+                   +ρ̃ R xw            + xu +                +                 v
+                                  ∂z                  h                h
+                       o −1 ∂ p̃          1 n ∂   ∂ṽ        1 ∂ ũ ṽ sin ψ 
+          − 12
+ +2(xu + R w cot ψ) =                +             T       +          −
+                               h ∂θ R ∂x               ∂x h ∂θ            h
+                     xv sin ψ          2 ∂      ∂ṽ                       
+           +T̃ v −                  + 2          T       + ũ sin ψ + w̃ cos ψ
+                          h              h ∂θ        ∂θ
+         
+                         − 21
+                                            ∂   ∂ṽ 1 ∂ w̃ ṽ cos ψ 
+      +T̃ xu sin ψ + R w cos ψ +                  T       +          −
+                                              ∂z      ∂z h ∂θ             h
+                                                       ∂v xv cos ψ o
+                                                  +T̃ x       −                 ,
+                                                          ∂z           h
+
+                          n ∂        xv ∂               ∂      − 12 ∂w
+                                                                        
+                                                 − 12
+                         ρ xu      +        +R w            +R            w̃     (3.12)
+                              ∂x      h ∂θ              ∂z           ∂z
+      xv cos ψ           o            ∂w x2 v 2 cos ψ
+   −2           + cot ψ ṽ + ρ̃ R−1 w        −                − 2xv cot ψ
+          h                              ∂z           h
+                h cot ψ     ∂ p̃    1 n ∂   ∂ w̃ ∂ ũ              ∂u 
+             −            =− +               T         +       + T̃ x
+                 sin ψ       ∂z R ∂x             ∂x        ∂z          ∂z
+           1 ∂      ∂ṽ 1 ∂ w̃ ṽ cos ψ            ∂v xv cos ψ 
+         +        T       +       −          + T̃ x         −
+           h ∂θ       ∂z h ∂θ          h               ∂z          h
+                                            ∂      ∂ w̃       1    ∂w o
+                                         +2      T       + R− 2 T̃         ,
+                                            ∂z       ∂z              ∂z
+
+
+                                  2
+                                γM∞ p̃ = ρ̃T + ρT̃ ,                             (3.13)
+INVISCID TYPE I MODES                                                                        47
+
+
+                  ρ          ∂ T̃        ∂T   xv ∂ T̃      − 21 ∂ T̃         ∂T 
+               2 (γ − 1)
+                             ux      + ũ    +         +R w              + w̃             (3.14)
+            M∞                   ∂x       ∂x    h ∂θ               ∂z         ∂z
+                   ρ̃           ∂T        1  ∂T        ∂ p̃        ∂p xv ∂ p̃
+          + 2                 xu     + R− 2 w       = xu       + ũ      +
+            M∞ (γ − 1)           ∂x           ∂z         ∂x          ∂x      h ∂θ
+                    1  ∂ p̃       ∂p           1        n   ∂      ∂ T̃     ∂ 2 T̃
+             +R− 2 w         + w̃    +         2 (γ − 1) ∂x
+                                                                  h        +
+                       ∂z         ∂z hσRM∞                           ∂x        ∂θ2
+            ∂  ∂ T̃ o µ n ∂ ũ             2                     1           ∂ṽ
+          +      h          +      2u      + 2 (xu sin ψ + R− 2 w cos ψ)
+            ∂z      ∂z         R      ∂x h                                      ∂θ
+                      1                                          1
+  +(xu sin ψ + R− 2 w cos ψ)ũ sin ψ + (xu sin ψ + R− 2 w cos ψ)w̃ cos ψ)
+      ∂ w̃          1 ∂w ∂ w̃
+                                         xv sin ψ  ∂ṽ  v xv sin ψ  ∂ ũ
+   +2w     + 2R− 2             + v−                         +       −
+       ∂z              ∂z ∂z                   h       ∂x         h         h2      ∂θ
+              xv sin2 ψ v sin ψ                ∂u ∂ ũ       ∂u ∂ w̃             ∂v
+          +                −            ṽ + x           +x              + v+x
+                    h            h               ∂z ∂z          ∂z ∂x               ∂z
+                                                                                   2
+             xv cos ψ ∂ṽ
+                                  v x ∂v xv cos ψ ∂ w̃                   xv cos ψ
+           −                   +      +           −       2
+                                                                       +
+                  h       ∂z       h h ∂z               h         ∂θ             h
+              x cos ψ ∂v v cos ψ           o       λ  n
+           −               −              ṽ +           xuũ sin2 ψ + 2huũ sin ψ
+                  h ∂z            h                Rh
+              ∂ ũ              ∂ṽ                                  1
+    +xu sin ψ      + xu sin ψ        + xuw̃ sin ψ cos ψ + R− 2 wũ sin ψ cos ψ
+              ∂x                ∂θ
+           1           ∂w                   ∂ w̃       ∂ ũ         ∂ṽ
+     +R− 2 hũ sin ψ        + xuh sin ψ           + hu       + hu        + uhw̃ cos ψ
+                        ∂z                  ∂z         ∂x           ∂θ
+                 ∂ w̃        1         ∂ ũ          1  ∂w ∂ ũ           1         ∂ṽ
+          +uh2        + R− 2 w cos ψ         + R− 2 h             + R− 2 w cos ψ
+                 ∂z                    ∂x                ∂z ∂x                      ∂θ
+                           1   ∂w ∂ṽ           1                      1           ∂w
+                      +R− 2 h          + R− 2 ww̃ cos2 ψ + R− 2 hw̃ cos ψ
+                               ∂z ∂θ                                               ∂z
+                                             1             ∂ w̃         1    ∂w ∂ w̃ o
+                                      +R− 2 wh cos ψ             + R− 2 h2            .
+                                                           ∂z                ∂z ∂z
+
+
+Note that as well as forming the basis of the following section, these pertur-
+
+bation equations will also be used in the viscous analysis in Chapter 4.
+INVISCID TYPE I MODES                                                             48
+
+
+3.2      Type I perturbation functions
+
+To begin the inviscid type I mode analysis we consider the previous incom-
+
+pressible analysis by Hall (1986) for the rotating disk and Hussain (2009) for
+
+the rotating cone, along with the compressible rotating disk flow analysis by
+
+Turkyilmazoglu, Cole & Gajjar (2000). We seek a normal–mode solution and
+
+scale the inviscid mode wavelengths, α and β in the x and θ directions respec-
+                                                            1
+tively, by the boundary layer–thickness which is O(R− 2 ).
+                                                        1
+   We choose to define a small parameter  = R− 6 following the aforemen-
+
+tioned previous work, which is entirely appropriate as for an arbitrary Reynolds
+
+number domain R ∈ (104 , 107 ),  ∈ (0.068, 0.215) and  → 0 as R → ∞. We
+
+let the perturbation velocity functions depend on the wall normal coordinate
+
+z only. Then the perturbations are given by
+                              i nZ x                   o
+                 ũ = u(z)exp 3        α(x, )dx + β()θ ,                    (3.15)
+                              
+
+with similar expressions for all other perturbations ṽ, w̃, p̃, ρ̃, T̃ . The stream-
+
+wise and azimuthal wavenumbers are expanded as
+
+                                α = α0 + α1 + ...,                           (3.16)
+
+                                β = β0 + β1 + ....                           (3.17)
+
+Following Hall (1986) we restrict ourselves to neutral disturbances and find α
+
+and β such that the flow is neutrally stable at position x, hence α, β ∈ R. Then
+INVISCID TYPE I MODES                                                      49
+
+
+from the experimental study by Gregory, Stuart & Walker (1955), Hall (1986)
+
+states that there is an inviscid layer of thickness O(3 ). However to satisfy
+
+the no slip condition on the cone’s wall, there must exist a viscous layer. By
+
+balancing convection and diffusion terms in the perturbation equations the
+
+viscous layer is found to be O(4 ), and will be considered in §3.4.
+
+
+In the inviscid layer we expand the perturbation functions as
+
+
+                            u = u0 (η) + u1 (η) + ...,                 (3.18)
+
+                             v = v0 (η) + v1 (η) + ...,                (3.19)
+
+                           w = w0 (η) + w1 (η) + ...,                  (3.20)
+
+                             p = p0 (η) + p1 (η) + ...,                (3.21)
+
+                            ρ = ρ0 (η) + ρ1 (η) + ...,                 (3.22)
+
+                            T = T0 (η) + T1 (η) + ...,                 (3.23)
+
+
+where η = z−3 . Here ∂x
+                      ∂    ∂
+                         , ∂θ     ∂
+                              and ∂z are effectively transformed to
+
+                        ∂       ∂    i
+                           7→     + 3 {α0 + α1 + ...},                 (3.24)
+                        ∂x     ∂x 
+                         ∂      i
+                            7→ 3 {β0 + β1 + ...},                      (3.25)
+                        ∂θ     
+                         ∂      1 ∂
+                             7→ 3 .                                     (3.26)
+                        ∂z      ∂η
+INVISCID TYPE I MODES                                                        50
+
+
+3.3        Leading order eigenmodes
+
+Substituting the expansions (3.15)–(3.23) into the perturbation equations (3.9)–
+
+(3.14) and equating terms of O(−3 ) leads to the leading–order eigenmodes
+
+given by
+
+                          v0 β0       ∂ρ
+       iρ0 U + iρ u0 α0 +          + w0    + ρw00 = 0,                    (3.27)
+                          x sin ψ       ∂η
+
+                                      iρu0 U + ρxw0 u0 = −iα0 p0 ,        (3.28)
+                                                               iβ0 p0
+                                      iρv0 U + ρxw0 v 0 = −           ,   (3.29)
+                                                              x sin ψ
+
+                                               iρw0 U = −p00 ,            (3.30)
+                         ρ                    ∂T              ∂p
+                      2
+                                  iT 0 U + w 0      = ip0 U + w0 ,        (3.31)
+                     M∞ (γ − 1)                ∂η               ∂η
+
+                   β0 v
+where U = α0 xu + sin ψ
+                        .
+
+   The quantities u0 , v0 , p0 and T0 can be eliminated from the above equations
+
+and we find an equation in w0 given by
+
+                                  0                    00
+            ρU w000 + (2ρ0 U − ρU )w00 + (ρ00 U − ρU − ρU γ02 )w0 = 0     (3.32)
+
+                             β2
+The quantity γ02 = α02 + x2 sin0 2 ψ is interpreted as the effective wave number
+
+and U as the effective velocity profile, as previously discussed by Hall (1986)
+
+for the rotating disk case. Then Equation (3.32) is the compressible Rayleigh
+
+equation which dictates the leading-order stability of the flow.
+INVISCID TYPE I MODES                                                             51
+
+
+            0.4
+
+
+            0.2
+
+
+              0
+
+
+           −0.2
+
+
+           −0.4
+
+
+           −0.6
+
+
+           −0.8
+
+
+             −1
+                  0      2           4         6          8          10
+                                          z
+
+
+
+                                                                          00
+Figure 3.1: The effective velocity U (−) and it’s second derivative U (−−) for
+
+ψ = 40o (uppermost at z = 10)−90o , where Tw = Mx = 12 .
+
+
+   We proceed by solving the eigenvalue problem (3.32) subject to the bound-
+
+ary conditions at the cone wall and in the free–stream given by
+
+
+                               w0 = 0 at z = 0, ∞,                             (3.33)
+
+
+where there exists a singularity at that point due to the effective velocity having
+
+a root in the domain. We use a numerical method of central finite differences
+                                00
+with z = z̄ such that U = U = 0 at this point, known as the location of
+
+the critical layer. This condition requires the effective velocity profile U to
+INVISCID TYPE I MODES                                                         52
+
+
+
+
+Figure 3.2: Diagram showing the direction of wave numbers and the effective
+
+velocity, taken from Garrett, Hussain & Stephen (2009).
+
+have a root and inflexion point at z = z̄. To interpret the results physically
+
+we consider the spiral vortices that wrap around the cone at an angle to the
+
+cone meridian. As shown in Figure 3.2 the normal to these spiral vortices is
+
+in the direction of the effective velocity and is at an angle φ to the streamwise
+
+position vector, which defines our waveangle φ. The wavenumbers for neutrally
+
+stable modes are given by γ0 .
+
+
+Figures 3.3-3.5 show the profile of w0 for given values of Tw and Mx , with
+
+varying ψ. The profile shape is consistent with that of the incompressible case
+
+(Hussain (2009)), with a larger value for the velocity peak. This is physically
+
+plausible because a non–constant density would suggest that any disturbance
+INVISCID TYPE I MODES                                                         53
+
+
+would grow to be greater than in an incompressible fluid before being sup-
+
+pressed. In Figure 3.6 the effect of an active suction parameter is shown.
+
+Including a non-zero value for a is seen to have a relatively large effect on the
+
+w0 profile, however an increase in a is then seen to cause little change.
+
+   As the suction is turned on the leading–order wall normal perturbation
+
+quantity w0 quickly reduces in magnitude, almost immediately eliminating the
+
+effect of the perturbation. This suggests that suction along the cone wall can
+
+be used as a stabilising mechanism, which is consistent with previous findings
+
+by Gregory & Walker (1960), Lingwood (1997).
+
+   Figure 3.7 presents the leading–order wavenumber and waveangle predic-
+
+tions for the inviscid neutrally stable modes, under several different parameter
+
+combinations. The wavenumbers are consistent with the incompressible case
+
+in that as the half angle grows the wavenumber grows. For the waveangles,
+
+as the half angle increases the spiral vortices deviate further from the stream-
+
+wise direction, which is in agreement with the incompressible case (Garrett,
+
+Hussain & Stephen (2009)), due to an increased rotational shear force on the
+
+vortex spirals as the gradient of the cone’s surface grows as ψ increases.
+INVISCID TYPE I MODES                                                    54
+
+
+
+
+            1.8
+
+            1.6
+
+            1.4
+
+            1.2
+
+             1
+      w0
+
+
+
+
+            0.8
+
+            0.6
+
+            0.4
+
+            0.2
+
+             0
+
+           −0.2
+                  0   2         4         6         8         10
+                                     z
+
+
+
+
+   Figure 3.3: w0 for ψ = 40o (uppermost) − 90o where Tw = 21 ,Mx = 12
+
+
+            1.8
+
+            1.6
+
+            1.4
+
+            1.2
+
+             1
+      w0
+
+
+
+
+            0.8
+
+            0.6
+
+            0.4
+
+            0.2
+
+             0
+
+           −0.2
+                  0   2         4         6         8         10
+                                     z
+
+
+
+
+   Figure 3.4: w0 for ψ = 40o (uppermost) − 90o where Tw = 21 ,Mx = 1
+INVISCID TYPE I MODES                                                   55
+
+
+
+
+              1.8
+
+              1.6
+
+              1.4
+
+              1.2
+
+               1
+        w0
+
+
+
+
+              0.8
+
+              0.6
+
+              0.4
+
+              0.2
+
+               0
+
+             −0.2
+                    0     2     4         6         8        10
+                                     z
+
+
+
+
+     Figure 3.5: w0 for ψ = 40o (uppermost) − 90o where Tw = 1,Mx = 1
+
+
+              1.8
+
+              1.6
+
+              1.4
+
+              1.2
+
+               1
+        w0
+
+
+
+
+              0.8
+
+              0.6
+
+              0.4
+
+              0.2
+
+               0
+
+             −0.2
+                    0     2     4         6         8        10
+                                     z
+
+
+
+
+Figure 3.6: w0 for ψ = 60o ,Tw = 21 ,Mx = 1 with suction parameter a =
+
+0(uppermost), 0.1, 0.2.
+INVISCID TYPE I MODES                                                  56
+
+
+               1.8
+
+                         Tw=1 ψ=50o
+               1.6
+                         Tw=0.5 ψ=50o
+
+                         Tw=0.5 ψ=90o
+               1.4
+
+
+               1.2
+         γ0
+
+
+
+
+                1
+
+
+               0.8
+
+
+               0.6
+
+
+               0.4
+                     0         0.5           1         1.5        2
+                                             Mx
+
+
+              13.5
+
+               13
+
+              12.5
+
+               12
+
+              11.5
+
+               11
+         φ
+
+
+
+
+              10.5
+
+               10
+
+               9.5
+
+                9
+
+               8.5
+                  40      50            60        70         80   90
+                                             ψ
+
+
+
+
+Figure 3.7: Asymptotic plots of leading order wavenumber & waveangle pre-
+
+dictions for neutrally stable inviscid modes
+INVISCID TYPE I MODES                                                       57
+
+
+3.4     Wall layer solution
+
+We now consider the leading–order inviscid mode solution for the wall layer,
+
+which is present to preserve the no slip boundary condition on the cone’s
+
+surface. The surface–normal coordinate now takes the form ξ = −4 z, where
+
+ξ is related to the original surface–normal coordinate by η = ξ. On the cone
+
+wall, the basic flow quantities satisfy the no–slip condition, with derivatives
+
+linear in ξ such that
+
+
+                                  u = u0 (0)ξ,                          (3.34)
+
+                                  v = v 0 (0)ξ,                         (3.35)
+
+                                 w = w0 (0)ξ.                           (3.36)
+
+
+We expand the perturbation quantities within the wall layer as
+
+
+                          ū = U0 (ξ) + U1 (ξ) + ..,                    (3.37)
+
+                          v̄ = V0 (ξ) + V1 (ξ) + ..,                    (3.38)
+
+                         w̄ = W0 (ξ) + 2 W1 (ξ) + ..,                  (3.39)
+
+                          p̄ = P0 (ξ) + 2 P1 (ξ) + ..,                 (3.40)
+
+                          ρ̄ = %0 (ξ) + %1 (ξ) + ..,                    (3.41)
+
+                         T̄ = T0 (ξ) + T1 (ξ) + ...                     (3.42)
+INVISCID TYPE I MODES                                                                 58
+
+
+We substitute these expansions into the perturbation equations (3.9)-(3.14)
+
+and equate terms of O(−3 ) for the continuity equation, terms of O(−2 ) for
+
+the streamwise velocity, azimuthal velocity and energy equations, and O(−1 )
+
+for the surface-normal velocity equation. This leads to
+
+                                            iβ0 V0        0
+                                                                   ∂ρ
+                                ρ iα0 U0 +            + W0 + W0         = 0,       (3.43)
+                                            x sin ψ                 ∂ξ
+                                              iv 0 (0)ξβ0 U0              
+                            ρ ixu0 (0)ξα0 U0 +                 + xu0 (0)W0         (3.44)
+                                                     sin ψ
+                                                               ∂T
+                                                = −iα0 P0 + U00     + T U000 ,
+                                                               ∂ξ
+                              
+                                  0            iv 0 (0)ξβ0 V0     0
+                                                                           
+                             ρ ixu (0)ξα0 V0 +                + xv (0)W0           (3.45)
+                                                     sin ψ
+                                                    iP0 β0        ∂T
+                                               =−           + V00    + T V000 ,
+                                                    x sin ψ       ∂ξ
+                            ixv 0 (0)ξβ0 W0                   ∂T
+       ρ ixu0 (0)ξα0 W0 +                        = −P20 + 2W00       + 2T W000 ,   (3.46)
+                                 x sin ψ                         ∂ξ
+            ρ       
+                        0               iv 0 (0)ξβ0 T0        ∂T        ∂p
+          2
+                      iu (0)ξxα0 T0 +                    + W1       = W1 +         (3.47)
+        M∞ (γ − 1)                            sin ψ           ∂ξ         ∂ξ
+             1            
+                                     0              00
+                                                            ∂u 0 ∂v 0 
+                            cos ψT2 + x sin ψT0 + xµ             U +     V .
+    x sin ψσM∞ 2 (γ − 1)                                      ∂ξ 0 ∂ξ 0
+
+
+            d                  d      β0
+Considering dξ (α0 × (3.45)) + dξ ( x sin ψ
+                                            × (3.46)), and eliminating W0 by using
+
+(3.43), we obtain
+
+                         β0 V0 0 00
+              T α0 U0 +                                                            (3.48)
+                          x sin ψ
+                               β0 v 0 (0)  1           β0 V0 0
+             − iξ α0 xu0 (0) +                    α0 U0 +            = 0.
+                                 sin ψ       T            x sin ψ
+INVISCID TYPE I MODES                                                                 59
+
+
+We will now move onto the next–order problem in the inviscid zone and will
+
+discuss the application of this equation in relation to the next–order equations.
+
+
+
+
+3.5       First order eigenmodes
+
+We next consider the first–order relations in the inviscid zone. We follow the
+
+method of §3.3 and expand the perturbation equations (3.9)-(3.14) to O(−2 )
+
+to find
+
+                                     iv
+           ixu(ρ0 α1 + ρ1 α0 ) +         (ρ0 β1 + ρ1 β0 ) + iρ(u0 α1 + u1 α0 )     (3.49)
+                                   sin ψ
+                                     iρ
+                              +           (v0 β1 + v1 β0 ) + w1 ρ0 + ρw10 = 0,
+                                  x sin ψ
+                                              iρv
+                   iρxu(α1 u0 + α0 u1 ) +          (β1 u0 + β0 u1 ) + ρxw1 u0      (3.50)
+                                             sin ψ
+
+                                                        = −i(α0 p1 + α1 p0 ),
+                                               iρv
+                    iρxu(α1 v0 + α0 v1 ) +          (β1 v0 + β0 v1 ) + ρw1 xv 0    (3.51)
+                                              sin ψ
+                                                         −i
+                                                   =           (β0 p1 + β1 p0 ),
+                                                       x sin ψ
+                                              iρv
+                    iρxu(α1 w0 + α0 w1 ) +         (β1 w0 + β0 w1 ) = −p01 ,       (3.52)
+                                             sin ψ
+          ρ                                iv                          ∂T 
+       2 (Γ − 1)
+                   iux(α1 T0 + α 0 T1 ) +       (β 0 T1 + β 1 T0 ) + w1            (3.53)
+      M∞                                  sin ψ                         ∂η
+                                                iv                       ∂p
+                   = ixu(α1 p0 + α0 p1 ) +          (β0 p1 + β1 p0 ) + w1 .
+                                              sin ψ                      ∂η
+
+
+These are the equivalent equations to (3.27)-(3.31) for the disturbance quan-
+INVISCID TYPE I MODES                                                               60
+
+
+tities (u1 , v1 , w1 , p1 , ρ1 , T1 ), where we find the introduction of inhomogenous
+
+cross–terms related to the leading–order quantities (u0 , v0 , w0 , p0 , ρ0 , T0 ). The
+
+quantities u1 , v1 , p1 and T1 are eliminated as in the leading order case. We use
+
+the leading–order continuity equation (3.27) to eliminate u0 , and the leading–
+
+order azimuthal velocity equation (3.29) to eliminate v0 . This leads to the
+
+governing equation for the first–order eigenfunction given by
+
+
+
+
+                                     0                   00
+               ρU w100 + (2ρ0 U − ρU )w10 + (ρ00 U − ρU − ρU γ02 )w1            (3.54)
+                         α1 β0  ρv 0 0                 β1 v  2
+                  = β1 −                w0 + ρ α1 xu +           γ
+                           α0 sin ψ                       sin ψ 0
+                                                          β0 β1 
+                                          +ρU α0 α1 + 2 2
+                                                        x sin ψ
+                        α1 β0  ρv 00     ρ00 v    ρβ0 U 
+                  + β1 −                 −         + 2 2        w0 .
+                          α0      sin ψ sin ψ x sin ψ
+
+From considering the incompressible flow case studied by Hussain (2009), the
+
+next step is to asymptotically match the leading order eigensolution in the
+
+viscous wall layer (3.48) to the first–order solution in the inviscid zone (3.54).
+
+However, this method cannot be followed for the compressible flow case. Hus-
+
+sain (2009) uses the substitution
+
+                                                 0
+                              φ = α0 U0 + β0 V0 /r ,                            (3.55)
+INVISCID TYPE I MODES                                                        61
+
+
+and let τ = γξ, where
+
+                                                   31
+                                     0             0
+                        γ = i(α0 rU (0) + β0 V (0)) .                    (3.56)
+
+
+This transforms the incompressible flow version of equation (3.48) into the
+
+ordinary differential equation
+
+
+                                 φτ τ − τ φ = 0.                         (3.57)
+
+
+This has an analytic solution given by an Airy function which is then matched
+
+to the incompressible flow version of Equation (3.54). Due to the complica-
+
+tion of the added temperature distribution terms in Equation (3.48), such a
+
+substitution is not possible. As no adequate alternative has been found, the
+
+problem is left open and the equations are included for completeness.
+
+   There is a gap in the literature on this problem for theoretical studies into
+
+compressible flows over rotating boundary layers. It is suggested that this
+
+problem is revisited in a later study to find a way of extending the method for
+
+the incompressible case such that a solution can be found when taking into
+
+account the added terms found in the compressible analysis.
+Chapter 4
+
+
+Viscous Type II Modes
+
+In this chapter we consider a triple deck structure to study the stability of
+
+the stationary viscous modes, following the method used for the compressible
+
+rotating disk case by Seddougui (1990). Rather than the previous condition
+                                                   00
+for the inviscid modes, where we required U = U = 0 at the location of the
+
+critical layer, the condition used for the viscous stationary modes is that at
+
+leading order the effective wall shear is given by αu0 x sin ψ + βv 0 = 0. This
+
+will be discussed in more detail as we progress.
+
+   We base the analysis around the small parameter
+
+                                           1
+                                   = R− 16 ,                             (4.1)
+
+
+which as in §3 is entirely suitable as we are considering a high Reynolds–
+
+
+                                      62
+VISCOUS TYPE II MODES                                                          63
+
+
+
+
+               Figure 4.1: Diagram of the triple–deck structure.
+
+number flow and  → 0 as R → ∞. Then the upper, main and lower decks
+
+are of thickness O(4 ), O(8 ) and O(9 ) respectively. The triple deck structure
+
+follows that found by Smith (1979) for the Blasius flow, and is shown in Figure
+
+4.1. The triple deck structure is used to remove a singularity caused by flow
+
+separation. The separation occurs when the part of the boundary layer closest
+
+to the cone wall reverses in flow direction, caused by an adverse pressure
+
+gradient. The fluid then becomes detached from the cone wall, leading to the
+
+spiral vortices seen experimentally. The upper deck is inviscid and irrotational
+
+and creates a pressure gradient which drives the flow in the lower deck. The
+VISCOUS TYPE II MODES                                                             64
+
+
+main deck is also inviscid with no pressure change across the layer. All viscous
+
+effects are contained in the lower deck, which has to satisfy the no slip condition
+
+on the surface of the cone.
+
+   We seek a stationary normal modes solution for the axial flow perturbation
+
+given by
+
+                                i nZ x                   o
+                   ũ = u(Z)exp 4       α(x, )dx + β()θ                      (4.2)
+                                
+
+with similar expressions for the other perturbations ṽ, w̃, p̃, ρ̃, T̃ . The stream-
+
+wise and azimuthal wavenumbers are expanded as
+
+
+                            α = α0 + 2 α1 + 3 α2 + ...,                      (4.3)
+
+                            β = β0 + 2 β1 + 3 β2 + ...,                      (4.4)
+
+
+where the O() terms are zero. As with the inviscid modes, we require α, β ∈ R
+
+such that the flow is neutrally stable at position x.
+VISCOUS TYPE II MODES                                                                 65
+
+
+4.1     Upper deck solutions
+
+We let z = 4 Z so that Z is O(1) in the upper deck. We expand the perturba-
+
+tions in the form
+
+
+                          ū = 3 uU0 (Z) + 4 uU1 (Z) + ...,                       (4.5)
+
+                          v̄ = 3 v0U (Z) + 4 v1U (Z) + ...,                       (4.6)
+
+                         w̄ = 3 w0U (Z) + 4 w1U (Z) + ...,                        (4.7)
+
+                          p̄ = 3 pU0 (Z) + 4 pU1 (Z) + ...,                       (4.8)
+
+                          ρ̄ = 3 ρU0 (Z) + 4 ρU1 (Z) + ...,                       (4.9)
+
+                         T̄ = 3 T0U (Z) + 4 T1U (Z) + ....                       (4.10)
+
+
+Substituting these into the perturbation equations (3.9)-(3.14) and equating
+
+terms of O(−1 ) gives the leading–order equations
+
+               ivβ0 ρU0              iρβ0 v0U   dρ U     dwU
+ ixuα0 ρU0 +            + iρα0 uU0 +          +    w0 + ρ 0 = 0,                   (4.11)
+                sin ψ                x sin ψ    dZ        dZ
+                                            iρvβ0 uU0
+                            iρxuα0 uU0 +              + ρxu0 w0U = −iα0 pU0 ,      (4.12)
+                                              sin ψ
+                                     U   iρvβ0 v0U      0 U     iβ0 pU0
+                             iρxuα0 v0 +           + ρxv w0 = −         ,          (4.13)
+                                              sin ψ                     x sin ψ
+                                                        iρvβ0 w0U   dpU
+                                        iρxuα0 w0U +              =− 0,            (4.14)
+                                                          sin ψ     dZ
+          ρ      
+                           U   ivβ0 T0U   dT U  dp U
+                  iuxα 0 T0  +          +   w −    w                               (4.15)
+       2 (γ − 1)
+      M∞                        sin ψ     dZ 0   dZ 0
+                                                                      iβ0 vpU0
+                                                      = ixuα0 pU0 +            .
+                                                                       sin ψ
+VISCOUS TYPE II MODES                                                     66
+
+
+In the upper deck, the basic–flow quantities take the free stream values from
+
+(2.33), given by u = 0, v = −1, ρ = 1, T = 1 and p is constant. This leads to
+
+the modified equations
+
+                     iβ0 ρU0             iβ0 v0U   dw0U
+                 −           + iα0 uU0 +         +      = 0,           (4.16)
+                      sin ψ              x sin ψ    dZ
+                                                  β0 uU0
+                                                         = α0 pU0 ,    (4.17)
+                                                  sin ψ
+                                                          pU0
+                                                       v0U =  ,        (4.18)
+                                                           x
+                                                 iβ0 w0U  dpU
+                                                         = 0,          (4.19)
+                                                  sin ψ   dZ
+                                              T0U
+                                            2 (γ − 1)
+                                                      = pU0 .          (4.20)
+                                           M∞
+
+Reducing these equations into a single equation in pU0 leads to
+
+                                d2 pU0
+                                       − Γ2 pU0 = 0,                   (4.21)
+                                dZ 2
+
+where the leading order wavenumber is defined by
+
+                                         β02
+                         Γ2 = α02 +             (1 − Mx2 ).            (4.22)
+                                      x2 sin2 ψ
+VISCOUS TYPE II MODES                                                           67
+
+
+Rejecting solutions which grow as z → ∞ leaves us with the solutions
+
+                                      α0 sin ψC −ΓZ
+                              uU0 =            e    ,                       (4.23)
+                                          β0
+                                   C −ΓZ
+                              v0U =   e    ,                                (4.24)
+                                   x
+                                   i sin ψΓC −ΓZ
+                             w0U =           e   ,                          (4.25)
+                                        β0
+
+                              pU0 = Ce−ΓZ ,                                 (4.26)
+
+                                     2
+                              ρU0 = M∞ sin2 ψCe−ΓZ ,                        (4.27)
+
+                             T0U = (γ − 1)M∞
+                                           2
+                                             Ce−ΓZ ,                        (4.28)
+
+
+where C =constant.
+
+
+For three–dimensional stationary modes to exist the following relation must
+
+hold,
+
+                                       β02
+                            α02 +    2
+                                                   2
+                                           2 (1 − Mx ) > 0.                 (4.29)
+                                    x sin ψ
+
+Hence for 0 ⩽ Mx < 1, there will exist three–dimensional modes for all real α0
+
+and β0 . However, for Mx > 1, solutions still exist as long as the condition (4.29)
+
+holds. As stated by Hall (1986), in order for three–dimensional stationary
+
+modes to exist, the effective wall shear must be equal to zero at leading order.
+
+Hence we require
+
+                            ∂U     β0 ∂V
+                       α0      +            = 0 at z = 0,                   (4.30)
+                            ∂z   x sin ψ ∂z
+VISCOUS TYPE II MODES                                                      68
+
+
+where U and V are the basic flow quantities given in (2.27).
+
+   We find the streamline and azimuthal velocity gradients by finding the
+
+value of the solution to Equations (2.30)–(2.31) at z = 0, and have the values
+
+                    ∂U (0)            ∂V (0)
+                           = 0.51023,        = −0.61592,                (4.31)
+                     ∂z                ∂z
+
+leading to
+
+                             α0 x sin ψ
+                                        = 1.2071.                       (4.32)
+                                 β0
+
+Hence by rearranging (4.29) we find that the three–dimensional stationary
+
+modes exist for
+
+
+                              0 ⩽ Mx < 1.5674.                          (4.33)
+
+
+We note that as the local Mach number Mx depends on the half–angle ψ, a
+
+change in ψ will effect the upper limit of Mx for solutions to exist. To show
+
+this change we define M90 = xM∞ , the local Mach number for the rotating
+
+disk case, which leads to Mx = sin ψM90 . We set M90 = 1.5674, which is the
+
+upper limit for ψ = 90, and vary the half angle. The change is shown in Table
+
+4.1.
+VISCOUS TYPE II MODES                                                               69
+
+
+            ψ       40         50         60        70          80       90
+
+          Mmax
+           x      1.0075     1.2007    1.3574     1.4729       1.5436   1.5674
+
+Table 4.1: The effect of a change in ψ on the maximum local Mach number
+
+Mxmax allowed for stationary three-dimensional modes of instability to exist.
+
+4.2     Main deck solutions
+
+In the main deck, we scale the wall normal and pressure perturbations in the
+
+same way as before. We scale all other perturbations by the difference in the
+
+order of  between the upper and main decks, so in effect we multiply the upper
+
+deck expansions by −4 to obtain the main deck expansions. This means we
+
+use
+
+
+                           ū = −1 uM        M
+                                     0 (ζ) + u1 (ζ) + ...,                       (4.34)
+
+                           v̄ = −1 v0M (ζ) + v1M (ζ) + ...,                     (4.35)
+
+                         w̄ = 3 w0M (ζ) + 4 w1M (ζ) + ...,                     (4.36)
+
+                           p̄ = 3 pM        4 M
+                                    0 (ζ) +  p1 (ζ) + ...,                      (4.37)
+
+                           ρ̄ = −1 ρM        M
+                                     0 (ζ) + ρ1 (ζ) + ...,                       (4.38)
+
+                         T̄ = −1 T0M (ζ) + T1M (ζ) + ....                       (4.39)
+
+
+Substituting these expansions into the perturbation equations (3.9)-(3.14) leads
+VISCOUS TYPE II MODES                                                           70
+
+
+to the main deck equations at O(−5 ) given by
+
+                 ivβ0 ρM
+                       0             iρβ0 v0M   dρ M     dw0M
+    ixuα0 ρM
+           0 +           + iρα0 uM
+                                 0 +          +   w  + ρ      = 0,           (4.40)
+                  sin ψ              x sin ψ    dζ 0      dζ
+                                                  ivβ0 uM
+                                   ixuα0 uM
+                                          0 +
+                                                        0
+                                                          + xu0 w0M = 0,     (4.41)
+                                                   sin ψ
+                                                  ivβ0 v0M
+                                    ixuα0 v0M +            + xv 0 w0M = 0,   (4.42)
+                                                   sin ψ
+                                                          dpM
+                                                            0
+                                                              = 0,           (4.43)
+                                                           dζ
+                       ρ      
+                                        M   ivβ0 T0M   dT M 
+                                ixuα  T
+                                     0 0  +          +   w    = 0.           (4.44)
+                    2 (γ − 1)
+                   M∞                         sin ψ    dζ 0
+
+Prandtl matching between the upper and main decks implies that
+
+                         lim pM            U
+                              0 (ζ) = lim p0 (Z) = C                         (4.45)
+                         ζ→∞            Z→0
+
+
+From (4.43) pM                       M                       M      M
+             0 (ζ) =constant, hence p0 (ζ) = C. Eliminating u0 and v0 from
+
+
+the continuity equation (4.40) and integrating the resulting equation leads to
+
+the main deck equations given by
+
+                              sin2 ψΓCxu0
+                      uM
+                       0 =                ,                                  (4.46)
+                                   β02
+                           sin2 ψΓCxv 0
+                      v0M =             ,                                    (4.47)
+                                 β02
+                             i sin2 ψΓC           β0 v 
+                     w0M = −              α0 xu +         ,                  (4.48)
+                                  β02             sin ψ
+
+                      pM
+                       0 = C,                                                (4.49)
+                              sin2 ψΓC dρ
+                      ρM
+                       0 =                ,                                  (4.50)
+                                  β02  dζ
+                      M
+                           2
+                          M∞ (γ − 1) sin2 ψΓC dT
+                     T0 =                        ,                           (4.51)
+                                  β02         dζ
+VISCOUS TYPE II MODES                                                      71
+
+
+after matching with the previous upper deck equations. Here the wall normal
+
+velocity w0M satisfies the usual no slip condition at ζ = 0, whereas uM
+                                                                      0 and
+
+
+v0M do not. This is because of the condition of zero wall shear at leading
+
+order given in (4.30), and we are required to choose α0 and β0 to satisfy this
+
+condition.
+
+
+
+
+4.3     Lower deck solutions
+
+We now let z = 9 ξ, such that ξ = O(1) in the lower deck. For small ζ we
+
+expand the basic flow components u, v, ρ and T , which in terms of ξ are given
+
+by
+
+
+                       u = u0 ξ + 2 u1 ξ 2 + 3 u2 ξ 3 + ...,         (4.52)
+
+                       v = v0 ξ + 2 v1 ξ 2 + 3 u2 ξ 3 + ...,         (4.53)
+
+                       ρ = ρw + ρ0 ξ + 2 ρ1 ξ 2 + ...,                (4.54)
+
+                      T = Tw + T0 ξ + 2 T1 ξ 2 + ...,                 (4.55)
+
+
+where ρw and Tw are the density and the temperature at the cone’s wall re-
+
+spectively. The basic flow terms are now given by
+
+                                         1 ∂j u
+                               uj−1 =                                   (4.56)
+                                         j! ∂z j ζ=0
+VISCOUS TYPE II MODES                                                       72
+
+
+with similar expressions for vj−1 , ρj−1 and Tj−1 . The lower deck perturbation
+
+fields are given by
+
+                          uL−1 (ξ)
+                      ū =         + uL0 (ξ) + uL1 (ξ) + ...,           (4.57)
+                             
+                          v L (ξ)
+                      v̄ = −1      + v0L (ξ) + v1L (ξ) + ...,           (4.58)
+                             
+                      w̄ = 3 w0L (ξ) + 4 w1L (ξ) + ...,                (4.59)
+
+                      p̄ = 3 pL0 (ξ) + 4 pL1 (ξ) + ...,                (4.60)
+                          ρL−1 (ξ)
+                      ρ̄ =         + ρL0 (ξ) + ρL1 (ξ) + ...,           (4.61)
+                             
+                          T L (ξ)
+                      T̄ = −1      + T0L (ξ) + T1L (ξ) + ...,           (4.62)
+                             
+
+Upon matching with the leading order terms from the main deck solutions,
+
+and substituting in the basic flow expansions, this leads to the lower deck
+
+perturbation terms (in term of ξ) given by
+VISCOUS TYPE II MODES                                                               73
+
+
+
+
+         sin2 ψxΓC                      uL−1
+  ū =             (u0 + 2u1 ξ + ..) +      + uL0 + uL1 + ...,                (4.63)
+             β02                        
+     sin2 ψxΓC                            L
+                                         v−1
+  v̄ =            (v0 + 2v1 ξ +  ..) +      + v0L + v1L + ...,                 (4.64)
+         β02                             
+        i sin2 ψΓC5 n               β0 v1  2                 β0 v2  3     o
+ w̄ = −                   α0 u1 x +          ξ +  α0 xu2 +             ξ + ... (4.65)
+              β02                     sin ψ                     sin ψ
+
+         + 6 w0L + 7 w1L + ...,
+
+  p̄ =3 pL0 + 4 pL1 + ...,                                                    (4.66)
+         sin2 ψΓC                      ρL−1
+  ρ̄ =            (ρ0 + 2ρ1 ξ + ..) +      + ρL0 + ρL1 + ...,                 (4.67)
+            β02                         
+          2
+         M∞ (γ − 1) sin2 ψΓC                       L
+                                                  T−1
+ T̄ =                        (T0 + 2T1 ξ + ..) +     + T0L + T1L + ...        (4.68)
+                β02                               
+
+Substituting these relations into the perturbations equations yields the lower
+
+deck governing equations. We first concentrate on the continuity equation,
+
+where equating terms at O(−5 ) yields
+
+                                                               L 
+                                 β0 v  L               β0 v−1
+                        xuα0 +          ρ−1 + ρ α0 uL−1 +          = 0,         (4.69)
+                                 sin ψ                    x sin ψ
+
+and at O(−4 ) we find
+
+                                  β0 v  L              β0 v0L 
+                         xuα0 +          ρ0 + ρ α0 uL0 +           = 0,         (4.70)
+                                  sin ψ                  x sin ψ
+
+We next consider the streamwise perturbation equation. Equating terms of
+
+O(−3 ) leads to the governing ordinary differential equation for uL−1 (ξ), given
+VISCOUS TYPE II MODES                                                            74
+
+
+by
+
+                     d2 uL−1                  β0 v1  2 L
+                             − iρ   α 0 xu 1 +        ξ u−1 = 0            (4.71)
+                      dξ 2                     sin ψ
+
+The boundary conditions for this ordinary differential equation are given by
+
+the no slip condition and the zero wall normal perturbation at O(−1 ). Hence
+
+                                 sin2 ψxΓCu0
+                      uL−1 = −                        for   ξ = 0,         (4.72)
+                                       β02
+
+                      uL−1 → 0     as   ξ → ∞.                             (4.73)
+
+
+Taking equation (4.71) and using the substitution
+
+                                        √      1
+                                   ν=       2∆ 4 ξ,                        (4.74)
+
+
+where
+
+                                   i           β0 v1 
+                           ∆=          α0 xu1 +         .                  (4.75)
+                                  Tw            sin ψ
+
+This leads to the parabolic cylinder ordinary differential equation for uL−1 ,
+
+                              d2 uL−1 ρ2 L
+                                     − u−1 = 0,                            (4.76)
+                               dν 2   4
+
+subject to the boundary conditions
+
+                                 sin2 ψxΓCu0
+                      uL−1 = −                        for   ν = 0,         (4.77)
+                                       β02
+
+                      uL−1 → 0     as   ν → ∞.                             (4.78)
+VISCOUS TYPE II MODES                                                          75
+
+
+Solving this ordinary differential equation subject to these boundary condi-
+
+tions, and taking only solutions which decay as ν → ∞, leads to the solution
+
+for uL−1 given by
+
+                                         2
+                                                         √ 1
+                                   sin       ψxΓCu0 U (0, 2∆ 4 ξ)
+                      uL−1 (ξ) = −                                         (4.79)
+                                              β02      U (0, 0)
+           √ 1
+where U (0, 2∆ 4 ξ) is a parabolic cylinder function, values for which are given
+
+in Abramowitz & Stegun (1964).
+
+                               L
+     We find the solution for v−1 by considering the condition (4.30) and is given
+
+by
+                                                         √ 1
+                     L        α0 sin3 ψx2 ΓCu0 U (0, 2∆ 4 ξ)
+                    v−1 (ξ) =                                .             (4.80)
+                                      β03         U (0, 0)
+
+Then using the energy and state equations we find
+
+                                    2
+                                                  √ 1 1
+                      L          sin  ψΓCT0 U (0,   2σ 4 ∆ 4 ξ)
+                     T−1 (ξ) = −        2
+                                                                           (4.81)
+                                      β0         U (0, 0)
+                                                  √ 1 1
+                      L          sin2 ψΓCρ0 U (0, 2σ 4 ∆ 4 ξ)
+                     ρ−1 (ξ) = −                                           (4.82)
+                                      β02        U (0, 0)
+
+
+
+4.4       First order lower-deck solutions
+
+Our next aim is to find the next order values uL0 (ξ) and v0L (ξ). To do this we
+
+must first solve for w1L (ξ), which requires looking at the next order approxi-
+
+mation to the perturbation equations. Considering the continuity equation at
+VISCOUS TYPE II MODES                                                              76
+
+
+O(−3 ) yields
+
+                   iβ0 v1L   dw0L      i sin2 ψxΓC               β1 v0 
+       iα0 uL1 +           +      =−                   α 1 u 0 +                (4.83)
+                   x sin ψ    dξ             β02                 x sin ψ
+                                                  L
+                                             β1 v−1      ixα0 u1 ξ 2 ρL−1
+                              −i α1 uL−1 +             −                    ,
+                                             x sin ψ             ρw
+
+and the surface-normal perturbation equation at O(−6 ) yields
+
+                                         dp0
+                                             = 0.                               (4.84)
+                                         dξ
+
+Matching with the main deck pressure solution leads to
+
+
+                                       pL0 (ξ) = C.                             (4.85)
+VISCOUS TYPE II MODES                                                                         77
+
+
+The streamwise perturbation expansion at O(−1 ) leads to
+
+      n                            β1 v1 ξ 2 β2 v0 ξ  sin2 ψΓCxu0                    
+   ρw i xα1 u1 ξ 2 + xα2 u0 ξ +               +                                 +  uL
+                                                                                    −1     (4.86)
+                                     sin ψ        sin ψ             β02
+       
+                  3               β0 v2 ξ 3 β1 v0 ξ  2 sin2 ψΓCxξu1                 L
+                                                                                        
+    +i xα0 u2 ξ + xα1 u0 ξ +                +                                    + u0
+                                   sin ψ        sin ψ               β02
+                                          β0 v1  L         sin2 ψxΓCv                
+                           2                                                  0      L
+                       +iξ xα0 u1 +                u −2                         + v−1
+                                          sin ψ 1                    β02
+                                           3i sin2 ψΓCxu2 ξ 4                   β0 v 1 
+                                         −                          α   u
+                                                                      0 1  x +
+                                                     β02                         sin ψ
+                          2i sin2 ψΓCxu1 ξ 4                  β0 v2                 L
+                                                                                        o
+                        −                         α 0 xu  2 +            + 2xu  1 ξw  0
+                                   β02                         sin ψ
+      n                            β0 v2 ξ 3 β1 v0 ξ  sin2 ψΓCxu0                    
+ +ρ0 ξ i xα0 u2 ξ 3 + xα1 u0 ξ +              +                                 +  uL
+                                                                                    −1
+                                     sin ψ        sin ψ             β02
+                                             β0 v1 ξ 2  2 sin2 ψΓCxξu1               
+                          +i xα0 u1 ξ 2 +                                        +  u L
+                                                                                      0
+                                               sin ψ                β02
+                         β0 v0 ξ  L 2i sin2 ψΓCxu1 ξ 3                        β0 v 1 
+          +i xα0 u0 ξ +            u −                              α0 u1 x +
+                           sin ψ 1                   β02                         sin ψ
+                    2           3                                           2
+              i sin ψΓCxu0 ξ                    β0 v2  
+                                                                   L     sin ψΓCx o
+           −                       α0 xu2 +              + xu0 w0 −
+                      β02                      sin ψ                          ξβ02
+                             n                 β0 v1 ξ 2  sin2 ψΓCxu0                
+                      +ρ1 ξ 2 i xα0 u1 ξ 2 +                                    +  uL
+                                                                                    −1
+                                                 sin ψ              β02
+                                              β0 v0 ξ  2 sin2 ψΓCxξu1              L
+                                                                                        
+                             +i xα0 u0 ξ +                                       +  u 0
+                                                sin ψ               β02
+      i sin2 ψΓCxu0 ξ 2               β0 v1 o          L               L        d2 uL1
+   −                       α  u
+                             0 1 x +              −   xρ −1  =  −iα    p
+                                                                     0 0   +  T w        .
+              β02                      sin ψ                                       dξ 2
+VISCOUS TYPE II MODES                                                                          78
+
+
+Then considering the azimuthal perturbation expansion at O(−1 ) leads to
+
+       n                             β1 v1 ξ 2 β2 v0 ξ  sin2 ψΓCxv0                   
+    ρw i xα1 u1 ξ 2 + xα2 u0 ξ +               +                                +   v L
+                                                                                     −1     (4.87)
+                                       sin ψ        sin ψ             β02
+       
+                 3                 β0 v2 ξ 3 β1 v0 ξ  2 sin2 ψΓCxξv1                 L
+                                                                                         
+    +i xα0 u2 ξ + xα1 u0 ξ +                 +                                   + v0
+                                    sin ψ        sin ψ               β02
+                                          β0 v1  L          sin2 ψxΓCu                
+                           2                                                  0      L
+                       +iξ xα0 u1 +                v +2                         + u−1
+                                          sin ψ 1                    β02
+                                            3i sin2 ψΓCxv2 ξ 4                  β0 v1 
+                                         −                           α   u
+                                                                        0 1 x +
+                                                      β02                        sin ψ
+                          2i sin2 ψΓCxv1 ξ 4                    β0 v2                L
+                                                                                         o
+                        −                           α 0 xu 2 +            +  2xv 1 ξw  0
+                                    β02                         sin ψ
+       n                             β0 v2 ξ 3 β1 v0 ξ  sin2 ψΓCxv0                   
+  +ρ0 ξ i xα0 u2 ξ 3 + xα1 u0 ξ +              +                                +   v L
+                                                                                     −1
+                                       sin ψ        sin ψ             β02
+                                              β0 v1 ξ 2  2 sin2 ψΓCxξv1               
+                           +i xα0 u1 ξ 2 +                                       +   v L
+                                                                                       0
+                                                sin ψ                β02
+                          β0 v0 ξ  L 2i sin2 ψΓCxv1 ξ 3                       β0 v1 
+         +i xα0 u0 ξ +              v −                              α0 u1 x +
+                            sin ψ 1                   β02                        sin ψ
+                                    2              3
+                               i sin ψΓCxv0 ξ                       β0 v2  
+                                                                                       L
+                                                                                         o
+                             −                         α0 xu2 +              + xv0 w0
+                                        β02                        sin ψ
+                              n                  β0 v1 ξ 2  sin2 ψΓCxv0               
+                       +ρ1 ξ 2 i xα0 u1 ξ 2 +                                   +   v L
+                                                                                     −1
+                                                   sin ψ              β02
+                                               β0 v0 ξ  2 sin2 ψΓCxξv1              L
+                                                                                         
+                              +i xα0 u0 ξ +                                      +   v 0
+                                                 sin ψ               β02
+          i sin2 ψΓCxv0 ξ 2                 β0 v1 o            iβ0 L             d2 v1L
+        −                        α u
+                                  0 1 x  +               =   −           p   + Tw         .
+                   β02                       sin ψ             x sin ψ 0            dξ 2
+
+Following Hussain (2009) we simplify these equations using the operation
+
+iα0 (4.86)+ x iβ 0
+              sin ψ
+                    (4.87). Then using the relations in (4.56) we can expand the
+VISCOUS TYPE II MODES                                                                79
+
+
+streamwise and azimuthal laminar flow equations (2.30)-(2.31) to find
+
+                                       U 00 (0)      1
+                                  u1 =          =− ,                              (4.88)
+                                         2!          2
+                                         00
+                                       V (0)
+                                  v1 =          = 0.                              (4.89)
+                                         2!
+
+Differentiating (2.30)-(2.31) then leads to
+
+                              U 000 (0)    2V 0 (0)    v0
+                         u2 =           =−          =− ,                          (4.90)
+                                 3!          3!         3
+                                    000       0
+                                V (0)      2U (0)    u0
+                           v2 =          =          = .                           (4.91)
+                                     3!      3!      3
+
+We eliminate uL1 and v1L from the resulting equation using Equation (4.83),
+
+and simplify using Equations (4.69) and (4.71) leads to an ordinary differential
+
+equation in w0L , with solution
+
+                                              β1 v0  Γ sin2 ψCξ
+                             w0L = −i α1 xu0 +                    + k1 ξ 2 (4.92)
+                                               sin ψ        β02
+     3
+       n             2iγ02 Γx sin3 ψCu0             3iα0 Γx sin2 ψCρ0
+ +∆− 4 γ02 CF1 (s) +                      F 2 (s) −                      F3 (s)
+                        β03 Tw U (0, 0)                   β02 U (0, 0)
+                                          i(1 − σ)α0 Γx sin2 ψCρ0            o
+                                        +                              F4 (s) ,
+                                                  2β02 U (0, 0)
+
+             1
+where s = ∆ 4 ξ and k1 =constant.
+VISCOUS TYPE II MODES                                                              80
+
+
+The independent solutions F1 (s),F2 (s),F3 (s) and F4 (s) satisfy the following
+
+
+                           F1000 − s2 F10 + 2sF1 = 1,                           (4.93)
+                                                        √ 1
+                           F2000 − s2 F20 + 2sF2 = U (0, 2σ 4 s),               (4.94)
+                                                    d        √ 1 
+                           F3000 − s2 F30 + 2sF3 =      sU (0, 2σ 4 s) ,        (4.95)
+                                                   ds
+                                                           √ 1
+                           F4000 − s2 F40 + 2sF4 = s4 U (0, 2σ 4 s),            (4.96)
+
+
+satisfying the boundary conditions
+
+
+                              Fi (0) = Fi (∞) = 0 for i = 1, 2, 3, 4.           (4.97)
+
+
+Considering the continuity equation (4.83) at ξ = 0 finds
+
+                                                   iβ0 v1L (0) dw0L (0)
+                                             iα0 uL1 (0) +     +                (4.98)
+                                                    x sin ψ          dξ
+                2                                                 L
+           i sin ψxΓC          β1 v0      
+                                                  L           β1 v−1 (0) 
+         =              α u
+                         1 0 +           − i  α  u
+                                                1 −1 (0)   +               ,
+                 β02           x sin ψ                         x sin ψ
+
+Hence differentiating (4.92) and satisfying the boundary conditions at ξ = 0
+
+yields
+
+                           2iγ02 Γx sin3 ψu0 0       3iα0 Γx sin2 ψρ0 0
+           γ02 F10 (0) +                     F (0) −                 F3 (0)     (4.99)
+                             β03 Tw U (0, 0) 2          β02 U (0, 0)
+                                               i(1 − σ)α0 Γx sin2 ψρ0 0
+                                             +                         F4 (0)
+                                                     2β02 U (0, 0)
+                                                       1
+                                 (1 + i)Γ sin2 ψ(α0 x) 2           β1 v0 
+                               =                           α1 u0 +          .
+                                         2β02 Tw                   x sin ψ
+VISCOUS TYPE II MODES                                                                 81
+
+
+Taking the real and imaginary parts of this equation leads to
+                                                           1
+                                 2 0        Γ sin2 ψ(α0 x) 2           β1 v0 
+                                γ0 F1 (0) =                    α  u
+                                                                 1 0 +            (4.100)
+                                                 2β02 Tw               x sin ψ
+                          2γ02 Γx sin3 ψu0 0         3α0 Γx sin2 ψρ0 0
+                                           F  (0)  −                    F3 (0)    (4.101)
+                           β03 Tw U (0, 0) 2            β02 U (0, 0)
+                                                      1
+       (1 − σ)α0 Γx sin2 ψρ0 0         Γ sin2 ψ(α0 x) 2             β1 v0 
+     +                      F  4 (0) =                    α 1 u 0 +          .
+            2β02 U (0, 0)                   2β02 Tw                 x sin ψ
+
+Then substituting (4.100) into (4.101) we find the eigenrelation
+
+                           2γ02 Γx sin3 ψu0 0       3α0 Γx sin2 ψρ0 0
+           γ02 F10 (0) −                    F (0) +                F3 (0)         (4.102)
+                            β03 Tw U (0, 0) 2         β02 U (0, 0)
+                                         (1 − σ)α0 Γx sin2 ψρ0 0
+                                     −                        F4 (0) = 0.
+                                              2β02 U (0, 0)
+
+We now aim to find the values of F10 (0),F20 (0),F30 (0) and F40 (0), and to do this
+
+we follow the method of Hall (1986) (but outlined fully by Hussain (2009)) by
+
+transforming Equations (4.93)-(4.96) such that they can be solved in terms of
+
+the parabolic cylinder equations.
+
+     For F1 we begin by letting G = Fs21 , which upon substitution into (4.93)
+
+leads to
+
+
+                               s2 G000 + 6sG00 + (6 − s4 )G0 = 1.                 (4.103)
+
+
+This can be reduced to a second order differential equation via H = G0 , given
+
+by
+
+
+                               s2 H 00 + 6sH 0 + (6 − s4 )H = 1.                  (4.104)
+VISCOUS TYPE II MODES                                                          82
+
+                                                               √
+Making the change of variable K = s3 H, along with u =          2s, leads to the
+
+parabolic cylinder equation given by
+
+                                        u2        u
+                           K 00 (u) −      K(u) = √ .                     (4.105)
+                                        4        2 2
+
+We let K(u) = R(u)U (0, u) to obtain
+
+                                               u
+                             R00 U + 2R0 U 0 = √ .                        (4.106)
+                                              2 2
+
+Solving for R0 using the method of integrating factors leads to
+                                  Ru
+                                1    θU (0, θ)dθ
+                           R0 = √ ∞              .                        (4.107)
+                               2 2 U (0, u)2
+
+Rewriting this equation back in terms of F1 we find
+
+
+                        uF10 (u) − 2F1 (u) = R(u)U (0, u).                (4.108)
+
+
+Setting u = 0 and using the boundary condition (4.97) (noting that s = 0 ⇒
+
+u = 0) gives the condition R(0) = 0. Differentiating (4.108) and a change of
+
+variable from u back to s leads to
+                                        R∞
+                                              θU (0, θ)dθ
+                            F10 (0) =    0
+                                                          .               (4.109)
+                                             2U (0, 0)
+
+A similar method is used to find F20 (0), F30 (0) and F40 (0), taking into account
+
+the changes in the right–side side of (4.94)-(4.96). To estimate each respective
+
+Fi0 (0) we follow Hussain (2009) by using a Simpson’s rule method from θ = 0 to
+VISCOUS TYPE II MODES                                                        83
+
+
+
+               1.4
+
+
+               1.2
+
+
+                1
+
+
+               0.8
+      U(0,θ)
+
+
+
+
+               0.6
+
+
+               0.4
+
+
+               0.2
+
+
+                0
+                     0   1        2           3           4           5
+                                        θ
+
+
+
+
+Figure 4.2: The graph of U (0, θ), showing the decay over the region of inte-
+
+gration from θ = 0 to θ = 5.
+
+θ = 5 with a fixed step size of 0.1, noting that the parabolic cylinder function
+
+U (0, θ) decays exponentially (as shown in Figure 4.2). Using this method we
+VISCOUS TYPE II MODES                                                                 84
+
+
+find that
+
+                                         F10 (0) = 0.5984,                        (4.110)
+
+                                         F20 (0) = 0.2779,                        (4.111)
+
+                                         F30 (0) = 0.0192,                        (4.112)
+
+                                         F40 (0) = 1.6972.                        (4.113)
+
+We note here that the value found for F10 (0) is in agreement with Hussain
+
+(2009), and differs from that found by Hall (1986) and Seddougui (1990). As
+
+discussed by Hussain (2009), this is possibly be due to the choice of integration
+
+method.
+
+
+Using (4.30), we can rewrite Equation (4.102) in terms of the leading order
+
+wavenumber to find
+
+                          1
+                                      v02         1  2u F 0 (0)      v02 
+                                                 2 4        0 2
+          γ0 = (F10 (0))− 2       1 + 2 − Mx                          1+ 2        (4.114)
+                                      u0               Tw2 xU (0, 0)     u0
+                                              0                        0
+                                      3v0 ρ0 F3 (0) (1 − σ)v0 ρ0 F4 (0)  12
+                                    +                −                        .
+                                      u0 xU (0, 0)         2u0 xU (0, 0)
+
+From the equation of state we have the relation ρ0 = − TT02 , so we proceed by
+                                                                         w
+
+
+differentiating the temperature relation (2.34) leads to
+
+                                     γ−1 2 0
+                        T0 = −          Mx f (0) + (Tw − 1)q 0 (0)                (4.115)
+                                      2
+
+where f 0 (0) = −0.4562 and q 0 (0) = −0.3241 are found numerically. These
+
+values are different to those found by Seddougui (1990), where a slightly dif-
+VISCOUS TYPE II MODES                                                              85
+
+
+ferent temperature relation was used, as well as being computed with σ = 0.72
+
+instead of σ = 0.7 used here.
+
+   Substituting all known values into Equation (4.114) leads to the following
+
+simplified equation for the leading order wavenumber
+
+                                   1
+                       1.293x− 2                1                    1
+                γ0 =             (2.457 − Mx2 ) 4 (0.573 + 0.310T0 ) 2         (4.116)
+                          Tw
+
+where
+
+
+                         T0 = 0.091Mx2 − 0.3241(Tw − 1)                        (4.117)
+
+
+Following the same method we rewrite the real part of the eigenrelation (4.100)
+
+to find the waveangle estimates given by
+
+                        3
+        α
+            1α0 β1  2γ 2 Tw2 F10 (0)      v02     2
+                                                      − 12      v02  14
+   sin ψ    − 2 =              1   1    1 +     − Mx          1 +          .   (4.118)
+         β0   β0      |u0 v0 | 2 x 2        u20                   u20
+
+Substituting all known values into Equation (4.118) leads to the following
+
+simplified equation for the waveangle estimates
+                                                         3
+                          α  α0 β1 
+                               1           2.669γ02 Tw2
+                    sin ψ    − 2 = 1                     1 .                   (4.119)
+                          β0   β0     x 2 (2.457 − Mx2 ) 2
+
+As discussed by Hussain (2009), it is not possible to find α1 and β1 indepen-
+
+dently in this analysis. Instead we concentrate on the combination of α1 and
+
+β1 found in Equation (4.118) in terms of the waveangle φ between the stream-
+
+wise position and normal to the spiral vortices as discussed in §3.3. This leads
+VISCOUS TYPE II MODES                                                          86
+
+
+to
+
+                     π  αx   (α0 + 2 α1 + ...)x
+                tan   −φ =   =                     ,                       (4.120)
+                    2      β    (β0 + 2 β1 + ...)
+                               α0 x    2 α1
+                                                α 0 β1 
+                             =      +        − 2 x,
+                                β0         β0      β0
+                               1.207        α1 α0 β1 
+                             =       + 2       − 2 x.
+                               sin ψ         β0      β0
+
+The expanded wavenumber is scaled on the viscous mode wavelength, given
+
+by
+
+
+          4 γ = 4 γ0 + ...                                               (4.121)
+                               1
+                   4 1.293x− 2                1                    1
+          4 γ =                (2.457 − Mx2 ) 4 (0.573 + 0.310T0 ) 2      (4.122)
+                        Tw
+
+Following Hussain (2009), we define the Reynolds number based on the boundary–
+
+layer thickness δ ∗ , given by
+
+                                            1          1
+                                   Rδ∗ = R 2 x(sin ψ) 2 .                  (4.123)
+
+
+Then the local wavenumber is given by
+
+                      −1           1
+             1.293Rδ∗2 (sin ψ) 4                1                    1
+       γδ∗ =                     (2.457 − Mx2 ) 4 (0.573 + 0.310T0 ) 2 ,   (4.124)
+                    Tw
+
+and the local mode waveangle is given as
+
+           π   1.207 3.924R− 14 T 12 (0.573 + 0.310T ) 34
+                              δ∗                      0
+       tan   −φ =       +          7                1       .              (4.125)
+           2      sin ψ                           2
+                           (sin ψ) 8 (2.457 − Mx ) 8
+VISCOUS TYPE II MODES                                                           87
+
+
+
+                3.5
+
+                                                              Increasing
+                 3                                                Tw
+
+
+                2.5
+
+
+                 2
+      γ0 x1/2
+
+
+
+
+                1.5
+
+
+                 1
+
+
+                0.5
+
+
+                 0
+                      0        0.5                  1                  1.5
+                                         Mx
+
+
+
+                                              1
+Figure 4.3: The effective wavenumber γ0 x 2 for fixed Tw = 0.4, 0.8, 1.0, 1.2, 1.6.
+
+The solution for the incompressible case is also given (−−).
+
+4.5        Wavenumber and waveangle predictions
+                          1
+Figure 4.3 shows γ0 x 2 as a function of Mx for Tw = 0.4, 0.8, 1.0, 1.2, 1.6, along
+
+with half angle ψ = 90o . We see that the effective wavenumber of the flow
+
+decreases as the local Mach number grows, and the results are in agreement
+
+with those found by Seddougui (1990) for the compressible flow over a rotating
+
+disk. The appearance of the wall temperature, local Mach number and cone
+
+half–angle terms allow us to fully consider the effects of both compressibility,
+VISCOUS TYPE II MODES                                                            88
+
+
+
+                                5
+
+
+
+                               4.5
+
+
+
+                                4
+       (α1/β0−α0β1/β20) x5/4
+
+
+
+
+                               3.5
+
+
+
+                                3
+
+
+
+                               2.5
+                                                               Increasing
+                                                                   Tw
+
+                                2
+                                     0   0.5        1                   1.5
+                                               Mx
+
+
+
+
+Figure 4.4: The correction to the wave angle for fixed Tw = 0.4, 0.8, 1.0, 1.2, 1.6.
+
+The solution for the incompressible case is also given (−−).
+
+and varying the broadness of the cone, on the stability characteristics of the
+
+flow. We see that for Tw = 1 the effective wavenumber is in good agreement
+
+with the incompressible case for low Mx . For Tw > 1 we find that the value of
+   1
+γ0 x 2 is less than that found by Hall (1986) and Hussain (2009), which means
+
+that the wavelength of the modes is longer than in the incompressible case.
+
+The opposite is true for Tw < 1, suggesting wall cooling to be a stabilising
+
+feature, which is in agreement with Seddougui (1990).
+VISCOUS TYPE II MODES                                                                89
+
+
+
+                             5.5
+
+
+                              5
+                                                              Increasing ψ
+
+                             4.5
+      (α1/β0−α0β1/β20)x5/4
+
+
+
+
+                              4
+
+
+                             3.5
+
+
+                              3
+
+
+                             2.5
+
+
+                              2
+                                   0       0.5            1                  1.5
+                                                     Mx
+
+
+
+
+Figure 4.5: The correction to the wave angle for Tw = 1, with ψ = 40o − 90o
+
+in 10o increments.
+
+                                                 5
+   Figure 4.4 shows ( αβ01 − αβ0 β2 1 )x 4 , the wave angle correction, as a function of
+                                       0
+
+
+Mx for Tw = 0.4, 0.8, 1.0, 1.2, 1.6, along with the incompressible result, where
+
+the half angle is ψ = 90o . Note that again for Tw = 1 and low Mx the
+
+compressible case is in good agreement with the incompressible case. These
+
+results form part of Equation (4.120) to allow us to consider the orientation
+
+of the stationary vortices, given by the angle φ. The effect of a change in the
+
+cone half–angle on the wave angle correction is shown in Figure 4.5 for Tw = 1
+VISCOUS TYPE II MODES                                                       90
+
+
+and ψ = 40o − 90o in increments of 10o .
+
+
+Figures 4.6-4.8 show the asymptotic wavenumber prediction, using a log–log
+
+scale, and the waveangle prediction using a semi–log scale. In Figure 4.6 we
+
+have fixed Tw = Mx = 1 and the results show the effect of a varying half angle
+
+from ψ = 40o − 90o in increments of 10o . In Figure 4.7 we show the effect
+
+of a change in wall temperature for Tw = 0.4, 0.8, 1.2, 1.6, where ψ = 60o and
+
+Mx = 1. Then in Figure 4.8 we fix ψ = 60o and Tw = 1 to show the effect of a
+
+change in local Mach number for Mx = 0.3, 0.6, 0.9, 1.2. Note that from Table
+
+4.1 the maximum local Mach number for stationary three–dimensional modes
+
+to exist is Mx = 1.3574, hence the values of Mx in Figure 4.8 are valid for the
+
+choice of ψ.
+
+
+Each of these figures shows how a change in one parameter affects the stability
+
+of the flow, and in the wavenumber plots the areas of stable and unstable
+
+flow are labelled. It is shown that increasing the cone half–angle can be used
+
+as a stabilising mechanism, although it does not cause a great change in the
+
+magnitude of the effective wavenumber. Decreasing the local Mach number
+
+is seen to have a similar consequence. The biggest effect on the value of the
+
+wavenumber is seen when varying the wall temperature. The results suggest
+
+that wall cooling can be used as an effective stabilising mechanism, which is
+VISCOUS TYPE II MODES                                                     91
+
+
+consistent with previous findings by Seddougui (1990).
+
+
+These asymptotic wavenumber and waveangle plots are comparable to the
+
+lower branch of the neutral stability curves for stationary modes found by
+
+Garrett, Hussain & Stephen (2009). In their study they consider the pertur-
+
+bation equations using numerical methods, then compare the results to the
+
+asymptotic results in a high Reynolds number limit (similar to the analysis
+
+here). Due to the complexity of the compressible perturbation equations com-
+
+pared to the incompressible equations, no such numerical study has yet been
+
+undertaken. However, for any numerical study of the compressible perturba-
+
+tion equations, we would expect the results presented here to be in agreement
+
+in the same high Reynolds number limit.
+VISCOUS TYPE II MODES                                                   92
+
+
+               −1
+              10
+
+
+
+
+                                                     unstable
+               −2
+              10
+        γδ*
+
+
+
+
+                        Increasing ψ
+
+
+               −3
+              10
+                               stable
+
+
+
+
+               −4
+              10
+                    4                      5           6           7
+                   10                     10         10         10
+                                               Rδ*
+
+
+
+               40
+
+
+               38
+
+
+               36
+
+
+               34
+
+
+               32
+          φ
+
+
+
+
+               30
+
+
+               28
+
+
+               26
+
+
+               24          Increasing ψ
+
+               22
+                  4                        5           6           7
+                10                        10         10         10
+                                               Rδ*
+
+
+
+
+Figure 4.6: Asymptotic wavenumber and waveangle predictions for the viscous
+
+type II modes, for fixed Tw = Mx = 1 and varying ψ = 40o − 90o .
+VISCOUS TYPE II MODES                                                            93
+
+
+               −1
+              10
+
+
+                        Increasing Tw
+
+                                                         unstable
+
+               −2
+              10
+        γδ*
+
+
+
+
+               −3
+              10
+                             stable
+
+
+
+
+               −4
+              10
+                    4                     5          6               7
+                   10                    10         10              10
+                                              Rδ*
+
+
+
+               35
+
+
+
+               34
+
+
+                         Increasing Tw
+               33
+
+
+
+               32
+          φ
+
+
+
+
+               31
+
+
+
+               30
+
+
+
+               29
+                  4                       5          6               7
+                10                       10         10              10
+                                              Rδ*
+
+
+
+
+Figure 4.7: Asymptotic wavenumber and waveangle predictions for the viscous
+
+type II modes, for fixed ψ = 60o , Mx = 1 and varying Tw = 0.4, 0.8, 1.2, 1.6.
+VISCOUS TYPE II MODES                                                            94
+
+
+                −1
+              10
+
+
+
+
+                        Increasing Mx
+                                                         unstable
+
+                −2
+              10
+        γδ*
+
+
+
+
+                −3
+              10
+                             stable
+
+
+
+
+                −4
+              10
+                     4                    5          6               7
+                   10                    10         10              10
+                                              Rδ*
+
+
+
+               35
+
+              34.5
+
+               34
+
+              33.5
+
+               33
+                         Increasing Mx
+              32.5
+         φ
+
+
+
+
+               32
+
+              31.5
+
+               31
+
+              30.5
+
+               30
+                  4                       5          6               7
+                10                       10         10              10
+                                              Rδ*
+
+
+
+
+Figure 4.8: Asymptotic wavenumber and waveangle predictions for the viscous
+
+type II modes, for fixed ψ = 60o , Tw = 1 and varying Mx = 0.3, 0.6, 0.9, 1.2.
+Chapter 5
+
+
+Conclusions
+
+This thesis consists of a full stability analysis of the compressible boundary–
+
+layer flow over a rotating cone, with half–angle ψ ⩾ 40o . The full governing
+
+Navier–Stokes equations have been non–dimensionalised. A Dorotonitsyn–
+
+Howarth transformation is used to remove the density quantities, which allows
+
+us to obtain the steady basic flow equations within the boundary layer, via the
+
+introduction of a stream function which satisfies the continuity equation. The
+
+solution to these equations show the laminar flow profiles in the streamwise,
+
+azimuthal and normal directions. From the energy equation we also find ODEs
+
+in terms of a viscous dissipation quantity and a heat conduction quantity. The
+
+solution of these allow us to find the temperature distribution of the flow for
+
+specific wall temperatures and local Mach numbers. We introduce a suction
+
+
+                                      95
+CONCLUSIONS                                                                   96
+
+
+along the cone wall, which is achieved by changing the boundary condition in
+
+the normal direction.
+
+   We then add a small perturbation field onto the mean flow field and linearise
+
+with respect to the perturbation quantities. Hall (1986), Seddougui (1990) and
+
+Hussain (2009) have all used the same small expansion parameters, based on
+
+the Reynolds number, and here we follow the same method. For a small
+                   1
+parameter  = R− 6 we investigate the inviscidly dominated neutrally stable
+
+modes, which we call the inviscid type I modes following the previous literature.
+
+The modes appear away from the cone wall and were found using a critical
+
+layer analysis similar to that used by Hall (1986), and subsequently Hussain
+
+(2009).
+
+   Here we note that for the compressible case we have additional terms not
+
+found in the incompressible analysis, and naturally this adds complexity not
+
+found in the incompressible case. Due to this, the estimates for the wavenum-
+
+ber and waveangles associated with the spiral vortices are only found at leading
+
+order, as no satisfactory method has been found to consider the modes at first
+
+order. There is a gap in the literature for compressible flows which suggests
+
+that an alternative to the method used in the incompressible case is needed
+
+but has not yet been found, and this is left as an open problem.
+                                                1
+   Using a small expansion parameter  = R− 16 we investigate the wall domi-
+CONCLUSIONS                                                                 97
+
+
+nated neutrally stable modes, caused by a viscous–Coriolis force balance, which
+
+we label as the viscous type II modes. We proceed by considering a triple–
+
+deck analysis similar to that used by Seddougui (1990). This leads to both the
+
+leading order and first order estimates for the wavenumber and the waveangles
+
+related to the spiral vortices for the type II modes. We then present the lower
+
+branch asymptotic neutral curves, as described by Garrett, Hussain & Stephen
+
+(2009). We consider the effects of a change in the cone half–angle ψ, as well
+
+as how varying the wall temperature or local Mach number changes the flow
+
+characteristics.
+
+   In §5.1 we compare the results to previous findings, and describe the effect
+
+that both the cone half–angle and compressibility have on the flow. Due to
+
+there being very limited experimental work on compressible boundary–layer
+
+flows over axisymmetric bodies most comparisons will be made with theoretical
+
+work. However, it may occasionally be beneficial to consider the experimen-
+
+tal work for incompressible flows, and these comparisons will be made where
+
+appropriate. In §5.2 we will consider possible routes for further research into
+
+compressible boundary–layer flows over a rotating cone.
+CONCLUSIONS                                                                 98
+
+
+5.1      Current work
+
+To find the basic flow profiles we non–dimensionalise the full Navier–Stokes
+
+equations and make a series of self–consistent assumptions. Through the
+
+choices made we find that the laminar flow profiles match those found for
+
+the incompressible flow, which have been verified in a number of studies (for
+
+examples see Lingwood (1995), Hussain (2009)). However they are still suit-
+
+able to be used during the stability analysis, as the perturbation equations
+
+are formed from the full Navier–Stokes equations and hence do not contain
+
+the same assumptions. We also find that through our choice of scalings, the
+
+cone half–angle ψ is scaled out of the equations as was also found by Hussain
+
+(2009). Therefore the velocity profiles are effectively those found in the case
+
+of an incompressible boundary–layer flow over a rotating disk, however they
+
+are still valid for our range of cone half–angles.
+
+   Temperature distributions are calculated upon solving the basic flow equa-
+
+tions and are in agreement with those found by Turkyilmazoglu, Cole &
+
+Gajjar (2000). Physical flow profiles are then presented by reversing the
+
+Dorotonitsyn–Howarth transformation. The effects of changing the cone half–
+
+angle, wall temperature and local Mach number are all considered, where we
+
+would expect to see the same changes caused by varying these parameters
+CONCLUSIONS                                                                    99
+
+
+follow through to effect the stability characteristics in a similar way. From
+
+these profiles there is little change when varying the cone half–angle, an ob-
+
+servation which justifies using the laminar flow rotating–disk profiles for the
+
+laminar flow rotating–cone due to the cone half–angle being scaled out of the
+
+equations. If we then assume that the greater the magnitude of the flow in the
+
+normal direction, the more susceptible the flow is to becoming turbulent, then
+
+the plots would suggest increasing either the wall temperature or local Mach
+
+number to be destabilising. When considering a surface suction it is difficult
+
+from the laminar profiles to make any conclusions, and will be reconsidered
+
+during the type I analysis.
+
+   For the type I modes we can compare our results to those found by Hall
+
+(1986) and Hussain (2009) for the incompressible case over a rotating disk and
+
+rotating cone respectively. There is currently no full asymptotic analysis into
+
+the type I modes for the compressible flow over a rotating disk and this is
+
+attributed to the difficulties we have faced. As mentioned by Hussain (2009),
+
+the fact that the cone half–angle is scaled out of the laminar flow equations
+
+is an advantage to the critical–layer analysis here. The analysis requires the
+
+effective velocity and second derivative to be zero at the same point, which is
+
+defined as the location of the critical layer. Because there is no dependency on
+
+ψ for the laminar flow equations the same is true for the location of the critical
+CONCLUSIONS                                                                 100
+
+
+layer, hence it only needs to be calculated for one set of values as opposed to
+
+for each cone half–angle.
+
+   Our results for the leading–order eigenmode solution in the normal direc-
+
+tion w0 are in good agreement with the incompressible results found by Hall
+
+(1986) and Hussain (2009) in terms of the shape of the profile. We find that
+
+the peak magnitude of the mode is greater than that of an incompressible flow,
+
+and this is plausible as we would expect the effects of compressibility to cause
+
+a greater magnitude in flow components as a result of a disturbance. Again
+
+from these results it is difficult to make any assumptions with regard to the
+
+role of the cone half–angle, however during the type II analysis we shall make
+
+some conclusions. Whereas an increase in the local Mach number is seen to
+
+have little effect here, a change in the wall temperature causes a noticable
+
+increase in the peak magnitude of w0 .
+
+   The effect of the suction parameter becomes clearer when considering the
+
+type I modes. The leading order eigenmode is almost completely dampened by
+
+the introduction of a surface suction. This is expected due to previous exper-
+
+imental work by Gregory & Walker (1960) and theoretical work by Lingwood
+
+(1997) and Lingwood & Garrett (2011), suggesting a surface suction could be
+
+used as a stability mechanism. Without being able to produce the first order
+
+correction terms we cannot consider the upper branch of the neutral stability
+CONCLUSIONS                                                                    101
+
+
+curve for the compressible case as seen in Garrett, Hussain & Stephen (2009)
+
+for the incompressible case.
+
+   Before discussing the neutrally stable lower branch modes we note two
+
+points of discussion from the analysis. First is the differing value of F11 (0) be-
+
+tween Hall (1986), Seddougui (1990) and the values found by Hussain (2009)
+
+and the study here. We find that F11 (0) = 0.5984, whereas Seddougui (1990)
+
+finds F11 (0) = 0.5991 which will slightly change the wavenumber and wavean-
+
+gle predictions found.    The other point is the value of C used from the
+
+Dorotonitsyn-Howarth transformation. We set C = 1 all the way through
+
+the analysis. Seddougui (1990) does not state a value for C and it remains
+
+in her analysis. However, when computing our results we find ours match the
+
+incompressible results when setting Tw = 1 and Mx = 0, and it is assumed
+
+that Seddougui (1990) also sets C = 1 when finding her results.
+
+   A key result from our type II analysis is that the three–dimensional sta-
+
+tionary modes do not exist for all local Mach numbers. We take care to ensure
+
+the local Mach numbers used are valid for the configuration of parameters
+
+used. Our results are consistent with those found by Seddougui (1990) for the
+
+compressible boundary–layer flow over a rotating disk, and we are able to see
+
+the effects of the cone half–angle. As the cone half–angle is increased we see
+
+the region of stability grow which implies that increasing the half angle can be
+CONCLUSIONS                                                                 102
+
+
+used as a stability mechanism. This is in agreement with Hussain (2009) for
+
+the incompressible case.
+
+   We note that we have been concerned with the case of air flow, and hence
+
+have set σ = 0.7 and γ = 1.4 throughout the analysis. Most gases have values
+
+of σ ≈ 0.16 − 0.8 and γ ≈ 1 − 1.7, however changes in these parameters would
+
+not cause a great change in the given results. Hence similar qualitative results
+
+are expected for all reasonable combinations of σ and γ.
+
+
+
+
+5.2     Future work
+
+When considering the previous literature there are several obvious options to
+
+extend the work presented here. In this section we shall describe these pertur-
+
+bations in relation to the previous work and how it will help the understanding
+
+of the observed laminar to turbulent transition.
+
+   An immediate extension of the type II analysis found here would be to
+
+consider the nonlinear terms in the lower deck of the triple–deck analysis.
+
+Seddougui (1990) found that for the compressible boundary–layer flow over a
+
+rotating disk, the nonlinear effects are destabilising. However the magnitude
+
+of the nonlinear effects is found to be dependent upon the wall temperature
+
+of the disk. For Tw > 1 they were seen to be of less importance than those
+CONCLUSIONS                                                                  103
+
+
+found by MacKerrell (1987) for the incompressible case. However, for Tw <
+
+1 the nonlinear effects are found to be stronger than in the incompressible
+
+case. Whilst we would expect to be in agreement with Seddougui (1990) by
+
+expanding our analysis, we would also be able to consider the effect of the cone
+
+half–angle on the influence of these nonlinear effects.
+
+   A key area for the incompressible boundary–layer flows over rotating cones
+
+is the numerical analysis of the perturbation equations. Garrett (2002) derives
+
+the incompressible perturbation equations and then uses a set of transformed
+
+variables to rewrite the equations as a set of six first–order ordinary differen-
+
+tial equations. This was an extension of Lingwood (1995) who used the same
+
+method for the case of a rotating disk. Garrett (2002) then solves this sixth–
+
+order system numerically and computes the neutral stability curves, including
+
+both the inviscid upper branch and the viscous lower branch. As with the
+
+asymptotic results found by Hussain (2009), the numerical results are in good
+
+agreement with Kobayashi & Izumi (1983) for broad half–angles, however as
+
+the half–angle is reduced the numerical results begin to deviate from the exper-
+
+imental results. The numerical results are important as they would verify the
+
+asymptotic results found here. However, there is no current numerical analysis
+
+of the compressible perturbation equations for these types of flows. This is due
+
+to the added complexity of the non–constant density terms which arise due to
+CONCLUSIONS                                                                 104
+
+
+the compressibility, and because of this there is no suitable transformation to
+
+reduce the equations to a solvable system of ordinary differential equations.
+
+Hence an alternative method must be found, and is a possible extension of this
+
+work.
+
+   As mentioned above, for the incompressible case the analysis presented
+
+here leads to results which differ from the experimental findings for smaller
+
+half–angles. Hence we expect the same for the compressible case. Kobayashi
+
+& Izumi (1983) found experimentally that the nature of the observed spiral
+
+vortices is dependent upon the cone half–angle. For ψ > 30o they find the fa-
+
+miliar co–rotating crossflow vortices, which approach those found for a rotating
+
+disk as ψ → 90o , as verified by Garrett, Hussain & Stephen (2009). However,
+
+for ψ < 30o . counter–rotating Görtler vortices are found. This is due to the
+
+nature of the instability changing from a crossflow instability to a centrifugal
+
+instability. A recent study by Hussain, Stephen & Garrett (2012) describes the
+
+analysis needed to capture this centrifugal instability, and deriving a similar
+
+compressible analysis would be a natural follow on from the work presented
+
+here.
+
+   The final suggestion for expanding this work is introducing an oncoming
+
+axial flow towards the rotating cone in the streamwise direction. This has been
+
+considered for the incompressible boundary–layer flow over a rotating cone
+CONCLUSIONS                                                                105
+
+
+by Garrett (2002) and Hussain (2009) for numerical and asymptotic analyses
+
+respectively. For all values of the cone half–angle increasing the strength of
+
+the oncoming axial flow is seen to have a stabilising influence. Therefore this
+
+area could be of great interest when considering the practical applications.
+Bibliography
+
+ABRAMOWITZ, M. & STEGUN, I. A. 1964 A Handbook of Mathemat-
+
+  ical Functions. Frankfurt: National Bureau of Standards.
+
+
+BERS, A. Linear waves and instabilities. In Physique des Plasmas (ed. C.
+
+  DeWitt, J. Peyraud), Gordon & Breach, Chap. 4.
+
+
+BRIGGS, R. J. 1964 Electron stream interaction with plasmas. MIT Press,
+
+  Chap. 2.
+
+
+COCHRAN, W. G. 1934 The flow due to a rotating disk. Math. Proc. Cam-
+
+  bridge Philos. Soc. 30, 365–375.
+
+
+COLE, J. W. 1995 Hydrodynamic stability of compressible flows. PhD The-
+
+  sis, University of Exeter.
+
+
+DAVIES, C. & CARPENTER, P. W. 2003 Global behaviour correspond-
+
+
+
+
+                                     106
+BIBLIOGRAPHY                                                               107
+
+
+  ing to the absolute instability of the rotating disk boundary layer. J. Fluid
+
+  Mech. 486, 287–329.
+
+
+GARRETT, S. J. 2002 The stability and transition of the boundary layer
+
+  on rotating bodies. PhD Thesis, University of Cambridge.
+
+
+GARRETT, S. J. 2010 Linear growth rates of types I & II convective modes
+
+  within the rotating-cone boundary layer. Fluid Dyn. Res. 42, 025504.
+
+
+GARRETT, S. J., HUSSAIN, Z. & STEPHEN, S. O. 2009 The crossflow
+
+  instability of the boundary layer on a rotating cone. J. Fluid Mech. 622,
+
+  209–232.
+
+
+GARRETT, S. J., HUSSAIN, Z. & STEPHEN, S. O. 2010 Boundary–
+
+  layer transition on broad cones rotating in an imposed axial flow. AIAA J.
+
+  48, 1184–1194.
+
+
+GARRETT, S. J. & PEAKE, N. 2007 The absolute instability of the
+
+  boundary layer on a rotating cone. Eur. J. Mech. B 26, 344–353.
+
+
+Gregory, N., Stuart, J. T. & Walker, W. S. 1955 On the stability
+
+  of three-dimensional boundary layers with application to the flow due to a
+
+  rotating disk. Phil. Trans. R. Soc. Lond. A 248, 155–199.
+BIBLIOGRAPHY                                                               108
+
+
+GREGORY, N. & WALKER, W. S. 1960 Experiments on the effect of
+
+  suction on the flow due to a rotating disk. Phil. Trans. R. Soc. Lond. 248,
+
+  225–234.
+
+
+HALL, P. 1986 An investigation of the stationary modes of instability of the
+
+  boundary layer on a rotating-disk. Proc. Roy. Soc. London Ser. A. 406,
+
+  93–106.
+
+
+HEALEY, J. J. 2010 Model for unstable global modes in the rotating–disk
+
+  boundary layer. J. Fluid Mech. 663, 148–159.
+
+
+HUERRE, P. & MONKEWITZ, P. A. 1990 Local and global instabilities
+
+  in spatially developing flows. Annu. Rev. Fluid Mech. 22, 473–537.
+
+
+HUSSAIN, Z. 2009 Stability and transition of three dimensional rotating
+
+  boundary layers. PhD Thesis, University of Birmingham.
+
+
+HUSSAIN, Z., STEPHEN, S. O. & GARRETT, S. J. 2012 The centrifu-
+
+  gal instability of a slender rotating cone. J. Alg. Comp. Tech. 6, 113–128.
+
+
+IMAYAMA, S., ALFREDSSON, P. H. & LINGWOOD, R. J. 2012
+
+  A new way to describe the transition characteristics of a rotating–disk
+
+  boundary–layer flow. Phys. Fluids. 24, 031701.
+BIBLIOGRAPHY                                                                 109
+
+
+IMAYAMA, S., ALFREDSSON, P. H. & LINGWOOD, R. J. 2013
+
+  An experimental study of edge effects on rotating–disk transition. J. Fluid
+
+  Mech. 716, 638–657.
+
+
+ITOH 2001 Structure of absolute instability in 3-D boundary layers; part
+
+  1. Mathematical formulation. Trans. Japan. Soc. Aeronaut. Space Sci. 44,
+
+  96–100.
+
+
+ITOH 2001 Structure of absolute instability in 3-D boundary layers; part 2.
+
+  Application to rotating disk flow. Trans. Japan. Soc. Aeronaut. Space Sci.
+
+  44, 101–105.
+
+
+KAPPESSER, R., GREIF, R. & CORNET, I. 1973 Mass transfer on
+
+  rotating cones. Appl. Sci. Res. 28, 442–452.
+
+
+KÁRMÁN, T. V. 1921 Uber laminare und turbulente Reibung. Z. Angew.
+
+  Math. Mech. 1, 233–252.
+
+
+KOBAYASHI, R., KOHAMA, Y. & KUROSAWA, M. 1983 Boundary
+
+  layer transition on a rotating cone in axial flow. J. Fluid Mech. 127, 341–352.
+
+
+KOBAYASHI, R., KOHAMA, Y. & TAKAMADATE, CH. 1980 Spiral
+
+  vortices in the boundary layer transition regime on a rotating disk. Acta
+
+  Mech. 35, 71–82.
+BIBLIOGRAPHY                                                              110
+
+
+KOBAYASHI, R. & IZUMI, H. 1983 Boundary layer transition on a rotat-
+
+  ing cone in still fluid. J. Fluid Mech. 127, 353–364.
+
+
+KOHAMA, Y. 1984 Study on boundary–layer transition of a rotating disk.
+
+  Acta Mech. 50, 193–199.
+
+
+KOHAMA, Y. 1984 Behaviour of spiral vortices on a rotating cone in axial
+
+  flow. Acta Mech. 51, 105–117.
+
+
+KREITH, F., ELLIS, D. & GIESING, J. 1962 An experimental inves-
+
+  tigation of the flow engendered by a rotating cone. Appl. Sci. Res. A11,
+
+  430–440.
+
+
+LINGWOOD, R. J. 1995 Absolute instability of the boundary layer on a
+
+  rotating disk. J. Fluid Mech. 299, 17–33.
+
+
+LINGWOOD, R. J. An experimental study of absolute instability of the
+
+  rotating disk boundary layer flow. J. Fluid Mech. 314, 373–405.
+
+
+LINGWOOD, R. J. On the effects of suction and injection on the absolute
+
+  instability of a rotating disk boundary layer. Phys. Fluids 9, 13–17.
+
+
+LINGWOOD, R. J. & GARRETT, S. J. 2011 The effects of surface mass
+
+  flux on the instability of the BEK system of rotating boundary–layer flows.
+
+  European J. Mech. B. 30, 299–310.
+BIBLIOGRAPHY                                                              111
+
+
+MACKERRELL, S. O. 1987 A nonlinear asymptotic investigation of the
+
+  stationary modes of instability of the three dimensional boundary layer on
+
+  a rotating disk. Proc. R. Soc. Lond. 413, 497–513.
+
+
+MALIK, M. R. 1986 The neutral curve for stationary disturbances in
+
+  rotating-disk flow. J. Fluid Mech. 164, 275–287.
+
+
+MALIK, M. R., WILKINSON, S. P. & ORSZAG, S. A. 1981 Instability
+
+  and transition in rotating disk flow. AIAA J. 19, 1131–1138.
+
+
+PIER, B. 2003 Nonlinear waves, secondary instability and transition in a
+
+  three–dimensional boundary layer. J. Fluid Mech. 487, 315–343.
+
+
+REED, H. L. & SARIC W. S. 1989 Stability of three-dimensional boundary
+
+  layers. Ann. Rev. Fluid Mech. 21, 235–284.
+
+
+RILEY, N. 1964 The heat transfer from a rotating disk. Q. J. Mech. Appl.
+
+  Math. 17, 331–349.
+
+
+SEDDOUGUI, S. O. 1990 A nonlinear investigation of the stationary mode
+
+  of instability of the three dimensional compressible boundary layer due to a
+
+  rotating disk. Q. J. Mech. Appl. Math. 43, 467–497.
+
+
+SMITH, F. T. 1979 Non-parallel flow stability of the Blasius boundary-layer.
+
+  Proc. Royal Soc. A 366, 91–109.
+BIBLIOGRAPHY                                                            112
+
+
+SOLAN, A., OLEK, S. & TOREN, M. Rotating compressible flow over
+
+ an infinite disk. J. App. Mech. Trans. Asme 50, 511–516.
+
+
+STEWARTSON, K. 1964 The theory of laminar boundary layers in com-
+
+ pressible fluids. Oxford University Press.
+
+
+TEIN, C. L. & CAMPBELL, D. T. 1963 Heat and mass transfer from
+
+ rotating cones. J. Fluid Mech. 17, 105–112.
+
+
+TURKYILMAZOGLU, M. 2004 Basic compressible flow over a rotating
+
+ disk. Hace. J. Math. Stat. 33, 1–10.
+
+
+TURKYILMAZOGLU, M. 2005 Lower branch modes of the compressible
+
+ boundary layer flow due to a rotating disk. Stud. Appl. Math. 114, 17–43.
+
+
+TURKYILMAZOGLU, M. 2007 Influence of finite amplitude disturbances
+
+ on the nonstationary modes of a compressible boundary layer flow. Stud.
+
+ Appl. Math. 118, 199–220.
+
+
+TURKYILMAZOGLU, M., COLE, J. W. & GAJJAR J. S. B. 2000
+
+ Absolute and convective instabilities in the compressible boundary layer on
+
+ a rotating disk. Theor. Comput. Fluid Dyn. 14, 21–37.
+

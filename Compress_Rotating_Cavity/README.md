@@ -43,6 +43,12 @@ compressible models.
   PEP root `alpha` at fixed `omega` and `beta`.
 - `scripts/verify_lower_branch_convergence.jl`: continuation and grid
   convergence of the isothermal-connected lower/principal branch.
+- `scripts/verify_reynolds_fold_dependence.jl`: continuation of the
+  isothermal-connected traditional branch at several `Re_h` values, with
+  bisection of the first `dTw/dPi=0` saddle node.
+- `scripts/analyze_fold_projection.jl`: adjoint projection of the fixed-
+  `Tw` basic-flow Jacobian at the `Re_h=1000` fold, including the quadratic
+  terms that determine the local saddle-node curvature.
 - `data/reference/`: archived numerical reference profile used only to start
   the isothermal branch.
 - `benchmark_results/`: summary and branch data produced by the benchmarks.
