@@ -1,0 +1,5 @@
+/.venv-wsl/
+/data/
+/runs/
+__pycache__/
+*.py[cod]

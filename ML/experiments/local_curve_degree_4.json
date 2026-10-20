@@ -1,0 +1,53 @@
+{
+  "method": "local degree-4 polynomial in beta at exact (R, alpha)",
+  "train_count": 431042,
+  "validation_count": 53880,
+  "unique_R_alpha_pairs": 4491,
+  "available": {
+    "count": 53880,
+    "rmse": [
+      0.012030013222958179,
+      3.787417830386408e-05
+    ],
+    "mae": [
+      0.00031784536590030753,
+      3.2072369341069048e-06
+    ],
+    "max_absolute_error": [
+      2.6188634579815506,
+      0.003547274245033003
+    ]
+  },
+  "interpolation_only": {
+    "count": 52781,
+    "rmse": [
+      0.0036259388048140327,
+      2.0702029818067133e-05
+    ],
+    "mae": [
+      0.0002473466774137774,
+      2.5625251048350767e-06
+    ],
+    "max_absolute_error": [
+      0.407320873860484,
+      0.0016518527437207678
+    ]
+  },
+  "endpoint_extrapolation": {
+    "count": 1099,
+    "rmse": [
+      0.08039735606623447,
+      0.0002230318466996411
+    ],
+    "mae": [
+      0.0037036427062166625,
+      3.417041715321165e-05
+    ],
+    "max_absolute_error": [
+      2.6188634579815506,
+      0.003547274245033003
+    ]
+  },
+  "unavailable_count": 0,
+  "notes": "Fixed train/validation indices; source targets are train-only; no test evaluation"
+}
