@@ -24,6 +24,8 @@ compressible models.
   `[u,v,w,p]` block is checked against `CRC_STA.jl` before boundary reduction
   and after boundary/gauge elimination.
 - `src/CompressRotatingCavity.jl`: Julia API joining the two solvers.
+- `src/SingleDiskRadial.jl`: non-similar steady single-disk boundary-layer
+  solver, retaining radial development and marching in `s=log(r/r0)`.
 - `scripts/benchmark_isothermal.jl`: command-line regression benchmark.
 - `scripts/benchmark_traditional_boussinesq.jl`: complete Boussinesq fold
   benchmark.
@@ -57,6 +59,42 @@ The legacy `CRC_BF`/`CRC_STA` path remains isothermal and incompressible. In
 that path, mode 1 uses `Ts` as the axial wall mass-flux parameter in
 `H(0)=-Ts`; it is not a temperature. The thermal modules listed above use
 `Tw` for the rotor wall temperature.
+
+## Non-similar single-disk radial development
+
+```bash
+julia --project=. scripts/benchmark_single_disk_radial.jl
+julia --project=. scripts/verify_single_disk_radial.jl
+julia --project=. scripts/plot_single_disk_radial.jl
+julia --project=. scripts/spectrum_single_disk_radial.jl
+```
+
+The benchmark compares the von Karman inlet with four small/large shape
+perturbations. It solves the coupled `F,G,H` equations using Chebyshev
+collocation in the wall-normal direction and implicit BDF2 in radius, with
+backward Euler at the first station. The core solver uses only Julia's
+`LinearAlgebra`; the optional Julia plotting script uses the existing
+PyCall/matplotlib installation.
+
+Results and PNG/PDF figures are written to
+`benchmark_results/single_disk_radial/`. Parameters can be changed with, e.g.,
+`--degree 80 --eta-max 24 --ds 0.01 --ratio 10 --output PATH` on the benchmark
+command. The CSV files are generated locally and follow the repository's
+existing CSV ignore rule.
+
+Only inlet `F,G` are prescribed; `H` is solved from the full continuity
+equation downstream. Reverse flow produces an explicit stop status. The
+calculation tests radial attraction in the steady axisymmetric boundary-layer
+model, not temporal or three-dimensional stability. Equations, inlet
+definitions, API examples, verification, and interpretation are in
+[the single-disk notes](docs/single_disk_radial.md).
+Finite-radius geometries, boundary conditions, and primary literature are
+compared in [the finite-disk literature notes](docs/finite_disk_literature.md).
+The controlled core-disturbance/roughness research proposal and related
+literature are in [the rotor-stator receptivity notes](docs/rotor_stator_turbulence_roughness_receptivity.md).
+The incident vortical-wave models and rotating-frame derivation are in
+[the free-stream disturbance notes](docs/free_stream_vortical_rotating_model.md),
+with algebra/frame checks in `scripts/verify_rotating_vortical_models.jl`.
 
 ## Run
 

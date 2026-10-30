@@ -1,0 +1,35 @@
+include(joinpath(@__DIR__,"VonKarmanLST.jl"))
+using .VonKarmanLST
+include(joinpath(@__DIR__,"solve_six_state_lns.jl"))
+using .SixStateLNS
+using LinearAlgebra
+
+const OUTDIR=joinpath(@__DIR__,"results","negative_branch_peak")
+const R0=285.36; const ALPHA=0.38482; const BETA=0.07759; const OMEGA=-BETA; const AINC=1e-3+0im; const EPSROUGH=1e-3; const ZREF=10.0; const ZI=10.0
+make_p(N)=LSTParameters(mode=:spatial,R=R0,alpha=ALPHA,beta=BETA,omega=OMEGA,N=N,nev=8,spatial_shift=.38+0im)
+function incident(base,p,L)
+    ms=farfield_six_state_modes(base;p=p); cand=[m for m in ms if imag(m.kz)<-1e-8]; low=minimum(abs(imag(x.kz)) for x in cand); near=[x for x in cand if abs(abs(imag(x.kz))-low)<1e-8]; m=near[argmax([real(x.kz) for x in near])]
+    y=copy(m.state); y./=norm(y[1:3]); AINC.*y.*exp(im*m.kz*(L-ZREF))
+end
+function profile4(resp,zq)
+    z=Float64.(resp.z); n=length(z); bw=VonKarmanLST._barycentric_weights(z); out=zeros(ComplexF64,4,length(zq))
+    for c in 1:4
+        vals=ComplexF64.(resp.q[(c-1)*n+1:c*n]); for j in eachindex(zq); out[c,j]=VonKarmanLST._barycentric_interpolate(z,vals,bw,zq[j]); end
+    end; out
+end
+function energy(resp)
+    zq,w=subinterval_cc_grid(ZI,128); q=profile4(resp,zq); sum(w.*vec(sum(abs2.(q[1:3,:]);dims=1)))
+end
+function run(base,k,N,L)
+    p=make_p(N); yi=incident(base,p,L); sol=solve_six_state_lns(base;p=p,zmax=L,boundary=:modal,incident_state=yi); qf=as_four_state_response(sol)
+    qh=solve_roughness_distortion(base;p=p,kappa=-k,n=0,h_amplitude=1.0,zmax=L,edge_state=zeros(ComplexF64,4))
+    co=solve_coupled_response(base,qh.response,qf;roughness_amplitude=EPSROUGH,zmax=L)
+    Gf=energy(co.response)/(EPSROUGH^2*abs(AINC)^2); Gv=energy(co.volume_response)/(EPSROUGH^2*abs(AINC)^2); Gw=energy(co.wall_response)/(EPSROUGH^2*abs(AINC)^2)
+    (kappa=k,N=N,zmax=L,Gf=Gf,Gv=Gv,Gw=Gw,qf_deriv=qf.velocity_derivative_difference,residual=norm(co.response.interior_residual,Inf),qh_residual=norm(qh.response.interior_residual,Inf))
+end
+base=solve_von_karman_baseflow(); ks=[.15,.18,.185,.19,.20,.25]; rows=NamedTuple[]
+for k in ks, N in [109,129,169], L in [30.0,40.0,50.0]
+    println("k=",k," N=",N," L=",L); push!(rows,run(base,k,N,L))
+end
+cols=String.(fieldnames(typeof(rows[1]))); io=IOBuffer(); println(io,join(cols,",")); for r in rows; println(io,join([string(getproperty(r,Symbol(c))) for c in cols],",")); end
+write(joinpath(OUTDIR,"negative_branch_convergence.csv"),String(take!(io))); println("wrote convergence")

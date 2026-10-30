@@ -4,3 +4,6 @@ myenv/
 *.dat
 *.lpk
 *.csv
+*.svg
+*.pdf
+*.png

@@ -1,0 +1,16 @@
+Single disk, quiescent exterior, no wall suction, zero external radial pressure gradient
+eta=z*sqrt(Omega/nu); s=log(r/r0)
+u_r=Omega*r*F; u_theta=Omega*r*G; u_z=sqrt(nu*Omega)*H
+degree=80, eta_max=20.0
+method=bdf2, actual_ds=0.01993580167094412
+newton_tolerance=2.0e-10, reverse_tolerance=1.0e-9
+reference_residual=2.4105318435774237e-12
+F_prime_wall=0.5102326161656267
+G_prime_wall=-0.6159220126219539
+H_top=-0.8844734148258663
+discrete_reference_max_error=2.430829119980883e-16
+similarity: completed; reached requested radius ratio
+small_shape: completed; reached requested radius ratio
+small_opposite: completed; reached requested radius ratio
+large_radial: completed; reached requested radius ratio
+large_swirl: completed; reached requested radius ratio

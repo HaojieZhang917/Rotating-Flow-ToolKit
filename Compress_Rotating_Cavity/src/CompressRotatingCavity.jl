@@ -10,6 +10,7 @@ include("TraditionalBoussinesq.jl")
 include("BlackburnBoussinesq.jl")
 include("TraditionalBoussinesqTemporal.jl")
 include("TraditionalBoussinesqLST.jl")
+include("SingleDiskRadial.jl")
 
 using .TraditionalBoussinesq: ThermalConfig, ThermalProfile,
     isothermal_profile, fixed_pressure_profile, pressure_tangent,
@@ -36,7 +37,8 @@ export baseflow, eigsolve, normalize_modes, cheb_quad,
        blackburn_fixed_temperature_profile,
        blackburn_pressure_tangent, trace_blackburn_fold,
        temporal_operator, leading_temporal_eigenvalue,
-       lst_coefficients, spatial_matrices, temporal_matrices, expand_mode
+       lst_coefficients, spatial_matrices, temporal_matrices, expand_mode,
+       SingleDiskRadial
 
 """Compute the legacy isothermal base flow on the Chebyshev grid."""
 function baseflow(Res, Ro, Ts, mode, N)

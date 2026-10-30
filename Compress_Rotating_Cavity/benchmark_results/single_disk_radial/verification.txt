@@ -1,0 +1,29 @@
+Single-disk non-similar steady boundary-layer verification
+Coordinate s=log(r/r0); endpoint r/r0=4 unless stated.
+These checks validate this restricted steady axisymmetric model, not full NS stability.
+H at the inlet is uncomputed; H checks use downstream stations only.
+Checks: 24; passed: 24
+PASS reference_Fp0_eta20_absolute_error = -4.373390538603417e-12; criterion/tolerance: 2.0e-8
+PASS reference_Gp0_eta20_absolute_error = -1.953881501037813e-12; criterion/tolerance: 2.0e-8
+PASS reference_Htop_eta20_absolute_error = -2.5866309094624285e-11; criterion/tolerance: 2.0e-8
+PASS nonzero_history_Jacobian_directional_relative_error = 1.281456922514414e-9; criterion/tolerance: 2.0e-7
+PASS similarity_inlet_status = completed; criterion/tolerance: completed
+PASS similarity_inlet_max_FG_drift = 2.2651548265764567e-16; criterion/tolerance: 2.0e-8
+PASS inlet_H_is_explicitly_uncomputed = true; criterion/tolerance: true
+PASS large_radial_status = completed; criterion/tolerance: completed
+PASS large_radial_downstream_fields_finite = true; criterion/tolerance: true
+PASS large_radial_minimum_F = 5.221080175862882e-12; criterion/tolerance: >= -1.0e-9
+PASS large_radial_FG_error_contraction_at_ratio4 = 0.003261100575929232; criterion/tolerance: 0.2
+PASS large_radial_integral_continuity_max_abs = 7.474576513288866e-11; criterion/tolerance: 2.0e-7
+PASS negative_F_inlet_reports_reverse_flow = reverse_flow; criterion/tolerance: reverse_flow
+PASS negative_F_inlet_stops_before_marching = 1; criterion/tolerance: 1 station
+PASS BDF2_radial_effective_steps = 0.03960841031771116;0.01980420515885558;0.009973340727481227; criterion/tolerance: positive steps; successive step ratios in [1.9,2.1]
+PASS BDF2_radial_observed_log2_order = 2.060366530451403; criterion/tolerance: 1.6 <= p <= 2.5
+PASS BDF2_radial_finer_step_reduces_difference = 0.23975511001789698; criterion/tolerance: < 1
+PASS eta_grid_N48_N64_relative_profile_difference = 7.404112333345612e-14; criterion/tolerance: 2.0e-5
+PASS eta_grid_N64_N80_relative_profile_difference = 1.2698225306808982e-14; criterion/tolerance: 2.0e-7
+PASS eta_grid_refinement_decreases_difference = 1.2698225306808982e-14; criterion/tolerance: <= max(0.8*coarse_difference;1e-8)
+PASS domain_eta16_eta20_inner_profile_difference = 7.120327178847164e-6; criterion/tolerance: 0.0001
+PASS domain_eta20_eta24_inner_profile_difference = 2.069336259512385e-7; criterion/tolerance: 3.0e-6
+PASS domain_extension_decreases_difference = 2.069336259512385e-7; criterion/tolerance: < eta16_eta20 difference
+PASS domain_eta20_eta24_reference_Htop_difference = 6.706967107250605e-7; criterion/tolerance: 2.0e-6

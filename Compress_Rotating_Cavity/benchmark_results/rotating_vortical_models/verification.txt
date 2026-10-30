@@ -1,0 +1,9 @@
+Analytical incident-model verification; Julia 1.12.6
+These checks do not solve the wall/roughness receptivity problem.
+affine_shear_divergence_constraint_rate = 4.220764384040e-17
+cylindrical_core_equations_FD_residual = 4.295668376026e-08
+pure_m_Bessel_core_equations_max_FD_residual = 5.454359586733e-08
+max_plane_wave_momentum_residual = 1.241267076624e-16
+max_plane_wave_divergence = 5.551115123126e-17
+max_rotating_frame_amplitude_FD_error = 2.895133625964e-10
+max_rotating_wavevector_FD_error = 5.143721334094e-11

@@ -1,0 +1,30 @@
+Local steady axisymmetric spatial spectrum: single rotating disk main von Karman branch
+s=log(r/r0); perturbations exp(kappa*s)=(r/r0)^kappa. Negative real kappa means downstream decay of normalized F,G,H.
+Linear equations: h'+(2+kappa)f=0; f''-H0*f'-F0'*h-(2+kappa)F0*f+2G0*g=0; g''-H0*g'-G0'*h-2G0*f-(2+kappa)F0*g=0.
+J + kappa*B = 0; B_HF=I, B_FF=B_GG=-diag(F0), other blocks zero; generalized eigen(J,-B).
+State order H,F,G. Both boundary rows and DOFs Hwall,Fwall,Ftop,Gwall,Gtop removed. Htop is free.
+Search/report window |kappa|<=50.0; scaled residual <=1.0e-10.
+Grid criterion: max(N48-N80,N64-N80) <= 1.0e-7*max(1,|kappa|).
+Domain criterion: |L20-L24| <= 1.0e-5*max(1,|kappa|), no larger than |L16-L20| (floor 1e-8).
+Both comparisons also require inner-eta F,G mode correlations >=0.995.
+The singular mass matrix generates infinite diagnostic eigenvalues; finite values outside the declared window are retained in CSV but are not classified as physical.
+Mass/sign coefficient check: PASS; relative tolerance=1.0e-10 (cancellation in J(a=1)-J(a=0)).
+N=48, L=20.0: total=142, finite=94, residual-accepted in-window=6, unclassified positive finite outside-window=2, mass coefficient error=3.618689284788613e-13
+N=64, L=20.0: total=190, finite=126, residual-accepted in-window=6, unclassified positive finite outside-window=0, mass coefficient error=2.6047830359207295e-13
+N=80, L=20.0: total=238, finite=158, residual-accepted in-window=6, unclassified positive finite outside-window=0, mass coefficient error=1.6067112917905746e-12
+N=80, L=16.0: total=238, finite=158, residual-accepted in-window=6, unclassified positive finite outside-window=0, mass coefficient error=2.9247584609104606e-12
+N=80, L=24.0: total=238, finite=158, residual-accepted in-window=6, unclassified positive finite outside-window=2, mass coefficient error=8.668615929920664e-13
+Some coarser discretizations can produce very large positive finite eigenvalues outside the window. These have not passed grid/domain convergence and are unresolved numerical candidates, not evidence of a physical growing mode.
+N80 L20 candidates and convergence diagnostics:
+CONVERGED -3.813572250980401 + 0.0im; residual=1.8631763051604073e-17; grid delta48/64=1.057021137285119e-11/1.13420384195706e-12; domain delta16/24=9.996764681297066e-5/3.8015557510817644e-6; grid correlations=1.0/0.9999999999999998; domain correlations=0.9999999888405666/0.9999999999843151
+CONVERGED -8.605402812870862 + 0.0im; residual=8.738359411299318e-18; grid delta48/64=3.8976999405804236e-10/1.8314239014216582e-12; domain delta16/24=0.0003911755104137882/1.4240899258055606e-5; grid correlations=0.9999999999999996/1.0000000000000007; domain correlations=0.9999999433440626/0.9999999999163417
+CONVERGED -17.9495460064772 + 0.0im; residual=9.060360252772068e-18; grid delta48/64=1.7268781959955959e-9/5.8264504332328215e-12; domain delta16/24=0.0017192200963620508/6.647376298118957e-5; grid correlations=1.0000000000000002/1.0; domain correlations=0.9999998793933632/0.999999999824624
+CONVERGED -20.794379060011046 + 0.0im; residual=5.2704400331491245e-18; grid delta48/64=4.020877852894955e-8/9.098499731408083e-12; domain delta16/24=0.000972576547489723/3.2329844856349155e-5; grid correlations=1.0/1.0; domain correlations=0.9999995341337387/0.999999999267341
+CONVERGED -37.28992806925368 + 0.0im; residual=3.953626435813346e-18; grid delta48/64=1.5119752561076893e-8/9.657696864451282e-11; domain delta16/24=0.006987550216884131/0.00027489061212548904; grid correlations=0.9999999999999608/0.9999999999999996; domain correlations=0.9999995173592596/0.9999999992672218
+CONVERGED -40.82022340154386 + 0.0im; residual=7.048695516223621e-18; grid delta48/64=5.09281669280881e-7/3.1946001399774104e-11; domain delta16/24=0.0012618268638320274/3.147629806932173e-5; grid correlations=0.9999999999995545/0.9999999999999999; domain correlations=0.9999982274334631/0.9999999971012914
+Leading converged candidate in the declared window: -3.813572250980401 + 0.0im
+Number of converged in-window candidates with Re(kappa)>=0: 0
+Independent short nonlinear eigenmode march sign check: (pass = true, rate = -3.8135762033195073, predicted = -3.813572250980401, status = :completed, amplitude = 1.0e-6)
+kappa=-2 was not divided out: it gives h=0 and w=f+i*g obeying w''-H0*w'-2i*G0*w=0 with homogeneous endpoint values; a positive integrating-factor energy identity excludes a nonzero mode there.
+Scope: local steady axisymmetric spatial attraction of the normalized similarity profiles in this boundary-layer model; not temporal stability, non-axisymmetric/3D stability, global nonlinear attraction, or a proof about the full Navier-Stokes flow.
+The degenerating far-field radial velocity makes high-|kappa| numerical eigenvalues delicate. Convergence inside this finite window does not exclude unresolved eigenvalues elsewhere or establish a function-space spectrum theorem.

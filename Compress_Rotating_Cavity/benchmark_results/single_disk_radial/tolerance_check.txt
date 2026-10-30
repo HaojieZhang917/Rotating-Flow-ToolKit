@@ -1,0 +1,24 @@
+Newton stopping-tolerance sensitivity: small_shape inlet
+
+Model: steady axisymmetric non-similar single-disk boundary layer.
+Julia 1.12.6; degree=80, eta_max=20, requested ds=0.02, r/r0=100.
+Actual ds=0.01993580167094412; 232 stations including the inlet.
+
+Default tolerance=2e-10:
+  final relative weighted FG L2 error=6.551542559168466e-11
+  last two stations use zero Newton updates (seed residual is acceptable).
+  final residual=1.220077372465767e-10
+
+Tighter tolerance=1e-11:
+  reference residual=2.410531843577424e-12
+  final relative weighted FG L2 error=5.212943395676575e-11
+  final residual=1.521525714450908e-12; final Newton updates=1
+  error at station 200=5.530262939413246e-10
+  effective decay exponent over stations 200 to 231 is approximately -3.82142.
+
+The default final flat segment is caused by the nonlinear stopping threshold;
+it should not be interpreted as physical saturation of the radial decay.
+All errors here are relative to the discrete reference on the same finite domain.
+
+Reproduce the tighter run (all five inlets) without overwriting the default:
+julia --project=. scripts/benchmark_single_disk_radial.jl --tolerance 1e-11 --output benchmark_results/single_disk_radial_tol1e-11
