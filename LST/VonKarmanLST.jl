@@ -1122,9 +1122,11 @@ function _local_bilinear_convection(a,b,pa,pb,D,curv,n; b_qz=nothing)
     dbu=b_qz===nothing ? D*ub : b_qz[1:n]
     dbv=b_qz===nothing ? D*vb : b_qz[n+1:2n]
     dbw=b_qz===nothing ? D*wb : b_qz[2n+1:3n]
-    Nu=adv.*ub .+ curv.*wa.*dbu .- curv.*va.*vb
-    Nv=adv.*vb .+ curv.*wa.*dbv .+ curv.*va.*ub
-    Nw=adv.*wb .+ curv.*wa.*dbw
+    # 扰动 w 与 u、v 同以当地 rΩ 为单位（连续性 ∂z w+iαu+iβv+(Ro/R)u=0），
+    # 故 a_w ∂z b 的系数为 1；只有曲率项带 Ro/R。2026-11-05 修正：此前误乘 curv。
+    Nu=adv.*ub .+ wa.*dbu .- curv.*va.*vb
+    Nv=adv.*vb .+ wa.*dbv .+ curv.*va.*ub
+    Nw=adv.*wb .+ wa.*dbw
     return Nu,Nv,Nw
 end
 
@@ -1134,11 +1136,14 @@ end
 `p_h`、`p_f` 给出；若省略，则从响应对象的 `params` 字段读取。当前
 局部算子对应的双线性对流项采用
 
-    B_r(a,b)=a_u*∂r b_u+a_v*∂s b_u+(Ro/R)*a_w*∂z b_u
+    B_r(a,b)=a_u*∂r b_u+a_v*∂s b_u+a_w*∂z b_u
              -(Ro/R)*a_v*b_v,
-    B_s(a,b)=a_u*∂r b_v+a_v*∂s b_v+(Ro/R)*a_w*∂z b_v
+    B_s(a,b)=a_u*∂r b_v+a_v*∂s b_v+a_w*∂z b_v
              +(Ro/R)*a_v*b_u,
-    B_z(a,b)=a_u*∂r b_w+a_v*∂s b_w+(Ro/R)*a_w*∂z b_w.
+    B_z(a,b)=a_u*∂r b_w+a_v*∂s b_w+a_w*∂z b_w.
+
+（2026-11-05 修正：a_w ∂z 项此前误乘 Ro/R。验证：取 a 为基流 (F,G,H/R)，
+B(U,q)+B(q,U) 加基流径向导数项后与线性算子的对流部分一致到 1e-16。）
 
 这里 `∂r=im*alpha`、`∂s=im*beta` 沿用当前 `im*alpha*A` 和
 `im*beta*R*B` 的局部 Fourier 约定；压力和连续性不产生非线性源，

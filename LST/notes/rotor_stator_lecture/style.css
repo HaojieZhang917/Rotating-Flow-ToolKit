@@ -1,0 +1,42 @@
+:root {
+  --ink: #23231f; --muted: #6b6a64; --rule: #dedcd4; --surface: #fbfaf7;
+  --key-bg: #eef4fc; --key-bar: #2a78d6;
+  --think-bg: #f1f8f4; --think-bar: #1baf7a;
+  --lesson-bg: #fdf3ec; --lesson-bar: #eb6834;
+}
+html { background: var(--surface); }
+body {
+  max-width: 960px; margin: 0 auto; padding: 32px 24px 96px;
+  color: var(--ink); background: var(--surface);
+  font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", "Source Han Sans SC", sans-serif;
+  font-weight: 400; font-size: 16.5px; line-height: 1.85;
+}
+header#title-block-header { text-align: center; border-bottom: 1px solid var(--rule); margin-bottom: 24px; padding-bottom: 12px; }
+h1.title { font-size: 2em; margin-bottom: 0.2em; }
+p.subtitle { font-size: 1.2em; color: var(--muted); margin-top: 0; }
+p.date { color: var(--muted); }
+h1 { font-size: 1.55em; margin-top: 2.4em; padding-bottom: 0.25em; border-bottom: 2px solid var(--rule); }
+h2 { font-size: 1.25em; margin-top: 1.8em; }
+h3 { font-size: 1.08em; margin-top: 1.4em; }
+nav#TOC { background: #fff; border: 1px solid var(--rule); border-radius: 8px; padding: 12px 20px; font-size: 0.92em; }
+nav#TOC ul { list-style: none; padding-left: 1.1em; }
+nav#TOC > ul { padding-left: 0; }
+nav#TOC a { color: var(--ink); text-decoration: none; }
+nav#TOC a:hover { text-decoration: underline; }
+table { border-collapse: collapse; margin: 1em auto; font-size: 0.92em; background: #fff; }
+th, td { border: 1px solid var(--rule); padding: 6px 10px; vertical-align: top; }
+th { background: #f1efe9; }
+figure { margin: 1.6em 0; text-align: center; }
+figure img { max-width: 100%; border: 1px solid var(--rule); border-radius: 6px; background: #fff; }
+figcaption { font-size: 0.9em; color: var(--muted); text-align: left; margin-top: 0.5em; line-height: 1.6; }
+pre { background: #fff; border: 1px solid var(--rule); border-radius: 6px; padding: 12px; overflow-x: auto; font-size: 0.85em; line-height: 1.5; }
+code { font-family: "JetBrains Mono", "Consolas", monospace; font-size: 0.9em; }
+blockquote { border-left: 4px solid var(--rule); margin: 1em 0; padding: 0.2em 1em; color: #44433e; }
+div.key, div.think, div.lesson { border-radius: 8px; padding: 10px 18px; margin: 1.4em 0; border-left: 5px solid; }
+div.key { background: var(--key-bg); border-color: var(--key-bar); }
+div.think { background: var(--think-bg); border-color: var(--think-bar); }
+div.lesson { background: var(--lesson-bg); border-color: var(--lesson-bar); }
+math[display="block"] { margin: 0.8em 0; overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
+hr { border: none; border-top: 1px solid var(--rule); margin: 2.5em 0; }
+@media print { body { max-width: none; font-size: 12pt; } nav#TOC { page-break-after: always; } h1 { page-break-before: always; } }
+@media (max-width: 640px) { body { padding: 16px; font-size: 16px; } table { font-size: 0.8em; } }

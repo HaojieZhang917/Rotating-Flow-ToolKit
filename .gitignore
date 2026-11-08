@@ -7,3 +7,6 @@ myenv/
 *.svg
 *.pdf
 *.png
+
+# Claude Code worktrees (never commit)
+**/.claude/worktrees/
